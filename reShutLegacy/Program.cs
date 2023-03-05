@@ -15,7 +15,7 @@ namespace reShutLegacy
 
         static void Main(string[] args)
         {
-            string version = "v.11.0.3";
+            string version = "v.11.1.0";
 
             Console.Title = "reShut Legacy " + version;
             Console.ForegroundColor = ConsoleColor.Red;
@@ -28,7 +28,7 @@ namespace reShutLegacy
             Console.WriteLine(@"                                                     reShut " + version);
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            File.AppendAllText(@"reshut.log", "reShut v.11.0.1" + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
             Thread.Sleep(3000);
@@ -89,14 +89,18 @@ namespace reShutLegacy
                     try
                     {
                         File.Delete(@"reshut.log");
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("\nLog file has been cleared. ");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(3000);
                         goto settings;
                     }
                     catch
                     {
                         File.AppendAllText(@"reshut.log", "Failed to delete log file." + Environment.NewLine);
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("\nFailed to delete log file.");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(3000);
                         goto settings;
                     }
