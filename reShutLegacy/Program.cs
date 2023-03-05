@@ -16,6 +16,7 @@ namespace reShutLegacy
         static void Main(string[] args)
         {
             string version = "v.11.1.0";
+            string startup = api.GetTime(true);
 
             Console.Title = "reShut Legacy " + version;
             Console.ForegroundColor = ConsoleColor.Red;
@@ -28,7 +29,13 @@ namespace reShutLegacy
             Console.WriteLine(@"                                                     reShut " + version);
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
+            File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", "System Information:" + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", api.GetCPU() + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", api.GetGPU() + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", api.GetMainboard() + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", api.GetCPUID() + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
             Thread.Sleep(3000);
@@ -73,6 +80,7 @@ namespace reShutLegacy
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
+                Console.WriteLine("2) About...");
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
@@ -104,6 +112,24 @@ namespace reShutLegacy
                         Thread.Sleep(3000);
                         goto settings;
                     }
+                } else if (set == "2")
+                {
+                    Console.Clear();
+                    Console.WriteLine("--");
+                    Console.WriteLine("reShut-Legacy " + version);
+                    Console.WriteLine("Application startup time: " + startup);
+                    Console.WriteLine("----");
+                    Console.WriteLine("System Information:");
+                    Console.WriteLine("CPU: " + api.GetCPU());
+                    Console.WriteLine("CPU ID: " + api.GetCPUID());
+                    Console.WriteLine("GPU: " + api.GetGPU());
+                    Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
+                    Console.WriteLine("----");
+                    Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
+                    Console.WriteLine("--");
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadKey();
+                    goto settings;
                 }
                 else
                 {
