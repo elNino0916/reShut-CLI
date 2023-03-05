@@ -30,7 +30,7 @@ namespace reShutLegacy
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "reShut v.11.0.1" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            Console.WriteLine("\nreShut is now reShut Legacy.");
+            Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
             Thread.Sleep(3000);
             start:
             Console.WriteLine("");
