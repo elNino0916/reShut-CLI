@@ -24,7 +24,7 @@ namespace reShutLegacy
             Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
             Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
             Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"                                                      reShut v.11.0.1");
+            Console.WriteLine(@"                                                     reShut v.11.0.2");
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "reShut v.11.0.1" + Environment.NewLine);
