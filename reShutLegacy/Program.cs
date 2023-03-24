@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace reShutLegacy
             File.AppendAllText(@"reshut.log", api.GetCPUID() + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             start:
             Console.WriteLine("");
             Console.WriteLine("");
@@ -81,18 +82,19 @@ namespace reShutLegacy
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
                 Console.WriteLine("2) About...");
+                Console.WriteLine("3) Enable UI");
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
                 Console.ForegroundColor = ConsoleColor.White;
                 ConsoleKeyInfo setInfo = Console.ReadKey();
                 string set = setInfo.KeyChar.ToString();
-                if (set == "9") 
+                if (set == "9")
                 {
                     File.AppendAllText(@"reshut.log", "Returning to main menu..." + Environment.NewLine);
-                    Console.Clear(); 
+                    Console.Clear();
                     goto start;
-                }else if (set == "1")
+                } else if (set == "1")
                 {
                     try
                     {
@@ -129,6 +131,21 @@ namespace reShutLegacy
                     Console.WriteLine("--");
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadKey();
+                    goto settings;
+                }
+            else if (set == "3")
+                {
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("--");
+                    Console.WriteLine("UI Mode is enabled. Close the UI to continue in the console.");
+                    Console.WriteLine("--");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    var guiForm = new testui();
+
+                    guiForm.ShowDialog();//This "opens" the GUI on your screen
                     goto settings;
                 }
                 else

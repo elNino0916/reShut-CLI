@@ -6,3 +6,5 @@ C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.csp
 C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.csproj.CoreCompileInputs.cache
 C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.exe
 C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.pdb
+C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.testui.resources
+C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.csproj.GenerateResource.cache
