@@ -15,7 +15,7 @@ namespace reShutLegacy
 
         static void Main(string[] args)
         {
-            string version = "v.11.1.0";
+            string version = "v.11.2.0";
             string startup = api.GetTime(true);
 
             Console.Title = "reShut Legacy " + version;
