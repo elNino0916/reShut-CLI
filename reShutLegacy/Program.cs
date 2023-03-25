@@ -136,6 +136,13 @@ namespace reShutLegacy
             else if (set == "3")
                 {
                     Console.Clear();
+                    Console.WriteLine("Locating 'cmd.exe'...");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Injecting 'testui.dll' into 'cmd.exe'...");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Sending API call...");
+                    Thread.Sleep(2000);
+                    Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("--");
