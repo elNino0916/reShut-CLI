@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,10 +14,14 @@ namespace reShutLegacy
     internal class Program
     {
 
-        
-
         static void Main(string[] args)
         {
+            // Setting parameters
+            string version = "v.11.1.0";
+            string startup = api.GetTime(true);
+
+            // Main UI
+            Console.Title = "reShut Legacy " + version;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
@@ -24,13 +29,20 @@ namespace reShutLegacy
             Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
             Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
             Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"                                                     reShut v.11.0.2");
+            Console.WriteLine(@"                                                     reShut " + version);
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            File.AppendAllText(@"reshut.log", "reShut v.11.0.1" + Environment.NewLine);
+            File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            Console.WriteLine("\nreShut is now reShut Legacy.");
-            Thread.Sleep(3000);
+            // remove the system info from the log in a newer version @ 11.1.0
+            File.AppendAllText(@"reshut.log", "System Information:" + Environment.NewLine); //rm
+            File.AppendAllText(@"reshut.log", api.GetCPU() + Environment.NewLine); //rm
+            File.AppendAllText(@"reshut.log", api.GetGPU() + Environment.NewLine); //rm
+            File.AppendAllText(@"reshut.log", api.GetMainboard() + Environment.NewLine); //rm
+            File.AppendAllText(@"reshut.log", api.GetCPUID() + Environment.NewLine); //rm
+            File.AppendAllText(@"reshut.log", "---" + Environment.NewLine); //rm
+            Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
+            Thread.Sleep(1000);
             start:
             Console.WriteLine("");
             Console.WriteLine("");
@@ -49,6 +61,7 @@ namespace reShutLegacy
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             string key = keyInfo.KeyChar.ToString();
             File.AppendAllText(@"reshut.log", "Got input: " + key + Environment.NewLine);
+            // This looks like shit. Fix later
             if (key == "1")
             {
                 File.AppendAllText(@"reshut.log", "Shutting down..." + Environment.NewLine);
@@ -66,39 +79,86 @@ namespace reShutLegacy
             {
                 File.AppendAllText(@"reshut.log", "Opening settings menu..." + Environment.NewLine);
             settings:
+                // Settings
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 File.AppendAllText(@"reshut.log", "Awaiting user input..." + Environment.NewLine);
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
+                Console.WriteLine("2) About...");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("3) [Preview | Not working] Enable UI");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
                 Console.ForegroundColor = ConsoleColor.White;
                 ConsoleKeyInfo setInfo = Console.ReadKey();
                 string set = setInfo.KeyChar.ToString();
-                if (set == "9") 
+                if (set == "9")
                 {
                     File.AppendAllText(@"reshut.log", "Returning to main menu..." + Environment.NewLine);
-                    Console.Clear(); 
+                    Console.Clear();
                     goto start;
-                }else if (set == "1")
+                } else if (set == "1")
                 {
                     try
                     {
                         File.Delete(@"reshut.log");
-                        Console.WriteLine("\nLog file has been cleared. ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nLog file has been cleared. Closing in 3 seconds");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(3000);
-                        goto settings;
+                        Environment.Exit(0);
                     }
                     catch
                     {
                         File.AppendAllText(@"reshut.log", "Failed to delete log file." + Environment.NewLine);
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("\nFailed to delete log file.");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(3000);
                         goto settings;
                     }
+                } else if (set == "2")
+                {
+                    // About
+                    Console.Clear();
+                    Console.WriteLine("--");
+                    Console.WriteLine("reShut-Legacy " + version + " (c) 2023 elNino0916");
+                    Console.WriteLine("Application startup time: " + startup);
+                    Console.WriteLine("----");
+                    Console.WriteLine("System Information:");
+                    Console.WriteLine("CPU: " + api.GetCPU());
+                    Console.WriteLine("CPU ID: " + api.GetCPUID());
+                    Console.WriteLine("GPU: " + api.GetGPU());
+                    Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
+                    Console.WriteLine("----");
+                    Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
+                    Console.WriteLine("--");
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadKey();
+                    goto settings;
+                }
+            else if (set == "3")
+                {
+                    // UI
+                    Console.Clear();
+                    Console.WriteLine("[!] This feature is a preview. It does not work yet.");
+                    Thread.Sleep(5000);
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("--");
+                    Console.WriteLine("UI Mode is enabled. Close the UI to continue in the console.");
+                    Console.WriteLine("--");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    var guiForm = new testui();
+
+                    guiForm.ShowDialog();//This "opens" the GUI
+                    goto settings;
                 }
                 else
                 {
