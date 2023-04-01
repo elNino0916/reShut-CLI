@@ -17,7 +17,7 @@ namespace reShutLegacy
         static void Main(string[] args)
         {
             // Setting parameters
-            string version = "v.11.1.0";
+            string version = "v.11.1.1";
             string startup = api.GetTime(true);
 
             // Main UI
@@ -34,13 +34,6 @@ namespace reShutLegacy
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            // remove the system info from the log in a newer version @ 11.1.0
-            File.AppendAllText(@"reshut.log", "System Information:" + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetCPU() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetGPU() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetMainboard() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetCPUID() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", "---" + Environment.NewLine); //rm
             Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
             Thread.Sleep(1000);
             start:
