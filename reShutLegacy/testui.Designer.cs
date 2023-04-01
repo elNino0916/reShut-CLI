@@ -73,9 +73,11 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "testui";
             this.ShowIcon = false;
-            this.Text = "cmd.exe";
+            this.Text = "cmd.exe | UI Demo - reShut Legacy";
             this.ResumeLayout(false);
             this.PerformLayout();
 
