@@ -39,7 +39,7 @@ namespace reShutLegacy
             File.AppendAllText(@"reshut.log", api.GetCPUID() + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             start:
             Console.WriteLine("");
             Console.WriteLine("");
@@ -82,7 +82,9 @@ namespace reShutLegacy
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
                 Console.WriteLine("2) About...");
-                Console.WriteLine("3) Enable UI");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("3) [Preview | Not working] Enable UI");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
@@ -100,10 +102,10 @@ namespace reShutLegacy
                     {
                         File.Delete(@"reshut.log");
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nLog file has been cleared. ");
+                        Console.WriteLine("\nLog file has been cleared. Closing in 3 seconds");
                         Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(3000);
-                        goto settings;
+                        Environment.Exit(0);
                     }
                     catch
                     {
@@ -136,12 +138,8 @@ namespace reShutLegacy
             else if (set == "3")
                 {
                     Console.Clear();
-                    Console.WriteLine("Locating 'cmd.exe'...");
-                    Thread.Sleep(2000);
-                    Console.WriteLine("Injecting 'testui.dll' into 'cmd.exe'...");
-                    Thread.Sleep(2000);
-                    Console.WriteLine("Sending API call...");
-                    Thread.Sleep(2000);
+                    Console.WriteLine("[!] This feature is a preview. It does not work yet.");
+                    Thread.Sleep(5000);
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
