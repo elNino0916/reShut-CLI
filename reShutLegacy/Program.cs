@@ -16,9 +16,11 @@ namespace reShutLegacy
 
         static void Main(string[] args)
         {
+            // Setting parameters
             string version = "v.11.1.0";
             string startup = api.GetTime(true);
 
+            // Main UI
             Console.Title = "reShut Legacy " + version;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(@"           ____  _           _     _                                ");
@@ -58,6 +60,7 @@ namespace reShutLegacy
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             string key = keyInfo.KeyChar.ToString();
             File.AppendAllText(@"reshut.log", "Got input: " + key + Environment.NewLine);
+            // This looks like shit. Fix later
             if (key == "1")
             {
                 File.AppendAllText(@"reshut.log", "Shutting down..." + Environment.NewLine);
@@ -75,6 +78,7 @@ namespace reShutLegacy
             {
                 File.AppendAllText(@"reshut.log", "Opening settings menu..." + Environment.NewLine);
             settings:
+                // Settings
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 File.AppendAllText(@"reshut.log", "Awaiting user input..." + Environment.NewLine);
@@ -118,6 +122,7 @@ namespace reShutLegacy
                     }
                 } else if (set == "2")
                 {
+                    // About
                     Console.Clear();
                     Console.WriteLine("--");
                     Console.WriteLine("reShut-Legacy " + version + " (c) 2023 elNino0916");
@@ -137,6 +142,7 @@ namespace reShutLegacy
                 }
             else if (set == "3")
                 {
+                    // UI
                     Console.Clear();
                     Console.WriteLine("[!] This feature is a preview. It does not work yet.");
                     Thread.Sleep(5000);
@@ -150,7 +156,7 @@ namespace reShutLegacy
                     Console.BackgroundColor = ConsoleColor.Black;
                     var guiForm = new testui();
 
-                    guiForm.ShowDialog();//This "opens" the GUI on your screen
+                    guiForm.ShowDialog();//This "opens" the GUI
                     goto settings;
                 }
                 else
