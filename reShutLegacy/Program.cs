@@ -80,8 +80,8 @@ namespace reShutLegacy
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
                 Console.WriteLine("2) About...");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("3) [Preview | Not working] Enable UI");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("3) [Preview ended | Disabled] Enable UI");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
@@ -138,8 +138,9 @@ namespace reShutLegacy
                 {
                     // UI
                     Console.Clear();
-                    Console.WriteLine("[!] This feature is a preview. It does not work yet.");
-                    Thread.Sleep(5000);
+                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 is only version with the preview for now.");
+                    Thread.Sleep(8000);
+                    goto settings;
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
