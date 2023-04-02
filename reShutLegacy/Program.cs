@@ -18,7 +18,7 @@ namespace reShutLegacy
         static void Main(string[] args)
         {
             // Setting parameters
-            string version = "v.11.1.2";
+            string version = "v.11.1.3";
             string startup = api.GetTime(true);
 
             // Main UI
@@ -31,7 +31,7 @@ namespace reShutLegacy
             Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
             Console.WriteLine(@"                                             |___/            |___/ ");
             Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + version);
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.DarkYellow; 
             Console.WriteLine("\nThe 'Speedy' update");
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
@@ -81,8 +81,8 @@ namespace reShutLegacy
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
                 Console.WriteLine("2) About...");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("3) [Preview | Not working] Enable UI");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("3) [Preview ended | Disabled] Enable UI");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
@@ -145,8 +145,8 @@ namespace reShutLegacy
                     Console.Clear();
                     Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 and 11.1.2 are only versions with the preview for now.");
                     Console.WriteLine("[?] You need to modify the source code to open it anyways.");
-                    // Thread.Sleep(8000); //rm
-                    // goto settings; //rm
+                    Thread.Sleep(8000); //rm
+                    goto settings; //rm
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
