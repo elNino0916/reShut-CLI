@@ -80,8 +80,8 @@ namespace reShutLegacy
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
                 Console.WriteLine("2) About...");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("3) [Preview ended | Disabled] Enable UI");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("3) [Preview | Not working] Enable UI");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
@@ -142,10 +142,10 @@ namespace reShutLegacy
                     // Remove all lines below that end with //rm
                     // I do not recommend enabling this feature, its WIP
                     Console.Clear();
-                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 is only version with the preview for now.");
+                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 and 11.1.2 are only versions with the preview for now.");
                     Console.WriteLine("[?] You need to modify the source code to open it anyways.");
-                    Thread.Sleep(8000); //rm
-                    goto settings; //rm
+                    // Thread.Sleep(8000); //rm
+                    // goto settings; //rm
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
