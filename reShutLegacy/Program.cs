@@ -127,6 +127,7 @@ namespace reShutLegacy
                     Console.WriteLine("CPU ID: " + api.GetCPUID());
                     Console.WriteLine("GPU: " + api.GetGPU());
                     Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
+
                     Console.WriteLine("----");
                     Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
                     Console.WriteLine("--");
