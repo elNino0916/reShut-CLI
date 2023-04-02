@@ -17,7 +17,7 @@ namespace reShutLegacy
         static void Main(string[] args)
         {
             // Setting parameters
-            string version = "v.11.1.1";
+            string version = "v.11.1.2";
             string startup = api.GetTime(true);
 
             // Main UI
