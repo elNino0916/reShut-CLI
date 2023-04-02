@@ -14,6 +14,7 @@ namespace reShutLegacy
     internal class Program
     {
 
+
         static void Main(string[] args)
         {
             // Setting parameters
@@ -29,15 +30,15 @@ namespace reShutLegacy
             Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
             Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
             Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"                                                     reShut " + version);
+            Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + version);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\nThe 'Speedy' update");
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
-            Thread.Sleep(1000);
+            File.AppendAllText(@"reshut.log", "HWID: "+ "Disabled" + Environment.NewLine);
             start:
-            Console.WriteLine("");
             Console.WriteLine("");
             File.AppendAllText(@"reshut.log", "Awaiting user input..." + Environment.NewLine);
             Console.ForegroundColor= ConsoleColor.Cyan;
@@ -129,7 +130,7 @@ namespace reShutLegacy
                     Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
 
                     Console.WriteLine("----");
-                    Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
+                    Console.WriteLine("HWID (experimental): Disabled");
                     Console.WriteLine("--");
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadKey();
@@ -174,7 +175,7 @@ namespace reShutLegacy
                 Console.WriteLine("");
                 Console.WriteLine("");
                 Console.WriteLine("");
-                Console.WriteLine(key + ") was not found. Please use 1, 2 or 3.");
+                Console.WriteLine(key + ") was not found.");
                 Console.ForegroundColor = ConsoleColor.White;
                 goto start;
             }
