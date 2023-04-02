@@ -130,7 +130,7 @@ namespace reShutLegacy
                     Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
 
                     Console.WriteLine("----");
-                    Console.WriteLine("HWID (experimental): Disabled");
+                    Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
                     Console.WriteLine("--");
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadKey();
@@ -143,7 +143,7 @@ namespace reShutLegacy
                     // Remove all lines below that end with //rm
                     // I do not recommend enabling this feature, its WIP
                     Console.Clear();
-                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 and 11.1.2 are only versions with the preview for now.");
+                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 and 11.1.2 are the only versions with the preview for now.");
                     Console.WriteLine("[?] You need to modify the source code to open it anyways.");
                     Thread.Sleep(8000); //rm
                     goto settings; //rm
