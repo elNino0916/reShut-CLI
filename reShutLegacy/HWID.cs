@@ -96,7 +96,7 @@ namespace reShutLegacy
                     break;
                 }
             }
-            catch
+            catch 
             {
                 windowsProductKey = null;
             }

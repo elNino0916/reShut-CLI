@@ -17,7 +17,7 @@ namespace reShutLegacy
         static void Main(string[] args)
         {
             // Setting parameters
-            string version = "v.11.1.0";
+            string version = "v.11.1.1";
             string startup = api.GetTime(true);
 
             // Main UI
@@ -34,13 +34,6 @@ namespace reShutLegacy
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            // remove the system info from the log in a newer version @ 11.1.0
-            File.AppendAllText(@"reshut.log", "System Information:" + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetCPU() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetGPU() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetMainboard() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", api.GetCPUID() + Environment.NewLine); //rm
-            File.AppendAllText(@"reshut.log", "---" + Environment.NewLine); //rm
             Console.WriteLine("\nWelcome, " + Environment.UserName + "!");
             Thread.Sleep(1000);
             start:
@@ -87,8 +80,8 @@ namespace reShutLegacy
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
                 Console.WriteLine("2) About...");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("3) [Preview | Not working] Enable UI");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("3) [Preview ended | Disabled] Enable UI");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
@@ -134,6 +127,7 @@ namespace reShutLegacy
                     Console.WriteLine("CPU ID: " + api.GetCPUID());
                     Console.WriteLine("GPU: " + api.GetGPU());
                     Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
+
                     Console.WriteLine("----");
                     Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
                     Console.WriteLine("--");
@@ -144,9 +138,14 @@ namespace reShutLegacy
             else if (set == "3")
                 {
                     // UI
+                    // INSTRUCTIONS HOW TO ENABLE THIS FEATURE
+                    // Remove all lines below that end with //rm
+                    // I do not recommend enabling this feature, its WIP
                     Console.Clear();
-                    Console.WriteLine("[!] This feature is a preview. It does not work yet.");
-                    Thread.Sleep(5000);
+                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 is only version with the preview for now.");
+                    Console.WriteLine("[?] You need to modify the source code to open it anyways.");
+                    Thread.Sleep(8000); //rm
+                    goto settings; //rm
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
