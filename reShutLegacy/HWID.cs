@@ -11,119 +11,119 @@ namespace reShutLegacy
 {
     internal class HWID
     {
-        public static string GetHWID()
-        {
-            string cpuName = string.Empty;
-            string gpuName = string.Empty;
-            string mainboardName = string.Empty;
-            string hardDriveSerial = string.Empty;
-            string biosSerial = string.Empty;
-            string ramSize = string.Empty;
-            string processorId = string.Empty;
-            string windowsProductKey = string.Empty;
+        public static string GetHWID() { 
+                string cpuName = string.Empty;
+                string gpuName = string.Empty;
+                string mainboardName = string.Empty;
+                string hardDriveSerial = string.Empty;
+                string biosSerial = string.Empty;
+                string ramSize = string.Empty;
+                string processorId = string.Empty;
+                string windowsProductKey = string.Empty;
 
-            string query = "SELECT Name FROM Win32_Processor";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+                string query = "SELECT Name FROM Win32_Processor";
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
 
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                cpuName = obj["Name"].ToString();
-                break;
-            }
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    cpuName = obj["Name"].ToString();
+                    break;
+                }
 
-            query = "SELECT Name FROM Win32_VideoController";
-            searcher = new ManagementObjectSearcher(query);
-
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                gpuName = obj["Name"].ToString();
-                break;
-            }
-
-            query = "SELECT Product FROM Win32_BaseBoard";
-            searcher = new ManagementObjectSearcher(query);
-
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                mainboardName = obj["Product"].ToString();
-                break;
-            }
-
-            query = "SELECT SerialNumber FROM Win32_DiskDrive WHERE InterfaceType='IDE' OR InterfaceType='SCSI' OR InterfaceType='SAS' OR InterfaceType='SATA'";
-            searcher = new ManagementObjectSearcher(query);
-
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                hardDriveSerial = obj["SerialNumber"].ToString();
-                break;
-            }
-
-            query = "SELECT SerialNumber FROM Win32_BIOS";
-            searcher = new ManagementObjectSearcher(query);
-
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                biosSerial += obj["SerialNumber"].ToString();
-                break;
-            }
-
-            query = "SELECT Capacity FROM Win32_PhysicalMemory";
-            searcher = new ManagementObjectSearcher(query);
-
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                ulong capacity = Convert.ToUInt64(obj["Capacity"]);
-                ramSize += capacity.ToString() + ";";
-            }
-
-            query = "SELECT ProcessorId FROM Win32_Processor";
-            searcher = new ManagementObjectSearcher(query);
-
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                processorId = obj["ProcessorId"].ToString();
-                break;
-            }
-
-            try
-            {
-                query = "SELECT ProductKey FROM SoftwareLicensingService";
+                query = "SELECT Name FROM Win32_VideoController";
                 searcher = new ManagementObjectSearcher(query);
 
                 foreach (ManagementObject obj in searcher.Get())
                 {
-                    windowsProductKey = obj["ProductKey"].ToString();
+                    gpuName = obj["Name"].ToString();
                     break;
                 }
-            }
-            catch 
-            {
-                windowsProductKey = null;
-            }
 
-            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-            string macAddress = string.Empty;
+                query = "SELECT Product FROM Win32_BaseBoard";
+                searcher = new ManagementObjectSearcher(query);
 
-            foreach (NetworkInterface adapter in nics)
-            {
-                if (macAddress == string.Empty)
+                foreach (ManagementObject obj in searcher.Get())
                 {
-                    IPInterfaceProperties properties = adapter.GetIPProperties();
-                    macAddress = adapter.GetPhysicalAddress().ToString();
+                    mainboardName = obj["Product"].ToString();
+                    break;
                 }
-            }
 
-            string hwid = cpuName + gpuName + mainboardName + hardDriveSerial + biosSerial + ramSize + processorId + windowsProductKey + macAddress;
-            string salt = "HWID-";
-            SHA256 sha256 = SHA256.Create();
-            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(salt + hwid));
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hashBytes.Length; i++)
-            {
-                sb.Append(hashBytes[i].ToString("x2"));
+                query = "SELECT SerialNumber FROM Win32_DiskDrive WHERE InterfaceType='IDE' OR InterfaceType='SCSI' OR InterfaceType='SAS' OR InterfaceType='SATA'";
+                searcher = new ManagementObjectSearcher(query);
 
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    hardDriveSerial = obj["SerialNumber"].ToString();
+                    break;
+                }
+
+                query = "SELECT SerialNumber FROM Win32_BIOS";
+                searcher = new ManagementObjectSearcher(query);
+
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    biosSerial += obj["SerialNumber"].ToString();
+                    break;
+                }
+
+                query = "SELECT Capacity FROM Win32_PhysicalMemory";
+                searcher = new ManagementObjectSearcher(query);
+
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    ulong capacity = Convert.ToUInt64(obj["Capacity"]);
+                    ramSize += capacity.ToString() + ";";
+                }
+
+                query = "SELECT ProcessorId FROM Win32_Processor";
+                searcher = new ManagementObjectSearcher(query);
+
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    processorId = obj["ProcessorId"].ToString();
+                    break;
+                }
+
+                try
+                {
+                    query = "SELECT ProductKey FROM SoftwareLicensingService";
+                    searcher = new ManagementObjectSearcher(query);
+
+                    foreach (ManagementObject obj in searcher.Get())
+                    {
+                        windowsProductKey = obj["ProductKey"].ToString();
+                        break;
+                    }
+                }
+                catch
+                {
+                    windowsProductKey = null;
+                }
+
+                NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+                string macAddress = string.Empty;
+
+                foreach (NetworkInterface adapter in nics)
+                {
+                    if (macAddress == string.Empty)
+                    {
+                        IPInterfaceProperties properties = adapter.GetIPProperties();
+                        macAddress = adapter.GetPhysicalAddress().ToString();
+                    }
+                }
+
+                string hwid = cpuName + gpuName + mainboardName + hardDriveSerial + biosSerial + ramSize + processorId + windowsProductKey + macAddress;
+                string salt = "HWID-";
+                SHA256 sha256 = SHA256.Create();
+                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(salt + hwid));
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2"));
+
+                }
+                return sb.ToString();
             }
-            return sb.ToString();
         }
     }
-}
+
