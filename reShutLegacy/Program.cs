@@ -20,6 +20,7 @@ namespace reShutLegacy
             // Setting parameters
             string version = "v.11.1.3";
             string startup = api.GetTime(true);
+            bool prerelease = true;
 
             // Main UI
             Console.Title = "reShut Legacy " + version;
@@ -30,7 +31,14 @@ namespace reShutLegacy
             Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
             Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
             Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + version);
+            if (prerelease == true)
+            {
+            Console.WriteLine(@"                                                Pre-Release " + version);
+            }
+            else
+            {
+                Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + version);
+            }
             Console.ForegroundColor = ConsoleColor.DarkYellow; 
             Console.WriteLine("\nThe 'Speedy' update");
             Console.ForegroundColor = ConsoleColor.White;
@@ -121,6 +129,7 @@ namespace reShutLegacy
                     Console.Clear();
                     Console.WriteLine("--");
                     Console.WriteLine("reShut-Legacy " + version + " (c) 2023 elNino0916");
+                    Console.WriteLine("Pre-Release: " + prerelease);
                     Console.WriteLine("Application startup time: " + startup);
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
