@@ -137,10 +137,14 @@ namespace reShutLegacy
             else if (set == "3")
                 {
                     // UI
+                    // INSTRUCTIONS HOW TO ENABLE THIS FEATURE
+                    // Remove all lines below that end with //rm
+                    // I do not recommend enabling this feature, its WIP
                     Console.Clear();
                     Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 is only version with the preview for now.");
-                    Thread.Sleep(8000);
-                    goto settings;
+                    Console.WriteLine("[?] You need to modify the source code to open it anyways.");
+                    Thread.Sleep(8000); //rm
+                    goto settings; //rm
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
