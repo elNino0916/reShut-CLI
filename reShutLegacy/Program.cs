@@ -131,6 +131,7 @@ namespace reShutLegacy
                     Console.WriteLine("reShut-Legacy " + version + " (c) 2023 elNino0916");
                     Console.WriteLine("Pre-Release: " + prerelease);
                     Console.WriteLine("Application startup time: " + startup);
+                    Console.WriteLine("Current Time: " + api.GetTime(true));
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
                     Console.WriteLine("CPU: " + api.GetCPU());
