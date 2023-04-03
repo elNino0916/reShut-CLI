@@ -29,7 +29,7 @@ namespace reShutLegacy
 
             // setup timer
             // Create a timer with a 1 second interval
-            var timer = new System.Timers.Timer(1000);
+            var timer = new System.Timers.Timer(1);
 
             // Hook up the Elapsed event
             timer.Elapsed += OnTimerElapsed;

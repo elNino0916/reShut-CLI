@@ -49,7 +49,7 @@ namespace reShutLegacy
                     Console.WriteLine(@"---");
                 }
                 Debugger.Break();
-                Environment.Exit(0);
+                Environment.Exit(0); 
             }
             return false;
         }
