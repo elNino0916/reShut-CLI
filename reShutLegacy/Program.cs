@@ -19,28 +19,52 @@ namespace reShutLegacy
         static void Main(string[] args)
         {
             // Setting parameters
-            string version = "v.11.1.3";
+            string version = "v.11.2.0";
             string startup = api.GetTime(true);
             bool prerelease = true;
-            bool buildfromsource = true;
+            bool buildfromsource = false;
             // check for debugger
+            
             
             if (Debugger.IsAttached)
             {
-                Console.Title = "Debugger is not allowed.";
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Please start reShut Legacy without an debugger.");
-                Console.WriteLine("You can look into the source code if you want to:");
-                Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy");
-                Console.WriteLine(@"Open an issue on github if you think that this is an mistake. Also attach the information below:");
-                Console.WriteLine(@"---");
-                Console.WriteLine(@"Information:");
-                Console.WriteLine(@"reShut " + version);
-                Console.WriteLine(@"PreRelease: " + prerelease);
-                Console.WriteLine(@"BuiltFromSource: " + buildfromsource);
-                Console.WriteLine(@"Identifier: " +"dbg-" + HWID.GetHWID() + "-" + startup);
-                Console.WriteLine(@"---");
+                if (buildfromsource == false)
+                {
+                    Console.Title = "Debugger is not allowed.";
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please start reShut Legacy without an debugger.");
+                    Console.WriteLine("You can look into the source code if you want to:");
+                    Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy");
+                    Console.WriteLine(@"Open an issue on github if you think that this is an mistake. Also attach the information below:");
+                    Console.WriteLine(@"---");
+                    Console.WriteLine(@"Information:");
+                    Console.WriteLine(@"reShut " + version);
+                    Console.WriteLine(@"PreRelease: " + prerelease);
+                    Console.WriteLine(@"BuiltFromSource: " + buildfromsource);
+                    Console.WriteLine(@"Identifier: " + "dbg-" + HWID.GetHWID() + "-" + DateTime.Now.ToString("HH_mm_ss"));
+                    Console.WriteLine(@"---");
+                }
+                else
+                {
+                    Console.Title = "Debugger is not allowed."; 
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please start reShut Legacy without an debugger.");
+                    Console.WriteLine("You are using an version built using the source, which could include malware.");
+                    Console.WriteLine("However, you can look into the source code if you want to:");
+                    Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy");
+                    Console.WriteLine(@"Open an issue on github if you think that this is an mistake. Also attach the information below:");
+                    Console.WriteLine(@"---");
+                    Console.WriteLine(@"Information:");
+                    Console.WriteLine(@"reShut " + version);
+                    Console.WriteLine(@"PreRelease: " + prerelease);
+                    Console.WriteLine(@"BuiltFromSource: " + buildfromsource);
+                    Console.WriteLine(@"Identifier: " + "dbg-" + HWID.GetHWID() + "-" + DateTime.Now.ToString("HH_mm_ss"));
+                    Console.WriteLine(@"---");
+                }
                 Debugger.Break();
+                Console.WriteLine(@"Press any key to quit.");
+                Console.ReadKey();
+                Environment.Exit(0);
             }
            
 
