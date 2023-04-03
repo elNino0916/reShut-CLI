@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,17 +15,45 @@ namespace reShutLegacy
     internal class Program
     {
 
-
+        
         static void Main(string[] args)
         {
             // Setting parameters
             string version = "v.11.1.3";
             string startup = api.GetTime(true);
             bool prerelease = true;
+            bool buildfromsource = false;
+            // check for debugger
+            
+            if (Debugger.IsAttached)
+            {
+                Console.Title = "Debugger is not allowed.";
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please start reShut Legacy without an debugger.");
+                Console.WriteLine("You can look into the source code if you want to:");
+                Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy");
+                Console.WriteLine(@"Open an issue on github if you think that this is an mistake. Also attach the information below:");
+                Console.WriteLine(@"---");
+                Console.WriteLine(@"Information:");
+                Console.WriteLine(@"reShut " + version);
+                Console.WriteLine(@"PreRelease: " + prerelease);
+                Console.WriteLine(@"BuiltFromSource: " + buildfromsource);
+                Console.WriteLine(@"Identifier: " +"dbg-" + HWID.GetHWID() + "-" + startup);
+                Console.WriteLine(@"---");
+                Debugger.Break();
+            }
+           
 
             // Main UI
             Console.Title = "reShut Legacy " + version;
-            Console.ForegroundColor = ConsoleColor.Red;
+            if (buildfromsource == true)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
             Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
@@ -39,8 +68,16 @@ namespace reShutLegacy
             {
                 Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + version);
             }
+            if (buildfromsource == true)
+            {
+                Console.WriteLine(@"You are using an version built using the source.");
+            }
+            else
+            {
+                Console.WriteLine("You are using an pre-compiled build, good!");
+            }
             Console.ForegroundColor = ConsoleColor.DarkYellow; 
-            Console.WriteLine("\nThe 'Speedy' update");
+            Console.WriteLine("\nThe 'Secure' update");
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
