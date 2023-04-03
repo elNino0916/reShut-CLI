@@ -9,68 +9,37 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace reShutLegacy
 {
     internal class Program
     {
-
-        
-        static void Main(string[] args)
+        static void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            // Setting parameters
-            string version = "v.11.2.0";
-            string startup = api.GetTime(true);
-            bool prerelease = true;
-            bool buildfromsource = false;
-            // check for debugger
-            
-            
             if (Debugger.IsAttached)
             {
-                if (buildfromsource == false)
-                {
-                    Console.Title = "Debugger is not allowed.";
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Please start reShut Legacy without an debugger.");
-                    Console.WriteLine("You can look into the source code if you want to:");
-                    Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy");
-                    Console.WriteLine(@"Open an issue on github if you think that this is an mistake. Also attach the information below:");
-                    Console.WriteLine(@"---");
-                    Console.WriteLine(@"Information:");
-                    Console.WriteLine(@"reShut " + version);
-                    Console.WriteLine(@"PreRelease: " + prerelease);
-                    Console.WriteLine(@"BuiltFromSource: " + buildfromsource);
-                    Console.WriteLine(@"Identifier: " + "dbg-" + HWID.GetHWID() + "-" + DateTime.Now.ToString("HH_mm_ss"));
-                    Console.WriteLine(@"---");
-                }
-                else
-                {
-                    Console.Title = "Debugger is not allowed."; 
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Please start reShut Legacy without an debugger.");
-                    Console.WriteLine("You are using an version built using the source, which could include malware.");
-                    Console.WriteLine("However, you can look into the source code if you want to:");
-                    Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy");
-                    Console.WriteLine(@"Open an issue on github if you think that this is an mistake. Also attach the information below:");
-                    Console.WriteLine(@"---");
-                    Console.WriteLine(@"Information:");
-                    Console.WriteLine(@"reShut " + version);
-                    Console.WriteLine(@"PreRelease: " + prerelease);
-                    Console.WriteLine(@"BuiltFromSource: " + buildfromsource);
-                    Console.WriteLine(@"Identifier: " + "dbg-" + HWID.GetHWID() + "-" + DateTime.Now.ToString("HH_mm_ss"));
-                    Console.WriteLine(@"---");
-                }
-                Debugger.Break();
-                Console.WriteLine(@"Press any key to quit.");
-                Console.ReadKey();
-                Environment.Exit(0);
+                Debuggear.Check();
             }
-           
+        }
+
+        static void Main(string[] args)
+        {
+            // check for debugger
+
+            // setup timer
+            // Create a timer with a 1 second interval
+            var timer = new System.Timers.Timer(1000);
+
+            // Hook up the Elapsed event
+            timer.Elapsed += OnTimerElapsed;
+
+            // Start the timer
+            timer.Start();
 
             // Main UI
-            Console.Title = "reShut Legacy " + version;
-            if (buildfromsource == true)
+            Console.Title = "reShut Legacy " + variables.version;
+            if (variables.buildfromsource == true)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
             }
@@ -84,15 +53,15 @@ namespace reShutLegacy
             Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
             Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
             Console.WriteLine(@"                                             |___/            |___/ ");
-            if (prerelease == true)
+            if (variables.prerelease == true)
             {
-            Console.WriteLine(@"                                                Pre-Release " + version);
+            Console.WriteLine(@"                                                Pre-Release " + variables.version);
             }
             else
             {
-                Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + version);
+                Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + variables.version);
             }
-            if (buildfromsource == true)
+            if (variables.buildfromsource == true)
             {
                 Console.WriteLine(@"You are using an version built using the source.");
             }
@@ -104,7 +73,7 @@ namespace reShutLegacy
             Console.WriteLine("\nThe 'Secure' update");
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
+            File.AppendAllText(@"reshut.log", "reShut " + variables.version + Environment.NewLine); 
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "HWID: "+ "Disabled" + Environment.NewLine);
             start:
@@ -189,9 +158,8 @@ namespace reShutLegacy
                     // About
                     Console.Clear();
                     Console.WriteLine("--");
-                    Console.WriteLine("reShut-Legacy " + version + " (c) 2023 elNino0916");
-                    Console.WriteLine("Pre-Release: " + prerelease);
-                    Console.WriteLine("Application startup time: " + startup);
+                    Console.WriteLine("reShut-Legacy " + variables.version + " (c) 2023 elNino0916");
+                    Console.WriteLine("Pre-Release: " + variables.prerelease);
                     Console.WriteLine("Current Time: " + api.GetTime(true));
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");

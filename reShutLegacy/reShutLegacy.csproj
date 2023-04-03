@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api.cs" />
+    <Compile Include="Debuggear.cs" />
     <Compile Include="MSGs.cs" />
     <Compile Include="HWID.cs" />
     <Compile Include="Program.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="testui.Designer.cs">
       <DependentUpon>testui.cs</DependentUpon>
     </Compile>
+    <Compile Include="variables.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
