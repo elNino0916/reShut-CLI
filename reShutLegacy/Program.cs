@@ -22,7 +22,7 @@ namespace reShutLegacy
             string version = "v.11.1.3";
             string startup = api.GetTime(true);
             bool prerelease = true;
-            bool buildfromsource = false;
+            bool buildfromsource = true;
             // check for debugger
             
             if (Debugger.IsAttached)
