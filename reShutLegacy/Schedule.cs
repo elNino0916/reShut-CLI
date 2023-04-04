@@ -84,6 +84,7 @@ namespace reShutLegacy
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Error: Input must be a number.");
+                Console.Clear();
                 goto seconds;
             }
             // Phase 3
