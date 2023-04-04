@@ -10,7 +10,7 @@ namespace reShutLegacy
     {
         public static string version = "v.11.2.0";
         public static string startup = api.GetTime(true);
-        public static bool prerelease = true;
+        public static bool prerelease = false;
         public static bool buildfromsource = true;
     }
 }
