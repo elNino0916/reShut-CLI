@@ -56,6 +56,16 @@ namespace reShutLegacy
             {
                 Console.Clear();
                 return false;
+            }else if (key != "1" | key != "2" | key != "0") 
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("---");
+                Console.WriteLine("An error occurred!");
+                Console.WriteLine("---");
+                Console.ForegroundColor = ConsoleColor.White;
+                Thread.Sleep(8000);
+                goto Retry;
             }
             // Phase 2
             Console.Clear();
@@ -82,8 +92,12 @@ namespace reShutLegacy
 
             if (!int.TryParse(inputStr, out input))
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Error: Input must be a number.");
+                Console.WriteLine("---");
+                Console.WriteLine("Error: Input must be a valid number.");
+                Console.WriteLine("---");
+                Thread.Sleep(8000);
                 Console.Clear();
                 goto seconds;
             }
