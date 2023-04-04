@@ -2,43 +2,81 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace reShutLegacy
 {
     internal class Program
     {
-
+        static void OnTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            if (Debugger.IsAttached)
+            {
+                Debuggear.Check();
+            }
+        }
 
         static void Main(string[] args)
         {
-            // Setting parameters
-            string version = "v.11.1.2";
-            string startup = api.GetTime(true);
+            // check for debugger
 
-            // Main UI
-            Console.Title = "reShut Legacy " + version;
-            Console.ForegroundColor = ConsoleColor.Red;
+            // setup timer
+            // Create a timer with a 1 second interval
+            var timer = new System.Timers.Timer(1);
+
+            // Hook up the Elapsed event
+            timer.Elapsed += OnTimerElapsed;
+
+            // Start the timer
+            timer.Start();
+
+        // Main UI
+        start:
+            Console.Title = "reShut Legacy " + variables.version;
+            if (variables.buildfromsource == true)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
             Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
             Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
             Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
             Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + version);
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\nThe 'Speedy' update");
+            if (variables.prerelease == true)
+            {
+            Console.WriteLine(@"                                                Pre-Release " + variables.version);
+            }
+            else
+            {
+                Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + variables.version);
+            }
+            if (variables.buildfromsource == true)
+            {
+                Console.WriteLine(@"You are using an version built using the source.");
+            }
+            else
+            {
+                Console.WriteLine("You are using an pre-compiled build, good!");
+            }
+            Console.ForegroundColor = ConsoleColor.DarkYellow; 
+            Console.WriteLine("\nThe 'Secure' update");
             Console.ForegroundColor = ConsoleColor.White;
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            File.AppendAllText(@"reshut.log", "reShut " + version + Environment.NewLine); 
+            File.AppendAllText(@"reshut.log", "reShut " + variables.version + Environment.NewLine); 
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "HWID: "+ "Disabled" + Environment.NewLine);
-            start:
             Console.WriteLine("");
             File.AppendAllText(@"reshut.log", "Awaiting user input..." + Environment.NewLine);
             Console.ForegroundColor= ConsoleColor.Cyan;
@@ -47,6 +85,7 @@ namespace reShutLegacy
             Console.WriteLine("1) Shutdown");
             Console.WriteLine("2) Reboot");
             Console.WriteLine("3) Logoff");
+            Console.WriteLine("4) Schedule...");
             Console.WriteLine("9) Settings");
             Console.WriteLine("0) Quit");
             Console.WriteLine("---");
@@ -81,8 +120,8 @@ namespace reShutLegacy
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
                 Console.WriteLine("2) About...");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("3) [Preview | Not working] Enable UI");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("3) [Preview ended | Disabled] Enable UI");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
@@ -120,8 +159,9 @@ namespace reShutLegacy
                     // About
                     Console.Clear();
                     Console.WriteLine("--");
-                    Console.WriteLine("reShut-Legacy " + version + " (c) 2023 elNino0916");
-                    Console.WriteLine("Application startup time: " + startup);
+                    Console.WriteLine("reShut-Legacy " + variables.version + " (c) 2023 elNino0916");
+                    Console.WriteLine("Pre-Release: " + variables.prerelease);
+                    Console.WriteLine("Current Time: " + api.GetTime(true));
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
                     Console.WriteLine("CPU: " + api.GetCPU());
@@ -130,7 +170,7 @@ namespace reShutLegacy
                     Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
 
                     Console.WriteLine("----");
-                    Console.WriteLine("HWID (experimental): Disabled");
+                    Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
                     Console.WriteLine("--");
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadKey();
@@ -143,10 +183,10 @@ namespace reShutLegacy
                     // Remove all lines below that end with //rm
                     // I do not recommend enabling this feature, its WIP
                     Console.Clear();
-                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 and 11.1.2 are only versions with the preview for now.");
+                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 and 11.1.2 are the only versions with the preview for now.");
                     Console.WriteLine("[?] You need to modify the source code to open it anyways.");
-                    // Thread.Sleep(8000); //rm
-                    // goto settings; //rm
+                    Thread.Sleep(8000); //rm
+                    goto settings; //rm
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -164,9 +204,14 @@ namespace reShutLegacy
                 {
                     goto settings;
                 }
-            }else if (key == "0")
+            }
+            else if (key == "0")
             {
                 File.AppendAllText(@"reshut.log", "Exitting..." + Environment.NewLine);
+            }else if (key == "4")
+            {
+                Schedule.Plan();
+                goto start;
             }
             else
             {
