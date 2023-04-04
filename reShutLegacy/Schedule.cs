@@ -101,7 +101,7 @@ namespace reShutLegacy
             Console.WriteLine(" ");
             Console.WriteLine(" ");
             Console.WriteLine("---");
-            Console.WriteLine("You want to schedule an " + type + " in " + input + " seconds. Is that correct?");
+            Console.WriteLine("You want to schedule a " + type + " in " + input + " seconds. Is that correct?");
             Console.WriteLine("Select an option:");
             Console.WriteLine("1) Yes, schedule " + type);
             Console.WriteLine("2) No, go back and retry");
