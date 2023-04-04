@@ -37,7 +37,8 @@ namespace reShutLegacy
             // Start the timer
             timer.Start();
 
-            // Main UI
+        // Main UI
+        start:
             Console.Title = "reShut Legacy " + variables.version;
             if (variables.buildfromsource == true)
             {
@@ -76,7 +77,6 @@ namespace reShutLegacy
             File.AppendAllText(@"reshut.log", "reShut " + variables.version + Environment.NewLine); 
             File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
             File.AppendAllText(@"reshut.log", "HWID: "+ "Disabled" + Environment.NewLine);
-            start:
             Console.WriteLine("");
             File.AppendAllText(@"reshut.log", "Awaiting user input..." + Environment.NewLine);
             Console.ForegroundColor= ConsoleColor.Cyan;
@@ -85,6 +85,7 @@ namespace reShutLegacy
             Console.WriteLine("1) Shutdown");
             Console.WriteLine("2) Reboot");
             Console.WriteLine("3) Logoff");
+            Console.WriteLine("4) Schedule...");
             Console.WriteLine("9) Settings");
             Console.WriteLine("0) Quit");
             Console.WriteLine("---");
@@ -203,9 +204,14 @@ namespace reShutLegacy
                 {
                     goto settings;
                 }
-            }else if (key == "0")
+            }
+            else if (key == "0")
             {
                 File.AppendAllText(@"reshut.log", "Exitting..." + Environment.NewLine);
+            }else if (key == "4")
+            {
+                Schedule.Plan();
+                goto start;
             }
             else
             {
