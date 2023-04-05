@@ -40,12 +40,23 @@ namespace reShutLegacy
             Console.WriteLine("Select an option:");
             Console.WriteLine("1) Shutdown");
             Console.WriteLine("2) Reboot");
+            Console.WriteLine("-");
+            Console.WriteLine("9) Cancel schedule");
             Console.WriteLine("0) Back");
             Console.WriteLine("---");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Input: ");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             string key = keyInfo.KeyChar.ToString();
+            if (key == "9") 
+            {
+                type = "cancel";
+                Process.Start(@"cmd.exe", "/c shutdown -a");
+                Console.Clear();
+                return false;
+            }
+            else
+
             if (key == "1")
             {
                 type = "shutdown";
@@ -54,6 +65,7 @@ namespace reShutLegacy
                 type = "reboot";
             }else if (key == "0") 
             {
+                type = "quit";
                 Console.Clear();
                 return false;
             }else if (key != "1" | key != "2" | key != "0") 
@@ -82,6 +94,19 @@ namespace reShutLegacy
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
+
+            if (DateTime.Now.ToString("tt") == "")
+            {
+                Console.WriteLine("Current time: " + api.GetTime(true));
+            }
+            else 
+            {
+                if (DateTime.Now.ToString("tt") == "PM" | DateTime.Now.ToString("tt") == "AM")
+                {
+                    Console.WriteLine("Current time: " + api.GetTime(false));
+                }
+            }
+
             Console.WriteLine("---");
             Console.WriteLine("When do you want to run the scheduled " + type + "?");
             Console.WriteLine("Enter the time until the " + type + " in seconds.");

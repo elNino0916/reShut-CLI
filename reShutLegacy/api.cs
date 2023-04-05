@@ -18,7 +18,7 @@ namespace reShutLegacy
         {
             if (!use24HoursFormat)
             {
-                return DateTime.Now.ToString("hh:mm:ss");
+                return DateTime.Now.ToString("hh:mm:ss tt");
             }
             else
             {
