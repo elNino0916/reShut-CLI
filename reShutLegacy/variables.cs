@@ -10,6 +10,6 @@ namespace reShutLegacy
     {
         public static string version = "v.11.2.3";
         public static bool prerelease = false;
-        public static bool buildfromsource = false;
+        public static bool buildfromsource = true;
     }
 }
