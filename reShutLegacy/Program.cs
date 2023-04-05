@@ -88,7 +88,6 @@ namespace reShutLegacy
             Console.Write("Input: ");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             string key = keyInfo.KeyChar.ToString();
-            File.AppendAllText(@"reshut.log", "Got input: " + key + Environment.NewLine);
             // This looks like shit. Fix later
             if (key == "1")
             {
@@ -108,10 +107,9 @@ namespace reShutLegacy
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
-                Console.WriteLine("1) Clear log file");
-                Console.WriteLine("2) About...");
+                Console.WriteLine("1) About...");
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("3) [Preview ended | Disabled] Enable UI");
+                Console.WriteLine("2) [Preview ended | Disabled] Enable UI");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
@@ -123,25 +121,7 @@ namespace reShutLegacy
                 {
                     Console.Clear();
                     goto start;
-                } else if (set == "1")
-                {
-                    try
-                    {
-                        File.Delete(@"reshut.log");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nLog file has been cleared. Closing in 3 seconds");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Thread.Sleep(3000);
-                        Environment.Exit(0);
-                    }
-                    catch
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("\nFailed to delete log file.");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Thread.Sleep(3000);
-                        goto settings;
-                    }
+                
                 } else if (set == "2")
                 {
                     // About
@@ -195,6 +175,7 @@ namespace reShutLegacy
             }
             else if (key == "0")
             {
+                Environment.Exit(0);
             }else if (key == "4")
             {
                 Schedule.Plan();
