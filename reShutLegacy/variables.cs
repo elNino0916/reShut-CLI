@@ -8,7 +8,7 @@ namespace reShutLegacy
 {
     internal class variables
     {
-        public static string version = "v.11.2.1";
+        public static string version = "v.11.2.2";
         public static bool prerelease = false;
         public static bool buildfromsource = true;
     }

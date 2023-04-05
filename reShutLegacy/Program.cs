@@ -73,12 +73,7 @@ namespace reShutLegacy
             Console.ForegroundColor = ConsoleColor.DarkYellow; 
             Console.WriteLine("\nThe 'Secure' update");
             Console.ForegroundColor = ConsoleColor.White;
-            File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            File.AppendAllText(@"reshut.log", "reShut " + variables.version + Environment.NewLine); 
-            File.AppendAllText(@"reshut.log", "---" + Environment.NewLine);
-            File.AppendAllText(@"reshut.log", "HWID: "+ "Disabled" + Environment.NewLine);
             Console.WriteLine("");
-            File.AppendAllText(@"reshut.log", "Awaiting user input..." + Environment.NewLine);
             Console.ForegroundColor= ConsoleColor.Cyan;
             Console.WriteLine("---");
             Console.WriteLine("Select an option:");
@@ -97,25 +92,20 @@ namespace reShutLegacy
             // This looks like shit. Fix later
             if (key == "1")
             {
-                File.AppendAllText(@"reshut.log", "Shutting down..." + Environment.NewLine);
                 Process.Start("shutdown", "/s /f /t 0");
             }
             else if (key == "2")
             {
-                File.AppendAllText(@"reshut.log", "Restarting..." + Environment.NewLine);
                 Process.Start("shutdown", "/r /f /t 0");
             } else if (key == "3")
             {
-                File.AppendAllText(@"reshut.log", "Logging out..." + Environment.NewLine);
                 Process.Start("shutdown", "/l");
             }else if (key == "9")
             {
-                File.AppendAllText(@"reshut.log", "Opening settings menu..." + Environment.NewLine);
             settings:
                 // Settings
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                File.AppendAllText(@"reshut.log", "Awaiting user input..." + Environment.NewLine);
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) Clear log file");
@@ -131,7 +121,6 @@ namespace reShutLegacy
                 string set = setInfo.KeyChar.ToString();
                 if (set == "9")
                 {
-                    File.AppendAllText(@"reshut.log", "Returning to main menu..." + Environment.NewLine);
                     Console.Clear();
                     goto start;
                 } else if (set == "1")
@@ -147,7 +136,6 @@ namespace reShutLegacy
                     }
                     catch
                     {
-                        File.AppendAllText(@"reshut.log", "Failed to delete log file." + Environment.NewLine);
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("\nFailed to delete log file.");
                         Console.ForegroundColor = ConsoleColor.White;
@@ -207,7 +195,6 @@ namespace reShutLegacy
             }
             else if (key == "0")
             {
-                File.AppendAllText(@"reshut.log", "Exitting..." + Environment.NewLine);
             }else if (key == "4")
             {
                 Schedule.Plan();
@@ -215,7 +202,6 @@ namespace reShutLegacy
             }
             else
             {
-                File.AppendAllText(@"reshut.log", "Wrong input." + Environment.NewLine);
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("");
                 Console.WriteLine("");
