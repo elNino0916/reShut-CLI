@@ -122,7 +122,7 @@ namespace reShutLegacy
                     Console.Clear();
                     goto start;
                 
-                } else if (set == "2")
+                } else if (set == "1")
                 {
                     // About
                     Console.Clear();
@@ -144,7 +144,7 @@ namespace reShutLegacy
                     Console.ReadKey();
                     goto settings;
                 }
-            else if (set == "3")
+            else if (set == "2")
                 {
                     // UI
                     // INSTRUCTIONS HOW TO ENABLE THIS FEATURE
