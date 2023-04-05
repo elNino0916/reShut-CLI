@@ -142,6 +142,9 @@ namespace reShutLegacy
             Console.WriteLine(" ");
             Console.WriteLine("---");
             Console.WriteLine("You want to schedule a " + type + " in " + input + " seconds. Is that correct?");
+            int minutes = input / 60;
+            int hours = minutes / 60;
+            Console.WriteLine("(" + minutes + "min / " + hours + "hrs)");
             Console.WriteLine("Select an option:");
             Console.WriteLine("1) Yes, schedule " + type);
             Console.WriteLine("2) No, go back and retry");
