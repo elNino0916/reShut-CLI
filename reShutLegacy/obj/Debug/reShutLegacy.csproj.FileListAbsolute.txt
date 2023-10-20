@@ -8,3 +8,11 @@ C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.exe
 C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.pdb
 C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.testui.resources
 C:\Users\ninob\source\repos\reShutLegacy\reShutLegacy\obj\Debug\reShutLegacy.csproj.GenerateResource.cache
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\bin\Debug\reShutLegacy.exe.config
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\bin\Debug\reShutLegacy.exe
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\bin\Debug\reShutLegacy.pdb
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\obj\Debug\reShutLegacy.csproj.AssemblyReference.cache
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\obj\Debug\reShutLegacy.csproj.SuggestedBindingRedirects.cache
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\obj\Debug\reShutLegacy.csproj.CoreCompileInputs.cache
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\obj\Debug\reShutLegacy.exe
+C:\Users\ninob\Source\Repos\reShut-Legacy\reShutLegacy\obj\Debug\reShutLegacy.pdb

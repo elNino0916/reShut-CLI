@@ -14,40 +14,14 @@ using System.Timers;
 namespace reShutLegacy
 {
     internal class Program
-    {
-        static void OnTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            if (Debugger.IsAttached)
-            {
-                Debuggear.Check();
-            }
-        }
-
+    { 
         static void Main(string[] args)
         {
-            // check for debugger
-
-            // setup timer
-            // Create a timer with a 1 second interval
-            var timer = new System.Timers.Timer(1);
-
-            // Hook up the Elapsed event
-            timer.Elapsed += OnTimerElapsed;
-
-            // Start the timer
-            timer.Start();
-
         // Main UI
         start:
             Console.Title = "reShut Legacy " + variables.version;
-            if (variables.buildfromsource == true)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
+
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
             Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
@@ -61,14 +35,6 @@ namespace reShutLegacy
             else
             {
                 Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + variables.version);
-            }
-            if (variables.buildfromsource == true)
-            {
-                Console.WriteLine(@"You are using an version built using the source.");
-            }
-            else
-            {
-                Console.WriteLine("You are using an pre-compiled build, good!");
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow; 
             Console.WriteLine("\nThe 'Secure' update");
@@ -108,9 +74,6 @@ namespace reShutLegacy
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) About...");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("2) [Preview ended | Disabled] Enable UI");
-                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
@@ -126,14 +89,13 @@ namespace reShutLegacy
                 {
                     // About
                     Console.Clear();
+                    
                     Console.WriteLine("--");
                     Console.WriteLine("reShut-Legacy " + variables.version + " (c) 2023 elNino0916");
                     Console.WriteLine("Pre-Release: " + variables.prerelease);
-                    Console.WriteLine("Current Time: " + api.GetTime(true));
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
-                    Console.WriteLine("CPU: " + api.GetCPU());
-                    Console.WriteLine("CPU ID: " + api.GetCPUID());
+                    Console.WriteLine("CPU: " + api.GetCPU() + " (" + api.GetCPUID() + ")");
                     Console.WriteLine("GPU: " + api.GetGPU());
                     Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
 
@@ -144,30 +106,6 @@ namespace reShutLegacy
                     Console.ReadKey();
                     goto settings;
                 }
-            else if (set == "2")
-                {
-                    // UI
-                    // INSTRUCTIONS HOW TO ENABLE THIS FEATURE
-                    // Remove all lines below that end with //rm
-                    // I do not recommend enabling this feature, its WIP
-                    Console.Clear();
-                    Console.WriteLine("[!] This feature is now disabled. Version 11.1.0 and 11.1.2 are the only versions with the preview for now.");
-                    Console.WriteLine("[?] You need to modify the source code to open it anyways.");
-                    Thread.Sleep(8000); //rm
-                    goto settings; //rm
-                    Console.Clear();
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("--");
-                    Console.WriteLine("UI Mode is enabled. Close the UI to continue in the console.");
-                    Console.WriteLine("--");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    var guiForm = new testui();
-
-                    guiForm.ShowDialog();//This "opens" the GUI
-                    goto settings;
-                }
                 else
                 {
                     goto settings;
@@ -176,11 +114,12 @@ namespace reShutLegacy
             else if (key == "0")
             {
                 Environment.Exit(0);
-            }else if (key == "4")
+            } else if (key == "4")
             {
                 Schedule.Plan();
                 goto start;
             }
+            
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;

@@ -39,13 +39,20 @@ namespace reShutLegacy
         public static string GetGPU()
         {
             string gpu = "";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_VideoController");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_VideoController ");
+            string VC = String.Empty;
             foreach (ManagementObject obj in searcher.Get())
             {
-                gpu = obj["Name"].ToString();
-                break;
-            }
-            return gpu;
+                if (obj["CurrentBitsPerPixel"] != null && obj["CurrentHorizontalResolution"] != null)
+                {
+                    if ((String)obj["DeviceID"] == "VideoController2")
+                    {
+                        VC = obj["Description"].ToString();
+                        return VC;
+                    }
+                }
+                }
+            return "Not detected!";
         }
         public static string GetMainboard()
         {
