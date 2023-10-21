@@ -21,7 +21,7 @@ namespace reShutLegacy
         start:
             Console.Title = "reShut Legacy " + variables.version;
 
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
             Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
@@ -36,8 +36,8 @@ namespace reShutLegacy
             {
                 Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + variables.version);
             }
-            Console.ForegroundColor = ConsoleColor.DarkYellow; 
-            Console.WriteLine("\nThe 'Secure' update");
+            Console.ForegroundColor = ConsoleColor.Magenta; 
+            Console.WriteLine("\n" + variables.motd);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("");
             Console.ForegroundColor= ConsoleColor.Cyan;
@@ -91,16 +91,16 @@ namespace reShutLegacy
                     Console.Clear();
                     
                     Console.WriteLine("--");
-                    Console.WriteLine("reShut-Legacy " + variables.version + " (c) 2023 elNino0916");
+                    Console.WriteLine("reShut-Legacy " + variables.version + " | (c) 2023 elNino0916");
                     Console.WriteLine("Pre-Release: " + variables.prerelease);
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
-                    Console.WriteLine("CPU: " + api.GetCPU() + " (" + api.GetCPUID() + ")");
-                    Console.WriteLine("GPU: " + api.GetGPU());
-                    Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
+                    Console.WriteLine("CPU: " + Hardware.GetCPU() + " (" + Hardware.GetCPUID() + ")");
+                    Console.WriteLine("GPU: " + Hardware.GetGPU());
+                    Console.WriteLine("RAM Size (bytes): " + Hardware.GetRAM());
 
                     Console.WriteLine("----");
-                    Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
+                    Console.WriteLine("Identifier: " + HWID.GetHWID());
                     Console.WriteLine("--");
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadKey();
@@ -122,6 +122,7 @@ namespace reShutLegacy
             
             else
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("");
                 Console.WriteLine("");

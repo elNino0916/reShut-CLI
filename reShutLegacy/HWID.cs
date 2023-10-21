@@ -12,8 +12,8 @@ namespace reShutLegacy
     internal class HWID
     {
         public static string GetHWID() { 
-                string cpuName = string.Empty;
-                string gpuName = string.Empty;
+                string cpuName = Hardware.GetCPU();
+                string gpuName = Hardware.GetGPU();
                 string mainboardName = string.Empty;
                 string hardDriveSerial = string.Empty;
                 string biosSerial = string.Empty;
@@ -21,24 +21,8 @@ namespace reShutLegacy
                 string processorId = string.Empty;
                 string windowsProductKey = string.Empty;
 
-                string query = "SELECT Name FROM Win32_Processor";
+                string query = String.Empty;
                 ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
-
-                foreach (ManagementObject obj in searcher.Get())
-                {
-                    cpuName = obj["Name"].ToString();
-                    break;
-                }
-
-                query = "SELECT Name FROM Win32_VideoController";
-                searcher = new ManagementObjectSearcher(query);
-
-                foreach (ManagementObject obj in searcher.Get())
-                {
-                    gpuName = obj["Name"].ToString();
-                    break;
-                }
-
                 query = "SELECT Product FROM Win32_BaseBoard";
                 searcher = new ManagementObjectSearcher(query);
 
@@ -113,7 +97,7 @@ namespace reShutLegacy
                 }
 
                 string hwid = cpuName + gpuName + mainboardName + hardDriveSerial + biosSerial + ramSize + processorId + windowsProductKey + macAddress;
-                string salt = "HWID-";
+                string salt = "reShut-";
                 SHA256 sha256 = SHA256.Create();
                 byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(salt + hwid));
                 StringBuilder sb = new StringBuilder();
