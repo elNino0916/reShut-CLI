@@ -10,9 +10,10 @@ namespace reShutLegacy
     {
 
         public static bool prerelease = true;
-        public static string buildid = "5e3c59f";
-        public static string version = "v.11.2.6-dev0 (" + buildid + ")";
+        public static string buildid = "fc8acad";
+        public static string version = "v.11.2.6-dev2 (" + buildid + ")";
         public static string motd = "The '???' Update";
+        public static string[] features = {"CMD line arguments", "Schedule 1.5"};
         // MOTD for RC: Boo! Halloween is almost here! 
     }
 }

@@ -40,13 +40,12 @@ namespace reShutLegacy
             {
                 Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + variables.version);
             }
-            Console.ForegroundColor = ConsoleColor.Magenta; 
+            Console.ForegroundColor = ConsoleColor.Cyan; 
             Console.WriteLine("\n" + variables.motd);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("");
-            Console.ForegroundColor= ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("---");
-            Console.WriteLine("Select an option:");
             Console.WriteLine("1) Shutdown");
             Console.WriteLine("2) Reboot");
             Console.WriteLine("3) Logoff");
@@ -74,10 +73,11 @@ namespace reShutLegacy
             settings:
                 // Settings
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) About...");
+                Console.WriteLine("2) How to use cmdLine args");
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
@@ -97,6 +97,7 @@ namespace reShutLegacy
                     Console.WriteLine("--");
                     Console.WriteLine("reShut-Legacy " + variables.version + " | (c) 2023 elNino0916");
                     Console.WriteLine("Pre-Release: " + variables.prerelease);
+                    Console.WriteLine("Enabled beta features: " + string.Join(", ", variables.features));
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
                     Console.WriteLine("CPU: " + Hardware.GetCPU() + " (" + Hardware.GetCPUID() + ")");
@@ -106,6 +107,14 @@ namespace reShutLegacy
                     Console.WriteLine("----");
                     Console.WriteLine("Identifier: " + HWID.GetHWID());
                     Console.WriteLine("--");
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadKey();
+                    goto settings;
+                }else if (set == "2")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Use 'reshutlegacy.exe /<arg>'");
+                    Console.WriteLine("Available args: 's','r','l','schedule'");
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadKey();
                     goto settings;

@@ -28,13 +28,13 @@ namespace reShutLegacy
 
                     switch (option)
                     {
-                        case "reboot":
+                        case "r":
                             Handler.Reboot();
                             break;
-                        case "logoff":
+                        case "l":
                             Handler.Logoff();
                             break;
-                        case "shutdown":
+                        case "s":
                             Handler.Shutdown(); 
                             break;
                         case "schedule":

@@ -34,7 +34,7 @@ namespace reShutLegacy
             Console.WriteLine(@"                                                            Schedule");
             Console.ForegroundColor= ConsoleColor.White;
             */
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
             Console.WriteLine("---");
@@ -95,7 +95,7 @@ namespace reShutLegacy
             Console.WriteLine(@"                                                            Schedule");
             Console.ForegroundColor = ConsoleColor.White;
             */
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
 
@@ -143,7 +143,7 @@ namespace reShutLegacy
             Console.WriteLine(@"                                                            Schedule");
             Console.ForegroundColor = ConsoleColor.White;
             */
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
             Console.WriteLine("---");
