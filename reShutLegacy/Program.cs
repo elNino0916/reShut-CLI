@@ -60,13 +60,25 @@ namespace reShutLegacy
             // This looks like shit. Fix later
             if (key == "1")
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAre you sure? Press any key to continue.");
+                Console.ReadKey();
+                Handler.Shutdown();
+            }else if (key.ToUpper() == "E")
+            {
                 Handler.Shutdown();
             }
             else if (key == "2")
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAre you sure? Press any key to continue.");
+                Console.ReadKey();
                 Handler.Reboot();
             } else if (key == "3")
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAre you sure? Press any key to continue.");
+                Console.ReadKey();
                 Handler.Logoff();
             }else if (key == "9")
             {
@@ -77,7 +89,7 @@ namespace reShutLegacy
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) About...");
-                Console.WriteLine("2) How to use cmdLine args");
+                Console.WriteLine("2) Whats new");
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
@@ -93,11 +105,10 @@ namespace reShutLegacy
                 {
                     // About
                     Console.Clear();
-                    
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("--");
                     Console.WriteLine("reShut-Legacy " + variables.version + " | (c) 2023 elNino0916");
                     Console.WriteLine("Pre-Release: " + variables.prerelease);
-                    Console.WriteLine("Enabled beta features: " + string.Join(", ", variables.features));
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
                     Console.WriteLine("CPU: " + Hardware.GetCPU() + " (" + Hardware.GetCPUID() + ")");
@@ -113,9 +124,17 @@ namespace reShutLegacy
                 }else if (set == "2")
                 {
                     Console.Clear();
+                    Console.WriteLine("What´s new:");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("Use 'reshutlegacy.exe /<arg>'");
                     Console.WriteLine("Available args: 's','r','l','schedule'");
-                    Console.WriteLine("Press any key to go back.");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("---");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Emergency shutdown: Press 'E' in the main menu to start.");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("\nPress any key to go back.");
+
                     Console.ReadKey();
                     goto settings;
                 }
