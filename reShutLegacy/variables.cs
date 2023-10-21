@@ -9,10 +9,9 @@ namespace reShutLegacy
     internal class variables
     {
 
-        public static bool prerelease = true;
-        public static string buildid = "c199293";
-        public static string version = "v.11.2.6-dev (" + buildid + ")";
-        public static string motd = "The '???' Update";
-        // MOTD for RC: Boo! Halloween is almost here! 
+        public static bool prerelease = false;
+        public static string buildid = "b00f30e";
+        public static string version = "v.11.3.0 (" + buildid + ")";
+        public static string motd = "Boo! Halloween is almost here!";
     }
 }

@@ -17,8 +17,8 @@ namespace reShutLegacy
     { 
         static void Main(string[] args)
         {
-            // Command-Line Args
-            var cmdLine = new CmdLine(args);
+            // Command-Line Args (Disabled for 11.7
+            //var cmdLine = new CmdLine(args);
 
 
         // Main UI
