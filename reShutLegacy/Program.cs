@@ -17,11 +17,15 @@ namespace reShutLegacy
     { 
         static void Main(string[] args)
         {
+            // Command-Line Args (Disabled for 11.7
+            //var cmdLine = new CmdLine(args);
+
+
         // Main UI
         start:
             Console.Title = "reShut Legacy " + variables.version;
 
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
             Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
@@ -36,13 +40,12 @@ namespace reShutLegacy
             {
                 Console.WriteLine(@"https://github.com/elNino0916/reShut-Legacy          reShut " + variables.version);
             }
-            Console.ForegroundColor = ConsoleColor.DarkYellow; 
-            Console.WriteLine("\nThe 'Secure' update");
+            Console.ForegroundColor = ConsoleColor.Cyan; 
+            Console.WriteLine("\n" + variables.motd);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("");
-            Console.ForegroundColor= ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("---");
-            Console.WriteLine("Select an option:");
             Console.WriteLine("1) Shutdown");
             Console.WriteLine("2) Reboot");
             Console.WriteLine("3) Logoff");
@@ -57,23 +60,36 @@ namespace reShutLegacy
             // This looks like shit. Fix later
             if (key == "1")
             {
-                Process.Start("shutdown", "/s /f /t 0");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAre you sure? Press any key to continue.");
+                Console.ReadKey();
+                Handler.Shutdown();
+            }else if (key.ToUpper() == "E")
+            {
+                Handler.Shutdown();
             }
             else if (key == "2")
             {
-                Process.Start("shutdown", "/r /f /t 0");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAre you sure? Press any key to continue.");
+                Console.ReadKey();
+                Handler.Reboot();
             } else if (key == "3")
             {
-                Process.Start("shutdown", "/l");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAre you sure? Press any key to continue.");
+                Console.ReadKey();
+                Handler.Logoff();
             }else if (key == "9")
             {
             settings:
                 // Settings
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("---");
                 Console.WriteLine("Settings:");
                 Console.WriteLine("1) About...");
+                Console.WriteLine("2) Whats new");
                 Console.WriteLine("9) Back");
                 Console.WriteLine("---");
                 Console.Write("Input: ");
@@ -89,20 +105,36 @@ namespace reShutLegacy
                 {
                     // About
                     Console.Clear();
-                    
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("--");
-                    Console.WriteLine("reShut-Legacy " + variables.version + " (c) 2023 elNino0916");
+                    Console.WriteLine("reShut-Legacy " + variables.version + " | (c) 2023 elNino0916");
                     Console.WriteLine("Pre-Release: " + variables.prerelease);
                     Console.WriteLine("----");
                     Console.WriteLine("System Information:");
-                    Console.WriteLine("CPU: " + api.GetCPU() + " (" + api.GetCPUID() + ")");
-                    Console.WriteLine("GPU: " + api.GetGPU());
-                    Console.WriteLine("RAM Size (bytes): " + api.GetRAM());
+                    Console.WriteLine("CPU: " + Hardware.GetCPU() + " (" + Hardware.GetCPUID() + ")");
+                    Console.WriteLine("GPU: " + Hardware.GetGPU());
+                    Console.WriteLine("RAM Size (bytes): " + Hardware.GetRAM());
 
                     Console.WriteLine("----");
-                    Console.WriteLine("HWID (experimental): " + HWID.GetHWID());
+                    Console.WriteLine("Identifier: " + HWID.GetHWID());
                     Console.WriteLine("--");
                     Console.WriteLine("Press any key to go back.");
+                    Console.ReadKey();
+                    goto settings;
+                }else if (set == "2")
+                {
+                    Console.Clear();
+                    Console.WriteLine("What´s new:");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("Use 'reshutlegacy.exe /<arg>'");
+                    Console.WriteLine("Available args: 's','r','l','schedule'");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("---");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Emergency shutdown: Press 'E' in the main menu to start.");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("\nPress any key to go back.");
+
                     Console.ReadKey();
                     goto settings;
                 }
@@ -122,6 +154,7 @@ namespace reShutLegacy
             
             else
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("");
                 Console.WriteLine("");

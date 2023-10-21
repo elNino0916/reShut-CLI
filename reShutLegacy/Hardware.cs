@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace reShutLegacy
 {
-    internal class api
+    internal class Hardware
     {
-        public static string GetDate()
-        {
-            return DateTime.Now.ToString("dd.MM.yyyy");
-        }
         public static string GetTime(bool use24HoursFormat)
         {
             if (!use24HoursFormat)
@@ -38,7 +34,6 @@ namespace reShutLegacy
         }
         public static string GetGPU()
         {
-            string gpu = "";
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_VideoController ");
             string VC = String.Empty;
             foreach (ManagementObject obj in searcher.Get())

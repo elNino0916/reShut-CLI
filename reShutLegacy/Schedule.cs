@@ -23,6 +23,7 @@ namespace reShutLegacy
             string type = "";
             int input = 0;
             Console.Clear();
+            /*
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
@@ -32,7 +33,8 @@ namespace reShutLegacy
             Console.WriteLine(@"                                             |___/            |___/ ");
             Console.WriteLine(@"                                                            Schedule");
             Console.ForegroundColor= ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            */
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
             Console.WriteLine("---");
@@ -82,6 +84,7 @@ namespace reShutLegacy
             // Phase 2
             Console.Clear();
             seconds:
+            /*
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
@@ -91,19 +94,20 @@ namespace reShutLegacy
             Console.WriteLine(@"                                             |___/            |___/ ");
             Console.WriteLine(@"                                                            Schedule");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            */
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
 
             if (DateTime.Now.ToString("tt") == "")
             {
-                Console.WriteLine("Current time: " + api.GetTime(true));
+                Console.WriteLine("Current time: " + Hardware.GetTime(true));
             }
             else 
             {
                 if (DateTime.Now.ToString("tt") == "PM" | DateTime.Now.ToString("tt") == "AM")
                 {
-                    Console.WriteLine("Current time: " + api.GetTime(false));
+                    Console.WriteLine("Current time: " + Hardware.GetTime(false));
                 }
             }
 
@@ -128,6 +132,7 @@ namespace reShutLegacy
             }
             // Phase 3
             Console.Clear();
+            /*
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(@"           ____  _           _     _                                ");
             Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
@@ -137,7 +142,8 @@ namespace reShutLegacy
             Console.WriteLine(@"                                             |___/            |___/ ");
             Console.WriteLine(@"                                                            Schedule");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            */
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
             Console.WriteLine("---");
@@ -180,11 +186,11 @@ namespace reShutLegacy
                     }
                     Process.Start(@"cmd.exe", "/c shutdown /"+ character + " /f /t " + input);
                     Console.ForegroundColor= ConsoleColor.Green;
-                    Console.WriteLine(@"---");
-                    Console.WriteLine("Successfully scheduled " + type + "!");
+                    char toUpperChar = char.ToUpper(type[0]);
+                    string toUpperOut = toUpperChar.ToString() + type.Substring(1);
+                    Console.WriteLine(toUpperOut + " has been scheduled.");
                     Console.WriteLine(@"---");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Thread.Sleep(8000);
                     return true;
                 }
                 catch
@@ -197,7 +203,6 @@ namespace reShutLegacy
                     Console.ForegroundColor = ConsoleColor.White;
                     return false;
                 }
-                return false;
             }
             return false;
 

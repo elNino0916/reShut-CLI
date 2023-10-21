@@ -8,8 +8,10 @@ namespace reShutLegacy
 {
     internal class variables
     {
+
         public static bool prerelease = false;
-        public static string buildid = "b9b909c";
-        public static string version = "v.11.2.5 (" + buildid + ")";
+        public static string buildid = "b00f30e";
+        public static string version = "v.11.3.0 (" + buildid + ")";
+        public static string motd = "Boo! Halloween is almost here!";
     }
 }
