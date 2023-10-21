@@ -17,6 +17,10 @@ namespace reShutLegacy
     { 
         static void Main(string[] args)
         {
+            // Command-Line Args
+            var cmdLine = new CmdLine(args);
+
+
         // Main UI
         start:
             Console.Title = "reShut Legacy " + variables.version;
@@ -57,14 +61,14 @@ namespace reShutLegacy
             // This looks like shit. Fix later
             if (key == "1")
             {
-                Process.Start("shutdown", "/s /f /t 0");
+                Handler.Shutdown();
             }
             else if (key == "2")
             {
-                Process.Start("shutdown", "/r /f /t 0");
+                Handler.Reboot();
             } else if (key == "3")
             {
-                Process.Start("shutdown", "/l");
+                Handler.Logoff();
             }else if (key == "9")
             {
             settings:
