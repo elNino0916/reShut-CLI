@@ -23,29 +23,18 @@ namespace reShutLegacy
             string type = "";
             int input = 0;
             Console.Clear();
-            /*
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(@"           ____  _           _     _                                ");
-            Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
-            Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
-            Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
-            Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
-            Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"                                                            Schedule");
-            Console.ForegroundColor= ConsoleColor.White;
-            */
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ");
             Console.WriteLine(" ");
-            Console.WriteLine("---");
-            Console.WriteLine("What do you want to schedule?");
-            Console.WriteLine("Select an option:");
-            Console.WriteLine("1) Shutdown");
-            Console.WriteLine("2) Reboot");
-            Console.WriteLine("-");
-            Console.WriteLine("9) Cancel schedule");
-            Console.WriteLine("0) Back");
-            Console.WriteLine("---");
+            Console.WriteLine("╭───────────────────────────────╮");
+            Console.WriteLine("│ What do you want to schedule? │");
+            Console.WriteLine("│ Select an option:             │");
+            Console.WriteLine("│ 1) Shutdown                   │");
+            Console.WriteLine("│ 2) Reboot                     │");
+            Console.WriteLine("├───────────────────────────────┤");
+            Console.WriteLine("│ 9) Cancel schedule            │");
+            Console.WriteLine("│ 0) Back                       │");
+            Console.WriteLine("╰───────────────────────────────╯");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Input: ");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -55,6 +44,10 @@ namespace reShutLegacy
                 type = "cancel";
                 Process.Start(@"cmd.exe", "/c shutdown -a");
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("╭────────────────────────────╮");
+                Console.WriteLine("│ Action has been cancelled. │");
+                Console.WriteLine("╰────────────────────────────╯");
                 return false;
             }
             else
@@ -72,90 +65,72 @@ namespace reShutLegacy
                 return false;
             }else if (key != "1" | key != "2" | key != "0") 
             {
-                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("---");
-                Console.WriteLine("An error occurred!");
-                Console.WriteLine("---");
+                Console.WriteLine("╭────────────────────╮");
+                Console.WriteLine("│ An error occurred. │");
+                Console.WriteLine("╰────────────────────╯");
                 Console.ForegroundColor = ConsoleColor.White;
-                Thread.Sleep(8000);
                 goto Retry;
             }
             // Phase 2
             Console.Clear();
             seconds:
-            /*
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(@"           ____  _           _     _                                ");
-            Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
-            Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
-            Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
-            Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
-            Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"                                                            Schedule");
-            Console.ForegroundColor = ConsoleColor.White;
-            */
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
 
             if (DateTime.Now.ToString("tt") == "")
             {
-                Console.WriteLine("Current time: " + Hardware.GetTime(true));
+                Console.WriteLine("╭────────────────────────╮");
+                Console.WriteLine("│ Current time: " + Hardware.GetTime(true) + " │");
+                Console.WriteLine("╰────────────────────────╯");
             }
             else 
             {
                 if (DateTime.Now.ToString("tt") == "PM" | DateTime.Now.ToString("tt") == "AM")
                 {
-                    Console.WriteLine("Current time: " + Hardware.GetTime(false));
+                    Console.WriteLine("╭───────────────────────────╮");
+                    Console.WriteLine("│ Current time: " + Hardware.GetTime(false) + " │");
+                    Console.WriteLine("╰───────────────────────────╯");
                 }
             }
 
-            Console.WriteLine("---");
-            Console.WriteLine("When do you want to run the scheduled " + type + "?");
-            Console.WriteLine("Enter the time until the " + type + " in seconds.");
-            Console.WriteLine("---");
+            Console.WriteLine("╭─────────────────────────────────────╮");
+            Console.WriteLine("│ When should the action be executed? │");
+            Console.WriteLine("│ Enter the time in seconds.          │");
+            Console.WriteLine("╰─────────────────────────────────────╯");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Input: ");
             string inputStr = Console.ReadLine();
 
             if (!int.TryParse(inputStr, out input))
             {
-                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("---");
-                Console.WriteLine("Error: Input must be a valid number.");
-                Console.WriteLine("---");
-                Thread.Sleep(8000);
-                Console.Clear();
+                Console.WriteLine("╭──────────────────────────────────────╮");
+                Console.WriteLine("│ Error: Input must be a valid number. │");
+                Console.WriteLine("╰──────────────────────────────────────╯");
                 goto seconds;
             }
             // Phase 3
             Console.Clear();
-            /*
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(@"           ____  _           _     _                                ");
-            Console.WriteLine(@"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ");
-            Console.WriteLine(@" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |");
-            Console.WriteLine(@" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |");
-            Console.WriteLine(@" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |");
-            Console.WriteLine(@"                                             |___/            |___/ ");
-            Console.WriteLine(@"                                                            Schedule");
-            Console.ForegroundColor = ConsoleColor.White;
-            */
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine("---");
-            Console.WriteLine("You want to schedule a " + type + " in " + input + " seconds. Is that correct?");
+            phase3retry:
             int minutes = input / 60;
             int hours = minutes / 60;
-            Console.WriteLine("(" + minutes + "min / " + hours + "hrs)");
-            Console.WriteLine("Select an option:");
-            Console.WriteLine("1) Yes, schedule " + type);
-            Console.WriteLine("2) No, go back and retry");
-            Console.WriteLine("0) Back to main menu");
-            Console.WriteLine("---");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            string header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
+            string info = "(" + minutes + "min / " + hours + "hrs)";
+            string option1 = "1) Yes, schedule " + type;
+            string option2 = "2) No, go back and retry";
+            string option0 = "0) Back to main menu";
+            int maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
+            int borderLength = maxLength + 4;
+
+            Console.WriteLine("╭" + new string('─', borderLength) + "╮");
+            Console.WriteLine("│ " + header.PadRight(maxLength) + "   │");
+            Console.WriteLine("│ " + info.PadRight(maxLength) + "   │");
+            Console.WriteLine("├" + new string('─', borderLength) + "┤");
+            Console.WriteLine("│ " + option1.PadRight(maxLength) + "   │");
+            Console.WriteLine("│ " + option2.PadRight(maxLength) + "   │");
+            Console.WriteLine("│ " + option0.PadRight(maxLength) + "   │");
+            Console.WriteLine("╰" + new string('─', borderLength) + "╯");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Input: ");
             ConsoleKeyInfo keyInfo3 = Console.ReadKey();
@@ -188,24 +163,32 @@ namespace reShutLegacy
                     Console.ForegroundColor= ConsoleColor.Green;
                     char toUpperChar = char.ToUpper(type[0]);
                     string toUpperOut = toUpperChar.ToString() + type.Substring(1);
-                    Console.WriteLine(toUpperOut + " has been scheduled.");
-                    Console.WriteLine(@"---");
+                    Console.WriteLine("╭────────────────────────────╮");
+                    Console.WriteLine("│ Action has been scheduled. │");
+                    Console.WriteLine("╰────────────────────────────╯");
                     Console.ForegroundColor = ConsoleColor.White;
                     return true;
                 }
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(@"---");
-                    Console.WriteLine("An error occurred.");
-                    Console.WriteLine(@"---");
-                    Thread.Sleep(8000);
+                    Console.WriteLine("╭────────────────────╮");
+                    Console.WriteLine("│ An error occurred. │");
+                    Console.WriteLine("╰────────────────────╯");
                     Console.ForegroundColor = ConsoleColor.White;
                     return false;
                 }
             }
-            return false;
-
+            else
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("╭────────────────────╮");
+                Console.WriteLine("│ An error occurred. │");
+                Console.WriteLine("╰────────────────────╯");
+                Console.ForegroundColor = ConsoleColor.White;
+                goto phase3retry;
+            }
         }
     }
 }
