@@ -17,7 +17,7 @@ namespace reShutLegacy
     { 
         static void Main(string[] args)
         {
-            // Command-Line Args (Disabled for 11.7
+            // Command-Line Args (Disabled for now)
             //var cmdLine = new CmdLine(args);
 
 
@@ -126,8 +126,8 @@ namespace reShutLegacy
                     Console.Clear();
                     Console.WriteLine("What´s new:");
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Use 'reshutlegacy.exe /<arg>'");
-                    Console.WriteLine("Available args: 's','r','l','schedule'");
+                    // Console.WriteLine("Use 'reshutlegacy.exe /<arg>'");
+                    // Console.WriteLine("Available args: 's','r','l','schedule'");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("---");
                     Console.ForegroundColor = ConsoleColor.Yellow;

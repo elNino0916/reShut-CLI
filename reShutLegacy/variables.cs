@@ -10,8 +10,8 @@ namespace reShutLegacy
     {
 
         public static bool prerelease = false;
-        public static string buildid = "b00f30e";
+        public static string buildid = "b566710";
         public static string version = "v.11.3.0 (" + buildid + ")";
-        public static string motd = "Boo! Halloween is almost here!";
+        public static string motd = "";
     }
 }
