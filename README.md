@@ -1,3 +1,9 @@
+------------------
+
+⚠️ The main branch will not get any updates till the release of 12.0.0. ⚠️
+
+--------------------
+
 # reShut-Legacy
 ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/3a6b18b0-00f8-4be1-92bd-35642876d660)*Image may not show the latest commit.
 
