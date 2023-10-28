@@ -2,7 +2,7 @@
 
 ### Warning!
 - ⚠️ The main branch will not get any updates till the release of 12.0.0. -> [Development Branch](https://github.com/elNino0916/reShut-Legacy/tree/dev) ⚠️
-- 🕒 ETA: 1-3 months
+- 🕒 ETA: 1-3 months (Progress: 20% finished)
 
 --------------------
 
