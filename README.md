@@ -1,6 +1,6 @@
 ------------------
 
-⚠️ The main branch will not get any updates till the release of 12.0.0. ⚠️
+⚠️ The main branch will not get any updates till the release of 12.0.0. -> [Development Branch](https://github.com/elNino0916/reShut-Legacy/tree/dev) ⚠️
 
 --------------------
 
