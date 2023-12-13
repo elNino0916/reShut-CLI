@@ -1,12 +1,12 @@
-[![Download](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download reShut")](https://github.com/elNino0916/reShut-Legacy/releases/download/11.3.0_%232/reShutLegacy.exe)
+[![Download](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download reShut")](https://github.com/elNino0916/reShut-Legacy/releases/download/11.4.0/reShutLegacy.exe)
 --------------------
 
 ### Warning!
-- ⚠️ The main branch will not get any updates till the release of 12.0.0. -> [Development Branch](https://github.com/elNino0916/reShut-Legacy/tree/dev) ⚠️
+- ⚠️ The main branch will not be updated frequently until the release of v.12.0.0. -> [Development Branch](https://github.com/elNino0916/reShut-Legacy/tree/dev) ⚠️
   
 - ⚠️ You have to install .NET 8.0 to start reShut-Legacy when the next update arrives. I recommend you to download it now so you can update reShut-Legacy easily without issues. -> [Download from Microsoft](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer?cid=getdotnetcore) ⚠️
   
-- 🕒 ETA: December 2023 - January 2024 (Progress: 40% finished)
+- 🕒 ETA: December 2023 - January 2024 (Progress: 50% finished)
 
 --------------------
 
