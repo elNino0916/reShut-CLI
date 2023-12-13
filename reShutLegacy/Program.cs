@@ -256,7 +256,7 @@ namespace reShutLegacy
                     Console.WriteLine("---");
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("Startup Settings");
-                    Console.WriteLine("\nMost of the things will now be loaded at startup! That means that you dont need to wait after the app launched.\nYou can change this in the settings by enabling Fast Startup.");
+                    Console.WriteLine("\nMost of the things will now be loaded at startup! That means that you don't need to wait after the app launched.\nYou can change this in the settings by enabling Fast Startup.");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("---");
                     Console.ForegroundColor = ConsoleColor.Magenta;
