@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace reShutLegacy
 {
@@ -23,9 +16,7 @@ namespace reShutLegacy
             string type = "";
             int input = 0;
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("╭───────────────────────────────╮");
             Console.WriteLine("│ What do you want to schedule? │");
             Console.WriteLine("│ Select an option:             │");
@@ -35,8 +26,6 @@ namespace reShutLegacy
             Console.WriteLine("│ 9) Cancel schedule            │");
             Console.WriteLine("│ 0) Back                       │");
             Console.WriteLine("╰───────────────────────────────╯");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Input: ");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             string key = keyInfo.KeyChar.ToString();
             if (key == "9") 
@@ -48,6 +37,7 @@ namespace reShutLegacy
                 Console.WriteLine("╭────────────────────────────╮");
                 Console.WriteLine("│ Action has been cancelled. │");
                 Console.WriteLine("╰────────────────────────────╯");
+                Thread.Sleep(500); // Fixes the 'No Shutdown in progress' message in the middle of the main menu.
                 return false;
             }
             else
@@ -75,7 +65,7 @@ namespace reShutLegacy
             // Phase 2
             Console.Clear();
             seconds:
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
 
             if (DateTime.Now.ToString("tt") == "")
             {
@@ -114,7 +104,7 @@ namespace reShutLegacy
             phase3retry:
             int minutes = input / 60;
             int hours = minutes / 60;
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             string header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
             string info = "(" + minutes + "min / " + hours + "hrs)";
             string option1 = "1) Yes, schedule " + type;

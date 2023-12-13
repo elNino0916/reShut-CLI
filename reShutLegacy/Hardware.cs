@@ -38,16 +38,12 @@ namespace reShutLegacy
             string VC = String.Empty;
             foreach (ManagementObject obj in searcher.Get())
             {
-                if (obj["CurrentBitsPerPixel"] != null && obj["CurrentHorizontalResolution"] != null)
-                {
-                    if ((String)obj["DeviceID"] == "VideoController2")
-                    {
                         VC = obj["Description"].ToString();
                         return VC;
-                    }
-                }
-                }
-            return "Not detected!";
+                    
+            }
+                
+            return "Not detected! / Unknown error.";
         }
         public static string GetMainboard()
         {
@@ -83,7 +79,6 @@ namespace reShutLegacy
             }
             return hd;
         }
-
         public static string GetRAM()
         {
             ulong ramSize = 0;
@@ -94,7 +89,8 @@ namespace reShutLegacy
                 ramSize += Convert.ToUInt64(obj["Capacity"]);
             }
 
-            return ramSize.ToString();
+            double ramInGB = ramSize / (1024 * 1024 * 1024);
+            return ramInGB.ToString("0.##");
         }
         public static string GetCPUID()
         {

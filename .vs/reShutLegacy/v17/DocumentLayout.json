@@ -1,0 +1,56 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\Program.cs",
+              "RelativeDocumentMoniker": "reShutLegacy\\Program.cs",
+              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\Program.cs",
+              "RelativeToolTip": "reShutLegacy\\Program.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAwwFIAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-12T17:28:05.588Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "variables.cs",
+              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\variables.cs",
+              "RelativeDocumentMoniker": "reShutLegacy\\variables.cs",
+              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\variables.cs",
+              "RelativeToolTip": "reShutLegacy\\variables.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-12T17:55:01.133Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

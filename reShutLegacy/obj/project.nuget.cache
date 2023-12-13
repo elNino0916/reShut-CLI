@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "LuB2xYoe9hW/Quoeiwd8rtTxI13PeYp/JT2NNLZGEE9YGmUOWns89nZEZcrXMbSGYPvoLf1Kk7qKjQHlTRwp3A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\reShutLegacy.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ninob\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\ninob\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
+    "C:\\Users\\ninob\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
+    "C:\\Users\\ninob\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512",
+    "C:\\Users\\ninob\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.31\\microsoft.windows.sdk.net.ref.10.0.19041.31.nupkg.sha512"
+  ],
+  "logs": []
+}

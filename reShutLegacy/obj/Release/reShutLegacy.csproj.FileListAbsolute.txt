@@ -1,0 +1,7 @@
+C:\Users\ninob\source\repos\reShut-Legacy\reShutLegacy\bin\Release\reShutLegacy.exe.config
+C:\Users\ninob\source\repos\reShut-Legacy\reShutLegacy\bin\Release\reShutLegacy.exe
+C:\Users\ninob\source\repos\reShut-Legacy\reShutLegacy\bin\Release\reShutLegacy.pdb
+C:\Users\ninob\source\repos\reShut-Legacy\reShutLegacy\obj\Release\reShutLegacy.csproj.AssemblyReference.cache
+C:\Users\ninob\source\repos\reShut-Legacy\reShutLegacy\obj\Release\reShutLegacy.csproj.CoreCompileInputs.cache
+C:\Users\ninob\source\repos\reShut-Legacy\reShutLegacy\obj\Release\reShutLegacy.exe
+C:\Users\ninob\source\repos\reShut-Legacy\reShutLegacy\obj\Release\reShutLegacy.pdb

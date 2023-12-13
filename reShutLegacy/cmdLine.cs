@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace reShutLegacy
 {
     class CmdLine
     {
-        public bool Restart { get; private set; }
-        public bool Logoff { get; private set; }
-        public bool Shutdown { get; private set; }
-
         public CmdLine(string[] args)
         {
             // Define the prefixes that you want to support
