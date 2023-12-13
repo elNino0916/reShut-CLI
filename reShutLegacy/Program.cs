@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-
 namespace reShutLegacy
 {
     /*
@@ -45,15 +44,15 @@ namespace reShutLegacy
         private static void CenterText()
         {
             // This is the ascii art that is printed at the top.
-            string[] lines = new string[]
-            {
+            string[] lines =
+            [
         @"           ____  _           _     _                                ",
         @"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ",
         @" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |",
         @" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |",
         @" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |",
         @"                                             |___/            |___/ ",
-            };
+            ];
 
             int maxLength = lines.Max(line => line.Length);
             int padding = (Console.WindowWidth - maxLength) / 2;
@@ -108,12 +107,12 @@ namespace reShutLegacy
 
             // Prints motd
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            string motdcenter = new string(' ', (Console.WindowWidth - Variables.motd().Length) / 2) + Variables.motd();
+            string motdcenter = new string(' ', (Console.WindowWidth - Variables.Motd().Length) / 2) + Variables.Motd();
             Console.WriteLine("\n" + motdcenter + "\n");
 
             // Prints main menu
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            string[] menuItems = { "Shutdown", "Reboot", "Logoff", "Schedule...", "Settings", "Quit" };
+            string[] menuItems = ["Shutdown", "Reboot", "Logoff", "Schedule...", "Settings", "Quit"];
 
             Console.WriteLine("╭────────────────────────╮");
             Console.WriteLine("│       Main Menu        │");
@@ -134,7 +133,7 @@ namespace reShutLegacy
             string key = keyInfo.KeyChar.ToString();
 
             // Checks and runs the requested action
-            if (key.ToUpper() == "L")
+            if (key.Equals("L", StringComparison.CurrentCultureIgnoreCase))
             {
                 Console.Clear();
                 MITLicense();
@@ -151,7 +150,7 @@ namespace reShutLegacy
                 Console.ReadKey();
                 Handler.Shutdown();
             }
-            else if (key.ToUpper() == "E")
+            else if (key.Equals("E", StringComparison.CurrentCultureIgnoreCase))
             {
                 // Emergency Shutdown
                 Handler.Shutdown();

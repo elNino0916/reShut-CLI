@@ -14,7 +14,6 @@ namespace reShutLegacy
             // shutdown
             // reboot
             string type = "";
-            int input = 0;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("╭───────────────────────────────╮");
@@ -30,7 +29,6 @@ namespace reShutLegacy
             string key = keyInfo.KeyChar.ToString();
             if (key == "9") 
             {
-                type = "cancel";
                 Process.Start(@"cmd.exe", "/c shutdown -a");
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -50,7 +48,6 @@ namespace reShutLegacy
                 type = "reboot";
             }else if (key == "0") 
             {
-                type = "quit";
                 Console.Clear();
                 return false;
             }else if (key != "1" | key != "2" | key != "0") 
@@ -91,7 +88,7 @@ namespace reShutLegacy
             Console.Write("Input: ");
             string inputStr = Console.ReadLine();
 
-            if (!int.TryParse(inputStr, out input))
+            if (!int.TryParse(inputStr, out int input))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("╭──────────────────────────────────────╮");
@@ -152,7 +149,7 @@ namespace reShutLegacy
                     Process.Start(@"cmd.exe", "/c shutdown /"+ character + " /f /t " + input);
                     Console.ForegroundColor= ConsoleColor.Green;
                     char toUpperChar = char.ToUpper(type[0]);
-                    string toUpperOut = toUpperChar.ToString() + type.Substring(1);
+                    string toUpperOut = string.Concat(toUpperChar.ToString(), type.AsSpan(1));
                     Console.WriteLine("╭────────────────────────────╮");
                     Console.WriteLine("│ Action has been scheduled. │");
                     Console.WriteLine("╰────────────────────────────╯");

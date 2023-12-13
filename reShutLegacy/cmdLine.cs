@@ -8,17 +8,15 @@ namespace reShutLegacy
     {
         public CmdLine(string[] args)
         {
-            // Define the prefixes that you want to support
-            List<string> validPrefixes = new List<string> { "-", "/" };
+            List<string> validPrefixes = ["-", "/"];
 
             foreach (string arg in args)
             {
-                // Check if the argument starts with a valid prefix
                 string prefix = validPrefixes.FirstOrDefault(p => arg.StartsWith(p));
                 if (prefix != null)
                 {
                     // Remove the prefix to get the option name
-                    string option = arg.Substring(prefix.Length).ToLower();
+                    string option = arg[prefix.Length..].ToLower();
 
                     switch (option)
                     {
@@ -31,9 +29,6 @@ namespace reShutLegacy
                         case "s":
                             Handler.Shutdown(); 
                             break;
-                        case "schedule":
-                            Console.WriteLine("Not implemented yet.");
-                            break;
                         default:
                             Console.WriteLine($"Unknown argument: {arg}");
                             break;
@@ -41,7 +36,7 @@ namespace reShutLegacy
                 }
                 else
                 {
-                    // Handle arguments without a valid prefix as needed
+                    // Handle arguments without a valid prefix
                     Console.WriteLine($"Unknown argument: {arg}");
                 }
             }

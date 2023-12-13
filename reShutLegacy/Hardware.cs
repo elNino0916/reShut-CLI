@@ -10,6 +10,7 @@ namespace reShutLegacy
 {
     internal class Hardware
     {
+#pragma warning disable CA1416
         public static string GetTime(bool use24HoursFormat)
         {
             if (!use24HoursFormat)
@@ -24,8 +25,8 @@ namespace reShutLegacy
         public static string GetCPU()
         {
             string cpuName = null;
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_Processor");
-            foreach (ManagementObject obj in searcher.Get())
+            ManagementObjectSearcher searcher = new("select * from Win32_Processor");
+            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
             {
                 cpuName = obj["Name"].ToString();
                 break;
@@ -34,12 +35,11 @@ namespace reShutLegacy
         }
         public static string GetGPU()
         {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_VideoController ");
-            string VC = String.Empty;
-            foreach (ManagementObject obj in searcher.Get())
+            ManagementObjectSearcher searcher = new("select * from Win32_VideoController ");
+            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
             {
-                        VC = obj["Description"].ToString();
-                        return VC;
+                string VC = obj["Description"].ToString();
+                return VC;
                     
             }
                 
@@ -48,8 +48,8 @@ namespace reShutLegacy
         public static string GetMainboard()
         {
             string mb = "";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_BaseBoard");
-            foreach (ManagementObject obj in searcher.Get())
+            ManagementObjectSearcher searcher = new("select * from Win32_BaseBoard");
+            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
             {
                 mb = obj["Product"].ToString();
                 break;
@@ -59,8 +59,8 @@ namespace reShutLegacy
         public static string GetHardDrive()
         {
             string hd = "";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_DiskDrive WHERE InterfaceType='IDE' OR InterfaceType='SCSI' OR InterfaceType='SAS' OR InterfaceType='SATA'");
-            foreach (ManagementObject obj in searcher.Get())
+            ManagementObjectSearcher searcher = new("select * from Win32_DiskDrive WHERE InterfaceType='IDE' OR InterfaceType='SCSI' OR InterfaceType='SAS' OR InterfaceType='SATA'");
+            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
             {
                 hd = obj["SerialNumber"].ToString();
                 break;
@@ -71,8 +71,8 @@ namespace reShutLegacy
         public static string GetBIOSSerial()
         {
             string hd = "";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_BIOS");
-            foreach (ManagementObject obj in searcher.Get())
+            ManagementObjectSearcher searcher = new("select * from Win32_BIOS");
+            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
             {
                 hd = obj["SerialNumber"].ToString();
                 break;
@@ -82,9 +82,9 @@ namespace reShutLegacy
         public static string GetRAM()
         {
             ulong ramSize = 0;
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select Capacity from Win32_PhysicalMemory");
+            ManagementObjectSearcher searcher = new("select Capacity from Win32_PhysicalMemory");
 
-            foreach (ManagementObject obj in searcher.Get())
+            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
             {
                 ramSize += Convert.ToUInt64(obj["Capacity"]);
             }
@@ -95,8 +95,8 @@ namespace reShutLegacy
         public static string GetCPUID()
         {
             string hd = "";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_Processor");
-            foreach (ManagementObject obj in searcher.Get())
+            ManagementObjectSearcher searcher = new("select * from Win32_Processor");
+            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
             {
                 hd = obj["ProcessorID"].ToString();
                 break;
@@ -108,8 +108,8 @@ namespace reShutLegacy
             try
             {
                 string hd = "";
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from SoftwareLicensingService");
-                foreach (ManagementObject obj in searcher.Get())
+                ManagementObjectSearcher searcher = new("select * from SoftwareLicensingService");
+                foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
                 {
                     hd = obj["ProductKey"].ToString();
                     break;
@@ -135,5 +135,6 @@ namespace reShutLegacy
             }
             return macAddress;
         }
+#pragma warning restore CA1416
     }
 }

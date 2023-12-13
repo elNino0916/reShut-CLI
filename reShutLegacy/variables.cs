@@ -18,7 +18,7 @@ namespace reShutLegacy
         public static string version = "v.12.0.0 (" + buildid + ")";
 
         // The motd
-        public static string motd()
+        public static string Motd()
         {
             if (prerelease) return "This version is currently under development and may experience occasional instability.";
             return "Welcome to v.12.0.0!";
