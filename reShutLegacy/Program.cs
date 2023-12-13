@@ -138,7 +138,7 @@ namespace reShutLegacy
             {
                 Console.Clear();
                 MITLicense();
-                Console.WriteLine("\nPress any key to go back");
+                Console.WriteLine("\nPress any key to go back.");
                 Console.ReadKey();
                 Console.Clear();
                 goto start;
