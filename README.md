@@ -13,6 +13,6 @@ reShut Legacy is an easy-to-use tool that aims to streamline and improve the man
   
 - ⚠️ You have to install .NET 8.0 to start reShut-Legacy when the next update arrives. I recommend you to download it now so you can update reShut-Legacy easily without issues. -> [Download from Microsoft](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer?cid=getdotnetcore) ⚠️
   
-- 🕒 ETA: December 2023 - January 2024 (Progress: 50% finished)
+- 🕒 ETA: December 2023 (Progress: 55% finished)
 
 --------------------
