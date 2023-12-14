@@ -1,6 +1,13 @@
 [![Download](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download reShut")](https://github.com/elNino0916/reShut-Legacy/releases/download/11.4.0/reShutLegacy.exe)
---------------------
 
+
+![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/3c029e85-28a0-48ec-aa55-07face06170f)
+
+reShut Legacy is an easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer.
+----------------------
+![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/4c6cc5c9-c9db-403d-b58e-a24dc80c3ffe)*Image may not show the latest commit.
+----------------------
+--------------------
 ### Warning!
 - ⚠️ The main branch will not be updated frequently until the release of v.12.0.0. -> [Development Branch](https://github.com/elNino0916/reShut-Legacy/tree/dev) ⚠️
   
@@ -9,9 +16,3 @@
 - 🕒 ETA: December 2023 - January 2024 (Progress: 50% finished)
 
 --------------------
-
-![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/3c029e85-28a0-48ec-aa55-07face06170f)
-![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/4c6cc5c9-c9db-403d-b58e-a24dc80c3ffe)*Image may not show the latest commit.
-
-----------------------
-reShut Legacy is an easy-to-use command-line tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer. It comes with a user interface, allowing users to effortlessly schedule and execute these system actions. Whether you require setting up schedules or performing shutdowns, reShut Legacy offers the necessary features and safety measures you need, with the added assurance of future updates and improvements!
