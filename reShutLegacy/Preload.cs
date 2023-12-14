@@ -27,7 +27,6 @@ namespace reShutLegacy
             [
                 Environment.OSVersion.Version.ToString(), // 0
                 Hardware.GetCPU(), // 1
-                /*HWID.GetHWID()*/ "Currently disabled due to performance issues.", // 2
                 Hardware.GetRAM(), // 3
                 Hardware.GetGPU(), // 4
                 "1" // 5 (This marks that the strings have been preloaded)
@@ -42,14 +41,12 @@ namespace reShutLegacy
                 Startup(false);
             }
 
-            if (index >= 0 && index < preloadedStrings.Length)
+            if (preloadedStrings != null && index >= 0 && index < preloadedStrings.Length)
             {
                 return preloadedStrings[index];
             }
-            else
-            {
-                return "Invalid index";
-            }
+
+            return "Invalid index";
         }
         public static void Reset()
         {

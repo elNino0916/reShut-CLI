@@ -20,8 +20,7 @@ namespace reShutLegacy
         // The motd
         public static string Motd()
         {
-            if (prerelease) return "This version is currently under development and may experience occasional instability.";
-            return "Welcome to v.12.0.0!";
+            return prerelease ? "This version is currently under development and may experience occasional instability." : "Welcome to v.12.0.0!";
         }
     }
 }

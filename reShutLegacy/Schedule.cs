@@ -13,7 +13,7 @@ namespace reShutLegacy
             // type:
             // shutdown
             // reboot
-            string type = "";
+            var type = "";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("╭───────────────────────────────╮");
@@ -25,40 +25,44 @@ namespace reShutLegacy
             Console.WriteLine("│ 9) Cancel schedule            │");
             Console.WriteLine("│ 0) Back                       │");
             Console.WriteLine("╰───────────────────────────────╯");
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
-            string key = keyInfo.KeyChar.ToString();
-            if (key == "9") 
+            var keyInfo = Console.ReadKey();
+            var key = keyInfo.KeyChar.ToString();
+            switch (key)
             {
-                Process.Start(@"cmd.exe", "/c shutdown -a");
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("╭────────────────────────────╮");
-                Console.WriteLine("│ Action has been cancelled. │");
-                Console.WriteLine("╰────────────────────────────╯");
-                Thread.Sleep(500); // Fixes the 'No Shutdown in progress' message in the middle of the main menu.
-                return false;
-            }
-            else
+                case "9":
+                    Process.Start(@"cmd.exe", "/c shutdown -a");
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("╭────────────────────────────╮");
+                    Console.WriteLine("│ Action has been cancelled. │");
+                    Console.WriteLine("╰────────────────────────────╯");
+                    Thread.Sleep(500); // Fixes the 'No Shutdown in progress' message in the middle of the main menu.
+                    return false;
+                case "1":
+                    type = "shutdown";
+                    break;
+                case "2":
+                    type = "reboot";
+                    break;
+                case "0":
+                    Console.Clear();
+                    return false;
+                default:
+                {
+                    if (key != "1" | key != "2" | key != "0") 
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("╭────────────────────╮");
+                        Console.WriteLine("│ An error occurred. │");
+                        Console.WriteLine("╰────────────────────╯");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        goto Retry;
+                    }
 
-            if (key == "1")
-            {
-                type = "shutdown";
-            }else if (key == "2")
-            {
-                type = "reboot";
-            }else if (key == "0") 
-            {
-                Console.Clear();
-                return false;
-            }else if (key != "1" | key != "2" | key != "0") 
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("╭────────────────────╮");
-                Console.WriteLine("│ An error occurred. │");
-                Console.WriteLine("╰────────────────────╯");
-                Console.ForegroundColor = ConsoleColor.White;
-                goto Retry;
+                    break;
+                }
             }
+
             // Phase 2
             Console.Clear();
             seconds:
@@ -86,9 +90,9 @@ namespace reShutLegacy
             Console.WriteLine("╰─────────────────────────────────────╯");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Input: ");
-            string inputStr = Console.ReadLine();
+            var inputStr = Console.ReadLine();
 
-            if (!int.TryParse(inputStr, out int input))
+            if (!int.TryParse(inputStr, out var input))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("╭──────────────────────────────────────╮");
@@ -99,16 +103,16 @@ namespace reShutLegacy
             // Phase 3
             Console.Clear();
             phase3retry:
-            int minutes = input / 60;
-            int hours = minutes / 60;
+            var minutes = input / 60;
+            var hours = minutes / 60;
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            string header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
-            string info = "(" + minutes + "min / " + hours + "hrs)";
-            string option1 = "1) Yes, schedule " + type;
-            string option2 = "2) No, go back and retry";
-            string option0 = "0) Back to main menu";
-            int maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
-            int borderLength = maxLength + 4;
+            var header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
+            var info = "(" + minutes + "min / " + hours + "hrs)";
+            var option1 = "1) Yes, schedule " + type;
+            var option2 = "2) No, go back and retry";
+            var option0 = "0) Back to main menu";
+            var maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
+            var borderLength = maxLength + 4;
 
             Console.WriteLine("╭" + new string('─', borderLength) + "╮");
             Console.WriteLine("│ " + header.PadRight(maxLength) + "   │");
@@ -120,62 +124,50 @@ namespace reShutLegacy
             Console.WriteLine("╰" + new string('─', borderLength) + "╯");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Input: ");
-            ConsoleKeyInfo keyInfo3 = Console.ReadKey();
-            string ke3y = keyInfo3.KeyChar.ToString();
-            if (ke3y == "0")
+            var keyInfo3 = Console.ReadKey();
+            var ke3y = keyInfo3.KeyChar.ToString();
+            switch (ke3y)
             {
-                Console.Clear();
-                return false;
-            }
-            else if (ke3y == "2")
-            {
-                Console.Clear();
-                goto Retry;
-            }
-            else if (ke3y == "1")
-            {
-                Console.Clear();
-                try
-                {
-                    string character = "";
-                    if (type == "shutdown")
-                    {
-                        character = "s";
-                    }
-                    else
-                    {
-                        character = "r";
-                    }
-                    Process.Start(@"cmd.exe", "/c shutdown /"+ character + " /f /t " + input);
-                    Console.ForegroundColor= ConsoleColor.Green;
-                    char toUpperChar = char.ToUpper(type[0]);
-                    string toUpperOut = string.Concat(toUpperChar.ToString(), type.AsSpan(1));
-                    Console.WriteLine("╭────────────────────────────╮");
-                    Console.WriteLine("│ Action has been scheduled. │");
-                    Console.WriteLine("╰────────────────────────────╯");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    return true;
-                }
-                catch
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("╭────────────────────╮");
-                    Console.WriteLine("│ An error occurred. │");
-                    Console.WriteLine("╰────────────────────╯");
-                    Console.ForegroundColor = ConsoleColor.White;
+                case "0":
+                    Console.Clear();
                     return false;
-                }
+                case "2":
+                    Console.Clear();
+                    goto Retry;
+                case "1":
+                    Console.Clear();
+                    try
+                    {
+                        var character = "";
+                        character = type == "shutdown" ? "s" : "r";
+                        Process.Start(@"cmd.exe", "/c shutdown /"+ character + " /f /t " + input);
+                        Console.ForegroundColor= ConsoleColor.Green;
+                        var toUpperChar = char.ToUpper(type[0]);
+                        var toUpperOut = string.Concat(toUpperChar.ToString(), type.AsSpan(1));
+                        Console.WriteLine("╭────────────────────────────╮");
+                        Console.WriteLine("│ Action has been scheduled. │");
+                        Console.WriteLine("╰────────────────────────────╯");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        return true;
+                    }
+                    catch
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("╭────────────────────╮");
+                        Console.WriteLine("│ An error occurred. │");
+                        Console.WriteLine("╰────────────────────╯");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        return false;
+                    }
             }
-            else
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("╭────────────────────╮");
-                Console.WriteLine("│ An error occurred. │");
-                Console.WriteLine("╰────────────────────╯");
-                Console.ForegroundColor = ConsoleColor.White;
-                goto phase3retry;
-            }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("╭────────────────────╮");
+            Console.WriteLine("│ An error occurred. │");
+            Console.WriteLine("╰────────────────────╯");
+            Console.ForegroundColor = ConsoleColor.White;
+            goto phase3retry;
         }
     }
 }

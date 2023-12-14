@@ -4,19 +4,19 @@ using System.Linq;
 
 namespace reShutLegacy
 {
-    class CmdLine
+    internal class CmdLine
     {
-        public CmdLine(string[] args)
+        public CmdLine(IEnumerable<string> args)
         {
             List<string> validPrefixes = ["-", "/"];
 
-            foreach (string arg in args)
+            foreach (var arg in args)
             {
-                string prefix = validPrefixes.FirstOrDefault(p => arg.StartsWith(p));
+                var prefix = validPrefixes.FirstOrDefault(p => arg.StartsWith(p));
                 if (prefix != null)
                 {
                     // Remove the prefix to get the option name
-                    string option = arg[prefix.Length..].ToLower();
+                    var option = arg[prefix.Length..].ToLower();
 
                     switch (option)
                     {

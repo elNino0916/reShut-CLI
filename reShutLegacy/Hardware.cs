@@ -13,127 +13,33 @@ namespace reShutLegacy
 #pragma warning disable CA1416
         public static string GetTime(bool use24HoursFormat)
         {
-            if (!use24HoursFormat)
-            {
-                return DateTime.Now.ToString("hh:mm:ss tt");
-            }
-            else
-            {
-                return DateTime.Now.ToString("HH:mm:ss");
-            }
+            return DateTime.Now.ToString(!use24HoursFormat ? "hh:mm:ss tt" : "HH:mm:ss");
         }
         public static string GetCPU()
         {
-            string cpuName = null;
             ManagementObjectSearcher searcher = new("select * from Win32_Processor");
-            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
-            {
-                cpuName = obj["Name"].ToString();
-                break;
-            }
-            return cpuName;
+            return searcher.Get().Cast<ManagementObject>().Select(obj => obj["Name"].ToString()).FirstOrDefault();
         }
         public static string GetGPU()
         {
             ManagementObjectSearcher searcher = new("select * from Win32_VideoController ");
-            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
+            foreach (var obj in searcher.Get().Cast<ManagementObject>())
             {
-                string VC = obj["Description"].ToString();
+                var VC = obj["Description"].ToString();
                 return VC;
                     
             }
                 
             return "Not detected! / Unknown error.";
         }
-        public static string GetMainboard()
-        {
-            string mb = "";
-            ManagementObjectSearcher searcher = new("select * from Win32_BaseBoard");
-            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
-            {
-                mb = obj["Product"].ToString();
-                break;
-            }
-            return mb;
-        }
-        public static string GetHardDrive()
-        {
-            string hd = "";
-            ManagementObjectSearcher searcher = new("select * from Win32_DiskDrive WHERE InterfaceType='IDE' OR InterfaceType='SCSI' OR InterfaceType='SAS' OR InterfaceType='SATA'");
-            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
-            {
-                hd = obj["SerialNumber"].ToString();
-                break;
-            }
-            return hd;
-        }
-
-        public static string GetBIOSSerial()
-        {
-            string hd = "";
-            ManagementObjectSearcher searcher = new("select * from Win32_BIOS");
-            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
-            {
-                hd = obj["SerialNumber"].ToString();
-                break;
-            }
-            return hd;
-        }
         public static string GetRAM()
         {
-            ulong ramSize = 0;
             ManagementObjectSearcher searcher = new("select Capacity from Win32_PhysicalMemory");
 
-            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
-            {
-                ramSize += Convert.ToUInt64(obj["Capacity"]);
-            }
+            var ramSize = searcher.Get().Cast<ManagementObject>().Aggregate<ManagementObject, ulong>(0, (current, obj) => current + Convert.ToUInt64(obj["Capacity"]));
 
             double ramInGB = ramSize / (1024 * 1024 * 1024);
             return ramInGB.ToString("0.##");
-        }
-        public static string GetCPUID()
-        {
-            string hd = "";
-            ManagementObjectSearcher searcher = new("select * from Win32_Processor");
-            foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
-            {
-                hd = obj["ProcessorID"].ToString();
-                break;
-            }
-            return hd;
-        }
-        public static string GetProductKey()
-        {
-            try
-            {
-                string hd = "";
-                ManagementObjectSearcher searcher = new("select * from SoftwareLicensingService");
-                foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
-                {
-                    hd = obj["ProductKey"].ToString();
-                    break;
-                }
-                return hd;
-            }
-            catch
-            {
-                return "Not found";
-            }
-        }
-        public static string GetMacAdress()
-        {
-            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-            string macAddress = string.Empty;
-            foreach (NetworkInterface adapter in nics)
-            {
-                if (macAddress == string.Empty)
-                {
-                    IPInterfaceProperties properties = adapter.GetIPProperties();
-                    macAddress = adapter.GetPhysicalAddress().ToString();
-                }
-            }
-            return macAddress;
         }
 #pragma warning restore CA1416
     }
