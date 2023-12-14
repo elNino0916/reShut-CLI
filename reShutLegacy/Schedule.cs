@@ -109,8 +109,8 @@ namespace reShutLegacy
             var header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
             var info = "(" + minutes + "min / " + hours + "hrs)";
             var option1 = "1) Yes, schedule " + type;
-            var option2 = "2) No, go back and retry";
-            var option0 = "0) Back to main menu";
+            const string option2 = "2) No, go back and retry";
+            const string option0 = "0) Back to main menu";
             var maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
             var borderLength = maxLength + 4;
 
@@ -138,12 +138,10 @@ namespace reShutLegacy
                     Console.Clear();
                     try
                     {
-                        var character = "";
-                        character = type == "shutdown" ? "s" : "r";
-                        Process.Start(@"cmd.exe", "/c shutdown /"+ character + " /f /t " + input);
+                        var character = type == "shutdown" ? "s" : "r";
+                        Process.Start("cmd.exe", "/c shutdown /"+ character + " /f /t " + input);
                         Console.ForegroundColor= ConsoleColor.Green;
                         var toUpperChar = char.ToUpper(type[0]);
-                        var toUpperOut = string.Concat(toUpperChar.ToString(), type.AsSpan(1));
                         Console.WriteLine("╭────────────────────────────╮");
                         Console.WriteLine("│ Action has been scheduled. │");
                         Console.WriteLine("╰────────────────────────────╯");

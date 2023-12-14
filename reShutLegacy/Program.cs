@@ -206,8 +206,8 @@ namespace reShutLegacy
                             Console.WriteLine("╰────────────────╯");
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             var header = "reShut-Legacy " + Variables.version;
-                            var releaseStatus = "Pre-Release: " + Variables.prerelease.ToString();
-                            var systemInfoHeader = "System Information:";
+                            var releaseStatus = "Pre-Release: " + Variables.prerelease;
+                            const string systemInfoHeader = "System Information:";
                             var cpuInfo = "CPU: " + Preload.GetString(1);
                             var gpuInfo = "Video Controller: " + Preload.GetString(3);
                             var ramInfo = "RAM: " + Preload.GetString(2) + " GB";
@@ -215,8 +215,8 @@ namespace reShutLegacy
                           
 
                             Console.Clear();
-                            int maxLength = Math.Max(header.Length, Math.Max(systemInfoHeader.Length, Math.Max(cpuInfo.Length, Math.Max(gpuInfo.Length, Math.Max(ramInfo.Length, Math.Max("The license can be viewed by pressing L in the main menu.".Length, winVer.Length))))));
-                            int borderLength = maxLength + 4; // Add 4 for the padding and border characters
+                            var maxLength = Math.Max(header.Length, Math.Max(systemInfoHeader.Length, Math.Max(cpuInfo.Length, Math.Max(gpuInfo.Length, Math.Max(ramInfo.Length, Math.Max("The license can be viewed by pressing L in the main menu.".Length, winVer.Length))))));
+                            var borderLength = maxLength + 4;
 
                             Console.WriteLine("╭" + new string('─', borderLength) + "╮");
                             Console.WriteLine("│ " + header.PadRight(borderLength - 2) + " │");
@@ -225,14 +225,14 @@ namespace reShutLegacy
                             Console.WriteLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
                             Console.WriteLine("├" + new string('─', borderLength) + "┤");
                             Console.WriteLine("│ " + systemInfoHeader.PadRight(borderLength - 2) + " │");
-                            Console.WriteLine("│ " + cpuInfo.PadRight(borderLength - 2) + " │"); // Adjusted padding here
-                            Console.WriteLine("│ " + gpuInfo.PadRight(borderLength - 2) + " │"); // Adjusted padding here
-                            Console.WriteLine("│ " + ramInfo.PadRight(borderLength - 2) + " │"); // Adjusted padding here
-                            Console.WriteLine("│ " + winVer.PadRight(borderLength - 2) + " │"); // Adjusted padding here
+                            Console.WriteLine("│ " + cpuInfo.PadRight(borderLength - 2) + " │");
+                            Console.WriteLine("│ " + gpuInfo.PadRight(borderLength - 2) + " │");
+                            Console.WriteLine("│ " + ramInfo.PadRight(borderLength - 2) + " │"); 
+                            Console.WriteLine("│ " + winVer.PadRight(borderLength - 2) + " │"); 
                             Console.WriteLine("╰" + new string('─', borderLength) + "╯");
                             Console.WriteLine("Press any key to go back.");
                             Console.ReadKey();
-                                        Console.Clear();
+                            Console.Clear();
                             goto settings;
                         }
                         case "2":
