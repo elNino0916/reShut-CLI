@@ -209,32 +209,30 @@ namespace reShutLegacy
                             var releaseStatus = "Pre-Release: " + Variables.prerelease.ToString();
                             var systemInfoHeader = "System Information:";
                             var cpuInfo = "CPU: " + Preload.GetString(1);
-                            var gpuInfo = "Video Controller: " + Preload.GetString(4);
-                            var ramInfo = "RAM: " + Preload.GetString(3) + " GB";
+                            var gpuInfo = "Video Controller: " + Preload.GetString(3);
+                            var ramInfo = "RAM: " + Preload.GetString(2) + " GB";
                             var winVer = "Windows Version: " + Preload.GetString(0);
-                            var identifierInfo = "Identifier: " + Preload.GetString(2);
+                          
 
-                            var maxLength = Math.Max(header.Length, Math.Max(releaseStatus.Length, Math.Max(cpuInfo.Length, Math.Max(gpuInfo.Length, Math.Max(ramInfo.Length, identifierInfo.Length)))));
-                            var borderLength = maxLength + 4;
                             Console.Clear();
+                            int maxLength = Math.Max(header.Length, Math.Max(systemInfoHeader.Length, Math.Max(cpuInfo.Length, Math.Max(gpuInfo.Length, Math.Max(ramInfo.Length, Math.Max("The license can be viewed by pressing L in the main menu.".Length, winVer.Length))))));
+                            int borderLength = maxLength + 4; // Add 4 for the padding and border characters
 
                             Console.WriteLine("╭" + new string('─', borderLength) + "╮");
-                            Console.WriteLine("│ " + header.PadRight(maxLength) + "   │");
-                            Console.WriteLine("│ Copyright (c) 2023 elNino0916".PadLeft(19).PadRight(maxLength) + "     │");
-                            Console.WriteLine("│ The license can be viewed by pressing L in the main menu.".PadLeft(19).PadRight(maxLength) + "   │");
-                            Console.WriteLine("│ " + releaseStatus.PadRight(maxLength) + "   │");
+                            Console.WriteLine("│ " + header.PadRight(borderLength - 2) + " │");
+                            Console.WriteLine("│ " + "Copyright (c) 2023 elNino0916".PadRight(borderLength - 2) + " │");
+                            Console.WriteLine("│ " + "The license can be viewed by pressing L in the main menu.".PadRight(borderLength - 2) + " │");
+                            Console.WriteLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
                             Console.WriteLine("├" + new string('─', borderLength) + "┤");
-                            Console.WriteLine("│" + systemInfoHeader.PadLeft(20).PadRight(maxLength) + "    │");
-                            Console.WriteLine("│ " + cpuInfo.PadLeft(18).PadRight(maxLength) + "   │");
-                            Console.WriteLine("│ " + gpuInfo.PadLeft(18).PadRight(maxLength) + "   │");
-                            Console.WriteLine("│ " + ramInfo.PadLeft(10).PadRight(maxLength) + "   │");
-                            Console.WriteLine("│ " + winVer.PadLeft(10).PadRight(maxLength) + "   │");
+                            Console.WriteLine("│ " + systemInfoHeader.PadRight(borderLength - 2) + " │");
+                            Console.WriteLine("│ " + cpuInfo.PadRight(borderLength - 2) + " │"); // Adjusted padding here
+                            Console.WriteLine("│ " + gpuInfo.PadRight(borderLength - 2) + " │"); // Adjusted padding here
+                            Console.WriteLine("│ " + ramInfo.PadRight(borderLength - 2) + " │"); // Adjusted padding here
+                            Console.WriteLine("│ " + winVer.PadRight(borderLength - 2) + " │"); // Adjusted padding here
                             Console.WriteLine("╰" + new string('─', borderLength) + "╯");
-
-
                             Console.WriteLine("Press any key to go back.");
                             Console.ReadKey();
-                            Console.Clear();
+                                        Console.Clear();
                             goto settings;
                         }
                         case "2":

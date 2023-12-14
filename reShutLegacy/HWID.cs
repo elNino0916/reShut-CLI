@@ -8,6 +8,7 @@ using System.Text;
 namespace reShutLegacy
 {
 #pragma warning disable CA1416
+    // This class is no longer required and will be removed in the future.
     internal class HWID
     {
         public static string GetHWID()

@@ -27,9 +27,9 @@ namespace reShutLegacy
             [
                 Environment.OSVersion.Version.ToString(), // 0
                 Hardware.GetCPU(), // 1
-                Hardware.GetRAM(), // 3
-                Hardware.GetGPU(), // 4
-                "1" // 5 (This marks that the strings have been preloaded)
+                Hardware.GetRAM(), // 2
+                Hardware.GetGPU(), // 3
+                "1" // 4 (This marks that the strings have been preloaded)
             ];
         }
         public static string GetString(int index)

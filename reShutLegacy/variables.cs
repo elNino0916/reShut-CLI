@@ -12,7 +12,7 @@ namespace reShutLegacy
         public static bool prerelease = true;
 
         // The latest GitHub Commit checksum / or other important thing
-        public static string buildid = "alpha-1";
+        public static string buildid = "alpha-2";
 
         // The version
         public static string version = "v.12.0.0 (" + buildid + ")";
