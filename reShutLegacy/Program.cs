@@ -104,10 +104,13 @@ namespace reShutLegacy
             Console.ForegroundColor = ConsoleColor.Red;
             CenterText();
 
-            // Prints motd
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            // Prints motd (Disabled)
+            /*
+             Console.ForegroundColor = ConsoleColor.DarkRed;
             var motdcenter = new string(' ', (Console.WindowWidth - Variables.Motd().Length) / 2) + Variables.Motd();
-            Console.WriteLine("\n" + motdcenter + "\n");
+            Console.WriteLine("\n" + motdcenter + "\n"); 
+            */
+            UpdateChecker.MainCheck().Wait();
 
             // Prints main menu
             Console.ForegroundColor = ConsoleColor.DarkYellow;
