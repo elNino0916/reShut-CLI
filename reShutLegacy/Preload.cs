@@ -47,6 +47,8 @@ namespace reShutLegacy
 
             return "Invalid index";
         }
+
+        // Reset method not used in many versions, may be removed in the future
         public static void Reset()
         {
             preloadedStrings = null;

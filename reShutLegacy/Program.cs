@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 namespace reShutLegacy
 {
     /*
@@ -96,8 +97,8 @@ namespace reShutLegacy
         // Main UI starts here:
         start:
             // Sets UTF8 encoding for new design.
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.Clear();
             // Sets Title
             Console.Title = "reShut Legacy " + Variables.fullversion;
 
