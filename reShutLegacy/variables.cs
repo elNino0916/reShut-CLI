@@ -2,11 +2,11 @@
 {
     internal class Variables
     {
-        // Set true if this is an pre-release
+        // Set true if this is a pre-release
         public static bool prerelease = true;
 
         // The latest GitHub Commit checksum / or other important thing
-        public static string buildid = "alpha-3";
+        public static string buildid = "alpha-4";
 
         // The version
         public static string version = "12.0.0";
@@ -15,7 +15,7 @@
         // The motd
         public static string Motd()
         {
-            return prerelease ? "This version is currently under development and may experience occasional instability." : "Welcome to v.12.0.0!";
+            return prerelease ? "This version is currently under development and may experience occasional instability. (reShut is up to date!)" : "Welcome to v.12.0.0! (reShut is up to date!)";
         }
     }
 }

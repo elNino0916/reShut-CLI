@@ -10,54 +10,54 @@ namespace reShutLegacy
 {
     internal class UpdateChecker
     {
-        static void DisplayCenteredMessage(string message)
+        public static void DisplayCenteredMessage(string message)
         {
-            int consoleWidth = Console.WindowWidth;
+            var consoleWidth = Console.WindowWidth;
 
-            int padding = (consoleWidth - message.Length) / 2;
+            var padding = (consoleWidth - message.Length) / 2;
 
             Console.WriteLine(new string(' ', padding) + message);
         }
 
         public static async Task MainCheck()
         {
-            string repositoryUrl = "https://api.github.com/repos/elnino0916/reshut-legacy/releases/latest";
-            using (HttpClient client = new HttpClient())
+            const string repositoryUrl = "https://api.github.com/repos/elnino0916/reshut-legacy/releases/latest";
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("reShut-Legacy");
+
+            var response = await client.GetAsync(repositoryUrl);
+
+            if (response.IsSuccessStatusCode)
             {
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("reShut-Legacy");
+                var json = await response.Content.ReadAsStringAsync();
+                var release = JsonSerializer.Deserialize<GitHubRelease>(json);
 
-                HttpResponseMessage response = await client.GetAsync(repositoryUrl);
+                var latestVersion = release.tag_name;
+                var currentVersion = Variables.version;
 
-                if (response.IsSuccessStatusCode)
+                Console.WriteLine("");
+                if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
-                    string json = await response.Content.ReadAsStringAsync();
-                    var release = JsonSerializer.Deserialize<GitHubRelease>(json);
-
-                    string latestVersion = release.tag_name;
-                    string currentVersion = Variables.version;
-
-                    Console.WriteLine("");
-                    if (IsNewerVersionAvailable(currentVersion, latestVersion))
-                    {
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        DisplayCenteredMessage($"A new version ({latestVersion}) of reShut-Legacy is available! Please download the update from:");
-                        DisplayCenteredMessage($"https://github.com/elnino0916/reShut-Legacy");
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        DisplayCenteredMessage(Variables.Motd());
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                    }
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    DisplayCenteredMessage(
+                        $"A new version ({latestVersion}) of reShut-Legacy is available! Please download the update from");
+                    DisplayCenteredMessage($"https://github.com/elnino0916/reShut-Legacy/releases/latest");
+                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine($"Failed to check for updates: {response.StatusCode}");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    DisplayCenteredMessage(Variables.Motd());
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
             }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine($"Failed to check for updates: {response.StatusCode}");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+
             static bool IsNewerVersionAvailable(string currentVersion, string latestVersion)
             {
                 if (string.IsNullOrEmpty(currentVersion) || string.IsNullOrEmpty(latestVersion))
@@ -69,7 +69,9 @@ namespace reShutLegacy
 
         public class GitHubRelease
         {
+            #pragma warning disable IDE1006
             public string tag_name { get; set; }
+            #pragma warning restore IDE1006
         }
     }
 }
