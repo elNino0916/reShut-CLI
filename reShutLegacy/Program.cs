@@ -200,8 +200,7 @@ namespace reShutLegacy
                     Console.WriteLine("│     Settings:     │");
                     Console.WriteLine("├───────────────────┤");
                     Console.WriteLine("│ 1) About...       │");
-                    Console.WriteLine("│ 2) What's new     │");
-                    Console.WriteLine("│ 3) Startup        │");
+                    Console.WriteLine("│ 2) Startup        │");
                     Console.WriteLine("│ 9) Back           │");
                     Console.WriteLine("╰───────────────────╯");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -255,30 +254,8 @@ namespace reShutLegacy
                             Console.Clear();
                             goto settings;
                         }
-                        case "2":
-                            Console.Clear();
-                            Console.WriteLine("What´s new in v1:\n");
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.WriteLine("New UI");
-                            Console.WriteLine("The UI is now better then ever!");
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Console.WriteLine("---");
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.WriteLine("Startup Settings");
-                            Console.WriteLine("\nMost of the things will now be loaded at startup! That means that you don't need to wait after the app launched.\nYou can change this in the settings by enabling Fast Startup.");
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Console.WriteLine("---");
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.WriteLine("Internal changes");
-                            Console.WriteLine("reShut Legacy now uses .NET 8 instead of .NET Framework 4.8. Because of that, more files are needed to run reShut Legacy. The user experience will not change because of that.");
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Console.WriteLine("---");
-                            Console.WriteLine("\nPress any key to go back.");
-                            Console.ReadKey();
-                            Console.Clear();
-                            goto settings;
                         // Go back when invalid key has been pressed
-                        case "3":
+                        case "2":
                         {
                             // NEW: Startup Settings
                             invalidstartup:
