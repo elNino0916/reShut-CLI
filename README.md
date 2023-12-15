@@ -4,7 +4,7 @@
 
 **The source code is offline until tomorrow.**
 ---------------
-### Known Issues
+### Known Issues in v.1.0.0 (releasing tomorrow)
 - The UI isn't rendered properly.
   
 	-> Use the Consolas Font in Windows Terminal / CMD
