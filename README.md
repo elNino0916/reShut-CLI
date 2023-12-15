@@ -3,3 +3,8 @@
 ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/3c029e85-28a0-48ec-aa55-07face06170f)
 
 **The source code is offline until tomorrow.**
+---------------
+### Known Issues
+- The UI isn't rendered properly.
+  
+	-> Use the Consolas Font in Windows Terminal / CMD
