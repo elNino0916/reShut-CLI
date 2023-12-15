@@ -257,7 +257,7 @@ namespace reShutLegacy
                         }
                         case "2":
                             Console.Clear();
-                            Console.WriteLine("What´s new in v12:\n");
+                            Console.WriteLine("What´s new in v1:\n");
                             Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.WriteLine("New UI");
                             Console.WriteLine("The UI is now better then ever!");

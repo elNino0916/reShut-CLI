@@ -6,10 +6,10 @@
         public static bool prerelease = true;
 
         // The latest GitHub Commit checksum / or other important thing
-        public static string buildid = "beta-1";
+        public static string buildid = "beta-2";
 
         // The version
-        public static string version = "12.0.0";
+        public static string version = "1.0.0";
         public static string fullversion = $"v.{version} (" + buildid + ")";
 
         // The motd
