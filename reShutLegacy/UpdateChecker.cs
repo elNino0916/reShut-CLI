@@ -34,7 +34,7 @@ namespace reShutLegacy
                     var release = JsonSerializer.Deserialize<GitHubRelease>(json);
 
                     string latestVersion = release.tag_name;
-                    string currentVersion = Variables.simpleversionupdatecheck;
+                    string currentVersion = Variables.version;
 
                     Console.WriteLine("");
                     if (IsNewerVersionAvailable(currentVersion, latestVersion))
@@ -47,7 +47,7 @@ namespace reShutLegacy
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        DisplayCenteredMessage("reShut-Legacy is up to date!");
+                        DisplayCenteredMessage(Variables.Motd());
                         Console.ForegroundColor = ConsoleColor.Gray;
                     }
                 }

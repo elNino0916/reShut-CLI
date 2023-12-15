@@ -9,15 +9,13 @@
         public static string buildid = "alpha-3";
 
         // The version
-        public static string simpleversionupdatecheck = "12.0.0";
-        public static string version = $"v.{simpleversionupdatecheck} (" + buildid + ")";
+        public static string version = "12.0.0";
+        public static string fullversion = $"v.{version} (" + buildid + ")";
 
         // The motd
         public static string Motd()
         {
-            //return prerelease ? "This version is currently under development and may experience occasional instability." : "Welcome to v.12.0.0!";
-
-            return string.Empty; // Disabled
+            return prerelease ? "This version is currently under development and may experience occasional instability." : "Welcome to v.12.0.0!";
         }
     }
 }

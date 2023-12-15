@@ -67,11 +67,11 @@ namespace reShutLegacy
 
             if (Variables.prerelease)
             {
-                centeredText = new string(' ', (Console.WindowWidth - "Pre-Release ".Length - Variables.version.Length) / 2) + "Pre-Release " + Variables.version;
+                centeredText = new string(' ', (Console.WindowWidth - "Pre-Release ".Length - Variables.fullversion.Length) / 2) + "Pre-Release " + Variables.fullversion;
             }
             else
             {
-                centeredText = new string(' ', (Console.WindowWidth - Variables.version.Length) / 2) + Variables.version;
+                centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) + Variables.fullversion;
             }
             var copyright = new string(' ', (Console.WindowWidth - "Copyright (c) 2023 elNino0916".Length) / 2) + "Copyright (c) 2023 elNino0916";
             Console.WriteLine(centeredText);
@@ -98,7 +98,7 @@ namespace reShutLegacy
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             // Sets Title
-            Console.Title = "reShut Legacy " + Variables.version;
+            Console.Title = "reShut Legacy " + Variables.fullversion;
 
             // Prints ascii art
             Console.ForegroundColor = ConsoleColor.Red;
@@ -208,7 +208,7 @@ namespace reShutLegacy
                             Console.WriteLine("│ Please wait... │");
                             Console.WriteLine("╰────────────────╯");
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            var header = "reShut-Legacy " + Variables.version;
+                            var header = "reShut-Legacy " + Variables.fullversion;
                             var releaseStatus = "Pre-Release: " + Variables.prerelease;
                             const string systemInfoHeader = "System Information:";
                             var cpuInfo = "CPU: " + Preload.GetString(1);
