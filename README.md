@@ -1,6 +1,6 @@
 # Welcome to the development branch of reShut-Legacy! The DEV branch will now get more updates again.
 
-## Current version on the dev-branch: v12.0.0-Alpha 5
+## Current version on the dev-branch: v12.0.0
 ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/da0075d0-eacb-496d-a90a-a3461e43608f)* Image may not show the latest or any commit.
 
 --------------------
