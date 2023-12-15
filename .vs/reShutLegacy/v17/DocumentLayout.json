@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\updatechecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\updatechecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\preload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\preload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|c:\\users\\ninob\\source\\repos\\reshut-legacy\\reshutlegacy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutLegacy.csproj|solutionrelative:reshutlegacy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,17 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\Program.cs",
               "RelativeDocumentMoniker": "reShutLegacy\\Program.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\Program.cs",
               "RelativeToolTip": "reShutLegacy\\Program.cs",
-              "ViewState": "AQIAAEsBAAAAAAAAAAAkwGgBAABdAAAA",
+              "ViewState": "AQIAAGMAAAAAAAAAAAArwHgAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-12-14T14:17:46.59Z",
               "IsPinned": true,
@@ -44,13 +44,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "variables.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\variables.cs",
               "RelativeDocumentMoniker": "reShutLegacy\\variables.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\variables.cs",
               "RelativeToolTip": "reShutLegacy\\variables.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-12-14T14:17:55.65Z",
               "IsPinned": true,
@@ -66,26 +66,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Preload.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\Preload.cs",
               "RelativeDocumentMoniker": "reShutLegacy\\Preload.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\Preload.cs",
               "RelativeToolTip": "reShutLegacy\\Preload.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwCAAAAAOAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACAAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-12-15T13:35:53.083Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "UpdateChecker.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\UpdateChecker.cs",
               "RelativeDocumentMoniker": "reShutLegacy\\UpdateChecker.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-Legacy\\reShutLegacy\\UpdateChecker.cs",
               "RelativeToolTip": "reShutLegacy\\UpdateChecker.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAzAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-12-14T20:15:48.988Z",
               "EditorCaption": ""

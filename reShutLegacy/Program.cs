@@ -109,8 +109,8 @@ namespace reShutLegacy
             {
                 try
                 {
+                    // Call the MainCheck method and display the result
                     UpdateChecker.MainCheck().Wait();
-
                 }
                 catch
                 {
