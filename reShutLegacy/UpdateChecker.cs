@@ -85,9 +85,9 @@ namespace reShutLegacy
 
         public class GitHubRelease
         {
-#pragma warning disable IDE1006
+            #pragma warning disable IDE1006
             public string tag_name { get; set; }
-#pragma warning restore IDE1006
+            #pragma warning restore IDE1006
         }
     }
 }

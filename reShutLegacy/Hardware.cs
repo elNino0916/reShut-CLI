@@ -10,7 +10,7 @@ namespace reShutLegacy
 {
     internal class Hardware
     {
-#pragma warning disable CA1416
+        #pragma warning disable CA1416
         public static string GetTime(bool use24HoursFormat)
         {
             return DateTime.Now.ToString(!use24HoursFormat ? "hh:mm:ss tt" : "HH:mm:ss");
@@ -38,9 +38,9 @@ namespace reShutLegacy
 
             var ramSize = searcher.Get().Cast<ManagementObject>().Aggregate<ManagementObject, ulong>(0, (current, obj) => current + Convert.ToUInt64(obj["Capacity"]));
 
-            double ramInGB = ramSize / (1024 * 1024 * 1024);
+            var ramInGB = (double)ramSize / (1024 * 1024 * 1024);
             return ramInGB.ToString("0.##");
         }
-#pragma warning restore CA1416
+        #pragma warning restore CA1416
     }
 }

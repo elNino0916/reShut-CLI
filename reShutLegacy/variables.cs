@@ -6,7 +6,7 @@
         public static bool prerelease = true;
 
         // The latest GitHub Commit checksum / or other important thing
-        public static string buildid = "alpha-5";
+        public static string buildid = "beta-1";
 
         // The version
         public static string version = "12.0.0";

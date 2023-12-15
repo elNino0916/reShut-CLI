@@ -26,10 +26,10 @@ namespace reShutLegacy
             preloadedStrings =
             [
                 Environment.OSVersion.Version.ToString(), // 0
-                Hardware.GetCPU(), // 1
-                Hardware.GetRAM(), // 2
-                Hardware.GetGPU(), // 3
-                "1" // 4 (This marks that the strings have been preloaded)
+                Hardware.GetCPU(),                        // 1
+                Hardware.GetRAM(),                        // 2
+                Hardware.GetGPU(),                        // 3
+                "1"                                       // 4
             ];
         }
         public static string GetString(int index)
@@ -37,7 +37,6 @@ namespace reShutLegacy
             // Check if the array has been preloaded
             if (preloadedStrings == null)
             {
-                // Not preloaded, preload now
                 Startup(false);
             }
 
@@ -50,7 +49,6 @@ namespace reShutLegacy
         }
         public static void Reset()
         {
-            // Reset the preloaded strings by setting the array to null
             preloadedStrings = null;
         }
     }
