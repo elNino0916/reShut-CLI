@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
 
 namespace reShutLegacy
 {
@@ -17,9 +18,16 @@ namespace reShutLegacy
             // Check for FastStartup
             if (atStartup)
             {
-                if (File.ReadAllText(@"config\startup.cfg") == "fast=enabled" ) 
+                try
                 {
-                    return; 
+                    if (File.ReadAllText(@"config\startup.cfg") == "fast=enabled")
+                    {
+                        return;
+                    }
+                }
+                catch
+                {
+                    File.WriteAllText(@"config\startup.cfg", "fast=disabled");
                 }
             }
             // Preload the strings here
