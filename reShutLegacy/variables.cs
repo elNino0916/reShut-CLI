@@ -3,7 +3,7 @@
     internal class Variables
     {
         // Set true if this is a pre-release
-        public static bool prerelease = false;
+        public static bool prerelease = true;
 
         // BuildID disabled for now
         //public static string buildid = "00001"; 
