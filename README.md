@@ -4,7 +4,7 @@
 
 reShut Legacy is an easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer.
 ----------------------
-![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/0ccd9176-bcc6-4a23-bf9e-57bc4436f067)  *Image may not show the latest commit.
+![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/afcffca3-27bd-4c7b-9ac3-328f262b774d) *Image may not show the latest commit.
 
 ### Warning!
 - ⚠️ Use the Consolas font to fix rendering issues. ⚠️
