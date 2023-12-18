@@ -9,7 +9,7 @@
         //public static string buildid = "00001"; 
 
         // The version
-        public static string version = "1.0.0";
+        public static string version = "1.0.0.1";
         public static string fullversion = $"v.{version}";
 
         // The motd

@@ -98,7 +98,6 @@ namespace reShutLegacy
         start:
             // Sets UTF8 encoding for new design.
             Console.OutputEncoding = Encoding.UTF8;
-            Console.Clear();
             // Sets Title
             Console.Title = "reShut Legacy " + Variables.fullversion;
 
