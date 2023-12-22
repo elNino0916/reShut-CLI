@@ -9,9 +9,8 @@ namespace reShutLegacy
 
 
         // The version
-        public static string version = "1.0.0.2";
+        public static string version = "1.0.0.3";
         public static string fullversion = $"v.{version}";
-        public static string copyrightyear = DateTime.Now.ToString("yyyy");
 
         // The motd
         public static string Motd()

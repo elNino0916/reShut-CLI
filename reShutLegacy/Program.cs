@@ -116,7 +116,6 @@ namespace reShutLegacy
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine();
                     UpdateChecker.DisplayCenteredMessage($"Failed to check for updates.");
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
@@ -125,7 +124,6 @@ namespace reShutLegacy
             {
                 // Updates are disabled
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine();
                 UpdateChecker.DisplayCenteredMessage($"Update Search is disabled.");
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
