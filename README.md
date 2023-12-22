@@ -1,4 +1,4 @@
-[![Download](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download reShut")](https://github.com/elNino0916/reShut-Legacy/releases/download/1.0.0.2/reShut-Installer.exe)
+[![Download](https://custom-icon-badges.demolab.com/badge/-Download-darkgreen?style=for-the-badge&logo=download&logoColor=white "Download reShut")](https://github.com/elNino0916/reShut-Legacy/releases/download/1.0.0.2/reShut-Installer.exe)
 
 ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/b0473bc9-8d41-461a-ba3f-4033a4a32a7e)
 
