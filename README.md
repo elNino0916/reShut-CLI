@@ -8,7 +8,9 @@ reShut Legacy is an easy-to-use tool that aims to streamline and improve the man
 ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/6e23e1ab-fbec-4082-85a9-9494970666f7)*Image may not show the latest commit.
 
 ### Warning!
-- ⚠️ Use the Consolas font to fix rendering issues. ⚠️
+- ⚠️ Activate the "AtlasEngine" in Windows Terminal to fix issues -> Settings -> Rendering -> Use the new text renderer ("AtlasEngine") ⚠️
+ ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/8d6863d7-3d64-484d-98b2-9da6f12e7cbe)
+
   
 - ⚠️ You have to install .NET 8.0 to start reShut-Legacy. -> [Download from Microsoft](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer?cid=getdotnetcore) ⚠️
 
