@@ -94,11 +94,12 @@ namespace reShutLegacy
             // Initializes cmdLine-args
             var cmdLine = new CmdLine(args);
 
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.Clear();
         // Main UI starts here:
         start:
             // Sets UTF8 encoding for new design.
             Console.OutputEncoding = Encoding.UTF8;
-            Console.Clear();
             // Sets Title
             Console.Title = "reShut Legacy " + Variables.fullversion;
 
@@ -115,7 +116,6 @@ namespace reShutLegacy
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine();
                     UpdateChecker.DisplayCenteredMessage($"Failed to check for updates.");
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
@@ -124,13 +124,12 @@ namespace reShutLegacy
             {
                 // Updates are disabled
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine();
                 UpdateChecker.DisplayCenteredMessage($"Update Search is disabled.");
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
 
             // Prints main menu
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             string[] menuItems = ["Shutdown", "Reboot", "Logoff", "Schedule...", "Settings", "Quit"];
 
             Console.WriteLine("╭────────────────────────╮");
@@ -195,7 +194,7 @@ namespace reShutLegacy
                     // Settings
 
                     // Prints the settings menu
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("╭───────────────────╮");
                     Console.WriteLine("│     Settings:     │");
                     Console.WriteLine("├───────────────────┤");
@@ -223,7 +222,7 @@ namespace reShutLegacy
                             Console.WriteLine("╭────────────────╮");
                             Console.WriteLine("│ Please wait... │");
                             Console.WriteLine("╰────────────────╯");
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
                             var header = "reShut-Legacy " + Variables.fullversion;
                             var releaseStatus = "Pre-Release: " + Variables.prerelease;
                             const string systemInfoHeader = "System Information:";
@@ -304,7 +303,7 @@ namespace reShutLegacy
                                     Console.WriteLine("╰───────────────────────────╯");
                                 }
                             }
-                            Console.ForegroundColor = ConsoleColor.DarkYellow; 
+                            Console.ForegroundColor = ConsoleColor.DarkGreen; 
                             Console.WriteLine("╭───────────────────────────────────────╮");
                             Console.WriteLine("│                Startup:               │");
                             Console.WriteLine("├───────────────────────────────────────┤");
