@@ -9,13 +9,13 @@ namespace reShutLegacy
 
 
         // The version
-        public static string version = "1.0.0.3";
+        public static string version = "1.0.0.4";
         public static string fullversion = $"v.{version}";
 
         // The motd
         public static string Motd()
         {
-            return prerelease ? "This version is currently under development and may experience occasional instability. (reShut is up to date!)" : "Merry Christmas! (reShut is up to date!)";
+            return prerelease ? "This version is currently under development and may experience occasional instability. (reShut is up to date!)" : "reShut is up to date!";
         }
     }
 }

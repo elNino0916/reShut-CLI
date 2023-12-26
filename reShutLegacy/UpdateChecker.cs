@@ -25,7 +25,7 @@ namespace reShutLegacy
             if (updateCheckPerformed)
             {
                 // Output the stored result
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
                 DisplayCenteredMessage(updateResultMessage);
                 DisplayCenteredMessage(updateResultMessageLine2);
                 Console.ForegroundColor = ConsoleColor.Gray;
@@ -48,7 +48,7 @@ namespace reShutLegacy
 
                 if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
                     updateResultMessage = $"A new version ({latestVersion}) of reShut-Legacy is available! Please download the update from";
                     DisplayCenteredMessage(updateResultMessage);
                     updateResultMessageLine2 = "https://github.com/elnino0916/reShut-Legacy/releases/latest";
@@ -57,7 +57,7 @@ namespace reShutLegacy
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
                     updateResultMessage = Variables.Motd();
                     DisplayCenteredMessage(updateResultMessage);
                     Console.ForegroundColor = ConsoleColor.Gray;
@@ -65,7 +65,7 @@ namespace reShutLegacy
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = ConsoleColor.Red;
                 updateResultMessage = $"Failed to check for updates: {response.StatusCode}. Restart reShut-Legacy to refresh.";
                 DisplayCenteredMessage(updateResultMessage);
                 Console.ForegroundColor = ConsoleColor.Gray;

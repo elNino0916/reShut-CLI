@@ -15,7 +15,7 @@ namespace reShutLegacy
             // reboot
             var type = "";
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
             Console.WriteLine("╭───────────────────────────────╮");
             Console.WriteLine("│ What do you want to schedule? │");
             Console.WriteLine("│ Select an option:             │");
@@ -66,7 +66,7 @@ namespace reShutLegacy
             // Phase 2
             Console.Clear();
             seconds:
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
 
             if (DateTime.Now.ToString("tt") == "")
             {
@@ -105,7 +105,7 @@ namespace reShutLegacy
             phase3retry:
             var minutes = input / 60;
             var hours = minutes / 60;
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
             var header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
             var info = "(" + minutes + "min / " + hours + "hrs)";
             var option1 = "1) Yes, schedule " + type;
