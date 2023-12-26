@@ -45,6 +45,7 @@ namespace reShutLegacy
             {
                 var timeLeft = newYear - now;
                 Console.Clear();
+                Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
                 Console.WriteLine($"Time left until New Year: {timeLeft.Days} days, {timeLeft.Hours} hours, {timeLeft.Minutes} minutes, {timeLeft.Seconds} seconds");
             }
         }
