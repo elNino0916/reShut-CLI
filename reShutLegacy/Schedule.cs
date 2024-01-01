@@ -8,28 +8,28 @@ namespace reShutLegacy
     {
         public static bool Plan()
         {
-            Retry:
+        Retry:
             // set strings
             // type:
             // shutdown
             // reboot
             var type = "";
             Console.Clear();
-            Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
+            Console.ForegroundColor = Variables.MenuColor;
             Console.WriteLine("╭───────────────────────────────╮");
             Console.WriteLine("│ What do you want to schedule? │");
             Console.WriteLine("│ Select an option:             │");
             Console.WriteLine("│ 1) Shutdown                   │");
             Console.WriteLine("│ 2) Reboot                     │");
             Console.WriteLine("├───────────────────────────────┤");
-            Console.WriteLine("│ 9) Cancel schedule            │");
-            Console.WriteLine("│ 0) Back                       │");
+            Console.WriteLine("│ 0) Cancel schedule            │");
+            Console.WriteLine("│ 9) Back                       │");
             Console.WriteLine("╰───────────────────────────────╯");
             var keyInfo = Console.ReadKey();
             var key = keyInfo.KeyChar.ToString();
             switch (key)
             {
-                case "9":
+                case "0":
                     Process.Start(@"cmd.exe", "/c shutdown -a");
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -44,29 +44,29 @@ namespace reShutLegacy
                 case "2":
                     type = "reboot";
                     break;
-                case "0":
+                case "9":
                     Console.Clear();
                     return false;
                 default:
-                {
-                    if (key != "1" | key != "2" | key != "0") 
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("╭────────────────────╮");
-                        Console.WriteLine("│ An error occurred. │");
-                        Console.WriteLine("╰────────────────────╯");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        goto Retry;
-                    }
+                        if (key != "1" | key != "2" | key != "0")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("╭────────────────────╮");
+                            Console.WriteLine("│ An error occurred. │");
+                            Console.WriteLine("╰────────────────────╯");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            goto Retry;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
 
             // Phase 2
             Console.Clear();
-            seconds:
-            Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
+        seconds:
+            Console.ForegroundColor = Variables.MenuColor;
 
             if (DateTime.Now.ToString("tt") == "")
             {
@@ -74,7 +74,7 @@ namespace reShutLegacy
                 Console.WriteLine("│ Current time: " + Hardware.GetTime(true) + " │");
                 Console.WriteLine("╰────────────────────────╯");
             }
-            else 
+            else
             {
                 if (DateTime.Now.ToString("tt") == "PM" | DateTime.Now.ToString("tt") == "AM")
                 {
@@ -102,10 +102,10 @@ namespace reShutLegacy
             }
             // Phase 3
             Console.Clear();
-            phase3retry:
+        phase3retry:
             var minutes = input / 60;
             var hours = minutes / 60;
-            Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
+            Console.ForegroundColor = Variables.MenuColor;
             var header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
             var info = "(" + minutes + "min / " + hours + "hrs)";
             var option1 = "1) Yes, schedule " + type;
@@ -139,8 +139,8 @@ namespace reShutLegacy
                     try
                     {
                         var character = type == "shutdown" ? "s" : "r";
-                        Process.Start("cmd.exe", "/c shutdown /"+ character + " /f /t " + input);
-                        Console.ForegroundColor= ConsoleColor.Green;
+                        Process.Start("cmd.exe", "/c shutdown /" + character + " /f /t " + input);
+                        Console.ForegroundColor = ConsoleColor.Green;
                         var toUpperChar = char.ToUpper(type[0]);
                         Console.WriteLine("╭────────────────────────────╮");
                         Console.WriteLine("│ Action has been scheduled. │");

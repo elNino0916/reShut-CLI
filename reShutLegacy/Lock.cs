@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace reShutLegacy
 {
     internal class Lock
     {
-        public static void YearLock(string lockedYear)
+        public static void Years()
         {
-            if (DateTime.Now.ToString("yyyy") == lockedYear || lockedYear == "*")
+            string[] allowedYears = { "2024" };
+            string currentYear = DateTime.Now.ToString("yyyy");
+            if (!allowedYears.Contains(currentYear))
             {
-                Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
-                Console.WriteLine("Update status:");
-                UpdateChecker.MainCheck().Wait();
-                Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
-                Console.WriteLine($"\nLooks like its already {lockedYear} in your timezone, Happy New Year!\n\nYou cannot use reShut-Legacy at the moment.\n\nA new update will be available soon that will unlock reShut-Legacy again.\n\nA secret party mode will open in 10 seconds.");
-                Thread.Sleep(10000);
-                Themes.NewYear23.PartyMode();
+                Console.Title = "Error";
+                Console.ForegroundColor = Variables.LogoColor;
+                Console.WriteLine("An error occurred.\n");
+                Console.ForegroundColor = Variables.MenuColor;
+                Console.WriteLine($"Check your date and try again.\n\nError Code: YEAR_MISMATCH");
+                Console.ReadKey();
+                Environment.Exit(0);
             }
-            else return;
         }
     }
 }

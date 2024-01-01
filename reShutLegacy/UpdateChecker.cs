@@ -25,7 +25,7 @@ namespace reShutLegacy
             if (updateCheckPerformed)
             {
                 // Output the stored result
-                Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
+                Console.ForegroundColor = Variables.MenuColor;
                 DisplayCenteredMessage(updateResultMessage);
                 DisplayCenteredMessage(updateResultMessageLine2);
                 Console.ForegroundColor = ConsoleColor.Gray;
@@ -48,7 +48,7 @@ namespace reShutLegacy
 
                 if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
-                    Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
+                    Console.ForegroundColor = Variables.MenuColor;
                     updateResultMessage = $"A new version ({latestVersion}) of reShut-Legacy is available! Please download the update from";
                     DisplayCenteredMessage(updateResultMessage);
                     updateResultMessageLine2 = "https://github.com/elnino0916/reShut-Legacy/releases/latest";
@@ -57,7 +57,7 @@ namespace reShutLegacy
                 }
                 else
                 {
-                    Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Themes.NewYear23.RandomColor());
+                    Console.ForegroundColor = Variables.MenuColor;
                     updateResultMessage = Variables.Motd();
                     DisplayCenteredMessage(updateResultMessage);
                     Console.ForegroundColor = ConsoleColor.Gray;
