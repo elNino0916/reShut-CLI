@@ -32,9 +32,9 @@ namespace reShutLegacy
                 return;
             }
 
-            const string repositoryUrl = "https://api.github.com/repos/elnino0916/reshut-legacy/releases/latest";
+            const string repositoryUrl = "https://api.github.com/repos/elnino0916/reshut-cli/releases/latest";
             using var client = new HttpClient();
-            client.DefaultRequestHeaders.UserAgent.ParseAdd("reShutLegacy_UpdateSearch");
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("reShutCLI_UpdateSearch");
 
             var response = await client.GetAsync(repositoryUrl);
 
@@ -49,9 +49,9 @@ namespace reShutLegacy
                 if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
                     Console.ForegroundColor = Variables.MenuColor;
-                    updateResultMessage = $"A new version ({latestVersion}) of reShut-Legacy is available! Please download the update from";
+                    updateResultMessage = $"A new version ({latestVersion}) of reShut CLI is available! Please download the update from";
                     DisplayCenteredMessage(updateResultMessage);
-                    updateResultMessageLine2 = "https://github.com/elnino0916/reShut-Legacy/releases/latest";
+                    updateResultMessageLine2 = "https://github.com/elnino0916/reShut-cli/releases/latest";
                     DisplayCenteredMessage(updateResultMessageLine2);
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
@@ -66,7 +66,7 @@ namespace reShutLegacy
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                updateResultMessage = $"Failed to check for updates: {response.StatusCode}. Restart reShut-Legacy to refresh.";
+                updateResultMessage = $"Failed to check for updates: {response.StatusCode}. Restart reShut CLI to refresh.";
                 DisplayCenteredMessage(updateResultMessage);
                 Console.ForegroundColor = ConsoleColor.Gray;
             }

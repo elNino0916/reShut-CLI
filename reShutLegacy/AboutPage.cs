@@ -16,7 +16,7 @@ namespace reShutLegacy
             Console.WriteLine("│ Please wait... │");
             Console.WriteLine("╰────────────────╯");
             Console.ForegroundColor = Variables.MenuColor;
-            var header = "reShut-Legacy " + Variables.fullversion;
+            var header = "reShut CLI " + Variables.fullversion;
             var releaseStatus = "Pre-Release: " + Variables.prerelease;
             const string systemInfoHeader = "System Information:";
             var cpuInfo = "CPU: " + Preload.GetString(1);

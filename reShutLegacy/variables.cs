@@ -9,7 +9,7 @@ namespace reShutLegacy
 
 
         // The version
-        public static string version = "1.0.1.0";
+        public static string version = "1.0.1.1";
         public static string fullversion = $"v.{version}";
 
         // The motd

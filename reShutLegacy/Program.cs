@@ -26,12 +26,12 @@ internal class Program
         // This is the ascii art that is printed at the top.
         string[] lines =
         [
-            @"           ____  _           _     _                                ",
-            @"  _ __ ___/ ___|| |__  _   _| |_  | |    ___  __ _  __ _  ___ _   _ ",
-            @" | '__/ _ \___ \| '_ \| | | | __| | |   / _ \/ _` |/ _` |/ __| | | |",
-            @" | | |  __/___) | | | | |_| | |_  | |__|  __/ (_| | (_| | (__| |_| |",
-            @" |_|  \___|____/|_| |_|\__,_|\__| |_____\___|\__, |\__,_|\___|\__, |",
-            @"                                             |___/            |___/ "
+            @"           ____  _           _      ____ _     ___ ",
+            @"  _ __ ___/ ___|| |__  _   _| |_   / ___| |   |_ _|",
+            @" | '__/ _ \___ \| '_ \| | | | __| | |   | |    | | ",
+            @" | | |  __/___) | | | | |_| | |_  | |___| |___ | | ",
+            @" |_|  \___|____/|_| |_|\__,_|\__|  \____|_____|___|",
+            @"                                                   "
         ];
 
         var maxLength = lines.Max(line => line.Length);
@@ -85,7 +85,7 @@ internal class Program
         // Sets UTF8 encoding for new design.
         Console.OutputEncoding = Encoding.UTF8;
         // Sets Title
-        Console.Title = "reShut Legacy " + Variables.fullversion;
+        Console.Title = "reShut CLI " + Variables.fullversion;
 
         // Prints ascii art
         Console.ForegroundColor = Variables.LogoColor;
