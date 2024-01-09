@@ -2,7 +2,8 @@
 
 ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/17e46968-c863-40b2-bca5-b992edb0a67b)
 
-reShut Legacy will soon be named reShut-CLI.
+**reShut Legacy will soon be named reShut-CLI!**
+ 
 reShut Legacy is an easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer.
 ----------------------
 ![image](https://github.com/elNino0916/reShut-Legacy/assets/84574414/cbb45838-8169-430e-a4dd-9568bd2dfa29)*Image may not show the latest commit.
