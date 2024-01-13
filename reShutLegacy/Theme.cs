@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 
-namespace reShutLegacy
+namespace reShutCLI
 {
     internal class Theme
     {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq.Expressions;
 
-namespace reShutLegacy
+namespace reShutCLI
 {
     internal class Preload
     {

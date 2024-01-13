@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-namespace reShutLegacy
+namespace reShutCLI
 {
     internal class Handler
     {

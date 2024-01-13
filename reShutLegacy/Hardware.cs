@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Management;
 
-namespace reShutLegacy
+namespace reShutCLI
 {
     internal class Hardware
     {

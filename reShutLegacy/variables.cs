@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace reShutLegacy
+namespace reShutCLI
 {
     internal class Variables
     {

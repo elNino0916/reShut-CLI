@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace reShutLegacy
+namespace reShutCLI
 {
     internal class CmdLine
     {

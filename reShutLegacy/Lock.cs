@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace reShutLegacy
+namespace reShutCLI
 {
     internal class Lock
     {

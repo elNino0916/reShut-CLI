@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace reShutLegacy;
+namespace reShutCLI;
 internal class Program
 {
     private static void MITLicense()
