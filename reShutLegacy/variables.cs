@@ -9,7 +9,7 @@ namespace reShutCLI
 
 
         // The version
-        public static string version = "1.0.1.1";
+        public static string version = "1.0.1.3";
         public static string fullversion = $"v.{version}";
 
         // The motd
@@ -20,7 +20,7 @@ namespace reShutCLI
         // The color
         public static ConsoleColor LogoColor
         {
-            get { return ConsoleColor.Green; }
+            get { return ConsoleColor.DarkRed; }
         }
         public static ConsoleColor MenuColor
         {
