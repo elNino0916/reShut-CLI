@@ -1,5 +1,5 @@
 [![Download](https://custom-icon-badges.demolab.com/badge/-Download-darkgreen?style=for-the-badge&logo=download&logoColor=white "Download reShut CLI")](https://github.com/elNino0916/reShut-CLI/releases/download/1.0.1.3/reShut-Installer.exe)
-[![Download](https://custom-icon-badges.demolab.com/badge/-Download_Preview-darkgreen?style=for-the-badge&logo=download&logoColor=white "Download reShut Preview")](https://github.com/elNino0916/reShut-CLI/releases/download/dotNET9_Preview/reShut_Preview-Installer.exe)
+[![Download](https://custom-icon-badges.demolab.com/badge/-Download_Preview-orange?style=for-the-badge&logo=download&logoColor=white "Download reShut Preview")](https://github.com/elNino0916/reShut-CLI/releases/download/dotNET9_Preview/reShut_Preview-Installer.exe)
 
 ![image](https://github.com/elNino0916/reShut-CLI/assets/84574414/a0b9738f-8cee-4b65-98ae-583e01182d11)
 
