@@ -7,6 +7,6 @@ reShut Legacy is an easy-to-use tool that aims to streamline and improve the man
 
 - ⚠️ Use the Consolas font to fix rendering issues. ⚠️
   
-- ⚠️ You have to install .NET 8.0 to start reShut-Legacy. -> [Download from Microsoft](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.0-windows-x64-installer?cid=getdotnetcore) ⚠️
+- ⚠️ You have to install .NET 9.0 Preview to start reShut-Legacy. -> [Download from Microsoft](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-9.0.0-preview.1-windows-x64-installer) ⚠️
 
 --------------------
