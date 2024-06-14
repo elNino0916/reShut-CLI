@@ -1,3 +1,4 @@
+Sorry for the long inactivity, my GitHub account was flagged as spam.
 # WARNING! GITHUB IS THE ONLY OFFICIAL PLACE TO DOWNLOAD reShut-CLI. Other sites may contain ads and/or PUP
 ![GitHub Release](https://img.shields.io/github/v/release/elnino0916/reshut-cli?style=for-the-badge) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/elnino0916/reshut-cli/codeql.yml?style=for-the-badge) ![GitHub License](https://img.shields.io/github/license/elnino0916/reshut-cli?style=for-the-badge) ![Downloads](https://img.shields.io/github/downloads/elnino0916/reShut-CLI/total?style=for-the-badge)
 
