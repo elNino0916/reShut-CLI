@@ -16,7 +16,7 @@ namespace reShutCLI
 
         // The version
         public static string version = "1.0.2.0";
-        public static string fullversion = $"v.{version}";
+        public static string fullversion = $"v.{version} Beta 1";
 
         // The motd
         public static string Motd()
