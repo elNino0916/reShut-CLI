@@ -6,7 +6,7 @@ namespace reShutCLI
     internal class Variables
     {
         // Update 1.0.2.0 features
-        public static bool UnlockExperimentalEULAAcceptingFeature = false;
+        public static bool UnlockExperimentalEULAAcceptingFeature = true;
 
         public static bool ForceEULAAcceptionOnEveryRestart = false;
 
