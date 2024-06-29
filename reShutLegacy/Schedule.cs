@@ -107,7 +107,7 @@ namespace reShutCLI
             var hours = minutes / 60;
             Console.ForegroundColor = Variables.MenuColor;
             var header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
-            var info = "(" + minutes + "min / " + hours + "hrs)";
+            var info = "(~" + minutes + "min / ~" + hours + "hrs)";
             var option1 = "1) Yes, schedule " + type;
             const string option2 = "2) No, go back and retry";
             const string option0 = "0) Back to main menu";

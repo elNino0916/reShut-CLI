@@ -61,13 +61,6 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        if (Variables.ForceNewErrorExperienceOnStart) 
-        {
-            if (Variables.AllowNewErrorHandlingUserExperience) 
-            {
-                ErrorHandler.ShowError("This is a test error caused by a flag.", false);
-            }
-        }
         // Check locks etc.
         Lock.Years();
 
@@ -93,8 +86,6 @@ internal class Program
         Console.Title = "reShut CLI " + Variables.fullversion;
 
         // Checks if EULA is accepted
-        if (Variables.UnlockExperimentalEULAAcceptingFeature == true)
-        {
             if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted") == "0")
             {
                 // Prompt EULA
@@ -104,7 +95,6 @@ internal class Program
                     Environment.Exit(0);
                 }
             }
-        }
 
 
         // Prints ascii art
