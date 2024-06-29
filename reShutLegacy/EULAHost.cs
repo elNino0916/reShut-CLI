@@ -43,17 +43,18 @@ namespace reShutCLI
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Press (1) to accept these terms or (9) to decline.");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
-            if (keyInfo.Key.ToString() == "1")
+            switch (keyInfo.Key)
             {
-                EULAAccepted = true;
-            }
-            else if (keyInfo.Key.ToString() == "9")
-            {
-                EULAAccepted = false;
-            }
-            else
-            {
-                goto Retry;
+                case ConsoleKey.NumPad1:
+                case ConsoleKey.D1:
+                    EULAAccepted = true;
+                    break;
+                case ConsoleKey.NumPad9:
+                case ConsoleKey.D9:
+                    EULAAccepted = false;
+                    break;
+                default:
+                    goto Retry;
             }
             if (EULAAccepted)
             {
