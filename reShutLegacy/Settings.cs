@@ -51,14 +51,17 @@ namespace reShutCLI
                         StartupSettings.Show();
                         goto settings;
                 case "3":
+                    Console.ForegroundColor = Variables.MenuColor;
                     if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds") == "1")
                     {
+                        Console.Clear();
                         UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────╮");
                         UpdateChecker.DisplayCenteredMessage("│ Sounds are currently enabled. Do you want to turn them off? │");
                         UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────╯");
                     }
                     else
                     {
+                        Console.Clear();
                         UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────╮");
                         UpdateChecker.DisplayCenteredMessage("│ Sounds are currently disabled. Do you want to turn them on? │");
                         UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────╯");
@@ -73,6 +76,7 @@ namespace reShutCLI
                     {
                         if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds") == "1")
                         {
+                            Console.Clear();
                             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds", "STRING", "0");
                             UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
                             UpdateChecker.DisplayCenteredMessage("│ Sounds are now off. │");
@@ -80,6 +84,7 @@ namespace reShutCLI
                         }
                         else
                         {
+                            Console.Clear();
                             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds", "STRING", "1");
                             UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
                             UpdateChecker.DisplayCenteredMessage("│ Sounds are now on. │");
