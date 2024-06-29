@@ -7,7 +7,7 @@ Sorry for the long inactivity, my GitHub account was flagged as spam.
  
 ## reShut CLI is an easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer.
 [![Download](https://custom-icon-badges.demolab.com/badge/-Download-darkgreen?style=for-the-badge&logo=Windows&logoColor=white "Download reShut CLI")](https://github.com/elNino0916/reShut-CLI/releases/download/1.0.1.3/reShut-Installer.exe)
-[![Download](https://custom-icon-badges.demolab.com/badge/-Download_Preview-orange?style=for-the-badge&logo=Windows&logoColor=white "Download reShut Preview")](https://github.com/elNino0916/reShut-CLI/releases/download/1.0.2.0-beta1/reShut_Preview-Installer.exe)
+[![Download](https://custom-icon-badges.demolab.com/badge/-Download_Preview-orange?style=for-the-badge&logo=Windows&logoColor=white "Download reShut Preview")](https://github.com/elNino0916/reShut-CLI/releases/download/dotNET9_Preview/reShut_Preview-Installer.exe)
 
 ----------------------
 ![image](https://github.com/elNino0916/reShut-CLI/assets/84574414/647e5c60-3bdb-43c8-b385-ab2039a1f5ee)*Image may not show the latest version. / Image may show a pre-release not available to download yet.
