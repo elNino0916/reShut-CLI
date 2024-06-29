@@ -14,9 +14,6 @@ namespace reShutCLI
 
         public static bool ForceNewErrorExperienceOnStart = false;
 
-        // Alpha Features
-
-        public static bool EnableRegistryIntegration = false;
 
 
         // Set true if this is a pre-release
