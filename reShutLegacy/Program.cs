@@ -64,6 +64,9 @@ internal class Program
         // Check locks etc.
         Lock.Years();
 
+        // Check for update (registry)
+        RegInit.Populate(false);
+
         // Welcome Screen
         Welcome.FirstStartup();
 
@@ -159,6 +162,7 @@ internal class Program
         {
             // Shutdown
             Question();
+            SoundManager.PlayShutdown(false);
             Console.ReadKey();
             Handler.Shutdown();
         }
@@ -174,6 +178,7 @@ internal class Program
                 case "2":
                     // Reboot
                     Question();
+                    SoundManager.PlayReboot(false);
                     Console.ReadKey();
                     Handler.Reboot();
                     break;
