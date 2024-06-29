@@ -5,18 +5,6 @@ namespace reShutCLI
 {
     internal class Variables
     {
-        // Update 1.0.2.0 features
-        public static bool UnlockExperimentalEULAAcceptingFeature = false;
-
-        public static bool ForceEULAAcceptionOnEveryRestart = false;
-
-        public static bool AllowNewErrorHandlingUserExperience = true;
-
-        public static bool ForceNewErrorExperienceOnStart = false;
-
-        // Alpha Features
-
-        public static bool EnableRegistryIntegration = false;
 
 
         // Set true if this is a pre-release
