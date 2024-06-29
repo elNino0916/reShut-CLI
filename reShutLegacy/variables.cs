@@ -8,12 +8,12 @@ namespace reShutCLI
 
 
         // Set true if this is a pre-release
-        public static bool prerelease = false;
+        public static bool prerelease = true;
 
 
         // The version
-        public static string version = "1.0.2.0";
-        public static string fullversion = $"v.{version}";
+        public static string version = "1.0.3.0";
+        public static string fullversion = $"v.{version} Pre-Alpha 1";
 
         // The motd
         public static string Motd()

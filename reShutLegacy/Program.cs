@@ -21,7 +21,7 @@ internal class Program
         UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
     }
 
-    private static void CenterText()
+    public static void CenterText()
     {
         // This is the ascii art that is printed at the top.
         string[] lines =
@@ -64,8 +64,8 @@ internal class Program
         // Check locks etc.
         Lock.Years();
 
-        // Initialize Registry
-        RegInit.Populate();
+        // Welcome Screen
+        Welcome.FirstStartup();
 
         // Initializes cmdLine-args
         var cmdLine = new CmdLine(args);
