@@ -20,14 +20,14 @@ namespace reShutCLI
             {
                 try
                 {
-                    if (File.ReadAllText(@"config\startup.cfg") == "fast=enabled")
+                    if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup") == "1")
                     {
                         return;
                     }
                 }
                 catch
                 {
-                    File.WriteAllText(@"config\startup.cfg", "fast=disabled");
+                    ErrorHandler.ShowError(@"Failed to read FastStartup config, try deleting the registry keys in HKCU\Software\elNino0916\reShutCLI", true);
                 }
             }
             // Preload the strings here

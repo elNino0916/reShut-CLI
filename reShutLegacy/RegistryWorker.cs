@@ -30,7 +30,7 @@ namespace reShutCLI
 
                 if (key == null)
                 {
-                    Console.WriteLine($"Failed to open or create registry key: {registryPath}");
+                    ErrorHandler.ShowError(@$"General Registry failure, cant open/create: {registryPath}. Try deleting the registry keys in HKCU\Software\elNino0916\reShutCLI", true);
                     return;
                 }
 
@@ -47,7 +47,7 @@ namespace reShutCLI
                         }
                         else
                         {
-                            Console.WriteLine("Invalid content for DWORD type.");
+                            ErrorHandler.ShowError(@$"Internal registry failure [INVALID_DWORD_CONTENT]", true);
                         }
                         break;
                     case "QWORD":
@@ -57,7 +57,7 @@ namespace reShutCLI
                         }
                         else
                         {
-                            Console.WriteLine("Invalid content for QWORD type.");
+                            ErrorHandler.ShowError(@$"Internal registry failure [INVALID_QWORD_CONTENT]", true);
                         }
                         break;
                     case "BINARY":
@@ -68,7 +68,7 @@ namespace reShutCLI
                         }
                         catch (FormatException)
                         {
-                            Console.WriteLine("Invalid content for Binary type.");
+                            ErrorHandler.ShowError(@$"Internal registry failure [INVALID_BINARY_CONTENT]", true);
                         }
                         break;
                     case "MULTI_STRING":
@@ -76,15 +76,14 @@ namespace reShutCLI
                         key.SetValue(keyName, multiStringData, RegistryValueKind.MultiString);
                         break;
                     default:
-                        Console.WriteLine("Unsupported registry value type.");
+                        ErrorHandler.ShowError(@$"Internal registry failure [UNSUPPORTED_REGISTRY_TYPE]", true);
                         break;
                 }
 
-                Console.WriteLine($"Successfully wrote to registry: {registryPath}\\{keyName}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error writing to registry: {ex.Message}");
+                ErrorHandler.ShowError(@$"Internal registry failure: {ex.Message}", true);
             }
         }
 
@@ -113,7 +112,7 @@ namespace reShutCLI
 
                 if (key == null)
                 {
-                    Console.WriteLine($"Failed to open registry key: {registryPath}");
+                    ErrorHandler.ShowError(@$"General Registry failure, cant open: {registryPath}. Try deleting the registry keys in HKCU\Software\elNino0916\reShutCLI", true);
                     return null;
                 }
 
@@ -123,6 +122,7 @@ namespace reShutCLI
                 if (value == null)
                 {
                     Console.WriteLine("Registry value not found.");
+                    ErrorHandler.ShowError(@$"Could not find required registry {registryPath}. Try deleting the registry keys in HKCU\Software\elNino0916\reShutCLI", true);
                     return null;
                 }
 
@@ -131,6 +131,7 @@ namespace reShutCLI
             catch (Exception ex)
             {
                 Console.WriteLine($"Error reading from registry: {ex.Message}");
+                ErrorHandler.ShowError(@$"Internal registry error: {ex.Message}. Try deleting the registry keys in HKCU\Software\elNino0916\reShutCLI", true);
                 return null;
             }
         }

@@ -5,18 +5,13 @@ namespace reShutCLI
 {
     internal class Variables
     {
-        // Next Update features
-            // Currently no new feature toggles
-
-
-
         // Set true if this is a pre-release
         public static bool prerelease = true;
 
 
         // The version
         public static string version = "1.0.2.0";
-        public static string fullversion = $"v.{version} Beta 1";
+        public static string fullversion = $"v.{version} Beta 2";
 
         // The motd
         public static string Motd()

@@ -109,7 +109,7 @@ namespace reShutCLI
             var header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
             var info = "(~" + minutes + "min / ~" + hours + "hrs)";
             var option1 = "1) Yes, schedule " + type;
-            const string option2 = "2) No, go back and retry";
+            const string option2 = "2) No, go back.";
             const string option0 = "0) Back to main menu";
             var maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
             var borderLength = maxLength + 4;
@@ -150,22 +150,13 @@ namespace reShutCLI
                     }
                     catch
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                        UpdateChecker.DisplayCenteredMessage("│ An error occurred. │");
-                        UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
-                        Console.ForegroundColor = ConsoleColor.White;
+                        ErrorHandler.ShowError(@$"Failed to schedule an action.", false);
                         return false;
                     }
+                default:
+                    Console.Clear();
+                    goto phase3retry;
             }
-
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ An error occurred. │");
-            UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
-            Console.ForegroundColor = ConsoleColor.White;
-            goto phase3retry;
         }
     }
 }

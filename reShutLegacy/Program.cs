@@ -67,10 +67,6 @@ internal class Program
         // Initialize Registry
         RegInit.Populate();
 
-        // Initialize EULA
-        InitializeConfig.Initialize("eula");
-
-
         // Initializes cmdLine-args
         var cmdLine = new CmdLine(args);
 
