@@ -18,17 +18,10 @@ namespace reShutCLI
             // Check for FastStartup
             if (atStartup)
             {
-                try
-                {
-                    if (File.ReadAllText(@"config\startup.cfg") == "fast=enabled")
+                    if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup") == "1")
                     {
                         return;
                     }
-                }
-                catch
-                {
-                    File.WriteAllText(@"config\startup.cfg", "fast=disabled");
-                }
             }
             // Preload the strings here
             preloadedStrings =
