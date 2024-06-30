@@ -12,8 +12,9 @@ namespace reShutCLI
 
 
         // The version
-        public static string version = "1.0.3.0";
-        public static string fullversion = $"v.{version} Beta 1";
+        public static string version = "1.0.1.0";
+        public static string fullversion = $"v.{version} Beta 2";
+        public static bool isUpToDate = true;
 
         // The motd
         public static string Motd()
@@ -23,7 +24,7 @@ namespace reShutCLI
         // The color
         public static ConsoleColor LogoColor
         {
-            get { return ConsoleColor.Green; }
+            get { return ConsoleColor.DarkYellow; }
         }
         public static ConsoleColor MenuColor
         {

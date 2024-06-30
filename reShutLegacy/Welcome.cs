@@ -39,7 +39,8 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("");
                 Thread.Sleep(2000);
                 EULAHost.Start();
-                step3:
+                Console.ForegroundColor = Variables.MenuColor;
+            step3:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Update Checking (3/5) │");
@@ -58,9 +59,6 @@ namespace reShutCLI
                 if (keyInfo.Key == ConsoleKey.D1 || keyInfo.Key == ConsoleKey.NumPad1)
                 {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch", "STRING", "1");
-                    UpdateChecker.MainCheck().Wait();
-                    Console.ForegroundColor = Variables.MenuColor;
-                    Thread.Sleep(5000);
                 }
                 else if (keyInfo.Key == ConsoleKey.D2 || keyInfo.Key == ConsoleKey.NumPad2)
                 {

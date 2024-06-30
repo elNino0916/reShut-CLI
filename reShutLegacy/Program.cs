@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace reShutCLI;
 internal class Program
@@ -130,7 +131,6 @@ internal class Program
         var randomIndex = random.Next(consoleColors.Length);
         Console.ForegroundColor = Variables.MenuColor;
         string[] menuItems = ["Shutdown", "Reboot", "Logoff", "Schedule...", "Settings", "Quit"];
-
         UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
         UpdateChecker.DisplayCenteredMessage("│       Main Menu        │");
         UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
@@ -202,6 +202,17 @@ internal class Program
                 case "4":
                     Schedule.Plan();
                     goto start;
+                case "U":
+                case "u":
+                    if (Variables.isUpToDate) { Console.Clear(); goto start; }
+                    Console.Clear();
+                    Console.Title = "reShut CLI Updater";
+                    Console.ForegroundColor = Variables.MenuColor;
+                    UpdateChecker.DisplayCenteredMessage("Download started, Installer will open in a few seconds...");
+                    AutoUpdater.PerformUpdate();
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                    break;
                 // Invalid key pressed
                 default:
                     Console.Clear();
