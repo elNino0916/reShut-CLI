@@ -39,6 +39,7 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("");
                 Thread.Sleep(2000);
                 EULAHost.Start();
+                step3:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Update Checking (3/5) │");
@@ -65,6 +66,11 @@ namespace reShutCLI
                 {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch", "STRING", "0");
                 }
+                else
+                {
+                    goto step3;
+                }
+                step4:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Fast Startup (4/5) │");
@@ -88,6 +94,11 @@ namespace reShutCLI
                 {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup", "STRING", "0");
                 }
+                else
+                {
+                    goto step4;
+                }
+                step5:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭──────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Sounds (5/5) │");
@@ -110,6 +121,10 @@ namespace reShutCLI
                 else if (keyInfo3.Key == ConsoleKey.D2 || keyInfo3.Key == ConsoleKey.NumPad2)
                 {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds", "STRING", "0");
+                }
+                else
+                {
+                    goto step5;
                 }
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────╮");
