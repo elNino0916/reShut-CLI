@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace reShutCLI
 {
@@ -25,14 +26,14 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("╰────────────────────────────╯");
             // Display current settings
             Console.ForegroundColor = Variables.MenuColor;
-            UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│                   Startup:                │");
-            UpdateChecker.DisplayCenteredMessage("├───────────────────────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 1) Toggle Fast Startup (not recommended)  │");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Toggle Update Search                   │");
-            UpdateChecker.DisplayCenteredMessage("├───────────────────────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 9) Back                                   │");
-            UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│                       Startup:                     │");
+            UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────────────────┤");
+            UpdateChecker.DisplayCenteredMessage("│ 1) Toggle Fast Startup (slows down some features)  │");
+            UpdateChecker.DisplayCenteredMessage("│ 2) Toggle Update Search                            │");
+            UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────────────────┤");
+            UpdateChecker.DisplayCenteredMessage("│ 9) Back                                            │");
+            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────────────╯");
 
             var keyInfo = Console.ReadKey();
             string key = keyInfo.KeyChar.ToString();
