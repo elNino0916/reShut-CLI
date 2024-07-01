@@ -12,7 +12,7 @@ namespace reShutCLI
 
 
         // The version
-        public static string version = "1.0.3.0";
+        public static string version = "1.0.3.1";
         public static string fullversion = $"v.{version}";
 
         // DO NOT CHANGE
