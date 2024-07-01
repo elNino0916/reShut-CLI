@@ -24,6 +24,7 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("│ 2) Startup        │");
             UpdateChecker.DisplayCenteredMessage("│ 3) Toggle sounds  │");
             UpdateChecker.DisplayCenteredMessage("│ 4) Reset          │");
+            UpdateChecker.DisplayCenteredMessage("│ 5) Theme          │");
             UpdateChecker.DisplayCenteredMessage("├───────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 9) Back           │");
             UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
@@ -95,7 +96,7 @@ namespace reShutCLI
 
                 case "4":
                     Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = Variables.SecondaryColor;
                     UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────────────╮");
                     UpdateChecker.DisplayCenteredMessage("│ Do you really want to reset reShut CLI? Close reShut CLI within 5 seconds to cancel. │");
                     UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────────────╯");
@@ -103,9 +104,15 @@ namespace reShutCLI
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
                     RegInit.Populate(false);
+                    ThemeLoader.loadTheme();
                     Welcome.FirstStartup();
                     Console.Clear();
                     return;
+                case "5":
+                    Console.Clear();
+                    Console.ForegroundColor = Variables.MenuColor;
+                    ThemeSettings.OpenSettings();
+                    goto settings;
 
                 default:
                     Console.Clear();

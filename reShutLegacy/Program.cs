@@ -14,8 +14,17 @@ internal class Program
 
     private static void Question()
     {
-        // This is the confirmation prompt.
-        Console.ForegroundColor = ConsoleColor.Red;
+        // This is the confirmation prompt, there is a secret string for the cyberpunk theme
+        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
+        {
+            Console.ForegroundColor = Variables.SecondaryColor;
+            UpdateChecker.DisplayCenteredMessage("");
+            UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ Are you sure, choom? Press any key to continue. │");
+            UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────╯");
+            return;
+        }
+        Console.ForegroundColor = Variables.SecondaryColor;
         UpdateChecker.DisplayCenteredMessage("");
         UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
         UpdateChecker.DisplayCenteredMessage("│ Are you sure? Press any key to continue. │");
@@ -78,6 +87,9 @@ internal class Program
         Console.BackgroundColor = ConsoleColor.Black;
         Console.Clear();
 
+        // Loads the Users Theme
+        ThemeLoader.loadTheme();
+
     // Main UI starts here:
     start:
         // Sets UTF8 encoding for new design.
@@ -109,7 +121,7 @@ internal class Program
             }
             catch
             {
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = Variables.SecondaryColor;
                 UpdateChecker.DisplayCenteredMessage("Failed to check for updates. Check your network connection and try again.");
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
@@ -117,7 +129,7 @@ internal class Program
         else
         {
             // Updates are disabled
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = Variables.SecondaryColor;
             UpdateChecker.DisplayCenteredMessage("Update Search is disabled.");
             Console.ForegroundColor = ConsoleColor.Gray;
         }
@@ -216,7 +228,7 @@ internal class Program
                 // Invalid key pressed
                 default:
                     Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = Variables.SecondaryColor;
                     UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
                     UpdateChecker.DisplayCenteredMessage("│   Invalid input.  │");
                     UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
