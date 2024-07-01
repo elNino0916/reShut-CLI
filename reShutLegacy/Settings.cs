@@ -103,11 +103,9 @@ namespace reShutCLI
                     Thread.Sleep(5999);
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
-                    RegInit.Populate(false);
-                    ThemeLoader.loadTheme();
-                    Welcome.FirstStartup();
+                    AutoRestart.Init();
                     Console.Clear();
-                    return;
+                    break;
                 case "5":
                     Console.Clear();
                     Console.ForegroundColor = Variables.MenuColor;

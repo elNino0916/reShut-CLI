@@ -12,10 +12,12 @@ namespace reShutCLI
         {
             Console.ForegroundColor = Variables.MenuColor;
             Console.Clear();
-            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ Please wait, loading device information... │");
-            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ Please wait... │");
+            UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
             Console.ForegroundColor = Variables.MenuColor;
+
+            // Obsolete, removed in future update.
             var header = "reShut CLI " + Variables.fullversion;
             var releaseStatus = "Pre-Release: " + Variables.prerelease;
             const string systemInfoHeader = "System Information:";
@@ -40,12 +42,6 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("│ " + header.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + "Copyright (c) 2024 elNino0916".PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("├" + new string('─', borderLength) + "┤");
-            UpdateChecker.DisplayCenteredMessage("│ " + systemInfoHeader.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + cpuInfo.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + gpuInfo.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + ramInfo.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + winVer.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
             UpdateChecker.DisplayCenteredMessage("Press any key to go back.");
             Console.ReadKey();
