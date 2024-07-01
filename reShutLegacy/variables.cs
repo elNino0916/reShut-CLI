@@ -8,12 +8,12 @@ namespace reShutCLI
 
 
         // Set true if this is a pre-release
-        public static bool prerelease = true;
+        public static bool prerelease = false;
 
 
         // The version
         public static string version = "1.0.3.0";
-        public static string fullversion = $"v.{version} Beta 3";
+        public static string fullversion = $"v.{version}";
 
         // DO NOT CHANGE
         public static bool isUpToDate = true;
