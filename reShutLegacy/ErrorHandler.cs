@@ -33,18 +33,19 @@ namespace reShutCLI
 
             // Print the error box
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
+            SoundManager.PlayError(false);
+            Console.ForegroundColor = Variables.SecondaryColor;
             Console.WriteLine(topBorder);
             Console.WriteLine("│ " + lines[0].PadRight(boxWidth - 2) + " │");
             Console.WriteLine(middleBorder);
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = Variables.SecondaryColor;
             Console.WriteLine("│ " + lines[1].PadRight(boxWidth - 2) + " │");
             Console.WriteLine(middleBorder);
             Console.WriteLine("│ " + lines[2].PadRight(boxWidth - 2) + " │");
             Console.WriteLine(middleBorder);
             if (needsRestart)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = Variables.SecondaryColor;
                 Console.WriteLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
                 Console.WriteLine(middleBorder);
                 Console.WriteLine("│ " + lines[4].PadRight(boxWidth - 2) + " │");
@@ -54,7 +55,7 @@ namespace reShutCLI
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = Variables.SecondaryColor;
                 Console.WriteLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
                 Console.WriteLine(middleBorder);
                 Console.WriteLine("│ " + lines[4].PadRight(boxWidth - 2) + " │");

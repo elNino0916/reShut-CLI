@@ -43,11 +43,11 @@ namespace reShutCLI
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Press (1) to accept these terms or (9) to decline.");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
-            if (keyInfo.Key.ToString() == "1")
+            if (keyInfo.Key == ConsoleKey.D1 || keyInfo.Key == ConsoleKey.NumPad1)
             {
                 EULAAccepted = true;
             }
-            else if (keyInfo.Key.ToString() == "9")
+            else if (keyInfo.Key == ConsoleKey.D9 || keyInfo.Key == ConsoleKey.NumPad9)
             {
                 EULAAccepted = false;
             }
@@ -59,7 +59,7 @@ namespace reShutCLI
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Clear();
-                Console.WriteLine("Thank you for accepting these terms, reShut CLI will start.");
+                Console.WriteLine("Thank you for accepting these terms, Setup will continue!");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "1");
                 Thread.Sleep(2000);
                 return true;
@@ -71,7 +71,7 @@ namespace reShutCLI
                 Console.WriteLine("You have to accept this EULA in order to use reShut CLI.");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "0");
                 Thread.Sleep(2000);
-                Environment.Exit(0);
+                return false;
             }
             return false;
         }

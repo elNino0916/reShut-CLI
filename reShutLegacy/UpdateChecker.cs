@@ -10,6 +10,7 @@ namespace reShutCLI
         private static bool updateCheckPerformed = false;
         private static string updateResultMessage = string.Empty;
         private static string updateResultMessageLine2 = string.Empty;
+        private static string updateResultMessageLine3 = string.Empty;
 
         public static void DisplayCenteredMessage(string message)
         {
@@ -28,6 +29,7 @@ namespace reShutCLI
                 Console.ForegroundColor = Variables.MenuColor;
                 DisplayCenteredMessage(updateResultMessage);
                 DisplayCenteredMessage(updateResultMessageLine2);
+                DisplayCenteredMessage(updateResultMessageLine3);
                 Console.ForegroundColor = ConsoleColor.Gray;
                 return;
             }
@@ -49,14 +51,18 @@ namespace reShutCLI
                 if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
                     Console.ForegroundColor = Variables.MenuColor;
-                    updateResultMessage = $"A new version ({latestVersion}) of reShut CLI is available! Please download the update from";
+                    updateResultMessage = $"╭────────────────────────────────────────────────────────────────────────────────╮";
+                    updateResultMessageLine2 = $"│     A new version ({latestVersion}) of reShut CLI is available! Press U to update.     │";
+                    updateResultMessageLine3 = $"╰────────────────────────────────────────────────────────────────────────────────╯";
                     DisplayCenteredMessage(updateResultMessage);
-                    updateResultMessageLine2 = "https://github.com/elnino0916/reShut-cli/releases/latest";
                     DisplayCenteredMessage(updateResultMessageLine2);
+                    DisplayCenteredMessage(updateResultMessageLine3);
+                    Variables.isUpToDate = false;
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
                 else
                 {
+                    Variables.isUpToDate = true;
                     Console.ForegroundColor = Variables.MenuColor;
                     updateResultMessage = Variables.Motd();
                     DisplayCenteredMessage(updateResultMessage);
@@ -75,7 +81,7 @@ namespace reShutCLI
             updateCheckPerformed = true;
         }
 
-        static bool IsNewerVersionAvailable(string currentVersion, string latestVersion)
+        public static bool IsNewerVersionAvailable(string currentVersion, string latestVersion)
         {
             if (string.IsNullOrEmpty(currentVersion) || string.IsNullOrEmpty(latestVersion))
                 return false;
@@ -85,9 +91,15 @@ namespace reShutCLI
 
         public class GitHubRelease
         {
-            #pragma warning disable IDE1006
+#pragma warning disable IDE1006
             public string tag_name { get; set; }
-            #pragma warning restore IDE1006
+            public Asset[] assets { get; set; }
+#pragma warning restore IDE1006
+
+            public class Asset
+            {
+                public string browser_download_url { get; set; }
+            }
         }
     }
 }

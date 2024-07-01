@@ -10,11 +10,11 @@ namespace reShutCLI
     {
         public static void Show()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = Variables.MenuColor;
             Console.Clear();
-            UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ Please wait... │");
-            UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ Please wait, loading device information... │");
+            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
             Console.ForegroundColor = Variables.MenuColor;
             var header = "reShut CLI " + Variables.fullversion;
             var releaseStatus = "Pre-Release: " + Variables.prerelease;
@@ -39,9 +39,6 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");
             UpdateChecker.DisplayCenteredMessage("│ " + header.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + "Copyright (c) 2024 elNino0916".PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " +
-                              "The license can be viewed by pressing L in the main menu.".PadRight(
-                                  borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("├" + new string('─', borderLength) + "┤");
             UpdateChecker.DisplayCenteredMessage("│ " + systemInfoHeader.PadRight(borderLength - 2) + " │");

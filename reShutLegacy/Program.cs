@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace reShutCLI;
 internal class Program
@@ -13,15 +14,24 @@ internal class Program
 
     private static void Question()
     {
-        // This is the confirmation prompt.
-        Console.ForegroundColor = ConsoleColor.Red;
+        // This is the confirmation prompt, there is a secret string for the cyberpunk theme
+        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
+        {
+            Console.ForegroundColor = Variables.SecondaryColor;
+            UpdateChecker.DisplayCenteredMessage("");
+            UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ Are you sure, choom? Press any key to continue. │");
+            UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────╯");
+            return;
+        }
+        Console.ForegroundColor = Variables.SecondaryColor;
         UpdateChecker.DisplayCenteredMessage("");
         UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
         UpdateChecker.DisplayCenteredMessage("│ Are you sure? Press any key to continue. │");
         UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
     }
 
-    private static void CenterText()
+    public static void CenterText()
     {
         // This is the ascii art that is printed at the top.
         string[] lines =
@@ -64,8 +74,11 @@ internal class Program
         // Check locks etc.
         Lock.Years();
 
-        // Initialize Registry
-        RegInit.Populate();
+        // Check for update (registry)
+        RegInit.Populate(false);
+
+        // Welcome Screen
+        Welcome.FirstStartup();
 
         // Initializes cmdLine-args
         var cmdLine = new CmdLine(args);
@@ -73,6 +86,9 @@ internal class Program
         Console.CursorVisible = false;
         Console.BackgroundColor = ConsoleColor.Black;
         Console.Clear();
+
+        // Loads the Users Theme
+        ThemeLoader.loadTheme();
 
     // Main UI starts here:
     start:
@@ -105,7 +121,7 @@ internal class Program
             }
             catch
             {
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = Variables.SecondaryColor;
                 UpdateChecker.DisplayCenteredMessage("Failed to check for updates. Check your network connection and try again.");
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
@@ -113,7 +129,7 @@ internal class Program
         else
         {
             // Updates are disabled
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = Variables.SecondaryColor;
             UpdateChecker.DisplayCenteredMessage("Update Search is disabled.");
             Console.ForegroundColor = ConsoleColor.Gray;
         }
@@ -127,7 +143,6 @@ internal class Program
         var randomIndex = random.Next(consoleColors.Length);
         Console.ForegroundColor = Variables.MenuColor;
         string[] menuItems = ["Shutdown", "Reboot", "Logoff", "Schedule...", "Settings", "Quit"];
-
         UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
         UpdateChecker.DisplayCenteredMessage("│       Main Menu        │");
         UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
@@ -159,6 +174,7 @@ internal class Program
         {
             // Shutdown
             Question();
+            SoundManager.PlayShutdown(false);
             Console.ReadKey();
             Handler.Shutdown();
         }
@@ -174,6 +190,7 @@ internal class Program
                 case "2":
                     // Reboot
                     Question();
+                    SoundManager.PlayReboot(false);
                     Console.ReadKey();
                     Handler.Reboot();
                     break;
@@ -197,10 +214,21 @@ internal class Program
                 case "4":
                     Schedule.Plan();
                     goto start;
+                case "U":
+                case "u":
+                    if (Variables.isUpToDate) { Console.Clear(); goto start; }
+                    Console.Clear();
+                    Console.Title = "reShut CLI Updater";
+                    Console.ForegroundColor = Variables.MenuColor;
+                    UpdateChecker.DisplayCenteredMessage("Download started, Installer will open in a few seconds...");
+                    AutoUpdater.PerformUpdate();
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                    break;
                 // Invalid key pressed
                 default:
                     Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = Variables.SecondaryColor;
                     UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
                     UpdateChecker.DisplayCenteredMessage("│   Invalid input.  │");
                     UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
