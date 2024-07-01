@@ -24,7 +24,7 @@ namespace reShutCLI
                 Console.ForegroundColor = Variables.MenuColor;
                 Console.Title = "reShut CLI Setup";
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Initial Setup (1/5) │");
+                UpdateChecker.DisplayCenteredMessage("│ Initial Setup (1/6) │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────╮");
@@ -34,7 +34,7 @@ namespace reShutCLI
                 Thread.Sleep(3000);
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ License Agreement and EULA (2/5) │");
+                UpdateChecker.DisplayCenteredMessage("│ License Agreement and EULA (2/6) │");
                 UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 Thread.Sleep(2000);
@@ -43,7 +43,7 @@ namespace reShutCLI
             step3:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Update Checking (3/5) │");
+                UpdateChecker.DisplayCenteredMessage("│ Update Checking (3/6) │");
                 UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────────────────────────────────────────────╮");
@@ -71,7 +71,7 @@ namespace reShutCLI
                 step4:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Fast Startup (4/5) │");
+                UpdateChecker.DisplayCenteredMessage("│ Fast Startup (4/6) │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────────────────────────────────────────────────────────────╮");
@@ -99,7 +99,7 @@ namespace reShutCLI
                 step5:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭──────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Sounds (5/5) │");
+                UpdateChecker.DisplayCenteredMessage("│ Sounds (5/6) │");
                 UpdateChecker.DisplayCenteredMessage("╰──────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
