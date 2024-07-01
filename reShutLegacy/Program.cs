@@ -80,6 +80,9 @@ internal class Program
         // Welcome Screen
         Welcome.FirstStartup();
 
+        // Update reShut Version in case of update:
+        RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "reShutVersion", "STRING", Variables.version);
+
         // Initializes cmdLine-args
         var cmdLine = new CmdLine(args);
 

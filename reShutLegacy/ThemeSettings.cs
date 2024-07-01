@@ -13,7 +13,7 @@ namespace reShutCLI
         {
         step6:
             UpdateChecker.DisplayCenteredMessage("Opening setup, please wait...");
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
             Console.Clear();
             UpdateChecker.DisplayCenteredMessage("╭─────────────╮");
             UpdateChecker.DisplayCenteredMessage("│ Theme (6/6) │");
@@ -65,7 +65,8 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
             ThemeLoader.loadTheme();
             Thread.Sleep(3000);
-
+                Console.Clear();
+                AutoRestart.Init();
             return;
         }
     }

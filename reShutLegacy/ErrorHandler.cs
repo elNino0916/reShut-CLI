@@ -20,7 +20,7 @@ namespace reShutCLI
                 "Here is an error description:",
                 error,
                 needsRestart ? "reShut CLI needs a restart." : "reShut CLI does not need a restart.",
-                needsRestart ? "Press any key to close reShut CLI!" : "Press any key to go into settings."
+                needsRestart ? "Press any key to restart reShut CLI." : "Press any key to go into settings."
             };
 
             // Determine the width of the box based on the longest line
@@ -51,7 +51,7 @@ namespace reShutCLI
                 Console.WriteLine("│ " + lines[4].PadRight(boxWidth - 2) + " │");
                 Console.WriteLine(bottomBorder);
                 Console.ReadKey();
-                Environment.Exit(0);
+                AutoRestart.Init();
             }
             else
             {
