@@ -207,6 +207,7 @@ internal class Program
                     Console.Title = "reShut CLI Updater";
                     Console.ForegroundColor = Variables.MenuColor;
                     UpdateChecker.DisplayCenteredMessage("Download started, Installer will open in a few seconds...");
+                    Thread.Sleep(2000);
                     AutoUpdater.PerformUpdate();
                     Console.ReadLine();
                     Environment.Exit(0);

@@ -30,7 +30,6 @@ namespace reShutCLI
 
                 if (key == null)
                 {
-                    // Console.WriteLine($"Failed to open or create registry key: {registryPath}");
                     return;
                 }
 
@@ -45,19 +44,11 @@ namespace reShutCLI
                         {
                             key.SetValue(keyName, intValue, RegistryValueKind.DWord);
                         }
-                        else
-                        {
-                            // Console.WriteLine("Invalid content for DWORD type.");
-                        }
                         break;
                     case "QWORD":
                         if (long.TryParse(content, out long longValue))
                         {
                             key.SetValue(keyName, longValue, RegistryValueKind.QWord);
-                        }
-                        else
-                        {
-                            // Console.WriteLine("Invalid content for QWORD type.");
                         }
                         break;
                     case "BINARY":
@@ -68,7 +59,6 @@ namespace reShutCLI
                         }
                         catch (FormatException)
                         {
-                            // Console.WriteLine("Invalid content for Binary type.");
                         }
                         break;
                     case "MULTI_STRING":
@@ -76,15 +66,12 @@ namespace reShutCLI
                         key.SetValue(keyName, multiStringData, RegistryValueKind.MultiString);
                         break;
                     default:
-                        // Console.WriteLine("Unsupported registry value type.");
                         break;
                 }
 
-                // Console.WriteLine($"Successfully wrote to registry: {registryPath}\\{keyName}");
             }
             catch (Exception ex)
             {
-                // Console.WriteLine($"Error writing to registry: {ex.Message}");
             }
         }
 
@@ -113,7 +100,6 @@ namespace reShutCLI
 
                 if (key == null)
                 {
-                    // Console.WriteLine($"Failed to open registry key: {registryPath}");
                     return null;
                 }
 
@@ -122,7 +108,6 @@ namespace reShutCLI
 
                 if (value == null)
                 {
-                    // Console.WriteLine("Registry value not found.");
                     return null;
                 }
 
@@ -130,7 +115,6 @@ namespace reShutCLI
             }
             catch (Exception ex)
             {
-                // Console.WriteLine($"Error reading from registry: {ex.Message}");
                 return null;
             }
         }
