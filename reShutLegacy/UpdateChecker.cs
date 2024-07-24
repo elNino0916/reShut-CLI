@@ -59,6 +59,12 @@ namespace reShutCLI
                     DisplayCenteredMessage(updateResultMessageLine3);
                     Variables.isUpToDate = false;
                     Console.ForegroundColor = ConsoleColor.Gray;
+
+                    // Check if auto-update is enabled in the registry
+                    if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config\", "AutoUpdateOnStart") == "yes")
+                    {
+                        await AutoUpdater.PerformUpdate();
+                    }
                 }
                 else
                 {
@@ -80,6 +86,7 @@ namespace reShutCLI
             // Set the flags to indicate that update check has been performed
             updateCheckPerformed = true;
         }
+
 
         public static bool IsNewerVersionAvailable(string currentVersion, string latestVersion)
         {

@@ -15,6 +15,12 @@ namespace reShutCLI
             // reboot
             var type = "";
             Console.Clear();
+            Console.ForegroundColor = Variables.SecondaryColor;
+            UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│        Warning! The schedule feature has not been updated in a while.       │");
+            UpdateChecker.DisplayCenteredMessage("│ Some features may or may not work. A rework is planned for a future update. │");
+            UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("");
             Console.ForegroundColor = Variables.MenuColor;
             UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage("│ What do you want to schedule? │");
@@ -109,7 +115,7 @@ namespace reShutCLI
             var header = "You want to schedule a " + type + " in " + input + " seconds. Is that correct?";
             var info = "(" + minutes + "min / " + hours + "hrs)";
             var option1 = "1) Yes, schedule " + type;
-            const string option2 = "2) No, go back and retry";
+            const string option2 = "2) No, go back and re-enter information.";
             const string option0 = "0) Back to main menu";
             var maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
             var borderLength = maxLength + 4;

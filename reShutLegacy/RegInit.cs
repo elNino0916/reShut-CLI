@@ -16,7 +16,8 @@ namespace reShutCLI
                 if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated") != "1")
                 {
                     // Populate registry with default values
-                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion", "STRING", Variables.version);
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion", "STRING", Variables.registryVersion);
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "reShutVersion", "STRING", Variables.version);
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "1");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "FirstStartupTime", "STRING", DateTime.Now.ToString("HH:mm:ss (dd.MM.yyyy)"));
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch", "STRING", "1");
@@ -25,24 +26,29 @@ namespace reShutCLI
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds", "STRING", "1");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "default");
+                    /* NEW FEATURE */ RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "no");
+                    /* NEW FEATURE */ RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart", "STRING", "yes");
                 }
             }
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI","RegistryVersion") != Variables.version)
+
+
+
+            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI","RegistryVersion") != Variables.registryVersion)
             {
+                Console.Clear();
                 Console.Title = "Invalid Registry Version";
                 Console.CursorVisible = false;
                 Console.ForegroundColor = ConsoleColor.Red;
-                SoundManager.PlayError(true);
-                UpdateChecker.DisplayCenteredMessage("Looks like reShutCLI has been updated / downgraded.");
+                UpdateChecker.DisplayCenteredMessage("Looks like reShutCLI has been updated and the registry version changed.");
                 UpdateChecker.DisplayCenteredMessage($"Registry Version: {RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion")} ");
-                UpdateChecker.DisplayCenteredMessage($"Your Version: {Variables.version}");
+                UpdateChecker.DisplayCenteredMessage($"Your Version: {Variables.registryVersion}");
                 UpdateChecker.DisplayCenteredMessage($"");
-                UpdateChecker.DisplayCenteredMessage($"To create new settings, reShutCLI needs to reset. The reset will start in 10 seconds.");
+                UpdateChecker.DisplayCenteredMessage($"To update the registry, reShut CLI needs to reset. The reset will start in 10 seconds.");
                 Thread.Sleep(10000);
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
                 Populate(false);
-                Welcome.FirstStartup();
+                FirstTimeSetup.FirstStartup();
                 Console.Clear();
             }
         }

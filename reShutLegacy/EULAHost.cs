@@ -59,9 +59,9 @@ namespace reShutCLI
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Clear();
-                Console.WriteLine("Thank you for accepting these terms, Setup will continue!");
+                Console.WriteLine("You have accepted these terms.");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "1");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 return true;
             }
             else
@@ -73,7 +73,6 @@ namespace reShutCLI
                 Thread.Sleep(2000);
                 return false;
             }
-            return false;
         }
     }
 }
