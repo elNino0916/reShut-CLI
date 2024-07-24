@@ -5,7 +5,9 @@ namespace reShutCLI
 {
     internal class Variables
     {
-
+        // TODO:
+        // Implement SkipConfirmation
+        // Settings Rework
 
         // Set true if this is a pre-release
         public static bool prerelease = true;
@@ -15,16 +17,11 @@ namespace reShutCLI
         public static string version = "1.0.4.0";
 
         // Changes the registry version.
-        public static string registryVersion = "1.1";
+        public static string registryVersion = "2";
         public static string fullversion = $"v.{version}";
 
         // DO NOT CHANGE
         public static bool isUpToDate = true;
-
-
-
-
-
 
 
         // The motd

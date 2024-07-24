@@ -14,16 +14,21 @@ namespace reShutCLI
             // Read current settings from registry
             string fastStartupValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup");
             string updateSearchValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch");
+            string autoUpdateValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart");
 
             Console.ForegroundColor = Variables.LogoColor;
             UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage(fastStartupValue == "1" ? "│ Fast Startup is enabled. │" : " │ Fast Startup is disabled.│");
             UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
 
-            // Display Update Search status
             UpdateChecker.DisplayCenteredMessage("╭────────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage(updateSearchValue == "1" ? "│ Update Search is enabled.  │" : "│ Update Search is disabled. │");
             UpdateChecker.DisplayCenteredMessage("╰────────────────────────────╯");
+
+            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage(autoUpdateValue == "yes" ? "│  Auto Update is enabled.   │" : "│  Auto Update is disabled.  │");
+            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────╯");
+
             // Display current settings
             Console.ForegroundColor = Variables.MenuColor;
             UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────────────╮");
@@ -31,6 +36,7 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 1) Toggle Fast Startup (slows down some features)  │");
             UpdateChecker.DisplayCenteredMessage("│ 2) Toggle Update Search                            │");
+            UpdateChecker.DisplayCenteredMessage("│ 3) Toggle Auto Update on Startup                   │");
             UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 9) Back                                            │");
             UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────────────╯");
@@ -50,6 +56,12 @@ namespace reShutCLI
                     // Toggle Update Search
                     string newUpdateValue = (updateSearchValue == "1") ? "0" : "1";
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch", "STRING", newUpdateValue);
+                    goto invalidstartup;
+
+                case "3":
+                    // Toggle Update Search
+                    string newAutoUpdateValue = (autoUpdateValue == "yes") ? "no" : "yes";
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart", "STRING", newAutoUpdateValue);
                     goto invalidstartup;
 
                 case "9":

@@ -22,9 +22,8 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("├───────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 1) About...       │");
             UpdateChecker.DisplayCenteredMessage("│ 2) Startup        │");
-            UpdateChecker.DisplayCenteredMessage("│ 3) Toggle sounds  │");
-            UpdateChecker.DisplayCenteredMessage("│ 4) Reset          │");
-            UpdateChecker.DisplayCenteredMessage("│ 5) Theme          │");
+            UpdateChecker.DisplayCenteredMessage("│ 3) Reset reShut   │");
+            UpdateChecker.DisplayCenteredMessage("│ 4) Theme          │");
             UpdateChecker.DisplayCenteredMessage("├───────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 9) Back           │");
             UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
@@ -51,50 +50,8 @@ namespace reShutCLI
                     
                         StartupSettings.Show();
                         goto settings;
-                case "3":
-                    Console.ForegroundColor = Variables.MenuColor;
-                    if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds") == "1")
-                    {
-                        Console.Clear();
-                        UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────╮");
-                        UpdateChecker.DisplayCenteredMessage("│ Sounds are currently enabled. Do you want to turn them off? │");
-                        UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────╯");
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────╮");
-                        UpdateChecker.DisplayCenteredMessage("│ Sounds are currently disabled. Do you want to turn them on? │");
-                        UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────╯");
-                    }
-                    UpdateChecker.DisplayCenteredMessage("");
-                    UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│ Press (1) to toggle or any other key to cancel. │");
-                    UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────╯");
-                    UpdateChecker.DisplayCenteredMessage("");
-                    ConsoleKeyInfo keyInfo3 = Console.ReadKey();
-                    if (keyInfo3.Key == ConsoleKey.D1 || keyInfo3.Key == ConsoleKey.NumPad1)
-                    {
-                        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds") == "1")
-                        {
-                            Console.Clear();
-                            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds", "STRING", "0");
-                            UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
-                            UpdateChecker.DisplayCenteredMessage("│ Sounds are now off. │");
-                            UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds", "STRING", "1");
-                            UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                            UpdateChecker.DisplayCenteredMessage("│ Sounds are now on. │");
-                            UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
-                        }
-                    }
-                    goto settings;
 
-                case "4":
+                case "3":
                     Console.Clear();
                     Console.ForegroundColor = Variables.SecondaryColor;
                     UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────────────╮");
@@ -106,7 +63,7 @@ namespace reShutCLI
                     AutoRestart.Init();
                     Console.Clear();
                     break;
-                case "5":
+                case "4":
                     Console.Clear();
                     Console.ForegroundColor = Variables.MenuColor;
                     ThemeSettings.OpenSettings();
@@ -115,9 +72,9 @@ namespace reShutCLI
                 default:
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│   Invalid input.  │");
-                    UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
+                    UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage("│ Invalid input. │");
+                    UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
                     Console.ForegroundColor = ConsoleColor.White;
                     goto settings;
 

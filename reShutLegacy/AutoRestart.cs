@@ -15,11 +15,9 @@ namespace reShutCLI
         public static void Init()
         {
             string exePath = Path.Combine(AppContext.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
-            string args = "restart";
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = exePath,
-                Arguments = args,
                 UseShellExecute = false,
             };
             Process.Start(startInfo);

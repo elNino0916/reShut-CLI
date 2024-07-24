@@ -15,6 +15,12 @@ namespace reShutCLI
             // reboot
             var type = "";
             Console.Clear();
+            Console.ForegroundColor = Variables.SecondaryColor;
+            UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│        Warning! The schedule feature has not been updated in a while.       │");
+            UpdateChecker.DisplayCenteredMessage("│ Some features may or may not work. A rework is planned for a future update. │");
+            UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("");
             Console.ForegroundColor = Variables.MenuColor;
             UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage("│ What do you want to schedule? │");

@@ -101,6 +101,7 @@ namespace reShutCLI
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = installerPath,
+                    Arguments = "/SILENT /CLOSEAPPLICATIONS /NOCANCEL /NORESTART",
                     UseShellExecute = true,
                 };
 

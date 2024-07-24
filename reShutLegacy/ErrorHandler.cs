@@ -33,7 +33,6 @@ namespace reShutCLI
 
             // Print the error box
             Console.Clear();
-            SoundManager.PlayError(false);
             Console.ForegroundColor = Variables.SecondaryColor;
             Console.WriteLine(topBorder);
             Console.WriteLine("│ " + lines[0].PadRight(boxWidth - 2) + " │");

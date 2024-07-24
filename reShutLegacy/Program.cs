@@ -14,16 +14,6 @@ internal class Program
 
     private static void Question()
     {
-        // This is the confirmation prompt, there is a secret string for the cyberpunk theme
-        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
-        {
-            Console.ForegroundColor = Variables.SecondaryColor;
-            UpdateChecker.DisplayCenteredMessage("");
-            UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ Are you sure, choom? Press any key to continue. │");
-            UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────╯");
-            return;
-        }
         Console.ForegroundColor = Variables.SecondaryColor;
         UpdateChecker.DisplayCenteredMessage("");
         UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
@@ -78,7 +68,7 @@ internal class Program
         RegInit.Populate(false);
 
         // Welcome Screen
-        Welcome.FirstStartup();
+        FirstTimeSetup.FirstStartup();
 
         // Update reShut Version in case of update:
         RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "reShutVersion", "STRING", Variables.version);
@@ -177,13 +167,7 @@ internal class Program
         {
             // Shutdown
             Question();
-            SoundManager.PlayShutdown(false);
             Console.ReadKey();
-            Handler.Shutdown();
-        }
-        else if (key.Equals("E", StringComparison.CurrentCultureIgnoreCase))
-        {
-            // Emergency Shutdown
             Handler.Shutdown();
         }
         else
@@ -193,7 +177,6 @@ internal class Program
                 case "2":
                     // Reboot
                     Question();
-                    SoundManager.PlayReboot(false);
                     Console.ReadKey();
                     Handler.Reboot();
                     break;
@@ -232,9 +215,9 @@ internal class Program
                 default:
                     Console.Clear();
                     Console.ForegroundColor = Variables.SecondaryColor;
-                    UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│   Invalid input.  │");
-                    UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
+                    UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage("│ Invalid input. │");
+                    UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
                     Console.ForegroundColor = ConsoleColor.White;
                     goto start;
             }
