@@ -38,15 +38,15 @@ namespace reShutCLI
 
                 if (now1.Hour < 12)
                 {
-                    greeting1 = $"Good Morning, Choom!";
+                    greeting1 = $"Good Morning, Choom! ";
                 }
                 else if (now1.Hour < 18)
                 {
-                    greeting1 = $"Good Day, Choom!";
+                    greeting1 = $"Good Day, Choom! ";
                 }
                 else
                 {
-                    greeting1 = $"Good Evening, Choom!";
+                    greeting1 = $"Good Evening, Choom! ";
                 }
 
                 return greeting1;
