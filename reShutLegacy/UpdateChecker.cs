@@ -63,7 +63,10 @@ namespace reShutCLI
                     // Check if auto-update is enabled in the registry
                     if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config\", "AutoUpdateOnStart") == "yes")
                     {
-                        await AutoUpdater.PerformUpdate();
+                        if (!Variables.DevelopmentBuild)
+                        {
+                            await AutoUpdater.PerformUpdate();
+                        }
                     }
                 }
                 else

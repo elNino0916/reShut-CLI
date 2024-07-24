@@ -10,11 +10,12 @@ namespace reShutCLI
         // Settings Rework
 
         // Set true if this is a pre-release
-        public static bool prerelease = false;
+        public static bool prerelease = true;
+        public static bool DevelopmentBuild = true;
 
 
         // The version
-        public static string version = "1.0.4.0";
+        public static string version = "1.0.4.1";
 
         // Changes the registry version.
         public static string registryVersion = "3";
