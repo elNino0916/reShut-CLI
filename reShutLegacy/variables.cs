@@ -24,6 +24,11 @@ namespace reShutCLI
         // DO NOT CHANGE
         public static bool isUpToDate = true;
 
+        // Will be changed by ThemeLoader, change default colors in ThemeLoader.cs
+        public static ConsoleColor LogoColor { get; set; } = ConsoleColor.Green;
+        public static ConsoleColor MenuColor { get; set; } = ConsoleColor.DarkCyan;
+        public static ConsoleColor SecondaryColor { get; set; } = ConsoleColor.Red;
+
 
         // The motd
         public static string Motd()
@@ -71,17 +76,6 @@ namespace reShutCLI
 
             return greeting;
         }
-
-        // The color
-        public static ConsoleColor LogoColor { get; set; } = ConsoleColor.DarkYellow;
-        public static ConsoleColor MenuColor { get; set; } = ConsoleColor.Yellow;
-        public static ConsoleColor SecondaryColor { get; set; } = ConsoleColor.Red;
-
-
-
-
-
-
 
         private static string GetFullName()
         {
