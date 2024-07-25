@@ -30,13 +30,13 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Preparing reShut CLI for first use... │");
                 UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────────╯");
                 RegInit.Populate(false);
-                Thread.Sleep(3000);
+                Thread.Sleep(1500);
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ License Agreement and EULA (2/6) │");
                 UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
-                Thread.Sleep(2000);
+                Thread.Sleep(500);
                 EULAHost.Start();
                 Console.ForegroundColor = Variables.MenuColor;
             step3:
@@ -174,7 +174,7 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Applying changes... │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
                 ThemeLoader.loadTheme();
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
 
 
                 Console.Clear();
@@ -185,7 +185,7 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Thank you! reShut CLI is now ready to use. │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
-                Thread.Sleep(5000);
+                Thread.Sleep(3000);
                 return;
             }
         }

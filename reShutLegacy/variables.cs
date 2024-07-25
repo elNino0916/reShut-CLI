@@ -11,10 +11,11 @@ namespace reShutCLI
 
         // Set true if this is a pre-release
         public static bool prerelease = false;
+        public static bool DevelopmentBuild = false;
 
 
         // The version
-        public static string version = "1.0.4.0";
+        public static string version = "1.0.4.1";
 
         // Changes the registry version.
         public static string registryVersion = "3";
@@ -23,11 +24,16 @@ namespace reShutCLI
         // DO NOT CHANGE
         public static bool isUpToDate = true;
 
+        // Will be changed by ThemeLoader, change default colors in ThemeLoader.cs
+        public static ConsoleColor LogoColor { get; set; } = ConsoleColor.Green;
+        public static ConsoleColor MenuColor { get; set; } = ConsoleColor.DarkCyan;
+        public static ConsoleColor SecondaryColor { get; set; } = ConsoleColor.Red;
+
 
         // The motd
         public static string Motd()
         {
-            return prerelease ? $"{UserGreeter()} (reShut is up to date!)" : $"{UserGreeter()}(reShut is up to date!)";
+            return prerelease ? $"{UserGreeter()} (reShut CLI is up to date!)" : $"{UserGreeter()} (reShut CLI is up to date!)";
         }
         public static string UserGreeter()
         {
@@ -70,17 +76,6 @@ namespace reShutCLI
 
             return greeting;
         }
-
-        // The color
-        public static ConsoleColor LogoColor { get; set; } = ConsoleColor.DarkYellow;
-        public static ConsoleColor MenuColor { get; set; } = ConsoleColor.Yellow;
-        public static ConsoleColor SecondaryColor { get; set; } = ConsoleColor.Red;
-
-
-
-
-
-
 
         private static string GetFullName()
         {
