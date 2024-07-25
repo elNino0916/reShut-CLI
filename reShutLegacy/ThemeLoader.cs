@@ -8,9 +8,6 @@ namespace reShutCLI
 {
     internal class ThemeLoader
     {
-        // Available Themes: 
-        // Default 
-        // Cyberpunk: Yellow | Blue
         public static void loadTheme()
         {
             if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "default")

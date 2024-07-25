@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,16 +18,16 @@ namespace reShutCLI
 
             // Prints the settings menu
             Console.ForegroundColor = Variables.MenuColor;
-            UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│     Settings:     │");
-            UpdateChecker.DisplayCenteredMessage("├───────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 1) About...       │");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Startup        │");
-            UpdateChecker.DisplayCenteredMessage("│ 3) Reset reShut   │");
-            UpdateChecker.DisplayCenteredMessage("│ 4) Theme          │");
-            UpdateChecker.DisplayCenteredMessage("├───────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 9) Back           │");
-            UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("╭──────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│       Settings:      │");
+            UpdateChecker.DisplayCenteredMessage("├──────────────────────┤");
+            UpdateChecker.DisplayCenteredMessage("│ 1) About...          │");
+            UpdateChecker.DisplayCenteredMessage("│ 2) Startup           │");
+            UpdateChecker.DisplayCenteredMessage("│ 3) Reset reShut CLI  │");
+            UpdateChecker.DisplayCenteredMessage("│ 4) Theme             │");
+            UpdateChecker.DisplayCenteredMessage("├──────────────────────┤");
+            UpdateChecker.DisplayCenteredMessage("│ 9) Back              │");
+            UpdateChecker.DisplayCenteredMessage("╰──────────────────────╯");
             Console.ForegroundColor = ConsoleColor.White;
             // Key detect
             var setInfo = Console.ReadKey();
@@ -53,11 +54,31 @@ namespace reShutCLI
 
                 case "3":
                     Console.Clear();
+                Retry:
                     Console.ForegroundColor = Variables.SecondaryColor;
-                    UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│ Do you really want to reset reShut CLI? Close reShut CLI within 5 seconds to cancel. │");
-                    UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────────────╯");
-                    Thread.Sleep(5999);
+                    UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────────────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage("│ Do you really want to reset reShut CLI? Enter RESET and press Enter to confirm. │");
+                    UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────────────────────────╯");
+                    UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage("│ To cancel, type nothing and press Enter. │");
+                    UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
+                    Console.ForegroundColor = Variables.MenuColor;
+                    Console.Write(">>");
+                    string confirmation = Console.ReadLine();
+                    Console.ForegroundColor = Variables.SecondaryColor;
+                    if (confirmation == "")
+                    {
+                        goto settings;
+                    }
+                    if (confirmation != "RESET")
+                    {
+                        Console.Clear();
+                        UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────╮");
+                        UpdateChecker.DisplayCenteredMessage("│ You have entered an invalid string. │");
+                        UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────╯");
+                        goto Retry;
+
+                    }
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
                     AutoRestart.Init();
