@@ -10,7 +10,7 @@ namespace reShutCLI
         // Settings Rework
 
         // Set true if this is a pre-release
-        public static bool prerelease = true;
+        public static bool prerelease = false;
         public static bool DevelopmentBuild = false;
 
 
