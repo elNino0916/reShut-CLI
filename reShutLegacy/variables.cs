@@ -33,7 +33,7 @@ namespace reShutCLI
         // The motd
         public static string Motd()
         {
-            return prerelease ? $"{UserGreeter()} (reShut is up to date!)" : $"{UserGreeter()} (reShut is up to date!)";
+            return prerelease ? $"{UserGreeter()} (reShut CLI is up to date!)" : $"{UserGreeter()} (reShut CLI is up to date!)";
         }
         public static string UserGreeter()
         {
