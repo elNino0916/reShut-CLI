@@ -61,9 +61,6 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        // Check locks etc.
-        Lock.Years();
-
         // Check for update (registry)
         RegInit.Populate(false);
 

@@ -52,6 +52,13 @@ namespace reShutCLI
                             Console.ForegroundColor = ConsoleColor.Gray;
                             Environment.Exit(0);
                             break;
+
+                        case "update":
+
+                            UpdateChecker.MainCheck().Wait();
+                            Environment.Exit(0);
+                            break;
+
                         default:
                             Console.ForegroundColor = Variables.SecondaryColor;
                             Console.WriteLine($"Unknown argument: {arg}");
