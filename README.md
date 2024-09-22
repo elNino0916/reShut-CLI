@@ -1,4 +1,4 @@
-![GitHub Release](https://img.shields.io/github/v/release/elnino0916/reshut-cli?style=for-the-badge) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/elnino0916/reshut-cli/codeql.yml?style=for-the-badge) ![GitHub License](https://img.shields.io/github/license/elnino0916/reshut-cli?style=for-the-badge) ![Downloads](https://img.shields.io/github/downloads/elnino0916/reShut-CLI/total?style=for-the-badge)
+![GitHub Release](https://img.shields.io/github/v/release/elnino0916/reshut-cli?style=for-the-badge) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/elnino0916/reshut-cli/codeql.yml?style=for-the-badge) ![Downloads](https://img.shields.io/github/downloads/elnino0916/reShut-CLI/total?style=for-the-badge)
 
 ![image](https://github.com/elNino0916/reShut-CLI/assets/84574414/a0b9738f-8cee-4b65-98ae-583e01182d11)
 
