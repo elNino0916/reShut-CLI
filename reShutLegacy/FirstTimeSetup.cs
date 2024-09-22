@@ -6,6 +6,7 @@ namespace reShutCLI
 {
     internal class FirstTimeSetup
     {
+
         public static void FirstStartup()
         {
             // Check if setup is complete from registry

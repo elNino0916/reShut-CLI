@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace reShutCLI
 {
@@ -34,8 +30,8 @@ namespace reShutCLI
 
         public static void setDefaultTheme()
         {
-            Variables.MenuColor = ConsoleColor.DarkCyan;
-            Variables.LogoColor = ConsoleColor.Green;
+            Variables.MenuColor = ConsoleColor.DarkYellow;
+            Variables.LogoColor = ConsoleColor.Red;
             Variables.SecondaryColor = ConsoleColor.DarkRed;
         }
         public static void setCyberpunkTheme()

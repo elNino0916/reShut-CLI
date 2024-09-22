@@ -1,13 +1,25 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace reShutCLI
 {
     internal class ErrorHandler
     {
+        public static void SetConsoleSize(int width, int height)
+        {
+            if (Console.LargestWindowWidth >= width && Console.LargestWindowHeight >= height)
+            {
+                Console.SetWindowSize(width, height);
+            }
+            else
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: Cannot resize the console window. It's too small for the required dimensions.");
+                Console.ResetColor();
+            }
+        }
         public static void ShowError(string error, bool needsRestart)
         {
             Console.Title = "reShut CLI - Error";

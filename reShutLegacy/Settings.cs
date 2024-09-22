@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace reShutCLI
 {
@@ -67,6 +61,10 @@ namespace reShutCLI
                     string confirmation = Console.ReadLine();
                     Console.ForegroundColor = Variables.SecondaryColor;
                     if (confirmation == "")
+                    {
+                        goto settings;
+                    }
+                    if (confirmation == "nothing") // heh
                     {
                         goto settings;
                     }
