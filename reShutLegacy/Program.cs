@@ -13,11 +13,15 @@ internal class Program
 
     private static void ConfirmationPrompt()
     {
-        Console.ForegroundColor = Variables.SecondaryColor;
-        UpdateChecker.DisplayCenteredMessage("");
-        UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
-        UpdateChecker.DisplayCenteredMessage("│ Are you sure? Press any key to continue. │");
-        UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
+        if (RegistryWorker.ReadFromRegistry("HKEY_CURRENT_USER\\Software\\elNino0916\\reShutCLI\\config", "SkipConfirmation") != "1")
+        {
+
+            Console.ForegroundColor = Variables.SecondaryColor;
+            UpdateChecker.DisplayCenteredMessage("");
+            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ Are you sure? Press any key to continue. │");
+            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
+        }
     }
 
     public static void CenterText()

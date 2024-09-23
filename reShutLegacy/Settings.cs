@@ -12,23 +12,13 @@ namespace reShutCLI
 
             // Prints the settings menu
             Console.ForegroundColor = Variables.MenuColor;
-            /*
-            UpdateChecker.DisplayCenteredMessage("╭──────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│       Settings:      │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 1) About...          │");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Startup           │");
-            UpdateChecker.DisplayCenteredMessage("│ 3) Reset reShut CLI  │");
-            UpdateChecker.DisplayCenteredMessage("│ 4) Theme             │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 9) Back              │");
-            UpdateChecker.DisplayCenteredMessage("╰──────────────────────╯");              */
             // New UI
             UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage("│            Settings:           │");
             UpdateChecker.DisplayCenteredMessage("├────────────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 1) General                     │");
-            UpdateChecker.DisplayCenteredMessage("│ 2) About reShut CLI...         │");
+            UpdateChecker.DisplayCenteredMessage("│ 2) Menus and Messages          │");
+            UpdateChecker.DisplayCenteredMessage("│ 3) About reShut CLI...         │");
             UpdateChecker.DisplayCenteredMessage("├────────────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 9) Back                        │");
             UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────╯");
@@ -44,16 +34,17 @@ namespace reShutCLI
                 GeneralInit:
                     Console.Clear();
                     Console.ForegroundColor = Variables.MenuColor;
-                    UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│        General        │");
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 1) Update             │");
-                    UpdateChecker.DisplayCenteredMessage("│ 2) Startup            │");
-                    UpdateChecker.DisplayCenteredMessage("│ 3) Theme              │");
-                    UpdateChecker.DisplayCenteredMessage("│ 4) Reset all settings │");
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 9) Back               │");
-                    UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
+                    UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage("│            General            │");
+                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
+                    UpdateChecker.DisplayCenteredMessage("│ 1) Update                     │");
+                    UpdateChecker.DisplayCenteredMessage("│ 2) Startup                    │");
+                    UpdateChecker.DisplayCenteredMessage("│ 3) Theme                      │");
+                    UpdateChecker.DisplayCenteredMessage("│ 4) Reset all settings         │");
+                    UpdateChecker.DisplayCenteredMessage("│ 5) ??? (Available in v.2.0.0) │"); // you wont find anything in the code... (yet)
+                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
+                    UpdateChecker.DisplayCenteredMessage("│ 9) Back                       │");
+                    UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────╯");
                     var setInfoGen = Console.ReadKey();
                     var setGen = setInfoGen.KeyChar.ToString();
                     switch (setGen)
@@ -91,8 +82,45 @@ namespace reShutCLI
                 case "9":
                     Console.Clear();
                     return;
-                // What's new screen
                 case "2":
+                MenuAndTextInit:
+                    Console.Clear();
+                    string skipValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation");
+                    Console.ForegroundColor = Variables.LogoColor;
+                    UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage(skipValue == "1" ? "│ Double-Confirmation is enabled. │" : "│ Double-Confirmation is disabled.│");
+                    UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────╯");
+                    Console.ForegroundColor = Variables.MenuColor;
+                    UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage("│       Menus and Messages      │");
+                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
+                    UpdateChecker.DisplayCenteredMessage("│ 1) Toggle Double-Confirmation │");
+                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
+                    UpdateChecker.DisplayCenteredMessage("│ 9) Back                       │");
+                    UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────╯");
+                    var setInfoMenu = Console.ReadKey();
+                    var setGenMenu = setInfoMenu.KeyChar.ToString();
+                    switch (setGenMenu)
+                    {
+                        case "1":
+                            if (skipValue == "1")
+                            {
+                                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "0");
+                            }
+                            else
+                            {
+                                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "1");
+                            }
+                            goto MenuAndTextInit;
+                            
+                        case "9":
+                            goto GeneralInit;
+
+                        default:
+                            goto MenuAndTextInit;
+                    }
+                    goto GeneralInit;
+                case "3":
 
                     AboutPage.Show();
                     goto settings;
