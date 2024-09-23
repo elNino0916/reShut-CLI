@@ -88,7 +88,7 @@ namespace reShutCLI
                     string skipValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation");
                     Console.ForegroundColor = Variables.LogoColor;
                     UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage(skipValue == "1" ? "│ Double-Confirmation is enabled. │" : "│ Double-Confirmation is disabled.│");
+                    UpdateChecker.DisplayCenteredMessage(skipValue == "0" ? "│ Double-Confirmation is enabled. │" : "│ Double-Confirmation is disabled.│");
                     UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────╯");
                     Console.ForegroundColor = Variables.MenuColor;
                     UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");

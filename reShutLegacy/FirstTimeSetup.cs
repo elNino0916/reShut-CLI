@@ -178,6 +178,7 @@ namespace reShutCLI
                 Thread.Sleep(1000);
 
             step7:
+                Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Confirmation (7/7) │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
@@ -199,6 +200,10 @@ namespace reShutCLI
                 else if (keyInfo5.Key == ConsoleKey.D2 || keyInfo5.Key == ConsoleKey.NumPad2)
                 {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "1");
+                }
+                else
+                {
+                    goto step7;
                 }
 
                 Console.Clear();
