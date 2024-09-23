@@ -20,7 +20,7 @@ namespace reShutCLI
             Console.Clear();
             var maxLength = Math.Max(header.Length,
                                 Math.Max(
-                                    "The license can be viewed by pressing L in the main menu.".Length,header.Length));
+                                    "The license can be viewed by pressing L in the main menu.".Length, header.Length));
             var borderLength = maxLength + 4;
 
             UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");

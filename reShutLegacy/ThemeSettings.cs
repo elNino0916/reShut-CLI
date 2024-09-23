@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace reShutCLI
 {
@@ -66,8 +62,8 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
             ThemeLoader.loadTheme();
             Thread.Sleep(3000);
-                Console.Clear();
-                AutoRestart.Init();
+            Console.Clear();
+            AutoRestart.Init();
             return;
         }
     }

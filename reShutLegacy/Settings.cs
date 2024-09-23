@@ -112,7 +112,7 @@ namespace reShutCLI
                                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "1");
                             }
                             goto MenuAndTextInit;
-                            
+
                         case "9":
                             goto GeneralInit;
 

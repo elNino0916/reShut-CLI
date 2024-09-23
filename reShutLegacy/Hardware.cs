@@ -6,7 +6,7 @@ namespace reShutCLI
 {
     internal class Hardware
     {
-        #pragma warning disable CA1416
+#pragma warning disable CA1416
         public static string GetTime(bool use24HoursFormat)
         {
             return DateTime.Now.ToString(!use24HoursFormat ? "hh:mm:ss tt" : "HH:mm:ss");
@@ -23,9 +23,9 @@ namespace reShutCLI
             {
                 var VC = obj["Description"].ToString();
                 return VC;
-                    
+
             }
-                
+
             return "Not detected! / Unknown error.";
         }
         public static string GetRAM()
@@ -37,6 +37,6 @@ namespace reShutCLI
             var ramInGB = (double)ramSize / (1024 * 1024 * 1024);
             return ramInGB.ToString("0.##");
         }
-        #pragma warning restore CA1416
+#pragma warning restore CA1416
     }
 }

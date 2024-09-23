@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 
 namespace reShutCLI
 {
@@ -49,7 +48,7 @@ namespace reShutCLI
         }
         public static void UpdateSettings()
         {
-            UpdateSettingsInit:
+        UpdateSettingsInit:
             Console.Clear();
             string updateSearchValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch");
             string autoUpdateValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart");
