@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
+using System;
 
 namespace reShutCLI
 {
@@ -70,7 +70,7 @@ namespace reShutCLI
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
             }
         }

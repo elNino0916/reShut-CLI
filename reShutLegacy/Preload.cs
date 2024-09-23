@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Linq.Expressions;
 
 namespace reShutCLI
 {
@@ -18,16 +16,16 @@ namespace reShutCLI
             // Check for FastStartup
             if (atStartup)
             {
-                    if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup") == "1")
-                    {
-                        return;
-                    }
+                if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup") == "1")
+                {
+                    return;
+                }
             }
             // Preload the strings here
             preloadedStrings =
             [
                 Environment.OSVersion.Version.ToString(), // 0
-                Hardware.GetCPU(),                        // 1
+                Hardware.GetCPU(),                        // 1  !!! 1-3 is obsolete and will be removed in a future update. !!!
                 Hardware.GetRAM(),                        // 2
                 Hardware.GetGPU(),                        // 3
                 "1"                                       // 4

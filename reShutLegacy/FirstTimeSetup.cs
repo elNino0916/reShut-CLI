@@ -6,6 +6,7 @@ namespace reShutCLI
 {
     internal class FirstTimeSetup
     {
+
         public static void FirstStartup()
         {
             // Check if setup is complete from registry
@@ -23,7 +24,7 @@ namespace reShutCLI
                 Console.ForegroundColor = Variables.MenuColor;
                 Console.Title = "reShut CLI Setup";
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Initial Setup (1/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Initial Setup (1/7) │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────╮");
@@ -42,7 +43,7 @@ namespace reShutCLI
             step3:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Update Checking (3/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Update Checking (3/7) │");
                 UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────────────────────────────────────────────╮");
@@ -67,10 +68,10 @@ namespace reShutCLI
                 {
                     goto step3;
                 }
-                step4:
+            step4:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Fast Startup (4/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Fast Startup (4/7) │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────────────────────────────────────────────────────────────╮");
@@ -95,10 +96,10 @@ namespace reShutCLI
                 {
                     goto step4;
                 }
-                step5:
+            step5:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Auto Update (4/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Auto Update (4/7) │");
                 UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────╮");
@@ -126,7 +127,7 @@ namespace reShutCLI
             step6:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭─────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Theme (6/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Theme (6/7) │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────────────╮");
@@ -176,6 +177,29 @@ namespace reShutCLI
                 ThemeLoader.loadTheme();
                 Thread.Sleep(1000);
 
+            step7:
+                UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Confirmation (7/7) │");
+                UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("");
+                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Would you like to be asked twice before shutting down / rebooting your PC?   │");
+                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("");
+                UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ 1) Yes, ask twice     │");
+                UpdateChecker.DisplayCenteredMessage("├───────────────────────┤");
+                UpdateChecker.DisplayCenteredMessage("│ 2) No, ask once       │");
+                UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
+                ConsoleKeyInfo keyInfo5 = Console.ReadKey();
+                if (keyInfo5.Key == ConsoleKey.D1 || keyInfo5.Key == ConsoleKey.NumPad1)
+                {
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "0");
+                }
+                else if (keyInfo5.Key == ConsoleKey.D2 || keyInfo5.Key == ConsoleKey.NumPad2)
+                {
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "1");
+                }
 
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────╮");

@@ -15,10 +15,10 @@ namespace reShutCLI
 
 
         // The version
-        public static string version = "1.0.4.1";
+        public static string version = "1.0.5.0";
 
         // Changes the registry version.
-        public static string registryVersion = "3";
+        public static string registryVersion = "5";
         public static string fullversion = $"v.{version}";
 
         // DO NOT CHANGE
@@ -37,7 +37,8 @@ namespace reShutCLI
         }
         public static string UserGreeter()
         {
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk"){
+            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
+            {
                 DateTime now1 = DateTime.Now;
                 string greeting1;
 
@@ -94,7 +95,7 @@ namespace reShutCLI
             }
             catch
             {
-                
+
             }
 
             if (!string.IsNullOrEmpty(fullName))

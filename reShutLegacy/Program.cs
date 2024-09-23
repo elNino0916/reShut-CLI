@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -7,18 +6,22 @@ using System.Threading;
 namespace reShutCLI;
 internal class Program
 {
-    private static void MITLicense()
+    private static void License()
     {
-        Console.WriteLine("MIT License\n\nCopyright (c) 2024 elNino0916\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.");
+        Console.WriteLine("reShut CLI (version 1.0.5.0+) © 2023-2024 is now licensed under CC BY-NC-SA 4.0\n\nhttps://creativecommons.org/licenses/by-nc-sa/4.0");
     }
 
-    private static void Question()
+    private static void ConfirmationPrompt()
     {
-        Console.ForegroundColor = Variables.SecondaryColor;
-        UpdateChecker.DisplayCenteredMessage("");
-        UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
-        UpdateChecker.DisplayCenteredMessage("│ Are you sure? Press any key to continue. │");
-        UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
+        if (RegistryWorker.ReadFromRegistry("HKEY_CURRENT_USER\\Software\\elNino0916\\reShutCLI\\config", "SkipConfirmation") != "1")
+        {
+
+            Console.ForegroundColor = Variables.SecondaryColor;
+            UpdateChecker.DisplayCenteredMessage("");
+            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ Are you sure? Press any key to continue. │");
+            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
+        }
     }
 
     public static void CenterText()
@@ -52,8 +55,8 @@ internal class Program
         else
             centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) +
                            Variables.fullversion;
-        var copyright = new string(' ', (Console.WindowWidth - "Copyright (c) 2024 elNino0916".Length) / 2) +
-                        "Copyright (c) 2024 elNino0916";
+        var copyright = new string(' ', (Console.WindowWidth - "Copyright (c) 2023-2024 elNino0916".Length) / 2) +
+                        "Copyright (c) 2023-2024 elNino0916";
         Console.WriteLine(centeredText);
         Console.WriteLine(copyright);
         Preload.Startup(true);
@@ -61,8 +64,6 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        // Check locks etc.
-        Lock.Years();
 
         // Check for update (registry)
         RegInit.Populate(false);
@@ -91,15 +92,15 @@ internal class Program
         Console.Title = "reShut CLI " + Variables.fullversion;
 
         // Checks if EULA is accepted
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted") == "0")
+        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted") == "0")
+        {
+            // Prompt EULA
+            if (!EULAHost.Start() == true)
             {
-                // Prompt EULA
-                if (!EULAHost.Start() == true)
-                {
-                    // Error handler needed
-                    Environment.Exit(0);
-                }
+                // Error handler needed
+                Environment.Exit(0);
             }
+        }
 
 
         // Prints ascii art
@@ -156,7 +157,7 @@ internal class Program
         if (key.Equals("L", StringComparison.CurrentCultureIgnoreCase))
         {
             Console.Clear();
-            MITLicense();
+            License();
             Console.WriteLine("\nPress any key to go back.");
             Console.ReadKey();
             Console.Clear();
@@ -166,24 +167,24 @@ internal class Program
         if (key == "1")
         {
             // Shutdown
-            Question();
+            ConfirmationPrompt();
             Console.ReadKey();
             Handler.Shutdown();
         }
         else
         {
-            switch (key)
+            switch (key.ToLower())
             {
                 case "2":
                     // Reboot
-                    Question();
+                    ConfirmationPrompt();
                     Console.ReadKey();
                     Handler.Reboot();
                     break;
 
                 case "3":
                     // Logoff
-                    Question();
+                    ConfirmationPrompt();
                     Console.ReadKey();
                     Handler.Logoff();
                     break;
@@ -200,7 +201,6 @@ internal class Program
                 case "4":
                     Schedule.Plan();
                     goto start;
-                case "U":
                 case "u":
                     if (Variables.isUpToDate) { Console.Clear(); goto start; }
                     Console.Clear();

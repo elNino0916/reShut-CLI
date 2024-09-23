@@ -8,7 +8,7 @@ namespace reShutCLI
             Process.Start("shutdown", "/r /f /t 0");
         }
         public static void Shutdown()
-        { 
+        {
             Process.Start("shutdown", "/s /f /t 0");
         }
         public static void Logoff()
