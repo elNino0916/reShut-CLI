@@ -11,12 +11,12 @@ namespace reShutCLI
         {
             return DateTime.Now.ToString(!use24HoursFormat ? "hh:mm:ss tt" : "HH:mm:ss");
         }
-        public static string GetCPU()
+        public static string GetCPU() // Obsolete, will be removed in future update.
         {
             ManagementObjectSearcher searcher = new("select * from Win32_Processor");
             return searcher.Get().Cast<ManagementObject>().Select(obj => obj["Name"].ToString()).FirstOrDefault();
         }
-        public static string GetGPU()
+        public static string GetGPU() // Obsolete, will be removed in future update.
         {
             ManagementObjectSearcher searcher = new("select * from Win32_VideoController ");
             foreach (var obj in searcher.Get().Cast<ManagementObject>())
@@ -28,7 +28,7 @@ namespace reShutCLI
 
             return "Not detected! / Unknown error.";
         }
-        public static string GetRAM()
+        public static string GetRAM() // Obsolete, will be removed in future update.
         {
             ManagementObjectSearcher searcher = new("select Capacity from Win32_PhysicalMemory");
 

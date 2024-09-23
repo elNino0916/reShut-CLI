@@ -25,7 +25,7 @@ namespace reShutCLI
             preloadedStrings =
             [
                 Environment.OSVersion.Version.ToString(), // 0
-                Hardware.GetCPU(),                        // 1
+                Hardware.GetCPU(),                        // 1  !!! 1-3 is obsolete and will be removed in a future update. !!!
                 Hardware.GetRAM(),                        // 2
                 Hardware.GetGPU(),                        // 3
                 "1"                                       // 4
