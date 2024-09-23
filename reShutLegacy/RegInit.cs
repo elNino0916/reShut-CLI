@@ -5,7 +5,7 @@ namespace reShutCLI
 {
     internal class RegInit
     {
-        public static void Populate(bool skipCreation) 
+        public static void Populate(bool skipCreation)
         {
             if (!skipCreation)
             {
@@ -21,13 +21,14 @@ namespace reShutCLI
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "0");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "default");
-                    /* NOT IMPLEMENTED YET */ RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "no");
+                    /* NOT IMPLEMENTED YET */
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "no");
                 }
             }
 
 
 
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI","RegistryVersion") != Variables.registryVersion)
+            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion") != Variables.registryVersion)
             {
                 Console.Clear();
                 Console.Title = "Invalid Registry Version";

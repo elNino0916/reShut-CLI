@@ -59,7 +59,7 @@ internal class Program
     }
 
     private static void Main(string[] args)
-    { 
+    {
 
         // Check for update (registry)
         RegInit.Populate(false);
@@ -88,15 +88,15 @@ internal class Program
         Console.Title = "reShut CLI " + Variables.fullversion;
 
         // Checks if EULA is accepted
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted") == "0")
+        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted") == "0")
+        {
+            // Prompt EULA
+            if (!EULAHost.Start() == true)
             {
-                // Prompt EULA
-                if (!EULAHost.Start() == true)
-                {
-                    // Error handler needed
-                    Environment.Exit(0);
-                }
+                // Error handler needed
+                Environment.Exit(0);
             }
+        }
 
 
         // Prints ascii art

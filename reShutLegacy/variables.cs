@@ -37,7 +37,8 @@ namespace reShutCLI
         }
         public static string UserGreeter()
         {
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk"){
+            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
+            {
                 DateTime now1 = DateTime.Now;
                 string greeting1;
 
@@ -94,7 +95,7 @@ namespace reShutCLI
             }
             catch
             {
-                
+
             }
 
             if (!string.IsNullOrEmpty(fullName))

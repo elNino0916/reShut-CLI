@@ -70,7 +70,7 @@ namespace reShutCLI
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
             }
         }

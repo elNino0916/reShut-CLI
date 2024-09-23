@@ -68,7 +68,7 @@ namespace reShutCLI
                 {
                     goto step3;
                 }
-                step4:
+            step4:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Fast Startup (4/6) │");
@@ -96,7 +96,7 @@ namespace reShutCLI
                 {
                     goto step4;
                 }
-                step5:
+            step5:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Auto Update (4/6) │");
