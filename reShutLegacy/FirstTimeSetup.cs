@@ -6,18 +6,17 @@ namespace reShutCLI
 {
     internal class FirstTimeSetup
     {
-
+        // Updated for 2.0.0.0
         public static void FirstStartup()
         {
             // Check if setup is complete from registry
             if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete") != "1")
             {
-                ThemeLoader.setDefaultTheme();
                 Console.OutputEncoding = Encoding.UTF8;
                 Console.CursorVisible = false;
+                ThemeLoader.setDefaultTheme();
                 Console.ForegroundColor = Variables.LogoColor;
                 Console.Title = "Welcome to reShut CLI!";
-                UpdateChecker.DisplayCenteredMessage("Welcome to:");
                 Program.CenterText();
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Thread.Sleep(3000);
@@ -25,27 +24,27 @@ namespace reShutCLI
                 Console.ForegroundColor = Variables.MenuColor;
                 Console.Title = "reShut CLI Setup";
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Initial Setup (1/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Initial Setup (1/5) │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Preparing reShut CLI for first use... │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Creating initial configuration... │");
+                UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────╯");
                 RegInit.Populate(false);
-                Thread.Sleep(1500);
+                Thread.Sleep(1000);
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ License Agreement and EULA (2/6) │");
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ EULA (2/5) │");
+                UpdateChecker.DisplayCenteredMessage("╰────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 Thread.Sleep(500);
-                EULAHost.Start();
+                ShowEULA.Start();
                 Console.ForegroundColor = Variables.MenuColor;
             step3:
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Update Checking (3/6) │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭───────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Updates (3/5) │");
+                UpdateChecker.DisplayCenteredMessage("╰───────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────────────────────────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Do you want to enable update checking? This uses GitHub to check for updates. │");
@@ -69,11 +68,11 @@ namespace reShutCLI
                 {
                     goto step3;
                 }
-            step5:
+            step4:
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Auto Update (4/6) │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭───────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Updates (3/5) │");
+                UpdateChecker.DisplayCenteredMessage("╰───────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ Do you want to enable Auto Updates on startup? (recommended) │");
@@ -95,12 +94,12 @@ namespace reShutCLI
                 }
                 else
                 {
-                    goto step5;
+                    goto step4;
                 }
-            step6:
+            step5:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭─────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Theme (5/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Theme (4/5) │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────────────╮");
@@ -141,7 +140,7 @@ namespace reShutCLI
                 }
                 else
                 {
-                    goto step6;
+                    goto step5;
                 }
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
@@ -150,10 +149,10 @@ namespace reShutCLI
                 ThemeLoader.loadTheme();
                 Thread.Sleep(1000);
 
-            step7:
+            step6:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Confirmation (6/6) │");
+                UpdateChecker.DisplayCenteredMessage("│ Confirmation (5/5) │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────╮");
@@ -176,7 +175,7 @@ namespace reShutCLI
                 }
                 else
                 {
-                    goto step7;
+                    goto step6;
                 }
 
                 Console.Clear();
@@ -184,9 +183,9 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Setup complete! │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────╯");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "1");
-                UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Thank you! reShut CLI is now ready to use. │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ reShut CLI is now ready to use. │");
+                UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────╯");
                 Thread.Sleep(3000);
                 return;
             }

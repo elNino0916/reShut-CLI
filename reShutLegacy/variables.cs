@@ -2,15 +2,13 @@
 using System.Globalization;
 using System.Management;
 using System.Resources;
+using System.Runtime.Versioning;
 
 namespace reShutCLI
 {
     internal class Variables
     {
-        // TODO:
-        // Implement SkipConfirmation
-        // Settings Rework
-
+        [SupportedOSPlatform("windows")]
         // Set true if this is a pre-release
         public static bool prerelease = true;
         public static bool DevelopmentBuild = true;
@@ -22,7 +20,7 @@ namespace reShutCLI
         public static string version = "2.0.0.0";
 
         // Changes the registry version.
-        public static string registryVersion = "5";
+        public static string registryVersion = "6";
         public static string fullversion = $"v.{version}";
 
         // DO NOT CHANGE
@@ -35,12 +33,14 @@ namespace reShutCLI
 
 
         // The motd
+        [SupportedOSPlatform("windows")]
         public static string Motd()
         {
             CultureInfo culture = new CultureInfo(Variables.lang);
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             return prerelease ? $"{UserGreeter()} ({rm.GetString("UpToDate", culture)})" : $"{UserGreeter()} ({rm.GetString("UpToDate", culture)})";
         }
+        [SupportedOSPlatform("windows")]
         public static string UserGreeter()
         {
             CultureInfo culture = new CultureInfo(Variables.lang);
@@ -56,11 +56,11 @@ namespace reShutCLI
                 }
                 else if (now1.Hour < 18)
                 {
-                    greeting1 = $"{rm.GetString("GoodMorning", culture)}, Choom!";
+                    greeting1 = $"{rm.GetString("GoodDay", culture)}, Choom!";
                 }
                 else
                 {
-                    greeting1 = $"{rm.GetString("GoodMorning", culture)}, Choom!";
+                    greeting1 = $"{rm.GetString("GoodEvening", culture)}, Choom!";
                 }
 
                 return greeting1;
@@ -85,7 +85,7 @@ namespace reShutCLI
 
             return greeting;
         }
-
+        [SupportedOSPlatform("windows")]
         private static string GetFullName()
         {
             string fullName = Environment.UserName;

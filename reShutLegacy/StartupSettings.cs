@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Runtime.Versioning;
 
 namespace reShutCLI
 {
     internal class StartupSettings
     {
+        [SupportedOSPlatform("windows")]
         public static void UpdateSettings()
         {
         UpdateSettingsInit:

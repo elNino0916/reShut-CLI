@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Versioning;
 
 namespace reShutCLI
 {
     internal class CmdLine
     {
+        [SupportedOSPlatform("windows")]
         public CmdLine(IEnumerable<string> args)
         {
             List<string> validPrefixes = ["-", "/"];

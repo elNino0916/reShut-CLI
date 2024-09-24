@@ -1,12 +1,16 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Runtime.Versioning;
 
 namespace reShutCLI
 {
+    // Updated for 2.0.0.0
     class RegistryWorker
     {
+        [SupportedOSPlatform("windows")]
         public static void WriteToRegistry(string registryPath, string keyName, string type, string content)
         {
+
             try
             {
                 // Determine the registry base key and subkey
@@ -74,7 +78,7 @@ namespace reShutCLI
             {
             }
         }
-
+        [SupportedOSPlatform("windows")]
         public static string ReadFromRegistry(string registryPath, string keyName)
         {
             try
@@ -113,9 +117,44 @@ namespace reShutCLI
 
                 return value.ToString();
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
+            }
+        }
+        [SupportedOSPlatform("windows")]
+        public static void DeleteFromRegistry(string registryPath, string keyName)
+        {
+
+            try
+            {
+                // Determine the registry base key and subkey
+                string[] pathParts = registryPath.Split('\\', 2);
+                string baseKey = pathParts[0];
+                string subKey = pathParts[1];
+
+                // Get the appropriate base key
+                RegistryKey registryKey = baseKey switch
+                {
+                    "HKEY_CLASSES_ROOT" => Registry.ClassesRoot,
+                    "HKEY_CURRENT_USER" => Registry.CurrentUser,
+                    "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
+                    "HKEY_USERS" => Registry.Users,
+                    "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
+                    _ => throw new ArgumentException("Invalid base registry key."),
+                };
+
+                // Open the subkey for writing
+                using RegistryKey key = registryKey.OpenSubKey(subKey, writable: true);
+
+                if (key != null)
+                {
+                    key.DeleteValue(keyName, throwOnMissingValue: false);
+                }
+            }
+            catch
+            {
+                return;
             }
         }
     }
