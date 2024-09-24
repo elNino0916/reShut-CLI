@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Globalization;
+using System.Resources;
+using System.Text.RegularExpressions;
 
 namespace reShutCLI
 {
@@ -6,6 +9,8 @@ namespace reShutCLI
     {
         public static void Show()
         {
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             Console.ForegroundColor = Variables.MenuColor;
             Console.Clear();
             UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
@@ -28,7 +33,7 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("│ " + "Copyright (c) 2023-2024 elNino0916".PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
-            UpdateChecker.DisplayCenteredMessage("Press any key to go back.");
+            UpdateChecker.DisplayCenteredMessage(rm.GetString("PressAnyKeyToGoBack", culture));
             Console.ReadKey();
             Console.Clear();
             return;

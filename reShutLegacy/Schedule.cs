@@ -17,8 +17,9 @@ namespace reShutCLI
             Console.Clear();
             Console.ForegroundColor = Variables.SecondaryColor;
             UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│        Warning! The schedule feature has not been updated in a while.       │");
-            UpdateChecker.DisplayCenteredMessage("│ Some features may or may not work. A rework is planned for a future update. │");
+            UpdateChecker.DisplayCenteredMessage("│          Warning! This version of the scheduler is now discontinued.        │");
+            UpdateChecker.DisplayCenteredMessage("│  A new version will be released soon. This version will not be translated.  │");
+            UpdateChecker.DisplayCenteredMessage("│                          Sorry for the inconvenience.                       │");
             UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────────────────────╯");
             UpdateChecker.DisplayCenteredMessage("");
             Console.ForegroundColor = Variables.MenuColor;

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Management;
+using System.Resources;
 
 namespace reShutCLI
 {
@@ -10,12 +12,14 @@ namespace reShutCLI
         // Settings Rework
 
         // Set true if this is a pre-release
-        public static bool prerelease = false;
-        public static bool DevelopmentBuild = false;
+        public static bool prerelease = true;
+        public static bool DevelopmentBuild = true;
 
+        // Language
+        public static string lang = "de-DE";
 
         // The version
-        public static string version = "1.0.5.1";
+        public static string version = "2.0.0.0";
 
         // Changes the registry version.
         public static string registryVersion = "5";
@@ -33,10 +37,14 @@ namespace reShutCLI
         // The motd
         public static string Motd()
         {
-            return prerelease ? $"{UserGreeter()} (reShut CLI is up to date!)" : $"{UserGreeter()} (reShut CLI is up to date!)";
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+            return prerelease ? $"{UserGreeter()} ({rm.GetString("UpToDate", culture)})" : $"{UserGreeter()} ({rm.GetString("UpToDate", culture)})";
         }
         public static string UserGreeter()
         {
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
             {
                 DateTime now1 = DateTime.Now;
@@ -44,15 +52,15 @@ namespace reShutCLI
 
                 if (now1.Hour < 12)
                 {
-                    greeting1 = $"Good Morning, Choom!";
+                    greeting1 = $"{rm.GetString("GoodMorning", culture)}, Choom!";
                 }
                 else if (now1.Hour < 18)
                 {
-                    greeting1 = $"Good Day, Choom!";
+                    greeting1 = $"{rm.GetString("GoodMorning", culture)}, Choom!";
                 }
                 else
                 {
-                    greeting1 = $"Good Evening, Choom!";
+                    greeting1 = $"{rm.GetString("GoodMorning", culture)}, Choom!";
                 }
 
                 return greeting1;
@@ -64,15 +72,15 @@ namespace reShutCLI
 
             if (now.Hour < 12)
             {
-                greeting = $"Good Morning, {fullName}!";
+                greeting = $"{rm.GetString("GoodMorning", culture)}, {fullName}!";
             }
             else if (now.Hour < 18)
             {
-                greeting = $"Good Day, {fullName}!";
+                greeting = $"{rm.GetString("GoodDay", culture)}, {fullName}!";
             }
             else
             {
-                greeting = $"Good Evening, {fullName}!";
+                greeting = $"{rm.GetString("GoodEvening", culture)}, {fullName}!";
             }
 
             return greeting;

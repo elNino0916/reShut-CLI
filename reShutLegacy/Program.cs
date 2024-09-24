@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading;
 
@@ -15,12 +17,30 @@ internal class Program
     {
         if (RegistryWorker.ReadFromRegistry("HKEY_CURRENT_USER\\Software\\elNino0916\\reShutCLI\\config", "SkipConfirmation") != "1")
         {
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
 
+            // Get the translated string
+            string confirmationText = rm.GetString("ConfirmationText", culture);
+
+            // Calculate the maximum length (either the message or the box)
+            int boxWidth = Math.Max(confirmationText.Length + 2, 44); // Ensure minimum width of 44
+            string topBorder = "╭" + new string('─', boxWidth) + "╮";
+            string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
+
+            // Center the message within the box
+            int paddingLeft = (boxWidth - confirmationText.Length) / 2;
+            string paddedMessage = "│" + new string(' ', paddingLeft) + confirmationText + new string(' ', boxWidth - confirmationText.Length - paddingLeft) + "│";
+
+            // Center the entire box within the console window
+            int windowWidth = Console.WindowWidth;
+
+            // Print the confirmation message centered on the console
             Console.ForegroundColor = Variables.SecondaryColor;
-            UpdateChecker.DisplayCenteredMessage("");
-            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ Are you sure? Press any key to continue. │");
-            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("\n");
+            UpdateChecker.DisplayCenteredMessage(topBorder);
+            UpdateChecker.DisplayCenteredMessage(paddedMessage);
+            UpdateChecker.DisplayCenteredMessage(bottomBorder);
         }
     }
 
@@ -64,7 +84,8 @@ internal class Program
 
     private static void Main(string[] args)
     {
-
+        CultureInfo culture = new CultureInfo(Variables.lang);
+        ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
         // Check for update (registry)
         RegInit.Populate(false);
 
@@ -130,15 +151,10 @@ internal class Program
 
         // Prints main menu
 
-        var consoleColors = ((ConsoleColor[])Enum.GetValues(typeof(ConsoleColor)))
-            .Where(color => color != ConsoleColor.Black)
-            .ToArray();
-        Random random = new();
-        var randomIndex = random.Next(consoleColors.Length);
         Console.ForegroundColor = Variables.MenuColor;
-        string[] menuItems = ["Shutdown", "Reboot", "Logoff", "Schedule...", "Settings", "Quit"];
+        string[] menuItems = [rm.GetString("Shutdown", culture), rm.GetString("Reboot", culture), rm.GetString("Logoff", culture), rm.GetString("Schedule", culture), rm.GetString("Settings", culture), rm.GetString("Quit", culture)];
         UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-        UpdateChecker.DisplayCenteredMessage("│       Main Menu        │");
+        UpdateChecker.DisplayCenteredMessage($"│       {rm.GetString("MainMenu", culture)}        │"); // Has to be changed when more languages are added.
         UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
 
         for (var i = 1; i < menuItems.Length - 1; i++)
@@ -158,7 +174,8 @@ internal class Program
         {
             Console.Clear();
             License();
-            Console.WriteLine("\nPress any key to go back.");
+            string welcomeMessage = rm.GetString("PressAnyKeyToGoBack", culture);
+            Console.WriteLine("\n" + welcomeMessage);
             Console.ReadKey();
             Console.Clear();
             goto start;
@@ -206,7 +223,7 @@ internal class Program
                     Console.Clear();
                     Console.Title = "reShut CLI Updater";
                     Console.ForegroundColor = Variables.MenuColor;
-                    UpdateChecker.DisplayCenteredMessage("Download started, Installer will open in a few seconds...");
+                    UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateDLStarted", culture));
                     Thread.Sleep(2000);
                     AutoUpdater.PerformUpdate();
                     Console.ReadLine();
@@ -215,10 +232,26 @@ internal class Program
                 // Invalid key pressed
                 default:
                     Console.Clear();
+                    // Get the translated string
+                    string invalidText = rm.GetString("InvalidInput", culture);
+
+                    // Calculate the maximum length (either the message or the box)
+                    int boxWidth = Math.Max(invalidText.Length + 2, 44); // Ensure minimum width of 44
+                    string topBorder = "╭" + new string('─', boxWidth) + "╮";
+                    string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
+
+                    // Center the message within the box
+                    int paddingLeft = (boxWidth - invalidText.Length) / 2;
+                    string paddedMessage = "│" + new string(' ', paddingLeft) + invalidText + new string(' ', boxWidth - invalidText.Length - paddingLeft) + "│";
+
+                    // Center the entire box within the console window
+                    int windowWidth = Console.WindowWidth;
+
+                    // Print the confirmation message centered on the console
                     Console.ForegroundColor = Variables.SecondaryColor;
-                    UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│ Invalid input. │");
-                    UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
+                    UpdateChecker.DisplayCenteredMessage(topBorder);
+                    UpdateChecker.DisplayCenteredMessage(paddedMessage);
+                    UpdateChecker.DisplayCenteredMessage(bottomBorder);
                     Console.ForegroundColor = ConsoleColor.White;
                     goto start;
             }

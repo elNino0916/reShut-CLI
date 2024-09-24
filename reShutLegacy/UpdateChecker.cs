@@ -51,7 +51,7 @@ namespace reShutCLI
                 if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
                     Console.ForegroundColor = Variables.MenuColor;
-                    updateResultMessage = $"╭────────────────────────────────────────────────────────────────────────────────╮";
+                    updateResultMessage =      $"╭────────────────────────────────────────────────────────────────────────────────╮";
                     updateResultMessageLine2 = $"│     A new version ({latestVersion}) of reShut CLI is available! Press U to update.     │";
                     updateResultMessageLine3 = $"╰────────────────────────────────────────────────────────────────────────────────╯";
                     DisplayCenteredMessage(updateResultMessage);
