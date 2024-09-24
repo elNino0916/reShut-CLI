@@ -78,7 +78,7 @@ namespace reShutCLI
             if (DateTime.Now.ToString("tt") == "")
             {
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Current time: " + Hardware.GetTime(true) + " │");
+                UpdateChecker.DisplayCenteredMessage("│ Current time: " + Time.GetTime(true) + " │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
             }
             else
@@ -86,7 +86,7 @@ namespace reShutCLI
                 if (DateTime.Now.ToString("tt") == "PM" | DateTime.Now.ToString("tt") == "AM")
                 {
                     UpdateChecker.DisplayCenteredMessage("╭───────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│ Current time: " + Hardware.GetTime(false) + " │");
+                    UpdateChecker.DisplayCenteredMessage("│ Current time: " + Time.GetTime(false) + " │");
                     UpdateChecker.DisplayCenteredMessage("╰───────────────────────────╯");
                 }
             }

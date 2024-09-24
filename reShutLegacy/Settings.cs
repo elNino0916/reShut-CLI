@@ -51,20 +51,19 @@ namespace reShutCLI
                 GeneralInit:
                     Console.Clear();
                     Console.ForegroundColor = Variables.MenuColor;
-                    string[] menuItemsGen = [rm.GetString("Update", culture), rm.GetString("Startup", culture), rm.GetString("Theme", culture), rm.GetString("ResetAllSettings", culture), rm.GetString("Language", culture), rm.GetString("Back", culture)];
+                    string[] menuItemsGen = [rm.GetString("Update", culture), rm.GetString("Theme", culture), rm.GetString("ResetAllSettings", culture), rm.GetString("Language", culture), rm.GetString("Back", culture)];
                     UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
                     UpdateChecker.DisplayCenteredMessage("│        General         │"); // Has to be changed when more languages are added.
                     UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
 
-                    for (var i = 0; i < menuItemsGen.Length - 2; i++) // Iterate until the second-to-last element
+                    for (var i = 0; i < menuItemsGen.Length - 2; i++)
                         UpdateChecker.DisplayCenteredMessage("│ " + (i + 1) + ") " + menuItemsGen[i].PadRight(20) + "│");
 
-                    UpdateChecker.DisplayCenteredMessage("│ 5) " + menuItemsGen[4].PadRight(20) + "│");
+                    UpdateChecker.DisplayCenteredMessage("│ 4) " + menuItemsGen[3].PadRight(20) + "│");
                     UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 9) " + menuItemsGen[5].PadRight(20) + "│");
+                    UpdateChecker.DisplayCenteredMessage("│ 9) " + menuItemsGen[4].PadRight(20) + "│");
 
                     UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
-
 
                     /*
                     UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
@@ -79,6 +78,7 @@ namespace reShutCLI
                     UpdateChecker.DisplayCenteredMessage("│ 9) Back                       │");
                     UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────╯");
                     */
+
                     var setInfoGen = Console.ReadKey();
                     var setGen = setInfoGen.KeyChar.ToString();
                     switch (setGen)
@@ -86,18 +86,13 @@ namespace reShutCLI
                         case "1":
                             StartupSettings.UpdateSettings();
                             goto GeneralInit;
-
                         case "2":
-                            StartupSettings.Show();
-                            goto GeneralInit;
-
-                        case "3":
                             Console.Clear();
                             Console.ForegroundColor = Variables.MenuColor;
                             ThemeSettings.OpenSettings();
                             goto GeneralInit;
 
-                        case "4":
+                        case "3":
                             ConfigManager.Reset();
                             goto GeneralInit;
 
@@ -106,22 +101,13 @@ namespace reShutCLI
                             goto settings;
                         default:
                             Console.Clear();
-                            // Get the translated string
                             string invalidText1 = rm.GetString("InvalidInput", culture);
-
-                            // Calculate the maximum length (either the message or the box)
-                            int boxWidth1 = Math.Max(invalidText1.Length + 2, 44); // Ensure minimum width of 44
+                            int boxWidth1 = Math.Max(invalidText1.Length + 2, 44); 
                             string topBorder1 = "╭" + new string('─', boxWidth1) + "╮";
                             string bottomBorder1 = "╰" + new string('─', boxWidth1) + "╯";
-
-                            // Center the message within the box
                             int paddingLeft1 = (boxWidth1 - invalidText1.Length) / 2;
                             string paddedMessage1 = "│" + new string(' ', paddingLeft1) + invalidText1 + new string(' ', boxWidth1 - invalidText1.Length - paddingLeft1) + "│";
-
-                            // Center the entire box within the console window
                             int windowWidth1 = Console.WindowWidth;
-
-                            // Print the confirmation message centered on the console
                             Console.ForegroundColor = Variables.SecondaryColor;
                             UpdateChecker.DisplayCenteredMessage(topBorder1);
                             UpdateChecker.DisplayCenteredMessage(paddedMessage1);
@@ -147,16 +133,11 @@ namespace reShutCLI
                         doubleText = rm.GetString("DoubleConfirmOn", culture); 
                     }
 
-                    // Calculate the maximum length (either the message or the box)
-                    int boxWidthStateDouble = Math.Max(doubleText.Length + 2, 44); // Ensure minimum width of 44
+                    int boxWidthStateDouble = Math.Max(doubleText.Length + 2, 44);
                     string topBorderD = "╭" + new string('─', boxWidthStateDouble) + "╮";
                     string bottomBorderD = "╰" + new string('─', boxWidthStateDouble) + "╯";
-
-                    // Center the message within the box
                     int paddingLeftD = (boxWidthStateDouble - doubleText.Length) / 2;
                     string paddedMessageD = "│" + new string(' ', paddingLeftD) + doubleText + new string(' ', boxWidthStateDouble - doubleText.Length - paddingLeftD) + "│";
-
-                    // Print the confirmation message centered on the console
                     Console.ForegroundColor = Variables.SecondaryColor;
                     UpdateChecker.DisplayCenteredMessage(topBorderD);
                     UpdateChecker.DisplayCenteredMessage(paddedMessageD);
@@ -167,16 +148,9 @@ namespace reShutCLI
                     UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────╮");
                     UpdateChecker.DisplayCenteredMessage("│           Menus and Messages           │"); // Has to be changed when more languages are added.
                     UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────┤");
-
-                    // Display the Double Configuration option
-                    UpdateChecker.DisplayCenteredMessage(" │ 1) " + menuItemsMsg[0].PadRight(36) + "│"); // Double Configuration
-
-                    // Add a separating line before the Back option
+                    UpdateChecker.DisplayCenteredMessage(" │ 1) " + menuItemsMsg[0].PadRight(36) + "│"); 
                     UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────┤");
-
-                    // Display the Back option
-                    UpdateChecker.DisplayCenteredMessage(" │ 9) " + menuItemsMsg[1].PadRight(36) + "│"); // Back
-
+                    UpdateChecker.DisplayCenteredMessage(" │ 9) " + menuItemsMsg[1].PadRight(36) + "│"); 
                     UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────╯");
 
 
@@ -220,19 +194,12 @@ namespace reShutCLI
                 default:
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    // Get the translated string
                     string invalidText = rm.GetString("InvalidInput", culture);
-
-                    // Calculate the maximum length (either the message or the box)
-                    int boxWidth = Math.Max(invalidText.Length + 2, 44); // Ensure minimum width of 44
+                    int boxWidth = Math.Max(invalidText.Length + 2, 44);
                     string topBorder = "╭" + new string('─', boxWidth) + "╮";
                     string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
-
-                    // Center the message within the box
                     int paddingLeft = (boxWidth - invalidText.Length) / 2;
                     string paddedMessage = "│" + new string(' ', paddingLeft) + invalidText + new string(' ', boxWidth - invalidText.Length - paddingLeft) + "│";
-
-                    // Print the confirmation message centered on the console
                     Console.ForegroundColor = Variables.SecondaryColor;
                     UpdateChecker.DisplayCenteredMessage(topBorder);
                     UpdateChecker.DisplayCenteredMessage(paddedMessage);

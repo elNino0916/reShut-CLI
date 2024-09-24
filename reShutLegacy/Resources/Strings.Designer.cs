@@ -61,11 +61,65 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About reShut CLI ähnelt.
+        /// </summary>
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Back ähnelt.
+        /// </summary>
+        internal static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure? Press any key to continue. ähnelt.
         /// </summary>
         internal static string ConfirmationText {
             get {
                 return ResourceManager.GetString("ConfirmationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle Double-Configuration ähnelt.
+        /// </summary>
+        internal static string DoubleConfiguration {
+            get {
+                return ResourceManager.GetString("DoubleConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Double-Confirmation is disabled. ähnelt.
+        /// </summary>
+        internal static string DoubleConfirmOff {
+            get {
+                return ResourceManager.GetString("DoubleConfirmOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Double-Confirmation is enabled. ähnelt.
+        /// </summary>
+        internal static string DoubleConfirmOn {
+            get {
+                return ResourceManager.GetString("DoubleConfirmOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die General ähnelt.
+        /// </summary>
+        internal static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
             }
         }
         
@@ -106,6 +160,15 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Language ähnelt.
+        /// </summary>
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Logoff ähnelt.
         /// </summary>
         internal static string Logoff {
@@ -120,6 +183,15 @@ namespace reShutCLI.Resources {
         internal static string MainMenu {
             get {
                 return ResourceManager.GetString("MainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Menu and Texts ähnelt.
+        /// </summary>
+        internal static string MenuAndText {
+            get {
+                return ResourceManager.GetString("MenuAndText", resourceCulture);
             }
         }
         
@@ -151,6 +223,15 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset all settings ähnelt.
+        /// </summary>
+        internal static string ResetAllSettings {
+            get {
+                return ResourceManager.GetString("ResetAllSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Schedule... ähnelt.
         /// </summary>
         internal static string Schedule {
@@ -174,6 +255,33 @@ namespace reShutCLI.Resources {
         internal static string Shutdown {
             get {
                 return ResourceManager.GetString("Shutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Startup ähnelt.
+        /// </summary>
+        internal static string Startup {
+            get {
+                return ResourceManager.GetString("Startup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Theme ähnelt.
+        /// </summary>
+        internal static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Updates ähnelt.
+        /// </summary>
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

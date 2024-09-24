@@ -79,7 +79,7 @@ internal class Program
                         "Copyright (c) 2023-2024 elNino0916";
         Console.WriteLine(centeredText);
         Console.WriteLine(copyright);
-        Preload.Startup(true);
+        // Preload.Startup(true);
     }
 
     private static void Main(string[] args)
@@ -88,6 +88,9 @@ internal class Program
         ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
         // Check for update (registry)
         RegInit.Populate(false);
+
+        // Preload strings into memory (Obsolete)
+        // Preload.Startup(true);
 
         // Welcome Screen
         FirstTimeSetup.FirstStartup();

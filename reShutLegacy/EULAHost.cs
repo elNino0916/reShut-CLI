@@ -65,6 +65,7 @@ namespace reShutCLI
                 Console.WriteLine("You have to accept this EULA in order to use reShut CLI.");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "0");
                 Thread.Sleep(2000);
+                Environment.Exit(0);
                 return false;
             }
         }

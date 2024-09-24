@@ -142,7 +142,7 @@
     <value>Einstellungen</value>
   </data>
   <data name="Quit" xml:space="preserve">
-    <value>Verlassen</value>
+    <value>Beenden</value>
   </data>
   <data name="PressAnyKeyToGoBack" xml:space="preserve">
     <value>Drücke eine beliebige Taste um zurück zu kehren.</value>
