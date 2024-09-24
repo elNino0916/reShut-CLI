@@ -34,17 +34,17 @@ namespace reShutCLI
                 GeneralInit:
                     Console.Clear();
                     Console.ForegroundColor = Variables.MenuColor;
-                    UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│            General            │");
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 1) Update                     │");
-                    UpdateChecker.DisplayCenteredMessage("│ 2) Startup                    │");
-                    UpdateChecker.DisplayCenteredMessage("│ 3) Theme                      │");
-                    UpdateChecker.DisplayCenteredMessage("│ 4) Reset all settings         │");
-                    UpdateChecker.DisplayCenteredMessage("│ 5) ??? (Available in v.2.0.0) │"); // you wont find anything in the code... (yet)
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 9) Back                       │");
-                    UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────╯");
+                    UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
+                    UpdateChecker.DisplayCenteredMessage("│             General              │");
+                    UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                    UpdateChecker.DisplayCenteredMessage("│ 1) Update                        │");
+                    UpdateChecker.DisplayCenteredMessage("│ 2) Startup                       │");
+                    UpdateChecker.DisplayCenteredMessage("│ 3) Theme                         │");
+                    UpdateChecker.DisplayCenteredMessage("│ 4) Reset all settings            │");
+                    UpdateChecker.DisplayCenteredMessage("│ 5) Language (Available in 2.0.0) │"); // See the latest changes in 2.0.0 -> Select branch development-2.0.0
+                    UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                    UpdateChecker.DisplayCenteredMessage("│ 9) Back                          │");
+                    UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
                     var setInfoGen = Console.ReadKey();
                     var setGen = setInfoGen.KeyChar.ToString();
                     switch (setGen)
@@ -114,12 +114,12 @@ namespace reShutCLI
                             goto MenuAndTextInit;
 
                         case "9":
-                            goto GeneralInit;
+                            Console.Clear();
+                            goto settings;
 
                         default:
                             goto MenuAndTextInit;
                     }
-                    goto GeneralInit;
                 case "3":
 
                     AboutPage.Show();
