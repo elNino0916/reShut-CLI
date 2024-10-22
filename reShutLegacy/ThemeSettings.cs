@@ -8,28 +8,21 @@ namespace reShutCLI
         public static void OpenSettings()
         {
         step6:
-            Console.Title = "reShut CLI Setup";
-            UpdateChecker.DisplayCenteredMessage("Entering setup, please wait...");
-            Thread.Sleep(500);
+            UpdateChecker.DisplayCenteredMessage("Loading, please wait...");
+            Thread.Sleep(250);
             Console.Clear();
-            UpdateChecker.DisplayCenteredMessage("╭─────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ Theme (6/6) │");
-            UpdateChecker.DisplayCenteredMessage("╰─────────────╯");
-            UpdateChecker.DisplayCenteredMessage("");
-            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ What theme do you want to use? │");
-            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ What theme would you like to use? │");
+            UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────╯");
             UpdateChecker.DisplayCenteredMessage("");
             UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Cyberpunk             │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
+            UpdateChecker.DisplayCenteredMessage("│ 1) Default               │"); 
+            UpdateChecker.DisplayCenteredMessage("│ 2) Cyberpunk             │"); 
             UpdateChecker.DisplayCenteredMessage("│ 3) Red                   │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 4) Blue                  │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 5) Green                 │");
+            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
+            UpdateChecker.DisplayCenteredMessage("│ 9) Back                  │");
             UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
             ConsoleKeyInfo keyInfo4 = Console.ReadKey();
             if (keyInfo4.Key == ConsoleKey.D1 || keyInfo4.Key == ConsoleKey.NumPad1)
@@ -52,6 +45,10 @@ namespace reShutCLI
             {
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "green");
             }
+            else if (keyInfo4.Key == ConsoleKey.D9 || keyInfo4.Key == ConsoleKey.NumPad9)
+            {
+                return;
+            }
             else
             {
                 goto step6;
@@ -61,7 +58,7 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("│ Applying changes... │");
             UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
             ThemeLoader.loadTheme();
-            Thread.Sleep(3000);
+            Thread.Sleep(500);
             Console.Clear();
             AutoRestart.Init();
             return;

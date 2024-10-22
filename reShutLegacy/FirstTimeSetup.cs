@@ -19,7 +19,7 @@ namespace reShutCLI
                 Console.Title = "Welcome to reShut CLI!";
                 Program.CenterText();
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Thread.Sleep(3000);
+                Thread.Sleep(1500);
                 Console.Clear();
                 Console.ForegroundColor = Variables.MenuColor;
                 Console.Title = "reShut CLI Setup";
@@ -33,13 +33,67 @@ namespace reShutCLI
                 RegInit.Populate(false);
                 Thread.Sleep(1000);
                 Console.Clear();
+                step2:
+                Console.Clear();
+                UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Language (2/5) │");
+                UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("");
+                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Help translate reShut CLI to your language! https://github.com/elnino0916/reshut-cli │");
+                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("");
+                UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Select the language you would like to use. │");
+                UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("");
+                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ 1) English (US) [100%]           │");
+                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [80%]        │");
+                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [50%]       │");
+                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                UpdateChecker.DisplayCenteredMessage("│ 4) Spanish (Español) [50%]       │");
+                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                UpdateChecker.DisplayCenteredMessage("│ 5) Portuguese (Português) [50%]  │");
+                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
+                var keyInfoL = Console.ReadKey();
+                var key = keyInfoL.KeyChar.ToString();
+                switch (key)
+                {
+                    case "1":
+                        RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "en-US");
+                        break;
+
+                    case "2":
+                        RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "de-DE");
+                        break;
+
+                    case "3":
+                        RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "fr-FR");
+                        break;
+
+                    case "4":
+                        RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "es-ES");
+                        break;
+
+                    case "5":
+                        RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "pt-PT");
+                        break;
+                    default:
+                        goto step2;
+                }
+
+                Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ EULA (2/5) │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
-                Thread.Sleep(500);
+                Thread.Sleep(250);
                 ShowEULA.Start();
                 Console.ForegroundColor = Variables.MenuColor;
+
             step3:
                 Console.Clear();
                 UpdateChecker.DisplayCenteredMessage("╭───────────────╮");
@@ -183,12 +237,14 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Setup complete! │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────╯");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "1");
-                UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ reShut CLI is now ready to use. │");
-                UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ reShut CLI will now restart to save your preferences.  │");
+                UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────────────────╯");
                 Thread.Sleep(3000);
+                AutoRestart.Init();
                 return;
             }
+
         }
     }
 }

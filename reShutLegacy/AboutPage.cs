@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Resources;
-using System.Text.RegularExpressions;
 
 namespace reShutCLI
 {
@@ -30,7 +29,7 @@ namespace reShutCLI
 
             UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");
             UpdateChecker.DisplayCenteredMessage("│ " + header.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + "Copyright (c) 2023-2024 elNino0916".PadRight(borderLength - 2) + " │");
+            UpdateChecker.DisplayCenteredMessage("│ " + "Copyright © 2023-2024 elNino0916".PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
             UpdateChecker.DisplayCenteredMessage(rm.GetString("PressAnyKeyToGoBack", culture));

@@ -14,7 +14,7 @@ namespace reShutCLI
         public static bool DevelopmentBuild = true;
 
         // Language
-        public static string lang = "de-DE";
+        public static string lang = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config","Language");
 
         // The version
         public static string version = "2.0.0.0";

@@ -11,11 +11,11 @@ internal class Program
     [SupportedOSPlatform("windows")]
     private static void Main(string[] args)
     {
+        InitializeApp(args);
+
         // Load languages
         CultureInfo culture = new CultureInfo(Variables.lang);
         ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-
-        InitializeApp(args);
 
         // Main UI starts here
         // Sets Title
@@ -112,8 +112,8 @@ internal class Program
         else
             centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) +
                            Variables.fullversion;
-        var copyright = new string(' ', (Console.WindowWidth - "Copyright (c) 2023-2024 elNino0916".Length) / 2) +
-                        "Copyright (c) 2023-2024 elNino0916";
+        var copyright = new string(' ', (Console.WindowWidth - "Copyright © 2023-2024 elNino0916".Length) / 2) +
+                        "Copyright © 2023-2024 elNino0916";
         Console.WriteLine(centeredText);
         Console.WriteLine(copyright);
     }
