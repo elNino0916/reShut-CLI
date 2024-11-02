@@ -4,7 +4,7 @@
 
  
 ## reShut CLI is an easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer.
-[![Download](https://custom-icon-badges.demolab.com/badge/-Download-grey?style=for-the-badge&logo=Windows&logoColor=white "Download reShut CLI")](https://github.com/elNino0916/reShut-CLI/releases/download/1.0.5.1/reShut-Installer.exe)
+[![Download](https://custom-icon-badges.demolab.com/badge/-Download-grey?style=for-the-badge&logo=Windows&logoColor=white "Download reShut CLI")](https://github.com/elNino0916/reShut-CLI/releases/latest/download/reShut-Installer.exe)
 
 ----------------------
 ![image](https://github.com/user-attachments/assets/6bc5bb54-7561-43e1-8993-a53486f2b690)
