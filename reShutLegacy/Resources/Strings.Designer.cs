@@ -88,7 +88,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle Double-Configuration ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle Double-Confirmation ähnelt.
         /// </summary>
         internal static string DoubleConfiguration {
             get {
@@ -124,7 +124,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Good Day ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hi ähnelt.
         /// </summary>
         internal static string GoodDay {
             get {

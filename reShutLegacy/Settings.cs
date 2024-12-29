@@ -96,6 +96,61 @@ namespace reShutCLI
                             ConfigManager.Reset();
                             goto GeneralInit;
 
+                        case "4":
+                            Console.Clear();
+                            Console.ForegroundColor = Variables.MenuColor;
+                            UpdateChecker.DisplayCenteredMessage("╭──────────╮");
+                            UpdateChecker.DisplayCenteredMessage("│ Language │");
+                            UpdateChecker.DisplayCenteredMessage("╰──────────╯");
+                            UpdateChecker.DisplayCenteredMessage("");
+                            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────────────╮");
+                            UpdateChecker.DisplayCenteredMessage("│ Help translate reShut CLI to your language! https://github.com/elnino0916/reshut-cli │");
+                            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────────────╯");
+                            UpdateChecker.DisplayCenteredMessage("");
+                            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
+                            UpdateChecker.DisplayCenteredMessage("│ Select the language you would like to use. │");
+                            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
+                            UpdateChecker.DisplayCenteredMessage("");
+                            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
+                            UpdateChecker.DisplayCenteredMessage("│ 1) English (US) [100%]           │");
+                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                            UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [80%]        │");
+                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                            UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [50%]       │");
+                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                            UpdateChecker.DisplayCenteredMessage("│ 4) Spanish (Español) [50%]       │");
+                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+                            UpdateChecker.DisplayCenteredMessage("│ 5) Portuguese (Português) [50%]  │");
+                            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
+                            var keyInfoL = Console.ReadKey();
+                            var key = keyInfoL.KeyChar.ToString();
+                            switch (key)
+                            {
+                                case "1":
+                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "en-US");
+                                    break;
+
+                                case "2":
+                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "de-DE");
+                                    break;
+
+                                case "3":
+                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "fr-FR");
+                                    break;
+
+                                case "4":
+                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "es-ES");
+                                    break;
+
+                                case "5":
+                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "pt-PT");
+                                    break;
+                                default:
+                                    break;
+                            }
+                            AutoRestart.Init();
+                            goto GeneralInit;
+
                         case "9":
                             Console.Clear();
                             goto settings;

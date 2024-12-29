@@ -7,7 +7,7 @@ namespace reShutCLI
 {
     internal class CmdLine
     {
-        [SupportedOSPlatform("windows")]
+
         public CmdLine(IEnumerable<string> args)
         {
             List<string> validPrefixes = ["-", "/"];

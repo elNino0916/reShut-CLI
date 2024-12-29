@@ -13,25 +13,18 @@ namespace reShutCLI
             // type:
             // shutdown
             // reboot
-            var type = "";
             Console.Clear();
-            Console.ForegroundColor = Variables.SecondaryColor;
-            UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────────────────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│          Warning! This version of the scheduler is now discontinued.        │");
-            UpdateChecker.DisplayCenteredMessage("│  A new version will be released soon. This version will not be translated.  │");
-            UpdateChecker.DisplayCenteredMessage("│                          Sorry for the inconvenience.                       │");
-            UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────────────────────────────────────────────╯");
-            UpdateChecker.DisplayCenteredMessage("");
+            var type = "";
             Console.ForegroundColor = Variables.MenuColor;
-            UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ What do you want to schedule? │");
-            UpdateChecker.DisplayCenteredMessage("│ Select an option:             │");
-            UpdateChecker.DisplayCenteredMessage("│ 1) Shutdown                   │");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Reboot                     │");
-            UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 0) Cancel schedule            │");
-            UpdateChecker.DisplayCenteredMessage("│ 9) Back                       │");
-            UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
+            UpdateChecker.DisplayCenteredMessage("│ What would you like to schedule? │");
+            UpdateChecker.DisplayCenteredMessage("│ Select an option:                │");
+            UpdateChecker.DisplayCenteredMessage("│ 1) Shutdown                      │");
+            UpdateChecker.DisplayCenteredMessage("│ 2) Reboot                        │");
+            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
+            UpdateChecker.DisplayCenteredMessage("│ 0) Cancel schedule               │");
+            UpdateChecker.DisplayCenteredMessage("│ 9) Back                          │");
+            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
             var keyInfo = Console.ReadKey();
             var key = keyInfo.KeyChar.ToString();
             switch (key)
@@ -150,7 +143,7 @@ namespace reShutCLI
                         Console.ForegroundColor = ConsoleColor.Green;
                         var toUpperChar = char.ToUpper(type[0]);
                         UpdateChecker.DisplayCenteredMessage("╭────────────────────────────╮");
-                        UpdateChecker.DisplayCenteredMessage("│ Action has been scheduled. │");
+                        UpdateChecker.DisplayCenteredMessage("│ Action has been scheduled! │");
                         UpdateChecker.DisplayCenteredMessage("╰────────────────────────────╯");
                         Console.ForegroundColor = ConsoleColor.White;
                         return true;

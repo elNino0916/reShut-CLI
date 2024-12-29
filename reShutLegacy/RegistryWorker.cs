@@ -7,7 +7,7 @@ namespace reShutCLI
     // Updated for 2.0.0.0
     class RegistryWorker
     {
-        [SupportedOSPlatform("windows")]
+
         public static void WriteToRegistry(string registryPath, string keyName, string type, string content)
         {
             try
@@ -77,7 +77,7 @@ namespace reShutCLI
             }
         }
 
-        [SupportedOSPlatform("windows")]
+
         public static string ReadFromRegistry(string registryPath, string keyName)
         {
             try
@@ -122,7 +122,7 @@ namespace reShutCLI
             }
         }
 
-        [SupportedOSPlatform("windows")]
+
         public static void DeleteFromRegistry(string registryPath, string keyName)
         {
             try
@@ -157,7 +157,7 @@ namespace reShutCLI
             }
         }
 
-        [SupportedOSPlatform("windows")]
+
         public static bool Exists(string registryPath, string keyName)
         {
             try

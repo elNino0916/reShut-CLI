@@ -8,7 +8,7 @@ namespace reShutCLI
 {
     internal class ConfigManager
     {
-        [SupportedOSPlatform("windows")]
+
         public static void Reset()
         {
         ResetMenu:

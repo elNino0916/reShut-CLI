@@ -6,7 +6,7 @@ namespace reShutCLI
 {
     internal class RegInit
     {
-        [SupportedOSPlatform("windows")]
+
         public static void Populate(bool skipCreation)
         {
             if (!skipCreation)
@@ -47,7 +47,7 @@ namespace reShutCLI
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
                 Populate(false);
-                FirstTimeSetup.FirstStartup();
+                Setup.FirstStartup();
                 Console.Clear();
             }
         }

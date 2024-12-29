@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace reShutCLI
 {
-    internal class FirstTimeSetup
+    internal class Setup
     {
         // Updated for 2.0.0.0
         public static void FirstStartup()
@@ -23,15 +23,15 @@ namespace reShutCLI
                 Console.Clear();
                 Console.ForegroundColor = Variables.MenuColor;
                 Console.Title = "reShut CLI Setup";
-                UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Initial Setup (1/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Welcome to reShut CLI! (1/5) │");
+                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Creating initial configuration... │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Hello! Bonjour! Hallo! │");
+                UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
                 RegInit.Populate(false);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 Console.Clear();
                 step2:
                 Console.Clear();
@@ -156,20 +156,18 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Theme (4/5) │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭─────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ What theme do you want? │");
-                UpdateChecker.DisplayCenteredMessage("╰─────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ What theme would you like to use? │");
+                UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) Cyberpunk             │");
+                UpdateChecker.DisplayCenteredMessage("│ 2) Red                   │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 3) Red                   │");
+                UpdateChecker.DisplayCenteredMessage("│ 3) Blue                  │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 4) Blue                  │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 5) Green                 │");
+                UpdateChecker.DisplayCenteredMessage("│ 4) Green                 │");
                 UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
                 ConsoleKeyInfo keyInfo4 = Console.ReadKey();
                 if (keyInfo4.Key == ConsoleKey.D1 || keyInfo4.Key == ConsoleKey.NumPad1)
@@ -178,17 +176,13 @@ namespace reShutCLI
                 }
                 else if (keyInfo4.Key == ConsoleKey.D2 || keyInfo4.Key == ConsoleKey.NumPad2)
                 {
-                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "cyberpunk");
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "red");
                 }
                 else if (keyInfo4.Key == ConsoleKey.D3 || keyInfo4.Key == ConsoleKey.NumPad3)
                 {
-                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "red");
-                }
-                else if (keyInfo4.Key == ConsoleKey.D4 || keyInfo4.Key == ConsoleKey.NumPad4)
-                {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "blue");
                 }
-                else if (keyInfo4.Key == ConsoleKey.D5 || keyInfo4.Key == ConsoleKey.NumPad5)
+                else if (keyInfo4.Key == ConsoleKey.D4 || keyInfo4.Key == ConsoleKey.NumPad4)
                 {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "green");
                 }

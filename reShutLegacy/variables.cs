@@ -8,9 +8,9 @@ namespace reShutCLI
 {
     internal class Variables
     {
-        [SupportedOSPlatform("windows")]
+
         // Set true if this is a pre-release
-        public static bool prerelease = true;
+        public static bool prerelease = false;
         public static bool DevelopmentBuild = true;
 
         // Language
@@ -33,89 +33,12 @@ namespace reShutCLI
 
 
         // The motd
-        [SupportedOSPlatform("windows")]
+
         public static string Motd()
         {
             CultureInfo culture = new CultureInfo(Variables.lang);
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-            return prerelease ? $"{UserGreeter()} ({rm.GetString("UpToDate", culture)})" : $"{UserGreeter()} ({rm.GetString("UpToDate", culture)})";
-        }
-        [SupportedOSPlatform("windows")]
-        public static string UserGreeter()
-        {
-            CultureInfo culture = new CultureInfo(Variables.lang);
-            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
-            {
-                DateTime now1 = DateTime.Now;
-                string greeting1;
-
-                if (now1.Hour < 12)
-                {
-                    greeting1 = $"{rm.GetString("GoodMorning", culture)}, Choom!";
-                }
-                else if (now1.Hour < 18)
-                {
-                    greeting1 = $"{rm.GetString("GoodDay", culture)}, Choom!";
-                }
-                else
-                {
-                    greeting1 = $"{rm.GetString("GoodEvening", culture)}, Choom!";
-                }
-
-                return greeting1;
-            }
-
-            string fullName = GetFullName();
-            DateTime now = DateTime.Now;
-            string greeting;
-
-            if (now.Hour < 12)
-            {
-                greeting = $"{rm.GetString("GoodMorning", culture)}, {fullName}!";
-            }
-            else if (now.Hour < 18)
-            {
-                greeting = $"{rm.GetString("GoodDay", culture)}, {fullName}!";
-            }
-            else
-            {
-                greeting = $"{rm.GetString("GoodEvening", culture)}, {fullName}!";
-            }
-
-            return greeting;
-        }
-        [SupportedOSPlatform("windows")]
-        private static string GetFullName()
-        {
-            string fullName = Environment.UserName;
-            string firstName = fullName;
-
-            try
-            {
-                string query = "SELECT FullName FROM Win32_UserAccount WHERE Name = '" + Environment.UserName + "'";
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
-                foreach (ManagementObject obj in searcher.Get())
-                {
-                    fullName = obj["FullName"].ToString();
-                    break;
-                }
-            }
-            catch
-            {
-
-            }
-
-            if (!string.IsNullOrEmpty(fullName))
-            {
-                string[] nameParts = fullName.Split(' ');
-                if (nameParts.Length > 0)
-                {
-                    firstName = nameParts[0];
-                }
-            }
-
-            return firstName;
+            return prerelease ? $"{rm.GetString("UpToDate", culture)}" : $"{rm.GetString("UpToDate", culture)}";
         }
     }
 }

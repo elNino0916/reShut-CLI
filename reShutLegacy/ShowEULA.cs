@@ -6,7 +6,7 @@ namespace reShutCLI
 {
     internal class ShowEULA
     {
-        [SupportedOSPlatform("windows")]
+
         public static bool Start()
         {
         Retry:

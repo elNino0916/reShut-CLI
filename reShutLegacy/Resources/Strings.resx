@@ -160,7 +160,7 @@
     <value>Good Morning</value>
   </data>
   <data name="GoodDay" xml:space="preserve">
-    <value>Good Day</value>
+    <value>Hi</value>
   </data>
   <data name="GoodEvening" xml:space="preserve">
     <value>Good Evening</value>
@@ -202,6 +202,6 @@
     <value>Double-Confirmation is disabled.</value>
   </data>
   <data name="DoubleConfiguration" xml:space="preserve">
-    <value>Toggle Double-Configuration</value>
+    <value>Toggle Double-Confirmation</value>
   </data>
 </root>

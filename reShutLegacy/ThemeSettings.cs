@@ -8,8 +8,6 @@ namespace reShutCLI
         public static void OpenSettings()
         {
         step6:
-            UpdateChecker.DisplayCenteredMessage("Loading, please wait...");
-            Thread.Sleep(250);
             Console.Clear();
             UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage("│ What theme would you like to use? │");
@@ -17,10 +15,9 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("");
             UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage("│ 1) Default               │"); 
-            UpdateChecker.DisplayCenteredMessage("│ 2) Cyberpunk             │"); 
-            UpdateChecker.DisplayCenteredMessage("│ 3) Red                   │");
-            UpdateChecker.DisplayCenteredMessage("│ 4) Blue                  │");
-            UpdateChecker.DisplayCenteredMessage("│ 5) Green                 │");
+            UpdateChecker.DisplayCenteredMessage("│ 2) Red                   │");
+            UpdateChecker.DisplayCenteredMessage("│ 3) Blue                  │");
+            UpdateChecker.DisplayCenteredMessage("│ 4) Green                 │");
             UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 9) Back                  │");
             UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
@@ -31,17 +28,13 @@ namespace reShutCLI
             }
             else if (keyInfo4.Key == ConsoleKey.D2 || keyInfo4.Key == ConsoleKey.NumPad2)
             {
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "cyberpunk");
+                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "red");
             }
             else if (keyInfo4.Key == ConsoleKey.D3 || keyInfo4.Key == ConsoleKey.NumPad3)
             {
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "red");
-            }
-            else if (keyInfo4.Key == ConsoleKey.D4 || keyInfo4.Key == ConsoleKey.NumPad4)
-            {
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "blue");
             }
-            else if (keyInfo4.Key == ConsoleKey.D5 || keyInfo4.Key == ConsoleKey.NumPad5)
+            else if (keyInfo4.Key == ConsoleKey.D4 || keyInfo4.Key == ConsoleKey.NumPad4)
             {
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "green");
             }

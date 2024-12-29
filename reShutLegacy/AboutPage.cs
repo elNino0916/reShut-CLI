@@ -11,15 +11,19 @@ namespace reShutCLI
             CultureInfo culture = new CultureInfo(Variables.lang);
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             Console.ForegroundColor = Variables.MenuColor;
-            Console.Clear();
-            UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ Please wait... │");
-            UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
-            Console.ForegroundColor = Variables.MenuColor;
 
-            var header = "reShut CLI " + Variables.fullversion;
+            var prereleasetag = "E";
+            if (Variables.prerelease == true)
+            {
+                prereleasetag = "Pre-Release ";
+            }
+            else
+            {
+                prereleasetag = "Release ";
+            }
+            var header = "reShut CLI "+ prereleasetag + Variables.version;
+
             var releaseStatus = "Pre-Release: " + Variables.prerelease;
-
 
             Console.Clear();
             var maxLength = Math.Max(header.Length,
@@ -29,8 +33,7 @@ namespace reShutCLI
 
             UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");
             UpdateChecker.DisplayCenteredMessage("│ " + header.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + "Copyright © 2023-2024 elNino0916".PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
+            UpdateChecker.DisplayCenteredMessage("│ " + "Copyright © 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
             UpdateChecker.DisplayCenteredMessage(rm.GetString("PressAnyKeyToGoBack", culture));
             Console.ReadKey();

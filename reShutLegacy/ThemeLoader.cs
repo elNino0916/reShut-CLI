@@ -30,9 +30,9 @@ namespace reShutCLI
 
         public static void setDefaultTheme()
         {
-            Variables.MenuColor = ConsoleColor.DarkYellow;
-            Variables.LogoColor = ConsoleColor.Red;
-            Variables.SecondaryColor = ConsoleColor.DarkRed;
+            Variables.MenuColor = ConsoleColor.Cyan;
+            Variables.LogoColor = ConsoleColor.Yellow;
+            Variables.SecondaryColor = ConsoleColor.Red;
         }
         public static void setCyberpunkTheme()
         {

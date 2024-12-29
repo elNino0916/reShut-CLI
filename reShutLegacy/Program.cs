@@ -8,7 +8,7 @@ using System.Threading;
 namespace reShutCLI;
 internal class Program
 {
-    [SupportedOSPlatform("windows")]
+    
     private static void Main(string[] args)
     {
         InitializeApp(args);
@@ -17,8 +17,6 @@ internal class Program
         CultureInfo culture = new CultureInfo(Variables.lang);
         ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
 
-        // Main UI starts here
-        // Sets Title
         Console.Title = "reShut CLI " + Variables.fullversion;
 
         // Checks if EULA is accepted
@@ -45,7 +43,7 @@ internal class Program
         }
     }
 
-    [SupportedOSPlatform("windows")]
+    
     private static void ConfirmationPrompt()
     {
         if (RegistryWorker.ReadFromRegistry("HKEY_CURRENT_USER\\Software\\elNino0916\\reShutCLI\\config", "SkipConfirmation") != "1")
@@ -78,9 +76,9 @@ internal class Program
     }
     private static void License()
     {
-        Console.WriteLine("reShut CLI (version 1.0.5.0+) © 2023-2024 is now licensed under CC BY-NC-SA 4.0\n\nhttps://creativecommons.org/licenses/by-nc-sa/4.0");
+        Console.WriteLine("The license is available at: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en");
     }
-    [SupportedOSPlatform("windows")]
+    
     public static void CenterText()
     {
         // This is the ascii art that is printed at the top.
@@ -112,8 +110,8 @@ internal class Program
         else
             centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) +
                            Variables.fullversion;
-        var copyright = new string(' ', (Console.WindowWidth - "Copyright © 2023-2024 elNino0916".Length) / 2) +
-                        "Copyright © 2023-2024 elNino0916";
+        var copyright = new string(' ', (Console.WindowWidth - "Copyright © 2025 elNino0916".Length) / 2) +
+                        "Copyright © 2025 elNino0916";
         Console.WriteLine(centeredText);
         Console.WriteLine(copyright);
     }
@@ -139,7 +137,7 @@ internal class Program
         var key = keyInfo.KeyChar.ToString();
         return key;
     }
-    [SupportedOSPlatform("windows")]
+    
     private static void InitializeApp(string[] args)
     {
         // Required for UI
@@ -149,7 +147,7 @@ internal class Program
         RegInit.Populate(false);
 
         // Welcome Screen
-        FirstTimeSetup.FirstStartup();
+        Setup.FirstStartup();
 
         // Update reShut Version in case of update:
         RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "reShutVersion", "STRING", Variables.version);
@@ -164,7 +162,7 @@ internal class Program
         // Loads the Users Theme
         ThemeLoader.loadTheme();
     }
-    [SupportedOSPlatform("windows")]
+    
     private static void PrintLogo()
     {
         Console.ForegroundColor = Variables.LogoColor;
@@ -191,7 +189,7 @@ internal class Program
             Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
-    [SupportedOSPlatform("windows")]
+    
     private static void CheckInput(string key)
     {
         CultureInfo culture = new CultureInfo(Variables.lang);

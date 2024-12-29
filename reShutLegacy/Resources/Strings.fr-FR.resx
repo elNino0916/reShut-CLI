@@ -202,6 +202,6 @@
     <value>La double confirmation est désactivée.</value>
   </data>
   <data name="DoubleConfiguration" xml:space="preserve">
-    <value>Basculer la double configuration</value>
+    <value>Toggle Double-Confirmation</value>
   </data>
 </root>

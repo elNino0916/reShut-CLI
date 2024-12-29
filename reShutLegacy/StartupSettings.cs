@@ -5,7 +5,7 @@ namespace reShutCLI
 {
     internal class StartupSettings
     {
-        [SupportedOSPlatform("windows")]
+
         public static void UpdateSettings()
         {
         UpdateSettingsInit:
