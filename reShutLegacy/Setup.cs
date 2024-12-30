@@ -23,12 +23,8 @@ namespace reShutCLI
                 Console.Clear();
                 Console.ForegroundColor = Variables.MenuColor;
                 Console.Title = "reShut CLI Setup";
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Welcome to reShut CLI! (1/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Hello! Bonjour! Hallo! │");
+                UpdateChecker.DisplayCenteredMessage("│ Welcome to reShut CLI! │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
                 RegInit.Populate(false);
                 Thread.Sleep(2000);

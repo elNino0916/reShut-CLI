@@ -204,4 +204,7 @@
   <data name="DoubleConfiguration" xml:space="preserve">
     <value>Toggle Double-Confirmation</value>
   </data>
+  <data name="RegUpdate" xml:space="preserve">
+    <value>Updating registry...</value>
+  </data>
 </root>

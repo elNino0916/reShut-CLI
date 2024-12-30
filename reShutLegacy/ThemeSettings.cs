@@ -46,12 +46,7 @@ namespace reShutCLI
             {
                 goto step6;
             }
-            Console.Clear();
-            UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ Applying changes... │");
-            UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
             ThemeLoader.loadTheme();
-            Thread.Sleep(500);
             Console.Clear();
             AutoRestart.Init();
             return;

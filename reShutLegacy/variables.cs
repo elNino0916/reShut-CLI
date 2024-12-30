@@ -21,7 +21,7 @@ namespace reShutCLI
 
         // Changes the registry version.
         public static string registryVersion = "6";
-        public static string fullversion = $"v.{version}";
+        public static string fullversion = $"v{version}";
 
         // DO NOT CHANGE
         public static bool isUpToDate = true;

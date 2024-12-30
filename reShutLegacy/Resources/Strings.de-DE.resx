@@ -204,4 +204,7 @@
   <data name="DoubleConfiguration" xml:space="preserve">
     <value>Doppelte Bestätigung umschalten</value>
   </data>
+  <data name="RegUpdate" xml:space="preserve">
+    <value>Die Registrierung wird aktualisiert...</value>
+  </data>
 </root>

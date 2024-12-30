@@ -110,8 +110,8 @@ internal class Program
         else
             centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) +
                            Variables.fullversion;
-        var copyright = new string(' ', (Console.WindowWidth - "Copyright © 2025 elNino0916".Length) / 2) +
-                        "Copyright © 2025 elNino0916";
+        var copyright = new string(' ', (Console.WindowWidth - "Copyright © 2023-2025 elNino0916".Length) / 2) +
+                        "Copyright © 2023-2025 elNino0916";
         Console.WriteLine(centeredText);
         Console.WriteLine(copyright);
     }

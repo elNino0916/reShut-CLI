@@ -223,6 +223,15 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Updating registry... ähnelt.
+        /// </summary>
+        internal static string RegUpdate {
+            get {
+                return ResourceManager.GetString("RegUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Reset all settings ähnelt.
         /// </summary>
         internal static string ResetAllSettings {
