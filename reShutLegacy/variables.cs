@@ -27,9 +27,9 @@ namespace reShutCLI
         public static bool isUpToDate = true;
 
         // Will be changed by ThemeLoader, change default colors in ThemeLoader.cs
-        public static ConsoleColor LogoColor { get; set; } = ConsoleColor.Green;
-        public static ConsoleColor MenuColor { get; set; } = ConsoleColor.DarkCyan;
-        public static ConsoleColor SecondaryColor { get; set; } = ConsoleColor.Red;
+        public static ConsoleColor LogoColor { get; set; } = ConsoleColor.Yellow;   
+        public static ConsoleColor MenuColor { get; set; } = ConsoleColor.Cyan;  
+        public static ConsoleColor SecondaryColor { get; set; } = ConsoleColor.Magenta; 
 
 
         // The motd
