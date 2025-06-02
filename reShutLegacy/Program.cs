@@ -5,27 +5,37 @@ using System.Resources;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
-namespace reShutCLI;
+namespace ReShutCLI;
+
+/// <summary>
+/// Main class for the reShut CLI application.
+/// Handles application initialization, main loop, UI rendering, and input processing.
+/// </summary>
 internal class Program
 {
     
+    /// <summary>
+    /// The main entry point for the application.
+    /// Initializes the application, displays the EULA if necessary, and enters the main program loop.
+    /// </summary>
+    /// <param name="args">Command-line arguments passed to the application.</param>
     private static void Main(string[] args)
     {
         InitializeApp(args);
 
-        // Load languages
+        // Load languages for string resources
         CultureInfo culture = new CultureInfo(Variables.lang);
-        ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+        ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
 
-        Console.Title = "reShut CLI " + Variables.fullversion;
+        Console.Title = rm.GetString("ConsoleTitle", culture) + Variables.fullversion;
 
         // Checks if EULA is accepted
-        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted") == "0")
+        if (RegistryWorker.ReadFromRegistry(Constants.RegistryPathConfig, Constants.RegistryValueEulaAccepted) == Constants.EulaNotAcceptedValue)
         {
             // Prompt EULA
             if (!ShowEULA.Start())
             {
-                Environment.Exit(0);
+                Environment.Exit(Constants.ExitCodeSuccess);
             }
         }
         while (true)
@@ -43,45 +53,63 @@ internal class Program
         }
     }
 
+    /// <summary>
+    /// Displays a message to the console, centered and enclosed in a decorative border.
+    /// </summary>
+    /// <param name="messageText">The text of the message to display.</param>
+    private static void DisplayBorderedMessage(string messageText)
+    {
+        // Calculate the maximum length for the box, ensuring it's wide enough for the message or a minimum width.
+        int boxWidth = Math.Max(messageText.Length + Constants.BoxPaddingWidth, Constants.MinimumBoxWidth);
+        string topBorder = "╭" + new string('─', boxWidth) + "╮";
+        string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
+
+        // Calculate padding to center the message text within the box.
+        int paddingLeft = (boxWidth - messageText.Length) / 2;
+        string paddedMessage = "│" + new string(' ', paddingLeft) + messageText + new string(' ', boxWidth - messageText.Length - paddingLeft) + "│";
+
+        // Print the bordered message using the UpdateChecker's centered display method.
+        UpdateChecker.DisplayCenteredMessage(topBorder);
+        UpdateChecker.DisplayCenteredMessage(paddedMessage);
+        UpdateChecker.DisplayCenteredMessage(bottomBorder);
+    }
     
+    /// <summary>
+    /// Displays a confirmation prompt if skipConfirmation is not enabled in the registry.
+    /// The prompt is a bordered message asking for user confirmation.
+    /// </summary>
     private static void ConfirmationPrompt()
     {
-        if (RegistryWorker.ReadFromRegistry("HKEY_CURRENT_USER\\Software\\elNino0916\\reShutCLI\\config", "SkipConfirmation") != "1")
+        // Check registry setting to see if confirmation can be skipped.
+        if (RegistryWorker.ReadFromRegistry(Constants.RegistryPathConfig, Constants.RegistryValueSkipConfirmation) != Constants.SkipConfirmationEnabledValue)
         {
             CultureInfo culture = new CultureInfo(Variables.lang);
-            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+            ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
+            string confirmationText = rm.GetString("ConfirmationText", culture); // Get localized confirmation text.
 
-            // Get the translated string
-            string confirmationText = rm.GetString("ConfirmationText", culture);
-
-            // Calculate the maximum length (either the message or the box)
-            int boxWidth = Math.Max(confirmationText.Length + 2, 44); // Ensure minimum width of 44
-            string topBorder = "╭" + new string('─', boxWidth) + "╮";
-            string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
-
-            // Center the message within the box
-            int paddingLeft = (boxWidth - confirmationText.Length) / 2;
-            string paddedMessage = "│" + new string(' ', paddingLeft) + confirmationText + new string(' ', boxWidth - confirmationText.Length - paddingLeft) + "│";
-
-            // Center the entire box within the console window
-            int windowWidth = Console.WindowWidth;
-
-            // Print the confirmation message centered on the console
-            Console.ForegroundColor = Variables.SecondaryColor;
-            UpdateChecker.DisplayCenteredMessage("\n");
-            UpdateChecker.DisplayCenteredMessage(topBorder);
-            UpdateChecker.DisplayCenteredMessage(paddedMessage);
-            UpdateChecker.DisplayCenteredMessage(bottomBorder);
+            Console.ForegroundColor = Variables.SecondaryColor; // Set text color for the prompt.
+            UpdateChecker.DisplayCenteredMessage("\n"); // Add a newline for spacing.
+            DisplayBorderedMessage(confirmationText); // Display the actual bordered message.
         }
     }
+
+    /// <summary>
+    /// Displays the license information text.
+    /// </summary>
     private static void License()
     {
-        Console.WriteLine("The license is available at: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en");
+        CultureInfo culture = new CultureInfo(Variables.lang);
+        ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
+        Console.WriteLine(rm.GetString("LicenseText", culture)); // Get and print localized license text.
     }
     
+    /// <summary>
+    /// Centers and displays the ASCII art logo, application version, and copyright information.
+    /// This method is typically called when printing the main logo or header.
+    /// </summary>
     public static void CenterText()
     {
-        // This is the ascii art that is printed at the top.
+        // ASCII art logo definition.
         string[] lines =
         [
             @"           ____  _           _      ____ _     ___ ",
@@ -92,191 +120,264 @@ internal class Program
             @"                                                   "
         ];
 
-        var maxLength = lines.Max(line => line.Length);
+        var maxLength = lines.Max(line => line.Length); // Find the widest line in the ASCII art.
+        // Calculate padding to center the ASCII art based on console width.
         var padding = (Console.WindowWidth - maxLength) / 2;
 
+        // Print each line of the ASCII art centered.
         foreach (var line in lines)
         {
             var centeredLine = new string(' ', padding) + line;
             Console.WriteLine(centeredLine);
         }
 
-        string centeredText;
+        string centeredText; // This will hold the version string.
 
+        // Load resources for localized strings.
+        CultureInfo culture = new CultureInfo(Variables.lang);
+        ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
+
+        // Construct the version string, adding "Pre-Release" if applicable.
         if (Variables.prerelease)
             centeredText =
-                new string(' ', (Console.WindowWidth - "Pre-Release ".Length - Variables.fullversion.Length) / 2) +
-                "Pre-Release " + Variables.fullversion;
+                new string(' ', (Console.WindowWidth - rm.GetString("PreRelease", culture).Length - Variables.fullversion.Length) / 2) + // Calculate padding for pre-release version
+                rm.GetString("PreRelease", culture) + Variables.fullversion;
         else
-            centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) +
+            centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) + // Calculate padding for standard version
                            Variables.fullversion;
-        var copyright = new string(' ', (Console.WindowWidth - "Copyright © 2023-2025 elNino0916".Length) / 2) +
-                        "Copyright © 2023-2025 elNino0916";
+
+        // Construct the copyright string.
+        var copyright = new string(' ', (Console.WindowWidth - rm.GetString("CopyrightText", culture).Length) / 2) + // Calculate padding for copyright
+                        rm.GetString("CopyrightText", culture);
+
+        // Print the centered version and copyright information.
         Console.WriteLine(centeredText);
         Console.WriteLine(copyright);
     }
+
+    /// <summary>
+    /// Displays the main menu of the application and waits for user input.
+    /// </summary>
+    /// <returns>A string representing the key pressed by the user.</returns>
     private static string MainMenu()
     {
         CultureInfo culture = new CultureInfo(Variables.lang);
-        ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-        Console.ForegroundColor = Variables.MenuColor;
+        ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
+        Console.ForegroundColor = Variables.MenuColor; // Set color for the menu text.
+
+        // Get localized menu item strings.
         string[] menuItems = [rm.GetString("Shutdown", culture), rm.GetString("Reboot", culture), rm.GetString("Logoff", culture), rm.GetString("Schedule", culture), rm.GetString("Settings", culture), rm.GetString("Quit", culture)];
+
+        // Display the menu structure with borders and items.
+        // The main menu title is fetched from resources, allowing for localization.
         UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-        UpdateChecker.DisplayCenteredMessage($"│       {rm.GetString("MainMenu", culture)}        │"); // Has to be changed when more languages are added.
+        UpdateChecker.DisplayCenteredMessage($"│       {rm.GetString("MainMenu", culture)}        │");
         UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
-        for (var i = 1; i < menuItems.Length - 1; i++)
-            UpdateChecker.DisplayCenteredMessage("│ " + i + ") " + menuItems[i - 1].PadRight(20) + "│");
+        for (var i = Constants.MainMenuStartIndex; i < menuItems.Length - 1; i++) // Loop through standard menu items (1-3).
+            UpdateChecker.DisplayCenteredMessage("│ " + i + ") " + menuItems[i - 1].PadRight(Constants.MenuItemPaddingWidth) + "│");
         UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
-        UpdateChecker.DisplayCenteredMessage("│ 9) " + menuItems[4].PadRight(20) + "│");
-        UpdateChecker.DisplayCenteredMessage("│ 0) " + menuItems[5].PadRight(20) + "│");
+        UpdateChecker.DisplayCenteredMessage("│ 9) " + menuItems[4].PadRight(Constants.MenuItemPaddingWidth) + "│"); // Settings item (9).
+        UpdateChecker.DisplayCenteredMessage("│ 0) " + menuItems[5].PadRight(Constants.MenuItemPaddingWidth) + "│"); // Quit item (0).
 
         UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
 
-        // Gets the pressed key
+        // Read the user's key press.
         var keyInfo = Console.ReadKey();
         var key = keyInfo.KeyChar.ToString();
         return key;
     }
     
+    /// <summary>
+    /// Performs initial setup for the application.
+    /// This includes setting console encoding, populating registry defaults,
+    /// running first-time setup (like EULA), updating version info in registry,
+    /// parsing command line arguments, and loading themes.
+    /// </summary>
+    /// <param name="args">Command-line arguments passed to the application.</param>
     private static void InitializeApp(string[] args)
     {
-        // Required for UI
+        // Set console output to UTF8 to support various characters.
         Console.OutputEncoding = Encoding.UTF8;
 
-        // Check for update (registry)
+        // Initialize or update registry entries, false means not forced.
         RegInit.Populate(false);
 
-        // Welcome Screen
+        // Perform first startup routines (e.g., EULA display).
         Setup.FirstStartup();
 
-        // Update reShut Version in case of update:
-        RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "reShutVersion", "STRING", Variables.version);
+        // Update the stored application version in the registry.
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueReShutVersion, Constants.RegistryValueTypeString, Variables.version);
 
-        // Initializes cmdLine-args
+        // Process any command-line arguments.
         var cmdLine = new CmdLine(args);
 
-        Console.CursorVisible = false;
-        Console.BackgroundColor = ConsoleColor.Black;
-        Console.Clear();
+        // Configure console appearance.
+        Console.CursorVisible = false; // Hide cursor.
+        Console.BackgroundColor = ConsoleColor.Black; // Set background color.
+        Console.Clear(); // Clear console.
 
-        // Loads the Users Theme
+        // Load user-selected theme.
         ThemeLoader.loadTheme();
     }
     
+    /// <summary>
+    /// Prints the application logo (ASCII art and version info) and checks for updates if enabled.
+    /// </summary>
     private static void PrintLogo()
     {
-        Console.ForegroundColor = Variables.LogoColor;
-        CenterText();
-        // Checks for updates
-        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch") == "1")
+        Console.ForegroundColor = Variables.LogoColor; // Set color for the logo.
+        CenterText(); // Display the centered ASCII art, version, and copyright.
+
+        // Initialize resources for this method's scope
+        CultureInfo culture = new CultureInfo(Variables.lang);
+        ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
+
+        // Check for updates if the feature is enabled in the registry.
+        if (RegistryWorker.ReadFromRegistry(Constants.RegistryPathConfig, Constants.RegistryValueEnableUpdateSearch) == Constants.UpdateSearchEnabledValue)
         {
             try
             {
-                UpdateChecker.MainCheck().Wait();
+                UpdateChecker.MainCheck().Wait(); // Perform the update check.
             }
-            catch
+            catch // Handle potential errors during update check (e.g., network issues).
             {
                 Console.ForegroundColor = Variables.SecondaryColor;
-                UpdateChecker.DisplayCenteredMessage("Failed to check for updates. Check your network connection and try again.");
-                Console.ForegroundColor = ConsoleColor.Gray;
+                UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateCheckFailed", culture)); // Display localized error message.
+                Console.ForegroundColor = ConsoleColor.Gray; // Reset color.
             }
         }
         else
         {
-            // Updates are disabled
+            // If update search is disabled, display a message indicating so.
             Console.ForegroundColor = Variables.SecondaryColor;
-            UpdateChecker.DisplayCenteredMessage("Update Search is disabled.");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateSearchDisabled", culture)); // Display localized disabled message.
+            Console.ForegroundColor = ConsoleColor.Gray; // Reset color.
         }
     }
     
+    /// <summary>
+    /// Processes the user's input key from the main menu and performs the corresponding action.
+    /// </summary>
+    /// <param name="key">The key pressed by the user.</param>
     private static void CheckInput(string key)
     {
         CultureInfo culture = new CultureInfo(Variables.lang);
-        ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+        ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
 
-        switch (key.ToLower())
+        switch (key.ToLower()) // Convert key to lowercase to handle case-insensitivity.
         {
-            case "l":
-                Console.Clear();
-                License();
-                string welcomeMessage = rm.GetString("PressAnyKeyToGoBack", culture);
-                Console.WriteLine("\n" + welcomeMessage);
-                Console.ReadKey();
-                Console.Clear();
-                break;
-
-            case "1":
-                // Shutdown
-                ConfirmationPrompt();
-                Console.ReadKey();
-                Handler.Shutdown();
-                break;
-            case "2":
-                // Reboot
-                ConfirmationPrompt();
-                Console.ReadKey();
-                Handler.Reboot();
-                break;
-
-            case "3":
-                // Logoff
-                ConfirmationPrompt();
-                Console.ReadKey();
-                Handler.Logoff();
-                break;
-
-            case "9":
-                Settings.Show();
-                break;
-            // End of settings
-            // Close app
-            case "0":
-                Environment.Exit(0);
-                break;
-            // Open Schedule Manager
-            case "4":
-                Schedule.Plan();
-                break;
-            case "u":
-                if (Variables.isUpToDate) { Console.Clear(); return; }
-                Console.Clear();
-                Console.Title = "reShut CLI Updater";
-                Console.ForegroundColor = Variables.MenuColor;
-                UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateDLStarted", culture));
-                Thread.Sleep(2000);
-#pragma warning disable CS4014
-                AutoUpdater.PerformUpdate();
-#pragma warning restore CS4014
-                Console.ReadLine();
-                Environment.Exit(0);
-                break;
-            // Invalid key pressed
-            default:
-                Console.Clear();
-                // Get the translated string
-                string invalidText = rm.GetString("InvalidInput", culture);
-
-                // Calculate the maximum length (either the message or the box)
-                int boxWidth = Math.Max(invalidText.Length + 2, 44); // Ensure minimum width of 44
-                string topBorder = "╭" + new string('─', boxWidth) + "╮";
-                string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
-
-                // Center the message within the box
-                int paddingLeft = (boxWidth - invalidText.Length) / 2;
-                string paddedMessage = "│" + new string(' ', paddingLeft) + invalidText + new string(' ', boxWidth - invalidText.Length - paddingLeft) + "│";
-
-                // Center the entire box within the console window
-                int windowWidth = Console.WindowWidth;
-
-                // Print the confirmation message centered on the console
-                Console.ForegroundColor = Variables.SecondaryColor;
-                UpdateChecker.DisplayCenteredMessage(topBorder);
-                UpdateChecker.DisplayCenteredMessage(paddedMessage);
-                UpdateChecker.DisplayCenteredMessage(bottomBorder);
-                Console.ForegroundColor = ConsoleColor.White;
-                break;
-
+            case "l": HandleLicense(culture, rm); break;
+            case "1": HandleShutdown(); break;
+            case "2": HandleReboot(); break;
+            case "3": HandleLogoff(); break;
+            case "9": HandleSettings(); break;
+            case "0": HandleQuit(); break;
+            case "4": HandleSchedule(); break;
+            case "u": HandleUpdate(culture, rm); break;
+            default: HandleInvalidInput(culture, rm); break;
         }
+    }
+
+    /// <summary>
+    /// Handles the display of the license information.
+    /// </summary>
+    /// <param name="culture">The culture information for localization.</param>
+    /// <param name="rm">The resource manager for retrieving localized strings.</param>
+    private static void HandleLicense(CultureInfo culture, ResourceManager rm)
+    {
+        Console.Clear();
+        License(); // License method itself handles its own rm and culture
+        string welcomeMessage = rm.GetString("PressAnyKeyToGoBack", culture);
+        Console.WriteLine(Environment.NewLine + welcomeMessage);
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    /// <summary>
+    /// Handles the shutdown action, including confirmation.
+    /// </summary>
+    private static void HandleShutdown()
+    {
+        ConfirmationPrompt();
+        Console.ReadKey();
+        Handler.Shutdown();
+    }
+
+    /// <summary>
+    /// Handles the reboot action, including confirmation.
+    /// </summary>
+    private static void HandleReboot()
+    {
+        ConfirmationPrompt();
+        Console.ReadKey();
+        Handler.Reboot();
+    }
+
+    /// <summary>
+    /// Handles the logoff action, including confirmation.
+    /// </summary>
+    private static void HandleLogoff()
+    {
+        ConfirmationPrompt();
+        Console.ReadKey();
+        Handler.Logoff();
+    }
+
+    /// <summary>
+    /// Handles displaying the settings menu.
+    /// </summary>
+    private static void HandleSettings()
+    {
+        Settings.Show();
+    }
+
+    /// <summary>
+    /// Handles quitting the application.
+    /// </summary>
+    private static void HandleQuit()
+    {
+        Environment.Exit(Constants.ExitCodeSuccess);
+    }
+
+    /// <summary>
+    /// Handles displaying the schedule planner.
+    /// </summary>
+    private static void HandleSchedule()
+    {
+        Schedule.Plan();
+    }
+
+    /// <summary>
+    /// Handles the application update process.
+    /// </summary>
+    /// <param name="culture">The culture information for localization.</param>
+    /// <param name="rm">The resource manager for retrieving localized strings.</param>
+    private static void HandleUpdate(CultureInfo culture, ResourceManager rm)
+    {
+        if (Variables.isUpToDate) { Console.Clear(); return; }
+        Console.Clear();
+        Console.Title = rm.GetString("UpdaterTitle", culture);
+        Console.ForegroundColor = Variables.MenuColor;
+        UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateDLStarted", culture));
+        Thread.Sleep(Constants.UpdateDownloadMessageDelayMs);
+#pragma warning disable CS4014 // Call is not awaited, as it's a fire-and-forget update process.
+        AutoUpdater.PerformUpdate();
+#pragma warning restore CS4014
+        Console.ReadLine();
+        Environment.Exit(Constants.ExitCodeSuccess);
+    }
+
+    /// <summary>
+    /// Handles invalid user input by displaying an error message.
+    /// </summary>
+    /// <param name="culture">The culture information for localization.</param>
+    /// <param name="rm">The resource manager for retrieving localized strings.</param>
+    private static void HandleInvalidInput(CultureInfo culture, ResourceManager rm)
+    {
+        Console.Clear();
+        string invalidText = rm.GetString("InvalidInput", culture);
+        Console.ForegroundColor = Variables.SecondaryColor;
+        DisplayBorderedMessage(invalidText);
+        Console.ForegroundColor = ConsoleColor.White;
     }
 }
