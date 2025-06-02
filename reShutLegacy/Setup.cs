@@ -160,10 +160,9 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
                 UpdateChecker.DisplayCenteredMessage("│ 2) Red                   │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
                 UpdateChecker.DisplayCenteredMessage("│ 3) Blue                  │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
                 UpdateChecker.DisplayCenteredMessage("│ 4) Green                 │");
+                UpdateChecker.DisplayCenteredMessage("│ 5) Nord                  │");
                 UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
                 ConsoleKeyInfo keyInfo4 = Console.ReadKey();
                 if (keyInfo4.Key == ConsoleKey.D1 || keyInfo4.Key == ConsoleKey.NumPad1)
@@ -181,6 +180,10 @@ namespace reShutCLI
                 else if (keyInfo4.Key == ConsoleKey.D4 || keyInfo4.Key == ConsoleKey.NumPad4)
                 {
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "green");
+                }
+                else if (keyInfo4.Key == ConsoleKey.D5 || keyInfo4.Key == ConsoleKey.NumPad5)
+                {
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "nord");
                 }
                 else
                 {
