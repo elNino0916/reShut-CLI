@@ -1,4 +1,4 @@
-![image](https://github.com/elNino0916/reShut-CLI/assets/84574414/a0b9738f-8cee-4b65-98ae-583e01182d11)
+![image](https://github.com/user-attachments/assets/4e7b1ba2-7a77-45c0-bb2f-5e4ebcad1964)
 
  
 ## reShut CLI is an easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer.
