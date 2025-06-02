@@ -5,7 +5,7 @@ using System.Resources;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
-namespace ReShutCLI;
+namespace reShutCLI;
 
 /// <summary>
 /// Main class for the reShut CLI application.
