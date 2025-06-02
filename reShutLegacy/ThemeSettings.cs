@@ -10,17 +10,20 @@ namespace reShutCLI
         step6:
             Console.Clear();
             UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ What theme would you like to use? │");
+            UpdateChecker.DisplayCenteredMessage("│  Select Your Preferred Theme:     │");
+            UpdateChecker.DisplayCenteredMessage("│  Choose from the options below:   │");
             UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────╯");
             UpdateChecker.DisplayCenteredMessage("");
             UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ 1) Default               │"); 
+            UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");
             UpdateChecker.DisplayCenteredMessage("│ 2) Red                   │");
             UpdateChecker.DisplayCenteredMessage("│ 3) Blue                  │");
             UpdateChecker.DisplayCenteredMessage("│ 4) Green                 │");
+            UpdateChecker.DisplayCenteredMessage("│ 5) Nord                  │");
             UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 9) Back                  │");
             UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
+            UpdateChecker.DisplayCenteredMessage(""); // Added for spacing before input
             ConsoleKeyInfo keyInfo4 = Console.ReadKey();
             if (keyInfo4.Key == ConsoleKey.D1 || keyInfo4.Key == ConsoleKey.NumPad1)
             {
@@ -37,6 +40,10 @@ namespace reShutCLI
             else if (keyInfo4.Key == ConsoleKey.D4 || keyInfo4.Key == ConsoleKey.NumPad4)
             {
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "green");
+            }
+            else if (keyInfo4.Key == ConsoleKey.D5 || keyInfo4.Key == ConsoleKey.NumPad5)
+            {
+                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "nord");
             }
             else if (keyInfo4.Key == ConsoleKey.D9 || keyInfo4.Key == ConsoleKey.NumPad9)
             {
