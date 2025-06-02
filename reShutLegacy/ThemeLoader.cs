@@ -10,10 +10,6 @@ namespace reShutCLI
             {
                 setDefaultTheme();
             }
-            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "cyberpunk")
-            {
-                setCyberpunkTheme();
-            }
             if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "red")
             {
                 setRedTheme();
@@ -26,17 +22,15 @@ namespace reShutCLI
             {
                 setGreenTheme();
             }
+            if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme") == "nord")
+            {
+                setNordTheme();
+            }
         }
 
         public static void setDefaultTheme()
         {
             Variables.MenuColor = ConsoleColor.Cyan;
-            Variables.LogoColor = ConsoleColor.Yellow;
-            Variables.SecondaryColor = ConsoleColor.Red;
-        }
-        public static void setCyberpunkTheme()
-        {
-            Variables.MenuColor = ConsoleColor.Blue;
             Variables.LogoColor = ConsoleColor.Yellow;
             Variables.SecondaryColor = ConsoleColor.Red;
         }
@@ -57,6 +51,12 @@ namespace reShutCLI
             Variables.MenuColor = ConsoleColor.Green;
             Variables.LogoColor = ConsoleColor.DarkGreen;
             Variables.SecondaryColor = ConsoleColor.Blue;
+        }
+        public static void setNordTheme()
+        {
+            Variables.MenuColor = ConsoleColor.DarkCyan;
+            Variables.LogoColor = ConsoleColor.Cyan;
+            Variables.SecondaryColor = ConsoleColor.DarkGray;
         }
     }
 }
