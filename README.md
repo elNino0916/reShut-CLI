@@ -7,6 +7,9 @@
 -----
 New Features in v2.0.0
 * Translations
-* ...
+* Bugfixes and Performance Improvements
+* Updating without Reset
+* New Theme
+* .NET 9
 * ...
 -----
