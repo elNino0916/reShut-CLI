@@ -223,11 +223,11 @@ namespace reShutCLI
                     string doubleText = "DoubleConfirmoff";
                     if (skipValue == "0")
                     {
-                        doubleText = rm.GetString("DoubleConfirmOff", culture);
+                        doubleText = rm.GetString("DoubleConfirmOn", culture);
                     }
                     else 
                     {
-                        doubleText = rm.GetString("DoubleConfirmOn", culture); 
+                        doubleText = rm.GetString("DoubleConfirmOff", culture); 
                     }
 
                     int boxWidthStateDouble = Math.Max(doubleText.Length + 2, 44);
