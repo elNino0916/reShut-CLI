@@ -310,16 +310,16 @@ namespace reShutCLI
                 default:
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    string invalidText = rm.GetString("InvalidInput", culture);
-                    int boxWidth = Math.Max(invalidText.Length + 2, 44);
-                    string topBorder = "╭" + new string('─', boxWidth) + "╮";
-                    string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
-                    int paddingLeft = (boxWidth - invalidText.Length) / 2;
-                    string paddedMessage = "│" + new string(' ', paddingLeft) + invalidText + new string(' ', boxWidth - invalidText.Length - paddingLeft) + "│";
+                    string invalidInput_Text = rm.GetString("InvalidInput", culture);
+                    int invalidInput_BoxWidth = Math.Max(invalidInput_Text.Length + 2, 44);
+                    string invalidInput_TopBorder = "╭" + new string('─', invalidInput_BoxWidth) + "╮";
+                    string invalidInput_BottomBorder = "╰" + new string('─', invalidInput_BoxWidth) + "╯";
+                    int invalidInput_PaddingLeft = (invalidInput_BoxWidth - invalidInput_Text.Length) / 2;
+                    string invalidInput_PaddedMessage = "│" + new string(' ', invalidInput_PaddingLeft) + invalidInput_Text + new string(' ', invalidInput_BoxWidth - invalidInput_Text.Length - invalidInput_PaddingLeft) + "│";
                     Console.ForegroundColor = Variables.SecondaryColor;
-                    UpdateChecker.DisplayCenteredMessage(topBorder);
-                    UpdateChecker.DisplayCenteredMessage(paddedMessage);
-                    UpdateChecker.DisplayCenteredMessage(bottomBorder);
+                    UpdateChecker.DisplayCenteredMessage(invalidInput_TopBorder);
+                    UpdateChecker.DisplayCenteredMessage(invalidInput_PaddedMessage);
+                    UpdateChecker.DisplayCenteredMessage(invalidInput_BottomBorder);
                     Console.ForegroundColor = ConsoleColor.White;
                     goto settings;
 
