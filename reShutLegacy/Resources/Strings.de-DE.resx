@@ -225,4 +225,58 @@
   <data name="UpdaterTitle" xml:space="preserve">
     <value>reShut CLI-Aktualisierung</value>
   </data>
+  <data name="Schedule_PromptAction" xml:space="preserve">
+    <value>Was möchten Sie planen?</value>
+  </data>
+  <data name="Schedule_SelectOption" xml:space="preserve">
+    <value>Wählen Sie eine Option:</value>
+  </data>
+  <data name="Schedule_ShutdownOption" xml:space="preserve">
+    <value>Herunterfahren</value>
+  </data>
+  <data name="Schedule_RebootOption" xml:space="preserve">
+    <value>Neu starten</value>
+  </data>
+  <data name="Schedule_Cancel" xml:space="preserve">
+    <value>Aktion abbrechen</value>
+  </data>
+  <data name="Schedule_ActionCancelled" xml:space="preserve">
+    <value>Aktion wurde abgebrochen.</value>
+  </data>
+  <data name="Schedule_CurrentTime" xml:space="preserve">
+    <value>Derzeitige Zeit:</value>
+  </data>
+  <data name="Schedule_PromptWhen" xml:space="preserve">
+    <value>Wann soll die Aktion ausgeführt werden?</value>
+  </data>
+  <data name="Schedule_EnterSeconds" xml:space="preserve">
+    <value>Geben Sie die Zeit in Sekunden an</value>
+  </data>
+  <data name="Schedule_InputPrompt" xml:space="preserve">
+    <value>Eingabe:</value>
+  </data>
+  <data name="Schedule_ErrorNumberInput" xml:space="preserve">
+    <value>Fehler: Eingabe muss eine zulässige Nummer sein.</value>
+  </data>
+  <data name="Schedule_ConfirmActionSeconds" xml:space="preserve">
+    <value>Sie möchten den PC in {1} Sekunden {0}. Ist dies korrekt?</value>
+  </data>
+  <data name="Schedule_TimeBreakdown" xml:space="preserve">
+    <value>({0}min/{1}std)</value>
+  </data>
+  <data name="Schedule_ConfirmYes" xml:space="preserve">
+    <value>Ja, "{0}" planen</value>
+  </data>
+  <data name="Schedule_ConfirmNoReenter" xml:space="preserve">
+    <value>Nein, erneut eingeben.</value>
+  </data>
+  <data name="BackToMainMenu" xml:space="preserve">
+    <value>Zurück zum Hauptmenü</value>
+  </data>
+  <data name="Schedule_ActionScheduled" xml:space="preserve">
+    <value>Aktion wurde geplant.</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten.</value>
+  </data>
 </root>
