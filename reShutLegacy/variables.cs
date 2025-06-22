@@ -15,7 +15,7 @@ namespace reShutCLI
 
 
         // The version
-        public static string version = "1.0.5.2";
+        public static string version = "1.0.5.3";
 
         // Changes the registry version.
         public static string registryVersion = "5";
