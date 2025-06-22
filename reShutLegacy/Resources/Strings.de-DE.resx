@@ -207,4 +207,22 @@
   <data name="RegUpdate" xml:space="preserve">
     <value>Die Registrierung wird aktualisiert...</value>
   </data>
+  <data name="ConsoleTitle" xml:space="preserve">
+    <value>reShut CLI</value>
+  </data>
+  <data name="LicenseText" xml:space="preserve">
+    <value>Die Lizenz ist verfügbar auf: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.de</value>
+  </data>
+  <data name="PreRelease" xml:space="preserve">
+    <value>Vorabversion </value>
+  </data>
+  <data name="CopyrightText" xml:space="preserve">
+    <value>Copyright © 2023-2025 elNino0916</value>
+  </data>
+  <data name="UpdateSearchDisabled" xml:space="preserve">
+    <value>Die Update-Suche ist deaktiviert.</value>
+  </data>
+  <data name="UpdaterTitle" xml:space="preserve">
+    <value>reShut CLI-Aktualisierung</value>
+  </data>
 </root>

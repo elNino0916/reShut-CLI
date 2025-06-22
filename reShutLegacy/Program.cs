@@ -27,7 +27,7 @@ internal class Program
         CultureInfo culture = new CultureInfo(Variables.lang);
         ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
 
-        Console.Title = rm.GetString("ConsoleTitle", culture) + Variables.fullversion;
+        Console.Title = rm.GetString("ConsoleTitle", culture) + " " + Variables.fullversion;
 
         // Checks if EULA is accepted
         if (RegistryWorker.ReadFromRegistry(Constants.RegistryPathConfig, Constants.RegistryValueEulaAccepted) == Constants.EulaNotAcceptedValue)
@@ -40,7 +40,7 @@ internal class Program
         }
         while (true)
         {
-
+            Console.Title = rm.GetString("ConsoleTitle", culture) + " " +Variables.fullversion;
             // Prints ascii art
             PrintLogo();
 
