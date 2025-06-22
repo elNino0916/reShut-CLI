@@ -18,6 +18,7 @@ namespace reShutCLI
             // Prints the settings menu
             Console.ForegroundColor = Variables.MenuColor;
             // New UI
+            Console.Title = rm.GetString("ConsoleTitle", culture) + " " + Variables.fullversion;
             string[] menuItems = [rm.GetString("General", culture), rm.GetString("MenuAndText", culture), rm.GetString("About", culture), rm.GetString("Back", culture)];
             string settingsHeaderText = rm.GetString("Settings", culture);
 
