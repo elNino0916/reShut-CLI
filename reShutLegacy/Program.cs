@@ -8,7 +8,7 @@ internal class Program
 {
     private static void License()
     {
-        Console.WriteLine("reShut CLI (version 1.0.5.0+) © 2023-2024 is now licensed under CC BY-NC-SA 4.0\n\nhttps://creativecommons.org/licenses/by-nc-sa/4.0");
+        Console.WriteLine("reShut CLI (version 1.0.5.0+) © 2023-2025 is now licensed under CC BY-NC-SA 4.0\n\nhttps://creativecommons.org/licenses/by-nc-sa/4.0");
     }
 
     private static void ConfirmationPrompt()
@@ -55,8 +55,8 @@ internal class Program
         else
             centeredText = new string(' ', (Console.WindowWidth - Variables.fullversion.Length) / 2) +
                            Variables.fullversion;
-        var copyright = new string(' ', (Console.WindowWidth - "Copyright (c) 2023-2024 elNino0916".Length) / 2) +
-                        "Copyright (c) 2023-2024 elNino0916";
+        var copyright = new string(' ', (Console.WindowWidth - "Copyright (c) 2023-2025 elNino0916".Length) / 2) +
+                        "Copyright (c) 2023-2025 elNino0916";
         Console.WriteLine(centeredText);
         Console.WriteLine(copyright);
         Preload.Startup(true);

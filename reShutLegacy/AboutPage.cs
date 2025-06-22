@@ -25,7 +25,7 @@ namespace reShutCLI
 
             UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");
             UpdateChecker.DisplayCenteredMessage("│ " + header.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + "Copyright (c) 2023-2024 elNino0916".PadRight(borderLength - 2) + " │");
+            UpdateChecker.DisplayCenteredMessage("│ " + "Copyright (c) 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
             UpdateChecker.DisplayCenteredMessage("Press any key to go back.");
