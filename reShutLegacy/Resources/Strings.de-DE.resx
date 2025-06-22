@@ -145,7 +145,7 @@
     <value>Beenden</value>
   </data>
   <data name="PressAnyKeyToGoBack" xml:space="preserve">
-    <value>Drücke eine beliebige Taste um zurück zu kehren.</value>
+    <value>Drücke eine beliebige Taste um zurückzukehren.</value>
   </data>
   <data name="UpdateDLStarted" xml:space="preserve">
     <value>Herunterladen gestartet, Setup wird bald starten...</value>

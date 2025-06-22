@@ -7,40 +7,16 @@
       "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\reginit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\reginit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\themesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\themesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\themeloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\themeloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\aboutpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\aboutpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\handler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\handler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\updatechecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\updatechecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\handler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\handler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutlegacy\\themeloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutLegacy\\reShutCLI.csproj|solutionrelative:reshutlegacy\\themeloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 327,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -63,91 +39,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Setup.cs",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\Setup.cs",
-              "RelativeDocumentMoniker": "reShutLegacy\\Setup.cs",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\Setup.cs",
-              "RelativeToolTip": "reShutLegacy\\Setup.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAAAKUAAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:22:51.231Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RegInit.cs",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\RegInit.cs",
-              "RelativeDocumentMoniker": "reShutLegacy\\RegInit.cs",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\RegInit.cs",
-              "RelativeToolTip": "reShutLegacy\\RegInit.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T10:40:27.762Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ThemeSettings.cs",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\ThemeSettings.cs",
-              "RelativeDocumentMoniker": "reShutLegacy\\ThemeSettings.cs",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\ThemeSettings.cs",
-              "RelativeToolTip": "reShutLegacy\\ThemeSettings.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAQwDUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T11:49:42.447Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UpdateChecker.cs",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\UpdateChecker.cs",
-              "RelativeDocumentMoniker": "reShutLegacy\\UpdateChecker.cs",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\UpdateChecker.cs",
-              "RelativeToolTip": "reShutLegacy\\UpdateChecker.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAUwEEAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T11:48:15.667Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "variables.cs",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\variables.cs",
-              "RelativeDocumentMoniker": "reShutLegacy\\variables.cs",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\variables.cs",
-              "RelativeToolTip": "reShutLegacy\\variables.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T11:47:54.524Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AboutPage.cs",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\AboutPage.cs",
-              "RelativeDocumentMoniker": "reShutLegacy\\AboutPage.cs",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\AboutPage.cs",
-              "RelativeToolTip": "reShutLegacy\\AboutPage.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAcwCEAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T11:46:02.152Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Settings.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\Settings.cs",
               "RelativeDocumentMoniker": "reShutLegacy\\Settings.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\Settings.cs",
               "RelativeToolTip": "reShutLegacy\\Settings.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAAAJYAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAACgBAAAAAAAAAAAAADoBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T20:07:52.562Z"
+              "WhenOpened": "2025-06-22T10:57:14.33Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 1,
               "Title": "Handler.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\Handler.cs",
               "RelativeDocumentMoniker": "reShutLegacy\\Handler.cs",
@@ -155,11 +59,12 @@
               "RelativeToolTip": "reShutLegacy\\Handler.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAgwBAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-27T16:32:46.776Z"
+              "WhenOpened": "2024-12-27T16:32:46.776Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "ThemeLoader.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\ThemeLoader.cs",
               "RelativeDocumentMoniker": "reShutLegacy\\ThemeLoader.cs",
@@ -177,7 +82,7 @@
               "RelativeDocumentMoniker": "reShutLegacy\\Program.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutLegacy\\Program.cs",
               "RelativeToolTip": "reShutLegacy\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAiwB0AAABcAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAYwKwAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-27T16:22:58.528Z",
               "EditorCaption": ""
