@@ -19,26 +19,45 @@ namespace reShutCLI
             Console.ForegroundColor = Variables.MenuColor;
             // New UI
             string[] menuItems = [rm.GetString("General", culture), rm.GetString("MenuAndText", culture), rm.GetString("About", culture), rm.GetString("Back", culture)];
-            UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│        Settings        │"); // Has to be changed when more languages are added.
-            UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
-            for (var i = 1; i < menuItems.Length - 1; i++)
-                UpdateChecker.DisplayCenteredMessage("│ " + i + ") " + menuItems[i - 1].PadRight(20) + "│");
-            UpdateChecker.DisplayCenteredMessage("│ 3) " + menuItems[2].PadRight(20) + "│");
-            UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 9) " + menuItems[3].PadRight(20) + "│");
+            string settingsHeaderText = rm.GetString("Settings", culture);
 
-            UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
-            /*
-            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│            Settings:           │");
-            UpdateChecker.DisplayCenteredMessage("├────────────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 1) General                     │");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Menus and Messages          │");
-            UpdateChecker.DisplayCenteredMessage("│ 3) About reShut CLI...         │");
-            UpdateChecker.DisplayCenteredMessage("├────────────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 9) Back                        │");
-            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────╯"); */
+            // Calculate lengths of fully formatted items like "1) General"
+            int m1Length = ("1) " + menuItems[0]).Length;
+            int m2Length = ("2) " + menuItems[1]).Length;
+            int m3Length = ("3) " + menuItems[2]).Length; // About
+            int m9Length = ("9) " + menuItems[3]).Length; // Back
+
+            int maxFormattedItemLength = new[] { m1Length, m2Length, m3Length, m9Length }.Max();
+
+            int dynamicInnerWidth = Math.Max(settingsHeaderText.Length, maxFormattedItemLength);
+            dynamicInnerWidth += 2; // Add 2 for single space padding on left and right
+
+            if (dynamicInnerWidth % 2 != 0) dynamicInnerWidth++; // Ensure even width for better centering
+
+            string topBorder = "╭" + new string('─', dynamicInnerWidth) + "╮";
+            string bottomBorder = "╰" + new string('─', dynamicInnerWidth) + "╯";
+            string separator = "├" + new string('─', dynamicInnerWidth) + "┤";
+
+            // Centering the header text
+            int headerPaddingTotal = dynamicInnerWidth - settingsHeaderText.Length;
+            int headerPaddingLeft = headerPaddingTotal / 2;
+            string titleLine = "│" + new string(' ', headerPaddingLeft) + settingsHeaderText + new string(' ', dynamicInnerWidth - settingsHeaderText.Length - headerPaddingLeft) + "│";
+
+            UpdateChecker.DisplayCenteredMessage(topBorder);
+            UpdateChecker.DisplayCenteredMessage(titleLine);
+            UpdateChecker.DisplayCenteredMessage(separator);
+
+            // Items
+            string item1Text = "1) " + menuItems[0];
+            UpdateChecker.DisplayCenteredMessage("│" + item1Text.PadRight(dynamicInnerWidth) + "│");
+            string item2Text = "2) " + menuItems[1];
+            UpdateChecker.DisplayCenteredMessage("│" + item2Text.PadRight(dynamicInnerWidth) + "│");
+            string item3Text = "3) " + menuItems[2]; // About
+            UpdateChecker.DisplayCenteredMessage("│" + item3Text.PadRight(dynamicInnerWidth) + "│");
+            UpdateChecker.DisplayCenteredMessage(separator);
+            string item9Text = "9) " + menuItems[3]; // Back
+            UpdateChecker.DisplayCenteredMessage("│" + item9Text.PadRight(dynamicInnerWidth) + "│");
+            UpdateChecker.DisplayCenteredMessage(bottomBorder);
             Console.ForegroundColor = ConsoleColor.White;
             // Key detect
             var setInfo = Console.ReadKey();
@@ -52,18 +71,41 @@ namespace reShutCLI
                     Console.Clear();
                     Console.ForegroundColor = Variables.MenuColor;
                     string[] menuItemsGen = [rm.GetString("Update", culture), rm.GetString("Theme", culture), rm.GetString("ResetAllSettings", culture), rm.GetString("Language", culture), rm.GetString("Back", culture)];
-                    UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│        General         │"); // Has to be changed when more languages are added.
-                    UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
+                    string generalHeaderText = rm.GetString("General", culture);
 
-                    for (var i = 0; i < menuItemsGen.Length - 2; i++)
-                        UpdateChecker.DisplayCenteredMessage("│ " + (i + 1) + ") " + menuItemsGen[i].PadRight(20) + "│");
+                    int gen_m1Length = ("1) " + menuItemsGen[0]).Length;
+                    int gen_m2Length = ("2) " + menuItemsGen[1]).Length;
+                    int gen_m3Length = ("3) " + menuItemsGen[2]).Length;
+                    int gen_m4Length = ("4) " + menuItemsGen[3]).Length; // Language
+                    int gen_m9Length = ("9) " + menuItemsGen[4]).Length; // Back
 
-                    UpdateChecker.DisplayCenteredMessage("│ 4) " + menuItemsGen[3].PadRight(20) + "│");
-                    UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 9) " + menuItemsGen[4].PadRight(20) + "│");
+                    int gen_maxFormattedItemLength = new[] { gen_m1Length, gen_m2Length, gen_m3Length, gen_m4Length, gen_m9Length }.Max();
 
-                    UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
+                    int gen_dynamicInnerWidth = Math.Max(generalHeaderText.Length, gen_maxFormattedItemLength);
+                    gen_dynamicInnerWidth += 2; // Add 2 for single space padding
+
+                    if (gen_dynamicInnerWidth % 2 != 0) gen_dynamicInnerWidth++; // Ensure even width
+
+                    string gen_topBorder = "╭" + new string('─', gen_dynamicInnerWidth) + "╮";
+                    string gen_bottomBorder = "╰" + new string('─', gen_dynamicInnerWidth) + "╯";
+                    string gen_separator = "├" + new string('─', gen_dynamicInnerWidth) + "┤";
+
+                    int gen_headerPaddingTotal = gen_dynamicInnerWidth - generalHeaderText.Length;
+                    int gen_headerPaddingLeft = gen_headerPaddingTotal / 2;
+                    string gen_titleLine = "│" + new string(' ', gen_headerPaddingLeft) + generalHeaderText + new string(' ', gen_dynamicInnerWidth - generalHeaderText.Length - gen_headerPaddingLeft) + "│";
+
+                    UpdateChecker.DisplayCenteredMessage(gen_topBorder);
+                    UpdateChecker.DisplayCenteredMessage(gen_titleLine);
+                    UpdateChecker.DisplayCenteredMessage(gen_separator);
+
+                    UpdateChecker.DisplayCenteredMessage("│" + ("1) " + menuItemsGen[0]).PadRight(gen_dynamicInnerWidth) + "│");
+                    UpdateChecker.DisplayCenteredMessage("│" + ("2) " + menuItemsGen[1]).PadRight(gen_dynamicInnerWidth) + "│");
+                    UpdateChecker.DisplayCenteredMessage("│" + ("3) " + menuItemsGen[2]).PadRight(gen_dynamicInnerWidth) + "│");
+                    UpdateChecker.DisplayCenteredMessage("│" + ("4) " + menuItemsGen[3]).PadRight(gen_dynamicInnerWidth) + "│"); // Language
+                    UpdateChecker.DisplayCenteredMessage(gen_separator);
+                    UpdateChecker.DisplayCenteredMessage("│" + ("9) " + menuItemsGen[4]).PadRight(gen_dynamicInnerWidth) + "│"); // Back
+
+                    UpdateChecker.DisplayCenteredMessage(gen_bottomBorder);
 
                     /*
                     UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
@@ -200,14 +242,33 @@ namespace reShutCLI
                     Console.ForegroundColor = Variables.MenuColor;
 
                     string[] menuItemsMsg = { rm.GetString("DoubleConfiguration", culture), rm.GetString("Back", culture) };
-                    UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│           Menus and Messages           │"); // Has to be changed when more languages are added.
-                    UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage(" │ 1) " + menuItemsMsg[0].PadRight(36) + "│"); 
-                    UpdateChecker.DisplayCenteredMessage("├────────────────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage(" │ 9) " + menuItemsMsg[1].PadRight(36) + "│"); 
-                    UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────╯");
+                    string messagesHeaderText = rm.GetString("MenuAndText", culture);
 
+                    int msg_m1Length = ("1) " + menuItemsMsg[0]).Length;
+                    int msg_m9Length = ("9) " + menuItemsMsg[1]).Length;
+
+                    int msg_maxFormattedItemLength = Math.Max(msg_m1Length, msg_m9Length);
+
+                    int msg_dynamicInnerWidth = Math.Max(messagesHeaderText.Length, msg_maxFormattedItemLength);
+                    msg_dynamicInnerWidth += 2; // Add 2 for single space padding
+
+                    if (msg_dynamicInnerWidth % 2 != 0) msg_dynamicInnerWidth++; // Ensure even width
+
+                    string msg_topBorder = "╭" + new string('─', msg_dynamicInnerWidth) + "╮";
+                    string msg_bottomBorder = "╰" + new string('─', msg_dynamicInnerWidth) + "╯";
+                    string msg_separator = "├" + new string('─', msg_dynamicInnerWidth) + "┤";
+
+                    int msg_headerPaddingTotal = msg_dynamicInnerWidth - messagesHeaderText.Length;
+                    int msg_headerPaddingLeft = msg_headerPaddingTotal / 2;
+                    string msg_titleLine = "│" + new string(' ', msg_headerPaddingLeft) + messagesHeaderText + new string(' ', msg_dynamicInnerWidth - messagesHeaderText.Length - msg_headerPaddingLeft) + "│";
+
+                    UpdateChecker.DisplayCenteredMessage(msg_topBorder);
+                    UpdateChecker.DisplayCenteredMessage(msg_titleLine);
+                    UpdateChecker.DisplayCenteredMessage(msg_separator);
+                    UpdateChecker.DisplayCenteredMessage("│" + ("1) " + menuItemsMsg[0]).PadRight(msg_dynamicInnerWidth) + "│");
+                    UpdateChecker.DisplayCenteredMessage(msg_separator);
+                    UpdateChecker.DisplayCenteredMessage("│" + ("9) " + menuItemsMsg[1]).PadRight(msg_dynamicInnerWidth) + "│");
+                    UpdateChecker.DisplayCenteredMessage(msg_bottomBorder);
 
                     /*
                     UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
@@ -249,16 +310,16 @@ namespace reShutCLI
                 default:
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    string invalidText = rm.GetString("InvalidInput", culture);
-                    int boxWidth = Math.Max(invalidText.Length + 2, 44);
-                    string topBorder = "╭" + new string('─', boxWidth) + "╮";
-                    string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
-                    int paddingLeft = (boxWidth - invalidText.Length) / 2;
-                    string paddedMessage = "│" + new string(' ', paddingLeft) + invalidText + new string(' ', boxWidth - invalidText.Length - paddingLeft) + "│";
+                    string invalidInput_Text = rm.GetString("InvalidInput", culture);
+                    int invalidInput_BoxWidth = Math.Max(invalidInput_Text.Length + 2, 44);
+                    string invalidInput_TopBorder = "╭" + new string('─', invalidInput_BoxWidth) + "╮";
+                    string invalidInput_BottomBorder = "╰" + new string('─', invalidInput_BoxWidth) + "╯";
+                    int invalidInput_PaddingLeft = (invalidInput_BoxWidth - invalidInput_Text.Length) / 2;
+                    string invalidInput_PaddedMessage = "│" + new string(' ', invalidInput_PaddingLeft) + invalidInput_Text + new string(' ', invalidInput_BoxWidth - invalidInput_Text.Length - invalidInput_PaddingLeft) + "│";
                     Console.ForegroundColor = Variables.SecondaryColor;
-                    UpdateChecker.DisplayCenteredMessage(topBorder);
-                    UpdateChecker.DisplayCenteredMessage(paddedMessage);
-                    UpdateChecker.DisplayCenteredMessage(bottomBorder);
+                    UpdateChecker.DisplayCenteredMessage(invalidInput_TopBorder);
+                    UpdateChecker.DisplayCenteredMessage(invalidInput_PaddedMessage);
+                    UpdateChecker.DisplayCenteredMessage(invalidInput_BottomBorder);
                     Console.ForegroundColor = ConsoleColor.White;
                     goto settings;
 
