@@ -63,8 +63,7 @@ namespace reShutCLI
                 RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds"); // Removed in 1.0.4.0
 
                 // Check and add new registry entries
-                AddOrUpdateRegistryEntry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "NewSetting1", "STRING", "DefaultValue1");
-                AddOrUpdateRegistryEntry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "NewSetting2", "STRING", "DefaultValue2");
+                // AddOrUpdateRegistryEntry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "NewSetting1", "STRING", "DefaultValue1");
 
                 // Update the registry version
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion", "STRING", Variables.registryVersion);
@@ -84,6 +83,7 @@ namespace reShutCLI
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "0");
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "en-US");
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion", "STRING", Variables.registryVersion);
+            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "reShutVersion", "STRING", Variables.version);
         }
 
         private static void AddOrUpdateRegistryEntry(string key, string valueName, string valueType, string defaultValue)

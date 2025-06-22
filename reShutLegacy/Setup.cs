@@ -46,13 +46,13 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ 1) English (US) [100%]           │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [80%]        │");
+                UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [100%]        │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [50%]       │");
+                UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [40%]       │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 4) Spanish (Español) [50%]       │");
+                UpdateChecker.DisplayCenteredMessage("│ 4) Spanish (Español) [40%]       │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 5) Portuguese (Português) [50%]  │");
+                UpdateChecker.DisplayCenteredMessage("│ 5) Portuguese (Português) [40%]  │");
                 UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
                 var keyInfoL = Console.ReadKey();
                 var key = keyInfoL.KeyChar.ToString();
