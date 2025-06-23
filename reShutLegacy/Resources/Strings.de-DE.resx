@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConfirmationText" xml:space="preserve">
-    <value>Bist du dir sicher? Drücke eine beliebige Taste um fortzufahren.</value>
+    <value>Sind Sie sicher? Drücken Sie eine beliebige Taste um fortzufahren.</value>
   </data>
   <data name="UpdatesDisabled" xml:space="preserve">
     <value>Die Update-Suche ist deaktiviert.</value>
@@ -153,15 +153,6 @@
   <data name="Logoff" xml:space="preserve">
     <value>Abmelden</value>
   </data>
-  <data name="GoodMorning" xml:space="preserve">
-    <value>Guten Morgen</value>
-  </data>
-  <data name="GoodDay" xml:space="preserve">
-    <value>Guten Tag</value>
-  </data>
-  <data name="GoodEvening" xml:space="preserve">
-    <value>Guten Abend</value>
-  </data>
   <data name="UpToDate" xml:space="preserve">
     <value>reShut CLI ist auf dem neustem Stand!</value>
   </data>
@@ -178,7 +169,7 @@
     <value>Zurücksetzen</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Sprache (Language)</value>
+    <value>Sprache</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Zurück</value>
@@ -290,5 +281,11 @@
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
     <value>Eine neue Version von reShut CLI ist verfügbar. Drücken Sie U um reShut CLI zu aktualisieren.</value>
+  </data>
+  <data name="HelpTranslate" xml:space="preserve">
+    <value>Helfen Sie, reShut CLI in Ihre Sprache zu übersetzen!</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Wählen Sie die Sprache aus, die Sie verwerden möchten.</value>
   </data>
 </root>

@@ -153,15 +153,6 @@
   <data name="Logoff" xml:space="preserve">
     <value>Logoff</value>
   </data>
-  <data name="GoodMorning" xml:space="preserve">
-    <value>Good Morning</value>
-  </data>
-  <data name="GoodDay" xml:space="preserve">
-    <value>Hi</value>
-  </data>
-  <data name="GoodEvening" xml:space="preserve">
-    <value>Good Evening</value>
-  </data>
   <data name="UpToDate" xml:space="preserve">
     <value>reShut CLI is up to date!</value>
   </data>
@@ -290,5 +281,11 @@
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
     <value>An update for reShut CLI is available. Press U to update.</value>
+  </data>
+  <data name="HelpTranslate" xml:space="preserve">
+    <value>Help translate reShut CLI to your language!</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Select the language you would like to use.</value>
   </data>
 </root>

@@ -160,29 +160,11 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Hi ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Help translate reShut CLI to your language! ähnelt.
         /// </summary>
-        internal static string GoodDay {
+        internal static string HelpTranslate {
             get {
-                return ResourceManager.GetString("GoodDay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Good Evening ähnelt.
-        /// </summary>
-        internal static string GoodEvening {
-            get {
-                return ResourceManager.GetString("GoodEvening", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Good Morning ähnelt.
-        /// </summary>
-        internal static string GoodMorning {
-            get {
-                return ResourceManager.GetString("GoodMorning", resourceCulture);
+                return ResourceManager.GetString("HelpTranslate", resourceCulture);
             }
         }
         
@@ -462,6 +444,15 @@ namespace reShutCLI.Resources {
         internal static string Schedule_TimeBreakdown {
             get {
                 return ResourceManager.GetString("Schedule_TimeBreakdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select the language you would like to use. ähnelt.
+        /// </summary>
+        internal static string SelectLang {
+            get {
+                return ResourceManager.GetString("SelectLang", resourceCulture);
             }
         }
         

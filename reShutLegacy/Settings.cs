@@ -142,22 +142,16 @@ namespace reShutCLI
                         case "4":
                             Console.Clear();
                             Console.ForegroundColor = Variables.MenuColor;
-                            UpdateChecker.DisplayCenteredMessage("╭──────────╮");
-                            UpdateChecker.DisplayCenteredMessage("│ Language │");
-                            UpdateChecker.DisplayCenteredMessage("╰──────────╯");
+                            UIDraw.DisplayBoxedMessage(rm.GetString("Language", culture));
                             UpdateChecker.DisplayCenteredMessage("");
-                            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────────────╮");
-                            UpdateChecker.DisplayCenteredMessage("│ Help translate reShut CLI to your language! https://github.com/elnino0916/reshut-cli │");
-                            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────────────╯");
+                            UIDraw.DisplayBoxedMessage(rm.GetString("HelpTranslate", culture) + " https://github.com/elnino0916/reshut-cli");
                             UpdateChecker.DisplayCenteredMessage("");
-                            UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
-                            UpdateChecker.DisplayCenteredMessage("│ Select the language you would like to use. │");
-                            UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
+                            UIDraw.DisplayBoxedMessage(rm.GetString("SelectLang", culture));
                             UpdateChecker.DisplayCenteredMessage("");
                             UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
                             UpdateChecker.DisplayCenteredMessage("│ 1) English (US) [100%]           │");
                             UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                            UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [80%]        │");
+                            UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [100%]       │");
                             UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
                             UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [50%]       │");
                             UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
@@ -310,17 +304,8 @@ namespace reShutCLI
                 // Go back when invalid key has been pressed
                 default:
                     Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    string invalidInput_Text = rm.GetString("InvalidInput", culture);
-                    int invalidInput_BoxWidth = Math.Max(invalidInput_Text.Length + 2, 44);
-                    string invalidInput_TopBorder = "╭" + new string('─', invalidInput_BoxWidth) + "╮";
-                    string invalidInput_BottomBorder = "╰" + new string('─', invalidInput_BoxWidth) + "╯";
-                    int invalidInput_PaddingLeft = (invalidInput_BoxWidth - invalidInput_Text.Length) / 2;
-                    string invalidInput_PaddedMessage = "│" + new string(' ', invalidInput_PaddingLeft) + invalidInput_Text + new string(' ', invalidInput_BoxWidth - invalidInput_Text.Length - invalidInput_PaddingLeft) + "│";
                     Console.ForegroundColor = Variables.SecondaryColor;
-                    UpdateChecker.DisplayCenteredMessage(invalidInput_TopBorder);
-                    UpdateChecker.DisplayCenteredMessage(invalidInput_PaddedMessage);
-                    UpdateChecker.DisplayCenteredMessage(invalidInput_BottomBorder);
+                    UIDraw.DisplayBoxedMessage(rm.GetString("InvalidInput", culture));
                     Console.ForegroundColor = ConsoleColor.White;
                     goto settings;
 
