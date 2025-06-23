@@ -288,4 +288,10 @@
   <data name="SelectLang" xml:space="preserve">
     <value>Wählen Sie die Sprache aus, die Sie verwerden möchten.</value>
   </data>
+  <data name="ResetWarning" xml:space="preserve">
+    <value>Möchten Sie wirklich reShut CLI zurücksetzen? Dies kann nicht rückgängig gemacht werden!</value>
+  </data>
+  <data name="ResetProg" xml:space="preserve">
+    <value>reShut CLI wird zurückgesetzt. Schließen Sie nicht das Programm.</value>
+  </data>
 </root>

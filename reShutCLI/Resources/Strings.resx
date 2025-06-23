@@ -288,4 +288,10 @@
   <data name="SelectLang" xml:space="preserve">
     <value>Select the language you would like to use.</value>
   </data>
+  <data name="ResetWarning" xml:space="preserve">
+    <value>Do you really want to reset reShut CLI? This cannot be undone!</value>
+  </data>
+  <data name="ResetProg" xml:space="preserve">
+    <value>Reset in progress. Do not close reShut CLI...</value>
+  </data>
 </root>

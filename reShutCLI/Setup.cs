@@ -46,7 +46,7 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ 1) English (US) [100%]           │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [100%]        │");
+                UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [100%]       │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
                 UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [40%]       │");
                 UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
@@ -86,7 +86,6 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ EULA (2/5) │");
                 UpdateChecker.DisplayCenteredMessage("╰────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
-                Thread.Sleep(250);
                 ShowEULA.Start();
                 Console.ForegroundColor = Variables.MenuColor;
 
@@ -194,7 +193,6 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Applying changes... │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
                 ThemeLoader.loadTheme();
-                Thread.Sleep(1000);
 
             step6:
                 Console.Clear();
@@ -230,9 +228,6 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Setup complete! │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────────╯");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "1");
-                UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ reShut CLI will now restart to save your preferences.  │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────────────────╯");
                 Thread.Sleep(3000);
                 AutoRestart.Init();
                 return;

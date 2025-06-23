@@ -295,6 +295,24 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset in progress. Do not close reShut CLI... ähnelt.
+        /// </summary>
+        internal static string ResetProg {
+            get {
+                return ResourceManager.GetString("ResetProg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you really want to reset reShut CLI? This cannot be undone! ähnelt.
+        /// </summary>
+        internal static string ResetWarning {
+            get {
+                return ResourceManager.GetString("ResetWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Schedule... ähnelt.
         /// </summary>
         internal static string Schedule {
