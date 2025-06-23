@@ -574,6 +574,69 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Auto Update is disabled. ähnelt.
+        /// </summary>
+        internal static string UpdateSettings_AutoUpdateDisabled {
+            get {
+                return ResourceManager.GetString("UpdateSettings_AutoUpdateDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Auto Update is enabled. ähnelt.
+        /// </summary>
+        internal static string UpdateSettings_AutoUpdateEnabled {
+            get {
+                return ResourceManager.GetString("UpdateSettings_AutoUpdateEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Update Settings ähnelt.
+        /// </summary>
+        internal static string UpdateSettings_Title {
+            get {
+                return ResourceManager.GetString("UpdateSettings_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle Auto Update on Startup ähnelt.
+        /// </summary>
+        internal static string UpdateSettings_ToggleAutoUpdate {
+            get {
+                return ResourceManager.GetString("UpdateSettings_ToggleAutoUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle Update Search ähnelt.
+        /// </summary>
+        internal static string UpdateSettings_ToggleUpdateSearch {
+            get {
+                return ResourceManager.GetString("UpdateSettings_ToggleUpdateSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Update Search is disabled. ähnelt.
+        /// </summary>
+        internal static string UpdateSettings_UpdateSearchDisabled {
+            get {
+                return ResourceManager.GetString("UpdateSettings_UpdateSearchDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Update Search is enabled. ähnelt.
+        /// </summary>
+        internal static string UpdateSettings_UpdateSearchEnabled {
+            get {
+                return ResourceManager.GetString("UpdateSettings_UpdateSearchEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die reShut CLI is up to date! ähnelt.
         /// </summary>
         internal static string UpToDate {
