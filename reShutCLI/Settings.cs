@@ -8,6 +8,81 @@ namespace reShutCLI
 {
     internal class Settings
     {
+        public static void UpdateSettings()
+        {
+        UpdateSettingsInit:
+            Console.Clear();
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+
+            string updateSearchValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch");
+            string autoUpdateValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart");
+
+            // Display status messages using UIDraw.DisplayBoxedMessage
+            UIDraw.DisplayBoxedMessage(updateSearchValue == "1" ? rm.GetString("UpdateSettings_UpdateSearchEnabled", culture) : rm.GetString("UpdateSettings_UpdateSearchDisabled", culture));
+            Console.WriteLine(); // Add a blank line for spacing
+            UIDraw.DisplayBoxedMessage(autoUpdateValue == "yes" ? rm.GetString("UpdateSettings_AutoUpdateEnabled", culture) : rm.GetString("UpdateSettings_AutoUpdateDisabled", culture));
+            Console.WriteLine(); // Add a blank line for spacing
+
+            // Display current settings using dynamic box drawing similar to other menus
+            Console.ForegroundColor = Variables.MenuColor;
+            string[] menuItems = [
+                rm.GetString("UpdateSettings_ToggleUpdateSearch", culture),
+                rm.GetString("UpdateSettings_ToggleAutoUpdate", culture),
+                rm.GetString("Back", culture) // Already exists
+            ];
+            string settingsHeaderText = rm.GetString("UpdateSettings_Title", culture);
+
+            int m1Length = ("1) " + menuItems[0]).Length;
+            int m2Length = ("2) " + menuItems[1]).Length;
+            int m9Length = ("9) " + menuItems[2]).Length;
+
+            int maxFormattedItemLength = new[] { m1Length, m2Length, m9Length }.Max();
+            int dynamicInnerWidth = Math.Max(settingsHeaderText.Length, maxFormattedItemLength) + 2;
+            if (dynamicInnerWidth % 2 != 0) dynamicInnerWidth++;
+
+            string topBorder = "╭" + new string('─', dynamicInnerWidth) + "╮";
+            string bottomBorder = "╰" + new string('─', dynamicInnerWidth) + "╯";
+            string separator = "├" + new string('─', dynamicInnerWidth) + "┤";
+
+            int headerPaddingTotal = dynamicInnerWidth - settingsHeaderText.Length;
+            int headerPaddingLeft = headerPaddingTotal / 2;
+            string titleLine = "│" + new string(' ', headerPaddingLeft) + settingsHeaderText + new string(' ', dynamicInnerWidth - settingsHeaderText.Length - headerPaddingLeft) + "│";
+
+            UpdateChecker.DisplayCenteredMessage(topBorder);
+            UpdateChecker.DisplayCenteredMessage(titleLine);
+            UpdateChecker.DisplayCenteredMessage(separator);
+            UpdateChecker.DisplayCenteredMessage("│" + ("1) " + menuItems[0]).PadRight(dynamicInnerWidth) + "│");
+            UpdateChecker.DisplayCenteredMessage("│" + ("2) " + menuItems[1]).PadRight(dynamicInnerWidth) + "│");
+            UpdateChecker.DisplayCenteredMessage(separator);
+            UpdateChecker.DisplayCenteredMessage("│" + ("9) " + menuItems[2]).PadRight(dynamicInnerWidth) + "│");
+            UpdateChecker.DisplayCenteredMessage(bottomBorder);
+
+            var keyInfo = Console.ReadKey();
+            string key = keyInfo.KeyChar.ToString();
+            switch (key)
+            {
+                case "1":
+                    // Toggle Update Search
+                    string newUpdateValue = (updateSearchValue == "1") ? "0" : "1";
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch", "STRING", newUpdateValue);
+                    goto UpdateSettingsInit;
+
+                case "2":
+                    // Toggle Auto Update on Startup (Note: Original code had "Toggle Update Search" comment here, corrected)
+                    string newAutoUpdateValue = (autoUpdateValue == "yes") ? "no" : "yes";
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart", "STRING", newAutoUpdateValue);
+                    goto UpdateSettingsInit;
+
+                case "9":
+                    Console.Clear();
+                    return;
+
+                default:
+                    goto UpdateSettingsInit;
+            }
+        }
+
         public static void Show()
         {
             Console.Clear();
@@ -127,7 +202,7 @@ namespace reShutCLI
                     switch (setGen)
                     {
                         case "1":
-                            StartupSettings.UpdateSettings();
+                            UpdateSettings(); // Changed from StartupSettings.UpdateSettings()
                             goto GeneralInit;
                         case "2":
                             Console.Clear();

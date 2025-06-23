@@ -294,4 +294,25 @@
   <data name="ResetProg" xml:space="preserve">
     <value>reShut CLI wird zurückgesetzt. Schließen Sie nicht das Programm.</value>
   </data>
+  <data name="UpdateSettings_Title" xml:space="preserve">
+    <value>Update-Einstellungen</value>
+  </data>
+  <data name="UpdateSettings_ToggleUpdateSearch" xml:space="preserve">
+    <value>Update-Suche umschalten</value>
+  </data>
+  <data name="UpdateSettings_ToggleAutoUpdate" xml:space="preserve">
+    <value>Automatisches Update beim Start umschalten</value>
+  </data>
+  <data name="UpdateSettings_UpdateSearchEnabled" xml:space="preserve">
+    <value>Update-Suche ist aktiviert.</value>
+  </data>
+  <data name="UpdateSettings_UpdateSearchDisabled" xml:space="preserve">
+    <value>Update-Suche ist deaktiviert.</value>
+  </data>
+  <data name="UpdateSettings_AutoUpdateEnabled" xml:space="preserve">
+    <value>Automatische Updates sind aktiviert.</value>
+  </data>
+  <data name="UpdateSettings_AutoUpdateDisabled" xml:space="preserve">
+    <value>Automatische Updates sind deaktiviert.</value>
+  </data>
 </root>

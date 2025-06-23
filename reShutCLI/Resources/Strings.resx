@@ -294,4 +294,25 @@
   <data name="ResetProg" xml:space="preserve">
     <value>Reset in progress. Do not close reShut CLI...</value>
   </data>
+  <data name="UpdateSettings_Title" xml:space="preserve">
+    <value>Update Settings</value>
+  </data>
+  <data name="UpdateSettings_ToggleUpdateSearch" xml:space="preserve">
+    <value>Toggle Update Search</value>
+  </data>
+  <data name="UpdateSettings_ToggleAutoUpdate" xml:space="preserve">
+    <value>Toggle Auto Update on Startup</value>
+  </data>
+  <data name="UpdateSettings_UpdateSearchEnabled" xml:space="preserve">
+    <value>Update Search is enabled.</value>
+  </data>
+  <data name="UpdateSettings_UpdateSearchDisabled" xml:space="preserve">
+    <value>Update Search is disabled.</value>
+  </data>
+  <data name="UpdateSettings_AutoUpdateEnabled" xml:space="preserve">
+    <value>Auto Update is enabled.</value>
+  </data>
+  <data name="UpdateSettings_AutoUpdateDisabled" xml:space="preserve">
+    <value>Auto Update is disabled.</value>
+  </data>
 </root>
