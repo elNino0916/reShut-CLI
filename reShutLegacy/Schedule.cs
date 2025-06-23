@@ -37,9 +37,7 @@ namespace reShutCLI
                     Process.Start(@"cmd.exe", "/c shutdown -a");
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Green;
-                    UpdateChecker.DisplayCenteredMessage("╭────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-26} │", rm.GetString("Schedule_ActionCancelled", culture)));
-                    UpdateChecker.DisplayCenteredMessage("╰────────────────────────────╯");
+                    UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ActionCancelled", culture));
                     Thread.Sleep(500); // Fixes the 'No Shutdown in progress' message in the middle of the main menu.
                     return false;
                 case "1":
@@ -56,9 +54,7 @@ namespace reShutCLI
                         if (key != "1" | key != "2" | key != "0")
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                            UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-18} │", rm.GetString("ErrorOccurred", culture)));
-                            UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
+                            UIDraw.DisplayBoxedMessage(rm.GetString("ErrorOccurred", culture));
                             Console.ForegroundColor = ConsoleColor.White;
                             goto Retry;
                         }
@@ -74,24 +70,17 @@ namespace reShutCLI
 
             if (DateTime.Now.ToString("tt") == "")
             {
-                UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage(string.Format("│ {0} {1} │", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(true).PadRight(13)));
-                UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
+                UIDraw.DisplayBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(true)));
             }
             else
             {
                 if (DateTime.Now.ToString("tt") == "PM" | DateTime.Now.ToString("tt") == "AM")
                 {
-                    UpdateChecker.DisplayCenteredMessage("╭───────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage(string.Format("│ {0} {1} │", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(false).PadRight(16)));
-                    UpdateChecker.DisplayCenteredMessage("╰───────────────────────────╯");
+                    UIDraw.DisplayBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(false)));
                 }
             }
-
-            UpdateChecker.DisplayCenteredMessage("╭─────────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-35} │", rm.GetString("Schedule_PromptWhen", culture)));
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-35} │", rm.GetString("Schedule_EnterSeconds", culture)));
-            UpdateChecker.DisplayCenteredMessage("╰─────────────────────────────────────╯");
+            UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_PromptWhen", culture));
+            UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_EnterSeconds", culture));
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(rm.GetString("Schedule_InputPrompt", culture) + " ");
             var inputStr = Console.ReadLine();
@@ -99,9 +88,7 @@ namespace reShutCLI
             if (!int.TryParse(inputStr, out var input))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-36} │", rm.GetString("Schedule_ErrorNumberInput", culture)));
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────╯");
+                UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ErrorNumberInput", culture));
                 goto seconds;
             }
             // Phase 3
@@ -157,18 +144,14 @@ namespace reShutCLI
                         var character = type.Equals(rm.GetString("Shutdown", culture).ToLower(), StringComparison.OrdinalIgnoreCase) ? "s" : "r";
                         Process.Start("cmd.exe", "/c shutdown /" + character + " /f /t " + input);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        UpdateChecker.DisplayCenteredMessage("╭────────────────────────────╮");
-                        UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-26} │", rm.GetString("Schedule_ActionScheduled", culture)));
-                        UpdateChecker.DisplayCenteredMessage("╰────────────────────────────╯");
+                        UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ActionScheduled", culture));
                         Console.ForegroundColor = ConsoleColor.White;
                         return true;
                     }
                     catch
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                        UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-18} │", rm.GetString("ErrorOccurred", culture)));
-                        UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
+                        UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
                         Console.ForegroundColor = ConsoleColor.White;
                         return false;
                     }
@@ -176,9 +159,7 @@ namespace reShutCLI
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
-            UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-18} │", rm.GetString("ErrorOccurred", culture)));
-            UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
+            UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
             Console.ForegroundColor = ConsoleColor.White;
             goto phase3retry;
         }

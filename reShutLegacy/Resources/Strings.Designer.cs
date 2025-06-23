@@ -511,20 +511,20 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to check for updates. Check your network connection and try again. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die An update for reShut CLI is available. Press U to update. ähnelt.
         /// </summary>
-        internal static string UpdateCheckFailed {
+        internal static string UpdateAvailable {
             get {
-                return ResourceManager.GetString("UpdateCheckFailed", resourceCulture);
+                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Failed to check for updates. Check your network connection and try again. ähnelt.
         /// </summary>
-        internal static string UpdateCheckFailure {
+        internal static string UpdateCheckFailed {
             get {
-                return ResourceManager.GetString("UpdateCheckFailure", resourceCulture);
+                return ResourceManager.GetString("UpdateCheckFailed", resourceCulture);
             }
         }
         

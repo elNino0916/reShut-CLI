@@ -120,14 +120,11 @@
   <data name="ConfirmationText" xml:space="preserve">
     <value>Etes-vous sûr ? Appuyez sur n'importe quelle touche pour continuer.</value>
   </data>
-  <data name="UpdateCheckFailure" xml:space="preserve">
-    <value>Échec de la recherche des mises à jour. Vérifiez votre connexion réseau et réessayez.</value>
-  </data>
   <data name="UpdatesDisabled" xml:space="preserve">
     <value>La recherche de mise à jour est désactivée.</value>
   </data>
   <data name="MainMenu" xml:space="preserve">
-    <value>Main Menu</value>
+    <value />
   </data>
   <data name="Shutdown" xml:space="preserve">
     <value>Éteindre</value>
@@ -202,7 +199,7 @@
     <value>La double confirmation est désactivée.</value>
   </data>
   <data name="DoubleConfiguration" xml:space="preserve">
-    <value>Toggle Double-Confirmation</value>
+    <value />
   </data>
   <data name="RegUpdate" xml:space="preserve">
     <value>Updating registry...</value>
@@ -226,55 +223,55 @@
     <value>reShut CLI Updater</value>
   </data>
   <data name="Schedule_PromptAction" xml:space="preserve">
-    <value>What would you like to schedule?</value>
+    <value />
   </data>
   <data name="Schedule_SelectOption" xml:space="preserve">
-    <value>Select an option:</value>
+    <value />
   </data>
   <data name="Schedule_ShutdownOption" xml:space="preserve">
-    <value>Shutdown</value>
+    <value />
   </data>
   <data name="Schedule_RebootOption" xml:space="preserve">
-    <value>Reboot</value>
+    <value />
   </data>
   <data name="Schedule_Cancel" xml:space="preserve">
-    <value>Cancel schedule</value>
+    <value>&#x8;</value>
   </data>
   <data name="Schedule_ActionCancelled" xml:space="preserve">
-    <value>Action has been cancelled.</value>
+    <value>&#x8;</value>
   </data>
   <data name="Schedule_CurrentTime" xml:space="preserve">
-    <value>Current time:</value>
+    <value />
   </data>
   <data name="Schedule_PromptWhen" xml:space="preserve">
-    <value>When should the action be executed?</value>
+    <value />
   </data>
   <data name="Schedule_EnterSeconds" xml:space="preserve">
-    <value>Enter the time in seconds.</value>
+    <value />
   </data>
   <data name="Schedule_InputPrompt" xml:space="preserve">
-    <value>Input:</value>
+    <value />
   </data>
   <data name="Schedule_ErrorNumberInput" xml:space="preserve">
-    <value>Error: Input must be a valid number.</value>
+    <value />
   </data>
   <data name="Schedule_ConfirmActionSeconds" xml:space="preserve">
-    <value>You want to schedule a {0} in {1} seconds. Is that correct?</value>
+    <value>&#x8;</value>
   </data>
   <data name="Schedule_TimeBreakdown" xml:space="preserve">
     <value>({0}min / {1}hrs)</value>
   </data>
   <data name="Schedule_ConfirmYes" xml:space="preserve">
-    <value>Yes, schedule {0}</value>
+    <value />
   </data>
   <data name="Schedule_ConfirmNoReenter" xml:space="preserve">
-    <value>No, go back and re-enter information.</value>
+    <value>&#x8;</value>
   </data>
   <data name="BackToMainMenu" xml:space="preserve">
-    <value>Back to main menu</value>
+    <value />
   </data>
   <data name="Schedule_ActionScheduled" xml:space="preserve">
-    <value>Action has been scheduled!</value>
+    <value>&#x8;</value>
   </data>
   <data name="ErrorOccurred" xml:space="preserve">
     <value>An error occurred.</value>
@@ -285,8 +282,11 @@
   <data name="No" xml:space="preserve">
     <value>Non</value>
   </data>
+  <data name="RegistryVersion" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="RegistryVersion" type="System.Resources.ResXNullRef, System.Windows.Forms">
+  <data name="UpdateAvailable" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
 </root>

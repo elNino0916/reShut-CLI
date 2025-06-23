@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
+using System.Resources;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace reShutCLI
@@ -22,6 +25,8 @@ namespace reShutCLI
 
         public static async Task MainCheck()
         {
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             // Check if update has already been checked
             if (updateCheckPerformed)
             {
@@ -51,12 +56,9 @@ namespace reShutCLI
                 if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
                     Console.ForegroundColor = Variables.MenuColor;
-                    updateResultMessage =      $"╭────────────────────────────────────────────────────────────────────────────────╮";
-                    updateResultMessageLine2 = $"│     A new version ({latestVersion}) of reShut CLI is available! Press U to update.     │";
-                    updateResultMessageLine3 = $"╰────────────────────────────────────────────────────────────────────────────────╯";
-                    DisplayCenteredMessage(updateResultMessage);
-                    DisplayCenteredMessage(updateResultMessageLine2);
-                    DisplayCenteredMessage(updateResultMessageLine3);
+
+                    UIDraw.DisplayBoxedMessage(rm.GetString("UpdateAvailable", culture));
+
                     Variables.isUpToDate = false;
                     Console.ForegroundColor = ConsoleColor.Gray;
 
@@ -81,8 +83,7 @@ namespace reShutCLI
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                updateResultMessage = $"Failed to check for updates: {response.StatusCode}. Restart reShut CLI to refresh.";
-                DisplayCenteredMessage(updateResultMessage);
+                UIDraw.DisplayBoxedMessage($"Failed to check for updates: {response.StatusCode}. Restart the application to try again.");
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
 

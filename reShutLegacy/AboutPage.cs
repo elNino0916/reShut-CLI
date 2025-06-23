@@ -18,10 +18,7 @@ namespace reShutCLI
             var registryVersion = $"{rm.GetString("RegistryVersion", culture)}: {Variables.registryVersion}";
 
             Console.Clear();
-            var maxLength = Math.Max(header.Length,
-                                //Math.Max(
-                                    // "The license can be viewed by pressing L in the main menu.".Length,
-                                    Math.Max(releaseStatus.Length, registryVersion.Length))/*)*/;
+            var maxLength = Math.Max(header.Length, Math.Max(releaseStatus.Length, registryVersion.Length));
             var borderLength = maxLength + 4;
 
             UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");
@@ -30,7 +27,8 @@ namespace reShutCLI
             UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("│ " + registryVersion.PadRight(borderLength - 2) + " │");
             UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
-            UpdateChecker.DisplayCenteredMessage(rm.GetString("PressAnyKeyToGoBack", culture));
+            UIDraw.DisplayBoxedMessage(rm.GetString("PressAnyKeyToGoBack", culture));
+            
             Console.ReadKey();
             Console.Clear();
             return;

@@ -54,24 +54,12 @@ internal class Program
     }
 
     /// <summary>
-    /// Displays a message to the console, centered and enclosed in a decorative border.
+    /// Now redirects to UIDraw.cs
     /// </summary>
     /// <param name="messageText">The text of the message to display.</param>
     private static void DisplayBorderedMessage(string messageText)
     {
-        // Calculate the maximum length for the box, ensuring it's wide enough for the message or a minimum width.
-        int boxWidth = Math.Max(messageText.Length + Constants.BoxPaddingWidth, Constants.MinimumBoxWidth);
-        string topBorder = "╭" + new string('─', boxWidth) + "╮";
-        string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
-
-        // Calculate padding to center the message text within the box.
-        int paddingLeft = (boxWidth - messageText.Length) / 2;
-        string paddedMessage = "│" + new string(' ', paddingLeft) + messageText + new string(' ', boxWidth - messageText.Length - paddingLeft) + "│";
-
-        // Print the bordered message using the UpdateChecker's centered display method.
-        UpdateChecker.DisplayCenteredMessage(topBorder);
-        UpdateChecker.DisplayCenteredMessage(paddedMessage);
-        UpdateChecker.DisplayCenteredMessage(bottomBorder);
+            UIDraw.DisplayBoxedMessage(messageText);
     }
     
     /// <summary>

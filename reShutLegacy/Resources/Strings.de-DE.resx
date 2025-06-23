@@ -120,9 +120,6 @@
   <data name="ConfirmationText" xml:space="preserve">
     <value>Bist du dir sicher? Drücke eine beliebige Taste um fortzufahren.</value>
   </data>
-  <data name="UpdateCheckFailure" xml:space="preserve">
-    <value>Konnte nicht nach Updates suchen. Prüfe die Internetverbindung und versuche es erneut.</value>
-  </data>
   <data name="UpdatesDisabled" xml:space="preserve">
     <value>Die Update-Suche ist deaktiviert.</value>
   </data>
@@ -219,6 +216,9 @@
   <data name="CopyrightText" xml:space="preserve">
     <value>Copyright © 2023-2025 elNino0916</value>
   </data>
+  <data name="UpdateCheckFailed" xml:space="preserve">
+    <value>Konnte nicht nach Updates suchen. Prüfe die Internetverbindung und versuche es erneut.</value>
+  </data>
   <data name="UpdateSearchDisabled" xml:space="preserve">
     <value>Die Update-Suche ist deaktiviert.</value>
   </data>
@@ -262,7 +262,7 @@
     <value>Sie möchten den PC in {1} Sekunden {0}. Ist dies korrekt?</value>
   </data>
   <data name="Schedule_TimeBreakdown" xml:space="preserve">
-    <value>({0}min/{1}std)</value>
+    <value>({0} min / {1} Std)</value>
   </data>
   <data name="Schedule_ConfirmYes" xml:space="preserve">
     <value>Ja, "{0}" planen</value>
@@ -287,5 +287,8 @@
   </data>
   <data name="RegistryVersion" xml:space="preserve">
     <value>Registrierungsversion</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Eine neue Version von reShut CLI ist verfügbar. Drücken Sie U um reShut CLI zu aktualisieren.</value>
   </data>
 </root>
