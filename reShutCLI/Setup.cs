@@ -151,9 +151,9 @@ namespace reShutCLI
                 UpdateChecker.DisplayCenteredMessage("│ Theme (4/5) │");
                 UpdateChecker.DisplayCenteredMessage("╰─────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ What theme would you like to use? │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────╯");
+                UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────────╮");
+                UpdateChecker.DisplayCenteredMessage("│ Select a theme to personalize your experience. │");
+                UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────────╯");
                 UpdateChecker.DisplayCenteredMessage("");
                 UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
                 UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");

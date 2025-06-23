@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Resources;
 using System.Threading;
 
 namespace reShutCLI
@@ -9,13 +11,13 @@ namespace reShutCLI
         {
         step6:
             Console.Clear();
-            UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│  Select Your Preferred Theme:     │");
-            UpdateChecker.DisplayCenteredMessage("│  Choose from the options below:   │");
-            UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────╯");
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+            UIDraw.DisplayBoxedMessage(rm.GetString("SelectTheme", culture));
             UpdateChecker.DisplayCenteredMessage("");
             UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
             UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");
+            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
             UpdateChecker.DisplayCenteredMessage("│ 2) Red                   │");
             UpdateChecker.DisplayCenteredMessage("│ 3) Blue                  │");
             UpdateChecker.DisplayCenteredMessage("│ 4) Green                 │");

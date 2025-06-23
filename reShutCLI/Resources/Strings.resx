@@ -315,4 +315,7 @@
   <data name="UpdateSettings_AutoUpdateDisabled" xml:space="preserve">
     <value>Auto Update is disabled.</value>
   </data>
+  <data name="SelectTheme" xml:space="preserve">
+    <value>Select a theme to personalize your experience.</value>
+  </data>
 </root>
