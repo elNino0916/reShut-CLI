@@ -12,17 +12,16 @@ namespace reShutCLI
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             Console.ForegroundColor = Variables.MenuColor;
 
-            var prereleasetag = Variables.prerelease ? "Pre-Release " : "Release ";
+            var prereleasetag = Variables.prerelease ? rm.GetString("PreRelease", culture) : "";
             var header = "reShut CLI " + prereleasetag + Variables.version;
-
-            var releaseStatus = "Pre-Release: " + Variables.prerelease;
-            var registryVersion = "Registry Version: " + Variables.registryVersion;
+            var releaseStatus = $"{rm.GetString("PreRelease", culture)}: {(Variables.prerelease ? rm.GetString("Yes", culture) : rm.GetString("No", culture))}";
+            var registryVersion = $"{rm.GetString("RegistryVersion", culture)}: {Variables.registryVersion}";
 
             Console.Clear();
             var maxLength = Math.Max(header.Length,
-                                Math.Max(
-                                    "The license can be viewed by pressing L in the main menu.".Length,
-                                    Math.Max(releaseStatus.Length, registryVersion.Length)));
+                                //Math.Max(
+                                    // "The license can be viewed by pressing L in the main menu.".Length,
+                                    Math.Max(releaseStatus.Length, registryVersion.Length))/*)*/;
             var borderLength = maxLength + 4;
 
             UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");

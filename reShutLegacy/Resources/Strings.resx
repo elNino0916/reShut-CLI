@@ -282,4 +282,13 @@
   <data name="ErrorOccurred" xml:space="preserve">
     <value>An error occurred.</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="RegistryVersion" xml:space="preserve">
+    <value>Registry Version</value>
+  </data>
 </root>

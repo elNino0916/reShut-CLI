@@ -79,11 +79,38 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Back to main menu ähnelt.
+        /// </summary>
+        internal static string BackToMainMenu {
+            get {
+                return ResourceManager.GetString("BackToMainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure? Press any key to continue. ähnelt.
         /// </summary>
         internal static string ConfirmationText {
             get {
                 return ResourceManager.GetString("ConfirmationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die reShut CLI  ähnelt.
+        /// </summary>
+        internal static string ConsoleTitle {
+            get {
+                return ResourceManager.GetString("ConsoleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copyright © 2023-2025 elNino0916 ähnelt.
+        /// </summary>
+        internal static string CopyrightText {
+            get {
+                return ResourceManager.GetString("CopyrightText", resourceCulture);
             }
         }
         
@@ -111,6 +138,15 @@ namespace reShutCLI.Resources {
         internal static string DoubleConfirmOn {
             get {
                 return ResourceManager.GetString("DoubleConfirmOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An error occurred. ähnelt.
+        /// </summary>
+        internal static string ErrorOccurred {
+            get {
+                return ResourceManager.GetString("ErrorOccurred", resourceCulture);
             }
         }
         
@@ -169,6 +205,15 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The license is available at: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en ähnelt.
+        /// </summary>
+        internal static string LicenseText {
+            get {
+                return ResourceManager.GetString("LicenseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Logoff ähnelt.
         /// </summary>
         internal static string Logoff {
@@ -192,6 +237,24 @@ namespace reShutCLI.Resources {
         internal static string MenuAndText {
             get {
                 return ResourceManager.GetString("MenuAndText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No ähnelt.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pre-Release  ähnelt.
+        /// </summary>
+        internal static string PreRelease {
+            get {
+                return ResourceManager.GetString("PreRelease", resourceCulture);
             }
         }
         
@@ -223,6 +286,15 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Registry Version ähnelt.
+        /// </summary>
+        internal static string RegistryVersion {
+            get {
+                return ResourceManager.GetString("RegistryVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Updating registry... ähnelt.
         /// </summary>
         internal static string RegUpdate {
@@ -246,6 +318,150 @@ namespace reShutCLI.Resources {
         internal static string Schedule {
             get {
                 return ResourceManager.GetString("Schedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Action has been cancelled. ähnelt.
+        /// </summary>
+        internal static string Schedule_ActionCancelled {
+            get {
+                return ResourceManager.GetString("Schedule_ActionCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Action has been scheduled! ähnelt.
+        /// </summary>
+        internal static string Schedule_ActionScheduled {
+            get {
+                return ResourceManager.GetString("Schedule_ActionScheduled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel schedule ähnelt.
+        /// </summary>
+        internal static string Schedule_Cancel {
+            get {
+                return ResourceManager.GetString("Schedule_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You want to schedule a {0} in {1} seconds. Is that correct? ähnelt.
+        /// </summary>
+        internal static string Schedule_ConfirmActionSeconds {
+            get {
+                return ResourceManager.GetString("Schedule_ConfirmActionSeconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No, go back and re-enter information. ähnelt.
+        /// </summary>
+        internal static string Schedule_ConfirmNoReenter {
+            get {
+                return ResourceManager.GetString("Schedule_ConfirmNoReenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Yes, schedule {0} ähnelt.
+        /// </summary>
+        internal static string Schedule_ConfirmYes {
+            get {
+                return ResourceManager.GetString("Schedule_ConfirmYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Current time: ähnelt.
+        /// </summary>
+        internal static string Schedule_CurrentTime {
+            get {
+                return ResourceManager.GetString("Schedule_CurrentTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enter the time in seconds. ähnelt.
+        /// </summary>
+        internal static string Schedule_EnterSeconds {
+            get {
+                return ResourceManager.GetString("Schedule_EnterSeconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error: Input must be a valid number. ähnelt.
+        /// </summary>
+        internal static string Schedule_ErrorNumberInput {
+            get {
+                return ResourceManager.GetString("Schedule_ErrorNumberInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Input: ähnelt.
+        /// </summary>
+        internal static string Schedule_InputPrompt {
+            get {
+                return ResourceManager.GetString("Schedule_InputPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die What would you like to schedule? ähnelt.
+        /// </summary>
+        internal static string Schedule_PromptAction {
+            get {
+                return ResourceManager.GetString("Schedule_PromptAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die When should the action be executed? ähnelt.
+        /// </summary>
+        internal static string Schedule_PromptWhen {
+            get {
+                return ResourceManager.GetString("Schedule_PromptWhen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reboot ähnelt.
+        /// </summary>
+        internal static string Schedule_RebootOption {
+            get {
+                return ResourceManager.GetString("Schedule_RebootOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select an option: ähnelt.
+        /// </summary>
+        internal static string Schedule_SelectOption {
+            get {
+                return ResourceManager.GetString("Schedule_SelectOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Shutdown ähnelt.
+        /// </summary>
+        internal static string Schedule_ShutdownOption {
+            get {
+                return ResourceManager.GetString("Schedule_ShutdownOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ({0}min / {1}hrs) ähnelt.
+        /// </summary>
+        internal static string Schedule_TimeBreakdown {
+            get {
+                return ResourceManager.GetString("Schedule_TimeBreakdown", resourceCulture);
             }
         }
         
@@ -297,6 +513,15 @@ namespace reShutCLI.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Failed to check for updates. Check your network connection and try again. ähnelt.
         /// </summary>
+        internal static string UpdateCheckFailed {
+            get {
+                return ResourceManager.GetString("UpdateCheckFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to check for updates. Check your network connection and try again. ähnelt.
+        /// </summary>
         internal static string UpdateCheckFailure {
             get {
                 return ResourceManager.GetString("UpdateCheckFailure", resourceCulture);
@@ -313,6 +538,15 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die reShut CLI Updater ähnelt.
+        /// </summary>
+        internal static string UpdaterTitle {
+            get {
+                return ResourceManager.GetString("UpdaterTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Update Search is disabled. ähnelt.
         /// </summary>
         internal static string UpdatesDisabled {
@@ -322,11 +556,29 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Update Search is disabled. ähnelt.
+        /// </summary>
+        internal static string UpdateSearchDisabled {
+            get {
+                return ResourceManager.GetString("UpdateSearchDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die reShut CLI is up to date! ähnelt.
         /// </summary>
         internal static string UpToDate {
             get {
                 return ResourceManager.GetString("UpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Yes ähnelt.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
