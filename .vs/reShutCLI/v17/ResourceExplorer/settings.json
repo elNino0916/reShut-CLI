@@ -1,1 +1,16 @@
-{"ShowEmptyProjects":false,"CustomColumnOrderings":{"name":0,"file-path":1,"file-name":2,"neutral-value":3,"type":4,"neutral-comment":4,"de-DE":6,"es-ES":7,"fr-FR":8,"pt-PT":9},"ShowValidationErrors":false,"SelectedResourceGroupsByProject":{"C:\\Users\\ninob\\Source\\Repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj":["C:\\Users\\ninob\\Source\\Repos\\reshut-cli\\reShutCLI\\Resources\\Strings.resx"]},"VisibleColumnKeys":["name","neutral-value","neutral-comment"]}
+{
+  "ShowEmptyProjects": false,
+  "SelectedGroups": [],
+  "ExpandedProjects": [],
+  "EnableSpellChecker": true,
+  "ColumnOrder": [],
+  "VisibleColumnKeys": [
+    "name",
+    "neutral-comment",
+    "pt-PT",
+    "fr-FR",
+    "es-ES",
+    "de-DE",
+    "neutral-value"
+  ]
+}
