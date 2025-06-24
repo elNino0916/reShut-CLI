@@ -49,7 +49,7 @@ namespace reShutCLI
             // Print the error box
             Console.Clear();
             UIDraw.TextColor = Variables.LogoColor;
-            UIDraw.DrawBoxedMessage("This interface is currently being improved. Please report any bugs on GitHub.");
+            UIDraw.DrawBoxedMessage(rm.GetString("ErrorHandler_BeingImproved", culture));
             UIDraw.DrawLine(" ");
             UIDraw.TextColor = Variables.SecondaryColor;
             UIDraw.DrawCenteredLine(topBorder);

@@ -94,7 +94,8 @@ namespace reShutCLI
             // Phase 3
             Console.Clear();
         phase3retry:
-            var minutes = input / 60;
+            var seconds = input * 60;
+            var minutes = input;
             var hours = minutes / 60;
             UIDraw.TextColor = Variables.MenuColor;
 
@@ -109,7 +110,7 @@ namespace reShutCLI
             }
 
             var header = string.Format(rm.GetString("Schedule_ConfirmActionSeconds", culture), translatedType, input);
-            var info = string.Format(rm.GetString("Schedule_TimeBreakdown", culture), minutes, hours);
+            var info = string.Format(rm.GetString("Schedule_TimeBreakdown", culture), hours);
             var option1 = string.Format("1) " + rm.GetString("Schedule_ConfirmYes", culture), translatedType);
             string option2 = "2) " + rm.GetString("Schedule_ConfirmNoReenter", culture);
             string option0 = "0) " + rm.GetString("BackToMainMenu", culture);
@@ -142,7 +143,7 @@ namespace reShutCLI
                     try
                     {
                         var character = type.Equals(rm.GetString("Shutdown", culture).ToLower(), StringComparison.OrdinalIgnoreCase) ? "s" : "r";
-                        Process.Start("cmd.exe", "/c shutdown /" + character + " /f /t " + input);
+                        Process.Start("cmd.exe", "/c shutdown /" + character + " /f /t " + seconds);
                         UIDraw.TextColor = ConsoleColor.Green;
                         UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ActionScheduled", culture));
                         UIDraw.TextColor = ConsoleColor.White;

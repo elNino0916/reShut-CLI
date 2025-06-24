@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /// <summary>
 /// A fancy class that simplifies drawing messages and just a fancy wrapper around Console methods xD

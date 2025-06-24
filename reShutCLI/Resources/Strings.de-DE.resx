@@ -241,7 +241,7 @@
     <value>Wann soll die Aktion ausgeführt werden?</value>
   </data>
   <data name="Schedule_EnterSeconds" xml:space="preserve">
-    <value>Geben Sie die Zeit in Sekunden an</value>
+    <value>Geben Sie die Zeit in Minuten an.</value>
   </data>
   <data name="Schedule_InputPrompt" xml:space="preserve">
     <value>Eingabe:</value>
@@ -250,10 +250,10 @@
     <value>Fehler: Eingabe muss eine zulässige Nummer sein.</value>
   </data>
   <data name="Schedule_ConfirmActionSeconds" xml:space="preserve">
-    <value>Sie möchten den PC in {1} Sekunden {0}. Ist dies korrekt?</value>
+    <value>Sie möchten den PC in {1} Minute(n) {0}. Ist dies korrekt?</value>
   </data>
   <data name="Schedule_TimeBreakdown" xml:space="preserve">
-    <value>({0} min / {1} Std)</value>
+    <value>({0} Std)</value>
   </data>
   <data name="Schedule_ConfirmYes" xml:space="preserve">
     <value>Ja, "{0}" planen</value>
@@ -326,5 +326,8 @@
   </data>
   <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
     <value>Drücken Sie eine beliebige Taste um zu den Einstellungen zurückzugehen.</value>
+  </data>
+  <data name="ErrorHandler_BeingImproved" xml:space="preserve">
+    <value>Diese Oberfläche wird derzeit verbessert. Bitte melden Sie alle Fehler auf GitHub.</value>
   </data>
 </root>

@@ -142,6 +142,15 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This interface is currently being improved. Please report any bugs on GitHub. ähnelt.
+        /// </summary>
+        internal static string ErrorHandler_BeingImproved {
+            get {
+                return ResourceManager.GetString("ErrorHandler_BeingImproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press any key to return to Settings. ähnelt.
         /// </summary>
         internal static string ErrorHandler_PressKeyBack {
@@ -376,7 +385,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die You want to schedule a {0} in {1} seconds. Is that correct? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die You want to schedule a {0} in {1} minute(s). Is that correct? ähnelt.
         /// </summary>
         internal static string Schedule_ConfirmActionSeconds {
             get {
@@ -412,7 +421,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Enter the time in seconds. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enter the time in minutes. ähnelt.
         /// </summary>
         internal static string Schedule_EnterSeconds {
             get {
@@ -484,7 +493,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die ({0}min / {1}hrs) ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die ({0}hrs) ähnelt.
         /// </summary>
         internal static string Schedule_TimeBreakdown {
             get {

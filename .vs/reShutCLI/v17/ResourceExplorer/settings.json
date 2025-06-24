@@ -3,7 +3,16 @@
   "SelectedGroups": [],
   "ExpandedProjects": [],
   "EnableSpellChecker": true,
-  "ColumnOrder": [],
+  "ColumnOrder": [
+    "name",
+    "type",
+    "neutral-value",
+    "neutral-comment",
+    "de-DE",
+    "es-ES",
+    "fr-FR",
+    "pt-PT"
+  ],
   "VisibleColumnKeys": [
     "name",
     "neutral-comment",

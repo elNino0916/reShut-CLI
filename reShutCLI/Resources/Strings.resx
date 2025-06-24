@@ -241,7 +241,7 @@
     <value>When should the action be executed?</value>
   </data>
   <data name="Schedule_EnterSeconds" xml:space="preserve">
-    <value>Enter the time in seconds.</value>
+    <value>Enter the time in minutes.</value>
   </data>
   <data name="Schedule_InputPrompt" xml:space="preserve">
     <value>Input:</value>
@@ -250,10 +250,10 @@
     <value>Error: Input must be a valid number.</value>
   </data>
   <data name="Schedule_ConfirmActionSeconds" xml:space="preserve">
-    <value>You want to schedule a {0} in {1} seconds. Is that correct?</value>
+    <value>You want to schedule a {0} in {1} minute(s). Is that correct?</value>
   </data>
   <data name="Schedule_TimeBreakdown" xml:space="preserve">
-    <value>({0}min / {1}hrs)</value>
+    <value>({0}hrs)</value>
   </data>
   <data name="Schedule_ConfirmYes" xml:space="preserve">
     <value>Yes, schedule {0}</value>
@@ -326,5 +326,8 @@
   </data>
   <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
     <value>Press any key to return to Settings.</value>
+  </data>
+  <data name="ErrorHandler_BeingImproved" xml:space="preserve">
+    <value>This interface is currently being improved. Please report any bugs on GitHub.</value>
   </data>
 </root>
