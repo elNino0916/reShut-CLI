@@ -15,24 +15,24 @@ namespace reShutCLI
             Console.Clear();
             CultureInfo culture = new CultureInfo(Variables.lang);
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-            Console.ForegroundColor = Variables.SecondaryColor;
-            UIDraw.DisplayBoxedMessage(rm.GetString("ResetWarning", culture));
-            UpdateChecker.DisplayCenteredMessage("");
-            UpdateChecker.DisplayCenteredMessage("╭──────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ 1) Reset         │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Cancel        │");
-            UpdateChecker.DisplayCenteredMessage("╰──────────────────╯");
-            Console.ForegroundColor = Variables.MenuColor;
+            UIDraw.TextColor = Variables.SecondaryColor;
+            UIDraw.DrawBoxedMessage(rm.GetString("ResetWarning", culture));
+            UIDraw.DrawCenteredLine("");
+            UIDraw.DrawCenteredLine("╭──────────────────╮");
+            UIDraw.DrawCenteredLine("│ 1) Reset         │");
+            UIDraw.DrawCenteredLine("├──────────────────┤");
+            UIDraw.DrawCenteredLine("│ 2) Cancel        │");
+            UIDraw.DrawCenteredLine("╰──────────────────╯");
+            UIDraw.TextColor = Variables.MenuColor;
 
             var setInfo = Console.ReadKey();
             var confirmation = setInfo.KeyChar.ToString();
-            Console.ForegroundColor = Variables.SecondaryColor;
+            UIDraw.TextColor = Variables.SecondaryColor;
 
             if (confirmation == "1")
             {
                 Console.Clear();
-                UIDraw.DisplayBoxedMessage(rm.GetString("ResetProg", culture));
+                UIDraw.DrawBoxedMessage(rm.GetString("ResetProg", culture));
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
                 Thread.Sleep(500);

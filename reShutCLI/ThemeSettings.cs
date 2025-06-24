@@ -13,19 +13,19 @@ namespace reShutCLI
             Console.Clear();
             CultureInfo culture = new CultureInfo(Variables.lang);
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-            UIDraw.DisplayBoxedMessage(rm.GetString("SelectTheme", culture));
-            UpdateChecker.DisplayCenteredMessage("");
-            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 2) Red                   │");
-            UpdateChecker.DisplayCenteredMessage("│ 3) Blue                  │");
-            UpdateChecker.DisplayCenteredMessage("│ 4) Green                 │");
-            UpdateChecker.DisplayCenteredMessage("│ 5) Nord                  │");
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage("│ 9) Back                  │");
-            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
-            UpdateChecker.DisplayCenteredMessage(""); // Added for spacing before input
+            UIDraw.DrawBoxedMessage(rm.GetString("SelectTheme", culture));
+            UIDraw.DrawCenteredLine("");
+            UIDraw.DrawCenteredLine("╭──────────────────────────╮");
+            UIDraw.DrawCenteredLine("│ 1) Default               │");
+            UIDraw.DrawCenteredLine("├──────────────────────────┤");
+            UIDraw.DrawCenteredLine("│ 2) Red                   │");
+            UIDraw.DrawCenteredLine("│ 3) Blue                  │");
+            UIDraw.DrawCenteredLine("│ 4) Green                 │");
+            UIDraw.DrawCenteredLine("│ 5) Nord                  │");
+            UIDraw.DrawCenteredLine("├──────────────────────────┤");
+            UIDraw.DrawCenteredLine("│ 9) Back                  │");
+            UIDraw.DrawCenteredLine("╰──────────────────────────╯");
+            UIDraw.DrawCenteredLine(""); // Added for spacing before input
             ConsoleKeyInfo keyInfo4 = Console.ReadKey();
             if (keyInfo4.Key == ConsoleKey.D1 || keyInfo4.Key == ConsoleKey.NumPad1)
             {

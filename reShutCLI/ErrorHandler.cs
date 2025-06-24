@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 
 namespace reShutCLI
@@ -15,24 +17,25 @@ namespace reShutCLI
             else
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Error: Cannot resize the console window. It's too small for the required dimensions.");
+                UIDraw.TextColor = ConsoleColor.Red;
+                UIDraw.DrawCenteredLine("Error: Cannot resize the console window. It's too small for the required dimensions.");
                 Console.ResetColor();
             }
         }
         public static void ShowError(string error, bool needsRestart)
         {
-            Console.Title = "reShut CLI - Error";
+            CultureInfo culture = new CultureInfo(Variables.lang);
+            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+            Console.Title = "reShut CLI";
             Console.OutputEncoding = Encoding.UTF8;
 
             // Prepare all lines of the message
             var lines = new[]
             {
-                "An error occurred!",
-                "Here is an error description:",
+                rm.GetString("ErrorOccurred", culture),
                 error,
-                needsRestart ? "reShut CLI needs a restart." : "reShut CLI does not need a restart.",
-                needsRestart ? "Press any key to restart reShut CLI." : "Press any key to go into settings."
+                needsRestart ? rm.GetString("NeedRestart", culture) : "",
+                needsRestart ? rm.GetString("ErrorHandler_PressKeyRestart",culture) : rm.GetString("ErrorHandler_PressKeyBack",culture)
             };
 
             // Determine the width of the box based on the longest line
@@ -45,32 +48,30 @@ namespace reShutCLI
 
             // Print the error box
             Console.Clear();
-            Console.ForegroundColor = Variables.SecondaryColor;
-            Console.WriteLine(topBorder);
-            Console.WriteLine("│ " + lines[0].PadRight(boxWidth - 2) + " │");
-            Console.WriteLine(middleBorder);
-            Console.ForegroundColor = Variables.SecondaryColor;
-            Console.WriteLine("│ " + lines[1].PadRight(boxWidth - 2) + " │");
-            Console.WriteLine(middleBorder);
-            Console.WriteLine("│ " + lines[2].PadRight(boxWidth - 2) + " │");
-            Console.WriteLine(middleBorder);
+            UIDraw.TextColor = Variables.LogoColor;
+            UIDraw.DrawBoxedMessage("This interface is currently being improved. Please report any bugs on GitHub.");
+            UIDraw.DrawLine(" ");
+            UIDraw.TextColor = Variables.SecondaryColor;
+            UIDraw.DrawCenteredLine(topBorder);
+            UIDraw.DrawCenteredLine("│ " + lines[0].PadRight(boxWidth - 2) + " │");
+            UIDraw.DrawCenteredLine(middleBorder);
+            UIDraw.TextColor = Variables.SecondaryColor;
+            UIDraw.DrawCenteredLine("│ " + lines[1].PadRight(boxWidth - 2) + " │");
+            UIDraw.DrawCenteredLine(middleBorder);
+            UIDraw.DrawCenteredLine("│ " + lines[2].PadRight(boxWidth - 2) + " │");
             if (needsRestart)
             {
-                Console.ForegroundColor = Variables.SecondaryColor;
-                Console.WriteLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
-                Console.WriteLine(middleBorder);
-                Console.WriteLine("│ " + lines[4].PadRight(boxWidth - 2) + " │");
-                Console.WriteLine(bottomBorder);
+                UIDraw.TextColor = Variables.SecondaryColor;
+                UIDraw.DrawCenteredLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
+                UIDraw.DrawCenteredLine(bottomBorder);
                 Console.ReadKey();
                 AutoRestart.Init();
             }
             else
             {
-                Console.ForegroundColor = Variables.SecondaryColor;
-                Console.WriteLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
-                Console.WriteLine(middleBorder);
-                Console.WriteLine("│ " + lines[4].PadRight(boxWidth - 2) + " │");
-                Console.WriteLine(bottomBorder);
+                UIDraw.TextColor = Variables.SecondaryColor;
+                UIDraw.DrawCenteredLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
+                UIDraw.DrawCenteredLine(bottomBorder);
                 Console.ReadKey();
                 Settings.Show();
             }

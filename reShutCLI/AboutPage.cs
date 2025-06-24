@@ -10,7 +10,7 @@ namespace reShutCLI
         {
             CultureInfo culture = new CultureInfo(Variables.lang);
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-            Console.ForegroundColor = Variables.MenuColor;
+            UIDraw.TextColor = Variables.MenuColor;
 
             var prereleasetag = Variables.prerelease ? rm.GetString("PreRelease", culture) : "";
             var header = "reShut CLI " + prereleasetag + Variables.version;
@@ -21,13 +21,13 @@ namespace reShutCLI
             var maxLength = Math.Max(header.Length, Math.Max(releaseStatus.Length, registryVersion.Length));
             var borderLength = maxLength + 4;
 
-            UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");
-            UpdateChecker.DisplayCenteredMessage("│ " + header.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + "Copyright © 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("│ " + registryVersion.PadRight(borderLength - 2) + " │");
-            UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
-            UIDraw.DisplayBoxedMessage(rm.GetString("PressAnyKeyToGoBack", culture));
+            UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
+            UIDraw.DrawCenteredLine("│ " + header.PadRight(borderLength - 2) + " │");
+            UIDraw.DrawCenteredLine("│ " + "Copyright © 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
+            UIDraw.DrawCenteredLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
+            UIDraw.DrawCenteredLine("│ " + registryVersion.PadRight(borderLength - 2) + " │");
+            UIDraw.DrawCenteredLine("╰" + new string('─', borderLength) + "╯");
+            UIDraw.DrawBoxedMessage(rm.GetString("PressAnyKeyToGoBack", culture));
             
             Console.ReadKey();
             Console.Clear();

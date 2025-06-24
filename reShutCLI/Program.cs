@@ -59,7 +59,7 @@ internal class Program
     /// <param name="messageText">The text of the message to display.</param>
     private static void DisplayBorderedMessage(string messageText)
     {
-            UIDraw.DisplayBoxedMessage(messageText);
+            UIDraw.DrawBoxedMessage(messageText);
     }
     
     /// <summary>
@@ -75,8 +75,8 @@ internal class Program
             ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
             string confirmationText = rm.GetString("ConfirmationText", culture); // Get localized confirmation text.
 
-            Console.ForegroundColor = Variables.SecondaryColor; // Set text color for the prompt.
-            UpdateChecker.DisplayCenteredMessage("\n"); // Add a newline for spacing.
+            UIDraw.TextColor = Variables.SecondaryColor; // Set text color for the prompt.
+            UIDraw.DrawCenteredLine("\n"); // Add a newline for spacing.
             DisplayBorderedMessage(confirmationText); // Display the actual bordered message.
         }
     }
@@ -88,7 +88,7 @@ internal class Program
     {
         CultureInfo culture = new CultureInfo(Variables.lang);
         ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
-        Console.WriteLine(rm.GetString("LicenseText", culture)); // Get and print localized license text.
+        UIDraw.DrawLine(rm.GetString("LicenseText", culture)); // Get and print localized license text.
     }
     
     /// <summary>
@@ -116,7 +116,7 @@ internal class Program
         foreach (var line in lines)
         {
             var centeredLine = new string(' ', padding) + line;
-            Console.WriteLine(centeredLine);
+            UIDraw.DrawLine(centeredLine);
         }
 
         string centeredText; // This will hold the version string.
@@ -139,8 +139,8 @@ internal class Program
                         rm.GetString("CopyrightText", culture);
 
         // Print the centered version and copyright information.
-        Console.WriteLine(centeredText);
-        Console.WriteLine(copyright);
+        UIDraw.DrawLine(centeredText);
+        UIDraw.DrawLine(copyright);
     }
 
     /// <summary>
@@ -151,23 +151,23 @@ internal class Program
     {
         CultureInfo culture = new CultureInfo(Variables.lang);
         ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
-        Console.ForegroundColor = Variables.MenuColor; // Set color for the menu text.
+        UIDraw.TextColor = Variables.MenuColor; // Set color for the menu text.
 
         // Get localized menu item strings.
         string[] menuItems = [rm.GetString("Shutdown", culture), rm.GetString("Reboot", culture), rm.GetString("Logoff", culture), rm.GetString("Schedule", culture), rm.GetString("Settings", culture), rm.GetString("Quit", culture)];
 
         // Display the menu structure with borders and items.
         // The main menu title is fetched from resources, allowing for localization.
-        UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-        UpdateChecker.DisplayCenteredMessage($"│       {rm.GetString("MainMenu", culture)}        │");
-        UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
+        UIDraw.DrawCenteredLine("╭────────────────────────╮");
+        UIDraw.DrawCenteredLine($"│       {rm.GetString("MainMenu", culture)}        │");
+        UIDraw.DrawCenteredLine("├────────────────────────┤");
         for (var i = Constants.MainMenuStartIndex; i < menuItems.Length - 1; i++) // Loop through standard menu items (1-3).
-            UpdateChecker.DisplayCenteredMessage("│ " + i + ") " + menuItems[i - 1].PadRight(Constants.MenuItemPaddingWidth) + "│");
-        UpdateChecker.DisplayCenteredMessage("├────────────────────────┤");
-        UpdateChecker.DisplayCenteredMessage("│ 9) " + menuItems[4].PadRight(Constants.MenuItemPaddingWidth) + "│"); // Settings item (9).
-        UpdateChecker.DisplayCenteredMessage("│ 0) " + menuItems[5].PadRight(Constants.MenuItemPaddingWidth) + "│"); // Quit item (0).
+            UIDraw.DrawCenteredLine("│ " + i + ") " + menuItems[i - 1].PadRight(Constants.MenuItemPaddingWidth) + "│");
+        UIDraw.DrawCenteredLine("├────────────────────────┤");
+        UIDraw.DrawCenteredLine("│ 9) " + menuItems[4].PadRight(Constants.MenuItemPaddingWidth) + "│"); // Settings item (9).
+        UIDraw.DrawCenteredLine("│ 0) " + menuItems[5].PadRight(Constants.MenuItemPaddingWidth) + "│"); // Quit item (0).
 
-        UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
+        UIDraw.DrawCenteredLine("╰────────────────────────╯");
 
         // Read the user's key press.
         var keyInfo = Console.ReadKey();
@@ -201,7 +201,7 @@ internal class Program
 
         // Configure console appearance.
         Console.CursorVisible = false; // Hide cursor.
-        Console.BackgroundColor = ConsoleColor.Black; // Set background color.
+        UIDraw.BackgroundColor = ConsoleColor.Black; // Set background color.
         Console.Clear(); // Clear console.
 
         // Load user-selected theme.
@@ -213,7 +213,7 @@ internal class Program
     /// </summary>
     private static void PrintLogo()
     {
-        Console.ForegroundColor = Variables.LogoColor; // Set color for the logo.
+        UIDraw.TextColor = Variables.LogoColor; // Set color for the logo.
         CenterText(); // Display the centered ASCII art, version, and copyright.
 
         // Initialize resources for this method's scope
@@ -229,17 +229,17 @@ internal class Program
             }
             catch // Handle potential errors during update check (e.g., network issues).
             {
-                Console.ForegroundColor = Variables.SecondaryColor;
-                UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateCheckFailed", culture)); // Display localized error message.
-                Console.ForegroundColor = ConsoleColor.Gray; // Reset color.
+                UIDraw.TextColor = Variables.SecondaryColor;
+                UIDraw.DrawCenteredLine(rm.GetString("UpdateCheckFailed", culture)); // Display localized error message.
+                UIDraw.TextColor = ConsoleColor.Gray; // Reset color.
             }
         }
         else
         {
             // If update search is disabled, display a message indicating so.
-            Console.ForegroundColor = Variables.SecondaryColor;
-            UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateSearchDisabled", culture)); // Display localized disabled message.
-            Console.ForegroundColor = ConsoleColor.Gray; // Reset color.
+            UIDraw.TextColor = Variables.SecondaryColor;
+            UIDraw.DrawCenteredLine(rm.GetString("UpdateSearchDisabled", culture)); // Display localized disabled message.
+            UIDraw.TextColor = ConsoleColor.Gray; // Reset color.
         }
     }
     
@@ -276,7 +276,7 @@ internal class Program
         Console.Clear();
         License(); // License method itself handles its own rm and culture
         string welcomeMessage = rm.GetString("PressAnyKeyToGoBack", culture);
-        Console.WriteLine(Environment.NewLine + welcomeMessage);
+        UIDraw.DrawLine(Environment.NewLine + welcomeMessage);
         Console.ReadKey();
         Console.Clear();
     }
@@ -345,8 +345,8 @@ internal class Program
         if (Variables.isUpToDate) { Console.Clear(); return; }
         Console.Clear();
         Console.Title = rm.GetString("UpdaterTitle", culture);
-        Console.ForegroundColor = Variables.MenuColor;
-        UpdateChecker.DisplayCenteredMessage(rm.GetString("UpdateDLStarted", culture));
+        UIDraw.TextColor = Variables.MenuColor;
+        UIDraw.DrawCenteredLine(rm.GetString("UpdateDLStarted", culture));
         Thread.Sleep(Constants.UpdateDownloadMessageDelayMs);
 #pragma warning disable CS4014 // Call is not awaited, as it's a fire-and-forget update process.
         AutoUpdater.PerformUpdate();
@@ -364,8 +364,8 @@ internal class Program
     {
         Console.Clear();
         string invalidText = rm.GetString("InvalidInput", culture);
-        Console.ForegroundColor = Variables.SecondaryColor;
+        UIDraw.TextColor = Variables.SecondaryColor;
         DisplayBorderedMessage(invalidText);
-        Console.ForegroundColor = ConsoleColor.White;
+        UIDraw.TextColor = ConsoleColor.White;
     }
 }

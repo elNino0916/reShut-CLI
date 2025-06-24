@@ -15,45 +15,45 @@ namespace reShutCLI
                 Console.OutputEncoding = Encoding.UTF8;
                 Console.CursorVisible = false;
                 ThemeLoader.setDefaultTheme();
-                Console.ForegroundColor = Variables.LogoColor;
+                UIDraw.TextColor = Variables.LogoColor;
                 Console.Title = "Welcome to reShut CLI!";
                 Program.CenterText();
-                Console.ForegroundColor = ConsoleColor.Gray;
+                UIDraw.TextColor = ConsoleColor.Gray;
                 Thread.Sleep(1500);
                 Console.Clear();
-                Console.ForegroundColor = Variables.MenuColor;
+                UIDraw.TextColor = Variables.MenuColor;
                 Console.Title = "reShut CLI Setup";
-                UpdateChecker.DisplayCenteredMessage("╭────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Welcome to reShut CLI! │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────────────────╯");
+                UIDraw.DrawCenteredLine("╭────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Welcome to reShut CLI! │");
+                UIDraw.DrawCenteredLine("╰────────────────────────╯");
                 RegInit.Populate(false);
                 Thread.Sleep(2000);
                 Console.Clear();
                 step2:
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Language (2/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Help translate reShut CLI to your language! https://github.com/elnino0916/reshut-cli │");
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Select the language you would like to use. │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ 1) English (US) [100%]           │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [100%]       │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [40%]       │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 4) Spanish (Español) [40%]       │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 5) Portuguese (Português) [40%]  │");
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("╭────────────────╮");
+                UIDraw.DrawCenteredLine("│ Language (2/5) │");
+                UIDraw.DrawCenteredLine("╰────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭──────────────────────────────────────────────────────────────────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Help translate reShut CLI to your language! https://github.com/elnino0916/reshut-cli │");
+                UIDraw.DrawCenteredLine("╰──────────────────────────────────────────────────────────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭────────────────────────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Select the language you would like to use. │");
+                UIDraw.DrawCenteredLine("╰────────────────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭──────────────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ 1) English (US) [100%]           │");
+                UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 2) German (Deutsch) [100%]       │");
+                UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 3) French (Français) [40%]       │");
+                UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 4) Spanish (Español) [40%]       │");
+                UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 5) Portuguese (Português) [40%]  │");
+                UIDraw.DrawCenteredLine("╰──────────────────────────────────╯");
                 var keyInfoL = Console.ReadKey();
                 var key = keyInfoL.KeyChar.ToString();
                 switch (key)
@@ -82,28 +82,28 @@ namespace reShutCLI
                 }
 
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ EULA (2/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
+                UIDraw.DrawCenteredLine("╭────────────╮");
+                UIDraw.DrawCenteredLine("│ EULA (2/5) │");
+                UIDraw.DrawCenteredLine("╰────────────╯");
+                UIDraw.DrawCenteredLine("");
                 ShowEULA.Start();
-                Console.ForegroundColor = Variables.MenuColor;
+                UIDraw.TextColor = Variables.MenuColor;
 
             step3:
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭───────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Updates (3/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────────────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Do you want to enable update checking? This uses GitHub to check for updates. │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────────────────────────────────────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ 1) Yes, enable        │");
-                UpdateChecker.DisplayCenteredMessage("├───────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) No, disable        │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
+                UIDraw.DrawCenteredLine("╭───────────────╮");
+                UIDraw.DrawCenteredLine("│ Updates (3/5) │");
+                UIDraw.DrawCenteredLine("╰───────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭───────────────────────────────────────────────────────────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Do you want to enable update checking? This uses GitHub to check for updates. │");
+                UIDraw.DrawCenteredLine("╰───────────────────────────────────────────────────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭───────────────────────╮");
+                UIDraw.DrawCenteredLine("│ 1) Yes, enable        │");
+                UIDraw.DrawCenteredLine("├───────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 2) No, disable        │");
+                UIDraw.DrawCenteredLine("╰───────────────────────╯");
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
                 if (keyInfo.Key == ConsoleKey.D1 || keyInfo.Key == ConsoleKey.NumPad1)
                 {
@@ -119,19 +119,19 @@ namespace reShutCLI
                 }
             step4:
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭───────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Updates (3/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Do you want to enable Auto Updates on startup? (recommended) │");
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ 1) Yes, enable        │");
-                UpdateChecker.DisplayCenteredMessage("├───────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) No, disable        │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
+                UIDraw.DrawCenteredLine("╭───────────────╮");
+                UIDraw.DrawCenteredLine("│ Updates (3/5) │");
+                UIDraw.DrawCenteredLine("╰───────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭──────────────────────────────────────────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Do you want to enable Auto Updates on startup? (recommended) │");
+                UIDraw.DrawCenteredLine("╰──────────────────────────────────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭───────────────────────╮");
+                UIDraw.DrawCenteredLine("│ 1) Yes, enable        │");
+                UIDraw.DrawCenteredLine("├───────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 2) No, disable        │");
+                UIDraw.DrawCenteredLine("╰───────────────────────╯");
                 ConsoleKeyInfo keyInfo3 = Console.ReadKey();
                 if (keyInfo3.Key == ConsoleKey.D1 || keyInfo3.Key == ConsoleKey.NumPad1)
                 {
@@ -147,22 +147,22 @@ namespace reShutCLI
                 }
             step5:
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭─────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Theme (4/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰─────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭────────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Select a theme to personalize your experience. │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────────────────────────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ 1) Default               │");
-                UpdateChecker.DisplayCenteredMessage("├──────────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) Red                   │");
-                UpdateChecker.DisplayCenteredMessage("│ 3) Blue                  │");
-                UpdateChecker.DisplayCenteredMessage("│ 4) Green                 │");
-                UpdateChecker.DisplayCenteredMessage("│ 5) Nord                  │");
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────╯");
+                UIDraw.DrawCenteredLine("╭─────────────╮");
+                UIDraw.DrawCenteredLine("│ Theme (4/5) │");
+                UIDraw.DrawCenteredLine("╰─────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭────────────────────────────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Select a theme to personalize your experience. │");
+                UIDraw.DrawCenteredLine("╰────────────────────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭──────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ 1) Default               │");
+                UIDraw.DrawCenteredLine("├──────────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 2) Red                   │");
+                UIDraw.DrawCenteredLine("│ 3) Blue                  │");
+                UIDraw.DrawCenteredLine("│ 4) Green                 │");
+                UIDraw.DrawCenteredLine("│ 5) Nord                  │");
+                UIDraw.DrawCenteredLine("╰──────────────────────────╯");
                 ConsoleKeyInfo keyInfo4 = Console.ReadKey();
                 if (keyInfo4.Key == ConsoleKey.D1 || keyInfo4.Key == ConsoleKey.NumPad1)
                 {
@@ -189,26 +189,26 @@ namespace reShutCLI
                     goto step5;
                 }
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭─────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Applying changes... │");
-                UpdateChecker.DisplayCenteredMessage("╰─────────────────────╯");
+                UIDraw.DrawCenteredLine("╭─────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Applying changes... │");
+                UIDraw.DrawCenteredLine("╰─────────────────────╯");
                 ThemeLoader.loadTheme();
 
             step6:
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Confirmation (5/5) │");
-                UpdateChecker.DisplayCenteredMessage("╰────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────────────────────────────────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Would you like to be asked twice before shutting down / rebooting your PC?   │");
-                UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────────────────────────────────────────────────╯");
-                UpdateChecker.DisplayCenteredMessage("");
-                UpdateChecker.DisplayCenteredMessage("╭───────────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ 1) Yes, ask twice     │");
-                UpdateChecker.DisplayCenteredMessage("├───────────────────────┤");
-                UpdateChecker.DisplayCenteredMessage("│ 2) No, ask once       │");
-                UpdateChecker.DisplayCenteredMessage("╰───────────────────────╯");
+                UIDraw.DrawCenteredLine("╭────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Confirmation (5/5) │");
+                UIDraw.DrawCenteredLine("╰────────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭──────────────────────────────────────────────────────────────────────────────╮");
+                UIDraw.DrawCenteredLine("│ Would you like to be asked twice before shutting down / rebooting your PC?   │");
+                UIDraw.DrawCenteredLine("╰──────────────────────────────────────────────────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("");
+                UIDraw.DrawCenteredLine("╭───────────────────────╮");
+                UIDraw.DrawCenteredLine("│ 1) Yes, ask twice     │");
+                UIDraw.DrawCenteredLine("├───────────────────────┤");
+                UIDraw.DrawCenteredLine("│ 2) No, ask once       │");
+                UIDraw.DrawCenteredLine("╰───────────────────────╯");
                 ConsoleKeyInfo keyInfo5 = Console.ReadKey();
                 if (keyInfo5.Key == ConsoleKey.D1 || keyInfo5.Key == ConsoleKey.NumPad1)
                 {
@@ -224,9 +224,9 @@ namespace reShutCLI
                 }
 
                 Console.Clear();
-                UpdateChecker.DisplayCenteredMessage("╭─────────────────╮");
-                UpdateChecker.DisplayCenteredMessage("│ Setup complete! │");
-                UpdateChecker.DisplayCenteredMessage("╰─────────────────╯");
+                UIDraw.DrawCenteredLine("╭─────────────────╮");
+                UIDraw.DrawCenteredLine("│ Setup complete! │");
+                UIDraw.DrawCenteredLine("╰─────────────────╯");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "1");
                 Thread.Sleep(3000);
                 AutoRestart.Init();

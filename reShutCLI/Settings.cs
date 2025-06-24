@@ -18,14 +18,14 @@ namespace reShutCLI
             string updateSearchValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch");
             string autoUpdateValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart");
 
-            // Display status messages using UIDraw.DisplayBoxedMessage
-            UIDraw.DisplayBoxedMessage(updateSearchValue == "1" ? rm.GetString("UpdateSettings_UpdateSearchEnabled", culture) : rm.GetString("UpdateSettings_UpdateSearchDisabled", culture));
-            Console.WriteLine(); // Add a blank line for spacing
-            UIDraw.DisplayBoxedMessage(autoUpdateValue == "yes" ? rm.GetString("UpdateSettings_AutoUpdateEnabled", culture) : rm.GetString("UpdateSettings_AutoUpdateDisabled", culture));
-            Console.WriteLine(); // Add a blank line for spacing
+            // Display status messages using UIDraw.DrawBoxedMessage
+            UIDraw.DrawBoxedMessage(updateSearchValue == "1" ? rm.GetString("UpdateSettings_UpdateSearchEnabled", culture) : rm.GetString("UpdateSettings_UpdateSearchDisabled", culture));
+            UIDraw.DrawLine(""); // Add a blank line for spacing
+            UIDraw.DrawBoxedMessage(autoUpdateValue == "yes" ? rm.GetString("UpdateSettings_AutoUpdateEnabled", culture) : rm.GetString("UpdateSettings_AutoUpdateDisabled", culture));
+            UIDraw.DrawLine(""); // Add a blank line for spacing
 
             // Display current settings using dynamic box drawing similar to other menus
-            Console.ForegroundColor = Variables.MenuColor;
+            UIDraw.TextColor = Variables.MenuColor;
             string[] menuItems = [
                 rm.GetString("UpdateSettings_ToggleUpdateSearch", culture),
                 rm.GetString("UpdateSettings_ToggleAutoUpdate", culture),
@@ -49,14 +49,14 @@ namespace reShutCLI
             int headerPaddingLeft = headerPaddingTotal / 2;
             string titleLine = "│" + new string(' ', headerPaddingLeft) + settingsHeaderText + new string(' ', dynamicInnerWidth - settingsHeaderText.Length - headerPaddingLeft) + "│";
 
-            UpdateChecker.DisplayCenteredMessage(topBorder);
-            UpdateChecker.DisplayCenteredMessage(titleLine);
-            UpdateChecker.DisplayCenteredMessage(separator);
-            UpdateChecker.DisplayCenteredMessage("│" + ("1) " + menuItems[0]).PadRight(dynamicInnerWidth) + "│");
-            UpdateChecker.DisplayCenteredMessage("│" + ("2) " + menuItems[1]).PadRight(dynamicInnerWidth) + "│");
-            UpdateChecker.DisplayCenteredMessage(separator);
-            UpdateChecker.DisplayCenteredMessage("│" + ("9) " + menuItems[2]).PadRight(dynamicInnerWidth) + "│");
-            UpdateChecker.DisplayCenteredMessage(bottomBorder);
+            UIDraw.DrawCenteredLine(topBorder);
+            UIDraw.DrawCenteredLine(titleLine);
+            UIDraw.DrawCenteredLine(separator);
+            UIDraw.DrawCenteredLine("│" + ("1) " + menuItems[0]).PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│" + ("2) " + menuItems[1]).PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine(separator);
+            UIDraw.DrawCenteredLine("│" + ("9) " + menuItems[2]).PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine(bottomBorder);
 
             var keyInfo = Console.ReadKey();
             string key = keyInfo.KeyChar.ToString();
@@ -91,7 +91,7 @@ namespace reShutCLI
             CultureInfo culture = new CultureInfo(Variables.lang);
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             // Prints the settings menu
-            Console.ForegroundColor = Variables.MenuColor;
+            UIDraw.TextColor = Variables.MenuColor;
             // New UI
             Console.Title = rm.GetString("ConsoleTitle", culture) + " " + Variables.fullversion;
             string[] menuItems = [rm.GetString("General", culture), rm.GetString("MenuAndText", culture), rm.GetString("About", culture), rm.GetString("Back", culture)];
@@ -119,22 +119,22 @@ namespace reShutCLI
             int headerPaddingLeft = headerPaddingTotal / 2;
             string titleLine = "│" + new string(' ', headerPaddingLeft) + settingsHeaderText + new string(' ', dynamicInnerWidth - settingsHeaderText.Length - headerPaddingLeft) + "│";
 
-            UpdateChecker.DisplayCenteredMessage(topBorder);
-            UpdateChecker.DisplayCenteredMessage(titleLine);
-            UpdateChecker.DisplayCenteredMessage(separator);
+            UIDraw.DrawCenteredLine(topBorder);
+            UIDraw.DrawCenteredLine(titleLine);
+            UIDraw.DrawCenteredLine(separator);
 
             // Items
             string item1Text = "1) " + menuItems[0];
-            UpdateChecker.DisplayCenteredMessage("│" + item1Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│" + item1Text.PadRight(dynamicInnerWidth) + "│");
             string item2Text = "2) " + menuItems[1];
-            UpdateChecker.DisplayCenteredMessage("│" + item2Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│" + item2Text.PadRight(dynamicInnerWidth) + "│");
             string item3Text = "3) " + menuItems[2]; // About
-            UpdateChecker.DisplayCenteredMessage("│" + item3Text.PadRight(dynamicInnerWidth) + "│");
-            UpdateChecker.DisplayCenteredMessage(separator);
+            UIDraw.DrawCenteredLine("│" + item3Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine(separator);
             string item9Text = "9) " + menuItems[3]; // Back
-            UpdateChecker.DisplayCenteredMessage("│" + item9Text.PadRight(dynamicInnerWidth) + "│");
-            UpdateChecker.DisplayCenteredMessage(bottomBorder);
-            Console.ForegroundColor = ConsoleColor.White;
+            UIDraw.DrawCenteredLine("│" + item9Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine(bottomBorder);
+            UIDraw.TextColor = ConsoleColor.White;
             // Key detect
             var setInfo = Console.ReadKey();
             var set = setInfo.KeyChar.ToString();
@@ -145,7 +145,7 @@ namespace reShutCLI
                 // General
                 GeneralInit:
                     Console.Clear();
-                    Console.ForegroundColor = Variables.MenuColor;
+                    UIDraw.TextColor = Variables.MenuColor;
                     string[] menuItemsGen = [rm.GetString("Update", culture), rm.GetString("Theme", culture), rm.GetString("ResetAllSettings", culture), rm.GetString("Language", culture), rm.GetString("Back", culture)];
                     string generalHeaderText = rm.GetString("General", culture);
 
@@ -170,31 +170,31 @@ namespace reShutCLI
                     int gen_headerPaddingLeft = gen_headerPaddingTotal / 2;
                     string gen_titleLine = "│" + new string(' ', gen_headerPaddingLeft) + generalHeaderText + new string(' ', gen_dynamicInnerWidth - generalHeaderText.Length - gen_headerPaddingLeft) + "│";
 
-                    UpdateChecker.DisplayCenteredMessage(gen_topBorder);
-                    UpdateChecker.DisplayCenteredMessage(gen_titleLine);
-                    UpdateChecker.DisplayCenteredMessage(gen_separator);
+                    UIDraw.DrawCenteredLine(gen_topBorder);
+                    UIDraw.DrawCenteredLine(gen_titleLine);
+                    UIDraw.DrawCenteredLine(gen_separator);
 
-                    UpdateChecker.DisplayCenteredMessage("│" + ("1) " + menuItemsGen[0]).PadRight(gen_dynamicInnerWidth) + "│");
-                    UpdateChecker.DisplayCenteredMessage("│" + ("2) " + menuItemsGen[1]).PadRight(gen_dynamicInnerWidth) + "│");
-                    UpdateChecker.DisplayCenteredMessage("│" + ("3) " + menuItemsGen[2]).PadRight(gen_dynamicInnerWidth) + "│");
-                    UpdateChecker.DisplayCenteredMessage("│" + ("4) " + menuItemsGen[3]).PadRight(gen_dynamicInnerWidth) + "│"); // Language
-                    UpdateChecker.DisplayCenteredMessage(gen_separator);
-                    UpdateChecker.DisplayCenteredMessage("│" + ("9) " + menuItemsGen[4]).PadRight(gen_dynamicInnerWidth) + "│"); // Back
+                    UIDraw.DrawCenteredLine("│" + ("1) " + menuItemsGen[0]).PadRight(gen_dynamicInnerWidth) + "│");
+                    UIDraw.DrawCenteredLine("│" + ("2) " + menuItemsGen[1]).PadRight(gen_dynamicInnerWidth) + "│");
+                    UIDraw.DrawCenteredLine("│" + ("3) " + menuItemsGen[2]).PadRight(gen_dynamicInnerWidth) + "│");
+                    UIDraw.DrawCenteredLine("│" + ("4) " + menuItemsGen[3]).PadRight(gen_dynamicInnerWidth) + "│"); // Language
+                    UIDraw.DrawCenteredLine(gen_separator);
+                    UIDraw.DrawCenteredLine("│" + ("9) " + menuItemsGen[4]).PadRight(gen_dynamicInnerWidth) + "│"); // Back
 
-                    UpdateChecker.DisplayCenteredMessage(gen_bottomBorder);
+                    UIDraw.DrawCenteredLine(gen_bottomBorder);
 
                     /*
-                    UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│            General            │");
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 1) Update                     │");
-                    UpdateChecker.DisplayCenteredMessage("│ 2) Startup                    │");
-                    UpdateChecker.DisplayCenteredMessage("│ 3) Theme                      │");
-                    UpdateChecker.DisplayCenteredMessage("│ 4) Reset all settings         │");
-                    UpdateChecker.DisplayCenteredMessage("│ 5) Language                   │");
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 9) Back                       │");
-                    UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────╯");
+                    UIDraw.DrawCenteredLine("╭───────────────────────────────╮");
+                    UIDraw.DrawCenteredLine("│            General            │");
+                    UIDraw.DrawCenteredLine("├───────────────────────────────┤");
+                    UIDraw.DrawCenteredLine("│ 1) Update                     │");
+                    UIDraw.DrawCenteredLine("│ 2) Startup                    │");
+                    UIDraw.DrawCenteredLine("│ 3) Theme                      │");
+                    UIDraw.DrawCenteredLine("│ 4) Reset all settings         │");
+                    UIDraw.DrawCenteredLine("│ 5) Language                   │");
+                    UIDraw.DrawCenteredLine("├───────────────────────────────┤");
+                    UIDraw.DrawCenteredLine("│ 9) Back                       │");
+                    UIDraw.DrawCenteredLine("╰───────────────────────────────╯");
                     */
 
                     var setInfoGen = Console.ReadKey();
@@ -206,7 +206,7 @@ namespace reShutCLI
                             goto GeneralInit;
                         case "2":
                             Console.Clear();
-                            Console.ForegroundColor = Variables.MenuColor;
+                            UIDraw.TextColor = Variables.MenuColor;
                             ThemeSettings.OpenSettings();
                             goto GeneralInit;
 
@@ -216,24 +216,24 @@ namespace reShutCLI
 
                         case "4":
                             Console.Clear();
-                            Console.ForegroundColor = Variables.MenuColor;
-                            UIDraw.DisplayBoxedMessage(rm.GetString("Language", culture));
-                            UpdateChecker.DisplayCenteredMessage("");
-                            UIDraw.DisplayBoxedMessage(rm.GetString("HelpTranslate", culture) + " https://github.com/elnino0916/reshut-cli");
-                            UpdateChecker.DisplayCenteredMessage("");
-                            UIDraw.DisplayBoxedMessage(rm.GetString("SelectLang", culture));
-                            UpdateChecker.DisplayCenteredMessage("");
-                            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
-                            UpdateChecker.DisplayCenteredMessage("│ 1) English (US) [100%]           │");
-                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                            UpdateChecker.DisplayCenteredMessage("│ 2) German (Deutsch) [100%]       │");
-                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                            UpdateChecker.DisplayCenteredMessage("│ 3) French (Français) [40%]       │");
-                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                            UpdateChecker.DisplayCenteredMessage("│ 4) Spanish (Español) [40%]       │");
-                            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-                            UpdateChecker.DisplayCenteredMessage("│ 5) Portuguese (Português) [40%]  │");
-                            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
+                            UIDraw.TextColor = Variables.MenuColor;
+                            UIDraw.DrawBoxedMessage(rm.GetString("Language", culture));
+                            UIDraw.DrawCenteredLine("");
+                            UIDraw.DrawBoxedMessage(rm.GetString("HelpTranslate", culture) + " https://github.com/elnino0916/reshut-cli");
+                            UIDraw.DrawCenteredLine("");
+                            UIDraw.DrawBoxedMessage(rm.GetString("SelectLang", culture));
+                            UIDraw.DrawCenteredLine("");
+                            UIDraw.DrawCenteredLine("╭──────────────────────────────────╮");
+                            UIDraw.DrawCenteredLine("│ 1) English (US) [100%]           │");
+                            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                            UIDraw.DrawCenteredLine("│ 2) German (Deutsch) [100%]       │");
+                            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                            UIDraw.DrawCenteredLine("│ 3) French (Français) [40%]       │");
+                            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                            UIDraw.DrawCenteredLine("│ 4) Spanish (Español) [40%]       │");
+                            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+                            UIDraw.DrawCenteredLine("│ 5) Portuguese (Português) [40%]  │");
+                            UIDraw.DrawCenteredLine("╰──────────────────────────────────╯");
                             var keyInfoL = Console.ReadKey();
                             var key = keyInfoL.KeyChar.ToString();
                             switch (key)
@@ -275,11 +275,11 @@ namespace reShutCLI
                             int paddingLeft1 = (boxWidth1 - invalidText1.Length) / 2;
                             string paddedMessage1 = "│" + new string(' ', paddingLeft1) + invalidText1 + new string(' ', boxWidth1 - invalidText1.Length - paddingLeft1) + "│";
                             int windowWidth1 = Console.WindowWidth;
-                            Console.ForegroundColor = Variables.SecondaryColor;
-                            UpdateChecker.DisplayCenteredMessage(topBorder1);
-                            UpdateChecker.DisplayCenteredMessage(paddedMessage1);
-                            UpdateChecker.DisplayCenteredMessage(bottomBorder1);
-                            Console.ForegroundColor = ConsoleColor.White;
+                            UIDraw.TextColor = Variables.SecondaryColor;
+                            UIDraw.DrawCenteredLine(topBorder1);
+                            UIDraw.DrawCenteredLine(paddedMessage1);
+                            UIDraw.DrawCenteredLine(bottomBorder1);
+                            UIDraw.TextColor = ConsoleColor.White;
                             goto GeneralInit;
                     }
                 case "9":
@@ -289,7 +289,7 @@ namespace reShutCLI
                 MenuAndTextInit:
                     Console.Clear();
                     string skipValue = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation");
-                    Console.ForegroundColor = Variables.LogoColor;
+                    UIDraw.TextColor = Variables.LogoColor;
                     string doubleText = "DoubleConfirmoff";
                     if (skipValue == "0")
                     {
@@ -305,11 +305,11 @@ namespace reShutCLI
                     string bottomBorderD = "╰" + new string('─', boxWidthStateDouble) + "╯";
                     int paddingLeftD = (boxWidthStateDouble - doubleText.Length) / 2;
                     string paddedMessageD = "│" + new string(' ', paddingLeftD) + doubleText + new string(' ', boxWidthStateDouble - doubleText.Length - paddingLeftD) + "│";
-                    Console.ForegroundColor = Variables.SecondaryColor;
-                    UpdateChecker.DisplayCenteredMessage(topBorderD);
-                    UpdateChecker.DisplayCenteredMessage(paddedMessageD);
-                    UpdateChecker.DisplayCenteredMessage(bottomBorderD);
-                    Console.ForegroundColor = Variables.MenuColor;
+                    UIDraw.TextColor = Variables.SecondaryColor;
+                    UIDraw.DrawCenteredLine(topBorderD);
+                    UIDraw.DrawCenteredLine(paddedMessageD);
+                    UIDraw.DrawCenteredLine(bottomBorderD);
+                    UIDraw.TextColor = Variables.MenuColor;
 
                     string[] menuItemsMsg = { rm.GetString("DoubleConfiguration", culture), rm.GetString("Back", culture) };
                     string messagesHeaderText = rm.GetString("MenuAndText", culture);
@@ -332,22 +332,22 @@ namespace reShutCLI
                     int msg_headerPaddingLeft = msg_headerPaddingTotal / 2;
                     string msg_titleLine = "│" + new string(' ', msg_headerPaddingLeft) + messagesHeaderText + new string(' ', msg_dynamicInnerWidth - messagesHeaderText.Length - msg_headerPaddingLeft) + "│";
 
-                    UpdateChecker.DisplayCenteredMessage(msg_topBorder);
-                    UpdateChecker.DisplayCenteredMessage(msg_titleLine);
-                    UpdateChecker.DisplayCenteredMessage(msg_separator);
-                    UpdateChecker.DisplayCenteredMessage("│" + ("1) " + menuItemsMsg[0]).PadRight(msg_dynamicInnerWidth) + "│");
-                    UpdateChecker.DisplayCenteredMessage(msg_separator);
-                    UpdateChecker.DisplayCenteredMessage("│" + ("9) " + menuItemsMsg[1]).PadRight(msg_dynamicInnerWidth) + "│");
-                    UpdateChecker.DisplayCenteredMessage(msg_bottomBorder);
+                    UIDraw.DrawCenteredLine(msg_topBorder);
+                    UIDraw.DrawCenteredLine(msg_titleLine);
+                    UIDraw.DrawCenteredLine(msg_separator);
+                    UIDraw.DrawCenteredLine("│" + ("1) " + menuItemsMsg[0]).PadRight(msg_dynamicInnerWidth) + "│");
+                    UIDraw.DrawCenteredLine(msg_separator);
+                    UIDraw.DrawCenteredLine("│" + ("9) " + menuItemsMsg[1]).PadRight(msg_dynamicInnerWidth) + "│");
+                    UIDraw.DrawCenteredLine(msg_bottomBorder);
 
                     /*
-                    UpdateChecker.DisplayCenteredMessage("╭───────────────────────────────╮");
-                    UpdateChecker.DisplayCenteredMessage("│       Menus and Messages      │");
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 1) Toggle Double-Confirmation │");
-                    UpdateChecker.DisplayCenteredMessage("├───────────────────────────────┤");
-                    UpdateChecker.DisplayCenteredMessage("│ 9) Back                       │");
-                    UpdateChecker.DisplayCenteredMessage("╰───────────────────────────────╯");
+                    UIDraw.DrawCenteredLine("╭───────────────────────────────╮");
+                    UIDraw.DrawCenteredLine("│       Menus and Messages      │");
+                    UIDraw.DrawCenteredLine("├───────────────────────────────┤");
+                    UIDraw.DrawCenteredLine("│ 1) Toggle Double-Confirmation │");
+                    UIDraw.DrawCenteredLine("├───────────────────────────────┤");
+                    UIDraw.DrawCenteredLine("│ 9) Back                       │");
+                    UIDraw.DrawCenteredLine("╰───────────────────────────────╯");
                     */
                     var setInfoMenu = Console.ReadKey();
                     var setGenMenu = setInfoMenu.KeyChar.ToString();
@@ -379,9 +379,9 @@ namespace reShutCLI
                 // Go back when invalid key has been pressed
                 default:
                     Console.Clear();
-                    Console.ForegroundColor = Variables.SecondaryColor;
-                    UIDraw.DisplayBoxedMessage(rm.GetString("InvalidInput", culture));
-                    Console.ForegroundColor = ConsoleColor.White;
+                    UIDraw.TextColor = Variables.SecondaryColor;
+                    UIDraw.DrawBoxedMessage(rm.GetString("InvalidInput", culture));
+                    UIDraw.TextColor = ConsoleColor.White;
                     goto settings;
 
             }

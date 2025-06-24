@@ -120,7 +120,7 @@ internal class Handler
         if (!ExitWindowsEx(EWX_LOGOFF, 0))
         {
             int err = Marshal.GetLastWin32Error();
-            Console.WriteLine($"Logoff failed with error {err}: {new System.ComponentModel.Win32Exception(err).Message}");
+            UIDraw.DrawLine($"Logoff failed with error {err}: {new System.ComponentModel.Win32Exception(err).Message}");
         }
     }
 }

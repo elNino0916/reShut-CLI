@@ -41,30 +41,30 @@ namespace reShutCLI
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            UIDraw.TextColor = ConsoleColor.Red;
                             ErrorHandler.ShowError("Failed to download the installer.", true);
-                            Console.ForegroundColor = ConsoleColor.Gray;
+                            UIDraw.TextColor = ConsoleColor.Gray;
                         }
                     }
                     else
                     {
-                        Console.ForegroundColor = Variables.MenuColor;
+                        UIDraw.TextColor = Variables.MenuColor;
                         ErrorHandler.ShowError("Tried to update to the same version currently installed.", true);
-                        Console.ForegroundColor = ConsoleColor.Gray;
+                        UIDraw.TextColor = ConsoleColor.Gray;
                     }
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    UIDraw.TextColor = ConsoleColor.Red;
                     ErrorHandler.ShowError($"Failed to check for updates: {response.StatusCode}", true);
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    UIDraw.TextColor = ConsoleColor.Gray;
                 }
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                UIDraw.TextColor = ConsoleColor.Red;
                 ErrorHandler.ShowError($"Failed to update: {ex.Message}", true);
-                Console.ForegroundColor = ConsoleColor.Gray;
+                UIDraw.TextColor = ConsoleColor.Gray;
             }
         }
 
@@ -87,9 +87,9 @@ namespace reShutCLI
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                UIDraw.TextColor = ConsoleColor.Red;
                 ErrorHandler.ShowError($"Failed to download the installer: {ex.Message}", true);
-                Console.ForegroundColor = ConsoleColor.Gray;
+                UIDraw.TextColor = ConsoleColor.Gray;
                 return string.Empty;
             }
         }
@@ -112,9 +112,9 @@ namespace reShutCLI
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                UIDraw.TextColor = ConsoleColor.Red;
                 ErrorHandler.ShowError($"Failed to start the installer: {ex.Message}", true);
-                Console.ForegroundColor = ConsoleColor.Gray;
+                UIDraw.TextColor = ConsoleColor.Gray;
             }
         }
     }

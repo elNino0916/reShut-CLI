@@ -15,13 +15,6 @@ namespace reShutCLI
         private static string updateResultMessageLine2 = string.Empty;
         private static string updateResultMessageLine3 = string.Empty;
 
-        public static void DisplayCenteredMessage(string message)
-        {
-            var consoleWidth = Console.WindowWidth;
-            var padding = (consoleWidth - message.Length) / 2;
-
-            Console.WriteLine(new string(' ', padding) + message);
-        }
 
         public static async Task MainCheck()
         {
@@ -31,11 +24,11 @@ namespace reShutCLI
             if (updateCheckPerformed)
             {
                 // Output the stored result
-                Console.ForegroundColor = Variables.MenuColor;
-                DisplayCenteredMessage(updateResultMessage);
-                DisplayCenteredMessage(updateResultMessageLine2);
-                DisplayCenteredMessage(updateResultMessageLine3);
-                Console.ForegroundColor = ConsoleColor.Gray;
+                UIDraw.TextColor = Variables.MenuColor;
+                UIDraw.DrawCenteredLine(updateResultMessage);
+                UIDraw.DrawCenteredLine(updateResultMessageLine2);
+                UIDraw.DrawCenteredLine(updateResultMessageLine3);
+                UIDraw.TextColor = ConsoleColor.Gray;
                 return;
             }
 
@@ -55,12 +48,12 @@ namespace reShutCLI
 
                 if (IsNewerVersionAvailable(currentVersion, latestVersion))
                 {
-                    Console.ForegroundColor = Variables.MenuColor;
+                    UIDraw.TextColor = Variables.MenuColor;
 
-                    UIDraw.DisplayBoxedMessage(rm.GetString("UpdateAvailable", culture));
+                    UIDraw.DrawBoxedMessage(rm.GetString("UpdateAvailable", culture));
 
                     Variables.isUpToDate = false;
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    UIDraw.TextColor = ConsoleColor.Gray;
 
                     // Check if auto-update is enabled in the registry
                     if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config\", "AutoUpdateOnStart") == "yes")
@@ -74,17 +67,17 @@ namespace reShutCLI
                 else
                 {
                     Variables.isUpToDate = true;
-                    Console.ForegroundColor = Variables.MenuColor;
+                    UIDraw.TextColor = Variables.MenuColor;
                     updateResultMessage = Variables.Motd();
-                    DisplayCenteredMessage(updateResultMessage);
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    UIDraw.DrawCenteredLine(updateResultMessage);
+                    UIDraw.TextColor = ConsoleColor.Gray;
                 }
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                UIDraw.DisplayBoxedMessage($"Failed to check for updates: {response.StatusCode}. Restart the application to try again.");
-                Console.ForegroundColor = ConsoleColor.Gray;
+                UIDraw.TextColor = ConsoleColor.Red;
+                UIDraw.DrawBoxedMessage($"Failed to check for updates: {response.StatusCode}. Restart the application to try again.");
+                UIDraw.TextColor = ConsoleColor.Gray;
             }
 
             // Set the flags to indicate that update check has been performed

@@ -318,4 +318,13 @@
   <data name="SelectTheme" xml:space="preserve">
     <value>Select a theme to personalize your experience.</value>
   </data>
+  <data name="NeedRestart" xml:space="preserve">
+    <value>reShut CLI needs to restart.</value>
+  </data>
+  <data name="ErrorHandler_PressKeyRestart" xml:space="preserve">
+    <value>Press any key to restart reShut CLI.</value>
+  </data>
+  <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
+    <value>Press any key to return to Settings.</value>
+  </data>
 </root>

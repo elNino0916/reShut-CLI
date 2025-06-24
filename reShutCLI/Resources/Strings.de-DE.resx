@@ -318,4 +318,13 @@
   <data name="SelectTheme" xml:space="preserve">
     <value>Wählen Sie ein Design, um Ihr Erlebnis zu personalisieren.</value>
   </data>
+  <data name="NeedRestart" xml:space="preserve">
+    <value>reShut CLI muss neu gestartet werden.</value>
+  </data>
+  <data name="ErrorHandler_PressKeyRestart" xml:space="preserve">
+    <value>Drücken Sie eine beliebige Taste um reShut CLI neuzustarten.</value>
+  </data>
+  <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
+    <value>Drücken Sie eine beliebige Taste um zu den Einstellungen zurückzugehen.</value>
+  </data>
 </root>

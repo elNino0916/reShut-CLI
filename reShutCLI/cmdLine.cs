@@ -41,34 +41,34 @@ namespace reShutCLI
                         case "help":
                         case "?":
                         case "h":
-                            Console.ForegroundColor = Variables.LogoColor;
-                            Console.WriteLine($"reShut CLI ({Variables.fullversion})");
-                            Console.ForegroundColor = Variables.MenuColor;
-                            Console.WriteLine("╭────────────────────────────────────────╮");
-                            Console.WriteLine("│           Available Arguments:         │");
-                            Console.WriteLine("├────────────────────────────────────────┤");
-                            Console.WriteLine("│ [-s] [-shutdown] Shutdown this PC.     │");
-                            Console.WriteLine("│ [-r] [-reboot] Reboot this PC.         │");
-                            Console.WriteLine("│ [-l] [-logoff] Logout.                 │");
-                            Console.WriteLine("│ [-h] [-help] Prints this information.  │");
-                            Console.WriteLine("│ [-reset] Resets reShut CLI.            │");
-                            Console.WriteLine("╰────────────────────────────────────────╯");
-                            Console.ForegroundColor = Variables.SecondaryColor;
-                            Console.ForegroundColor = ConsoleColor.Gray;
+                            UIDraw.TextColor = Variables.LogoColor;
+                            UIDraw.DrawLine($"reShut CLI ({Variables.fullversion})");
+                            UIDraw.TextColor = Variables.MenuColor;
+                            UIDraw.DrawLine("╭────────────────────────────────────────╮");
+                            UIDraw.DrawLine("│           Available Arguments:         │");
+                            UIDraw.DrawLine("├────────────────────────────────────────┤");
+                            UIDraw.DrawLine("│ [-s] [-shutdown] Shutdown this PC.     │");
+                            UIDraw.DrawLine("│ [-r] [-reboot] Reboot this PC.         │");
+                            UIDraw.DrawLine("│ [-l] [-logoff] Logout.                 │");
+                            UIDraw.DrawLine("│ [-h] [-help] Prints this information.  │");
+                            UIDraw.DrawLine("│ [-reset] Resets reShut CLI.            │");
+                            UIDraw.DrawLine("╰────────────────────────────────────────╯");
+                            UIDraw.TextColor = Variables.SecondaryColor;
+                            UIDraw.TextColor = ConsoleColor.Gray;
                             Environment.Exit(0);
                             break;
                         case "reset":
                             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
                             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
-                            Console.ForegroundColor = Variables.SecondaryColor;
-                            Console.WriteLine("reShut CLI has been reset.");
-                            Console.ForegroundColor = ConsoleColor.Gray;
+                            UIDraw.TextColor = Variables.SecondaryColor;
+                            UIDraw.DrawLine("reShut CLI has been reset.");
+                            UIDraw.TextColor = ConsoleColor.Gray;
                             Environment.Exit(0);
                             break;
                         default:
-                            Console.ForegroundColor = Variables.SecondaryColor;
-                            Console.WriteLine($"Unknown argument: {arg}");
-                            Console.ForegroundColor = ConsoleColor.Gray;
+                            UIDraw.TextColor = Variables.SecondaryColor;
+                            UIDraw.DrawLine($"Unknown argument: {arg}");
+                            UIDraw.TextColor = ConsoleColor.Gray;
                             Environment.Exit(0);
                             break;
                     }
@@ -76,9 +76,9 @@ namespace reShutCLI
                 else
                 {
                     // Handle arguments without a valid prefix
-                    Console.ForegroundColor = Variables.SecondaryColor;
-                    Console.WriteLine($"Missing Prefix in argument: {arg}");
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    UIDraw.TextColor = Variables.SecondaryColor;
+                    UIDraw.DrawLine($"Missing Prefix in argument: {arg}");
+                    UIDraw.TextColor = ConsoleColor.Gray;
                     Environment.Exit(0);
                 }
             }

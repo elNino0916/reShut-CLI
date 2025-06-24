@@ -43,10 +43,10 @@ namespace reShutCLI
                 int windowWidth = Console.WindowWidth;
 
                 // Print the confirmation message centered on the console
-                Console.ForegroundColor = Variables.MenuColor;
-                UpdateChecker.DisplayCenteredMessage(topBorder);
-                UpdateChecker.DisplayCenteredMessage(paddedMessage);
-                UpdateChecker.DisplayCenteredMessage(bottomBorder);
+                UIDraw.TextColor = Variables.MenuColor;
+                UIDraw.DrawCenteredLine(topBorder);
+                UIDraw.DrawCenteredLine(paddedMessage);
+                UIDraw.DrawCenteredLine(bottomBorder);
                 Thread.Sleep(4000);
                 Console.Clear();
 

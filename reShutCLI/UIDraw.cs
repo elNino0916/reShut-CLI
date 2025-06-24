@@ -4,15 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// A fancy class that simplifies drawing messages and just a fancy wrapper around Console methods xD
+/// </summary>
 namespace reShutCLI
 {
     internal class UIDraw
     {
-        public static void DisplayBoxedMessage(string message)
+        public static void DrawBoxedMessage(string message)
         {
-            DisplayBoxedMessages(new List<string> { message });
+            DrawBoxedMessages(new List<string> { message });
         }
-        public static void DisplayBoxedMessages(IEnumerable<string> messages)
+        private static ConsoleColor _textColor;
+        public static ConsoleColor TextColor
+        {
+            get => _textColor;
+            set
+            {
+                _textColor = value;
+                Console.ForegroundColor = value;
+            }
+        }
+        private static ConsoleColor _backgroundColor;
+        public static ConsoleColor BackgroundColor
+        {
+            get => _backgroundColor;
+            set
+            {
+                _backgroundColor = value;
+                Console.BackgroundColor = value;
+            }
+        }
+        public static void DrawLine(string Text)
+        {
+            Console.WriteLine(Text);
+        }
+        public static void Draw(string Text)
+        {
+            Console.Write(Text);
+        }
+        public static void DrawBoxedMessages(IEnumerable<string> messages)
         {
             var lines = messages.ToList();
             if (!lines.Any()) return;
@@ -23,22 +54,22 @@ namespace reShutCLI
             string topBorder = "╭" + new string('─', totalWidth - 2) + "╮";
             string bottomBorder = "╰" + new string('─', totalWidth - 2) + "╯";
 
-            DisplayCentered(topBorder);
+            DrawCenteredLine(topBorder);
 
             foreach (string line in lines)
             {
                 string paddedLine = $"│ {line.PadRight(maxContentWidth)} │";
-                DisplayCentered(paddedLine);
+                DrawCenteredLine(paddedLine);
             }
 
-            DisplayCentered(bottomBorder);
+            DrawCenteredLine(bottomBorder);
         }
-        public static void DisplayCentered(string message)
+        public static void DrawCenteredLine(string message)
         {
             var consoleWidth = Console.WindowWidth;
             var padding = (consoleWidth - message.Length) / 2;
 
-            Console.WriteLine(new string(' ', padding) + message);
+            UIDraw.DrawLine(new string(' ', padding) + message);
         }
     }
 }

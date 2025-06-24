@@ -295,4 +295,13 @@
   <data name="SelectTheme" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="NeedRestart" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorHandler_PressKeyRestart" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
+    <value />
+  </data>
 </root>

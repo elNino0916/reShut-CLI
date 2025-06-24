@@ -142,6 +142,24 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press any key to return to Settings. ähnelt.
+        /// </summary>
+        internal static string ErrorHandler_PressKeyBack {
+            get {
+                return ResourceManager.GetString("ErrorHandler_PressKeyBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press any key to restart reShut CLI. ähnelt.
+        /// </summary>
+        internal static string ErrorHandler_PressKeyRestart {
+            get {
+                return ResourceManager.GetString("ErrorHandler_PressKeyRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die An error occurred. ähnelt.
         /// </summary>
         internal static string ErrorOccurred {
@@ -219,6 +237,15 @@ namespace reShutCLI.Resources {
         internal static string MenuAndText {
             get {
                 return ResourceManager.GetString("MenuAndText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die reShut CLI needs to restart. ähnelt.
+        /// </summary>
+        internal static string NeedRestart {
+            get {
+                return ResourceManager.GetString("NeedRestart", resourceCulture);
             }
         }
         

@@ -19,16 +19,16 @@ namespace reShutCLI
             // reboot
             Console.Clear();
             var type = "";
-            Console.ForegroundColor = Variables.MenuColor;
-            UpdateChecker.DisplayCenteredMessage("╭──────────────────────────────────╮");
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-32} │", rm.GetString("Schedule_PromptAction", culture)));
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ {0,-32} │", rm.GetString("Schedule_SelectOption", culture)));
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ 1) {0,-29} │", rm.GetString("Schedule_ShutdownOption", culture)));
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ 2) {0,-29} │", rm.GetString("Schedule_RebootOption", culture)));
-            UpdateChecker.DisplayCenteredMessage("├──────────────────────────────────┤");
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ 0) {0,-29} │", rm.GetString("Schedule_Cancel", culture)));
-            UpdateChecker.DisplayCenteredMessage(string.Format("│ 9) {0,-29} │", rm.GetString("Back", culture)));
-            UpdateChecker.DisplayCenteredMessage("╰──────────────────────────────────╯");
+            UIDraw.TextColor = Variables.MenuColor;
+            UIDraw.DrawCenteredLine("╭──────────────────────────────────╮");
+            UIDraw.DrawCenteredLine(string.Format("│ {0,-32} │", rm.GetString("Schedule_PromptAction", culture)));
+            UIDraw.DrawCenteredLine(string.Format("│ {0,-32} │", rm.GetString("Schedule_SelectOption", culture)));
+            UIDraw.DrawCenteredLine(string.Format("│ 1) {0,-29} │", rm.GetString("Schedule_ShutdownOption", culture)));
+            UIDraw.DrawCenteredLine(string.Format("│ 2) {0,-29} │", rm.GetString("Schedule_RebootOption", culture)));
+            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
+            UIDraw.DrawCenteredLine(string.Format("│ 0) {0,-29} │", rm.GetString("Schedule_Cancel", culture)));
+            UIDraw.DrawCenteredLine(string.Format("│ 9) {0,-29} │", rm.GetString("Back", culture)));
+            UIDraw.DrawCenteredLine("╰──────────────────────────────────╯");
             var keyInfo = Console.ReadKey();
             var key = keyInfo.KeyChar.ToString();
             switch (key)
@@ -36,8 +36,8 @@ namespace reShutCLI
                 case "0":
                     Process.Start(@"cmd.exe", "/c shutdown -a");
                     Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ActionCancelled", culture));
+                    UIDraw.TextColor = ConsoleColor.Green;
+                    UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ActionCancelled", culture));
                     Thread.Sleep(500); // Fixes the 'No Shutdown in progress' message in the middle of the main menu.
                     return false;
                 case "1":
@@ -53,9 +53,9 @@ namespace reShutCLI
                     {
                         if (key != "1" | key != "2" | key != "0")
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            UIDraw.DisplayBoxedMessage(rm.GetString("ErrorOccurred", culture));
-                            Console.ForegroundColor = ConsoleColor.White;
+                            UIDraw.TextColor = ConsoleColor.Red;
+                            UIDraw.DrawBoxedMessage(rm.GetString("ErrorOccurred", culture));
+                            UIDraw.TextColor = ConsoleColor.White;
                             goto Retry;
                         }
 
@@ -66,29 +66,29 @@ namespace reShutCLI
             // Phase 2
             Console.Clear();
         seconds:
-            Console.ForegroundColor = Variables.MenuColor;
+            UIDraw.TextColor = Variables.MenuColor;
 
             if (DateTime.Now.ToString("tt") == "")
             {
-                UIDraw.DisplayBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(true)));
+                UIDraw.DrawBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(true)));
             }
             else
             {
                 if (DateTime.Now.ToString("tt") == "PM" | DateTime.Now.ToString("tt") == "AM")
                 {
-                    UIDraw.DisplayBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(false)));
+                    UIDraw.DrawBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), Time.GetTime(false)));
                 }
             }
-            UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_PromptWhen", culture));
-            UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_EnterSeconds", culture));
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(rm.GetString("Schedule_InputPrompt", culture) + " ");
+            UIDraw.DrawBoxedMessage(rm.GetString("Schedule_PromptWhen", culture));
+            UIDraw.DrawBoxedMessage(rm.GetString("Schedule_EnterSeconds", culture));
+            UIDraw.TextColor = ConsoleColor.White;
+            UIDraw.Draw(rm.GetString("Schedule_InputPrompt", culture) + " ");
             var inputStr = Console.ReadLine();
 
             if (!int.TryParse(inputStr, out var input))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ErrorNumberInput", culture));
+                UIDraw.TextColor = ConsoleColor.Red;
+                UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorNumberInput", culture));
                 goto seconds;
             }
             // Phase 3
@@ -96,7 +96,7 @@ namespace reShutCLI
         phase3retry:
             var minutes = input / 60;
             var hours = minutes / 60;
-            Console.ForegroundColor = Variables.MenuColor;
+            UIDraw.TextColor = Variables.MenuColor;
 
             string translatedType = type; // Default to 'type' which is already translated and lowercased
             if (type.Equals(rm.GetString("Shutdown", culture).ToLower(), StringComparison.OrdinalIgnoreCase))
@@ -117,16 +117,16 @@ namespace reShutCLI
             var maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
             var borderLength = maxLength + 4;
 
-            UpdateChecker.DisplayCenteredMessage("╭" + new string('─', borderLength) + "╮");
-            UpdateChecker.DisplayCenteredMessage("│ " + header.PadRight(maxLength) + "   │");
-            UpdateChecker.DisplayCenteredMessage("│ " + info.PadRight(maxLength) + "   │");
-            UpdateChecker.DisplayCenteredMessage("├" + new string('─', borderLength) + "┤");
-            UpdateChecker.DisplayCenteredMessage("│ " + option1.PadRight(maxLength) + "   │");
-            UpdateChecker.DisplayCenteredMessage("│ " + option2.PadRight(maxLength) + "   │");
-            UpdateChecker.DisplayCenteredMessage("│ " + option0.PadRight(maxLength) + "   │");
-            UpdateChecker.DisplayCenteredMessage("╰" + new string('─', borderLength) + "╯");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(rm.GetString("Schedule_InputPrompt", culture) + " ");
+            UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
+            UIDraw.DrawCenteredLine("│ " + header.PadRight(maxLength) + "   │");
+            UIDraw.DrawCenteredLine("│ " + info.PadRight(maxLength) + "   │");
+            UIDraw.DrawCenteredLine("├" + new string('─', borderLength) + "┤");
+            UIDraw.DrawCenteredLine("│ " + option1.PadRight(maxLength) + "   │");
+            UIDraw.DrawCenteredLine("│ " + option2.PadRight(maxLength) + "   │");
+            UIDraw.DrawCenteredLine("│ " + option0.PadRight(maxLength) + "   │");
+            UIDraw.DrawCenteredLine("╰" + new string('─', borderLength) + "╯");
+            UIDraw.TextColor = ConsoleColor.White;
+            UIDraw.Draw(rm.GetString("Schedule_InputPrompt", culture) + " ");
             var keyInfo3 = Console.ReadKey();
             var ke3y = keyInfo3.KeyChar.ToString();
             switch (ke3y)
@@ -143,24 +143,24 @@ namespace reShutCLI
                     {
                         var character = type.Equals(rm.GetString("Shutdown", culture).ToLower(), StringComparison.OrdinalIgnoreCase) ? "s" : "r";
                         Process.Start("cmd.exe", "/c shutdown /" + character + " /f /t " + input);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ActionScheduled", culture));
-                        Console.ForegroundColor = ConsoleColor.White;
+                        UIDraw.TextColor = ConsoleColor.Green;
+                        UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ActionScheduled", culture));
+                        UIDraw.TextColor = ConsoleColor.White;
                         return true;
                     }
                     catch
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
-                        Console.ForegroundColor = ConsoleColor.White;
+                        UIDraw.TextColor = ConsoleColor.Red;
+                        UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
+                        UIDraw.TextColor = ConsoleColor.White;
                         return false;
                     }
             }
 
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            UIDraw.DisplayBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
-            Console.ForegroundColor = ConsoleColor.White;
+            UIDraw.TextColor = ConsoleColor.Red;
+            UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
+            UIDraw.TextColor = ConsoleColor.White;
             goto phase3retry;
         }
     }

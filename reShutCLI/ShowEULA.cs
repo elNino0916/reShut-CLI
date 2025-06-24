@@ -11,26 +11,26 @@ namespace reShutCLI
         {
         Retry:
             bool EULAAccepted = false;
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("\nEnd User License Agreement (EULA)");
-            Console.WriteLine("=================================");
-            Console.WriteLine();
-            Console.WriteLine("Please read the following terms and conditions carefully before using this software.");
-            Console.WriteLine();
-            Console.WriteLine("1. Updates");
-            Console.WriteLine("   ---------");
-            Console.WriteLine("   This software checks for updates on GitHub, which can be disabled in the settings.");
-            Console.WriteLine("   Updates are provided via GitHub to ensure you have the latest features and security patches.");
-            Console.WriteLine();
-            Console.WriteLine("2. Disclaimer of Liability");
-            Console.WriteLine("   -------------------------");
-            Console.WriteLine("   The authors are not responsible for any data loss or damages that may occur while using this software.");
-            Console.WriteLine();
-            Console.WriteLine("3. Acceptance");
-            Console.WriteLine("   ------------");
-            Console.WriteLine("   By accepting this agreement, you agree to the terms and conditions stated above.");
-            Console.ForegroundColor = ConsoleColor.Red;
-            UIDraw.DisplayBoxedMessage("Press (1) to accept these terms or (2) to decline.");
+            UIDraw.TextColor = ConsoleColor.Gray;
+            UIDraw.DrawLine("\nEnd User License Agreement (EULA)");
+            UIDraw.DrawLine("=================================");
+            UIDraw.DrawLine("");
+            UIDraw.DrawLine("Please read the following terms and conditions carefully before using this software.");
+            UIDraw.DrawLine("");
+            UIDraw.DrawLine("1. Updates");
+            UIDraw.DrawLine("   ---------");
+            UIDraw.DrawLine("   This software checks for updates on GitHub, which can be disabled in the settings.");
+            UIDraw.DrawLine("   Updates are provided via GitHub to ensure you have the latest features and security patches.");
+            UIDraw.DrawLine("");
+            UIDraw.DrawLine("2. Disclaimer of Liability");
+            UIDraw.DrawLine("   -------------------------");
+            UIDraw.DrawLine("   The authors are not responsible for any data loss or damages that may occur while using this software.");
+            UIDraw.DrawLine("");
+            UIDraw.DrawLine("3. Acceptance");
+            UIDraw.DrawLine("   ------------");
+            UIDraw.DrawLine("   By accepting this agreement, you agree to the terms and conditions stated above.");
+            UIDraw.TextColor = ConsoleColor.Red;
+            UIDraw.DrawBoxedMessage("Press (1) to accept these terms or (2) to decline.");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             if (keyInfo.Key == ConsoleKey.D1 || keyInfo.Key == ConsoleKey.NumPad1)
             {
@@ -52,9 +52,9 @@ namespace reShutCLI
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                UIDraw.TextColor = ConsoleColor.Red;
                 Console.Clear();
-                Console.WriteLine("You have to accept this EULA in order to use reShut CLI.");
+                UIDraw.DrawLine("You have to accept this EULA in order to use reShut CLI.");
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "0");
                 Thread.Sleep(2000);
                 Environment.Exit(0);
