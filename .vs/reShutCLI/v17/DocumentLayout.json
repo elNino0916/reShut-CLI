@@ -42,11 +42,15 @@
       "DocumentGroups": [
         {
           "DockedHeight": 327,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             },
             {
               "$type": "Document",
@@ -71,8 +75,7 @@
               "RelativeToolTip": "reShutCLI\\Handler.cs",
               "ViewState": "AgIAAFAAAAAAAAAAAAAxwBMAAAByAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T20:02:06.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T20:02:06.834Z"
             },
             {
               "$type": "Document",
@@ -126,14 +129,13 @@
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "reShutCLI.csproj",
-              "DocumentMoniker": "C:\\Users\\ninob\\Source\\Repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
+              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
               "RelativeDocumentMoniker": "reShutCLI\\reShutCLI.csproj",
-              "ToolTip": "C:\\Users\\ninob\\Source\\Repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
+              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
               "RelativeToolTip": "reShutCLI\\reShutCLI.csproj",
               "ViewState": "AgIAAAYAAAAAAAAAAAAIwBwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-23T15:45:21.354Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T15:45:21.354Z"
             },
             {
               "$type": "Document",
@@ -146,10 +148,6 @@
               "ViewState": "AgIAAKMAAAAAAAAAAAAgwGsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-23T15:40:30.917Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             }
           ]
         }
