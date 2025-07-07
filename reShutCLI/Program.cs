@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
 namespace reShutCLI;
@@ -342,13 +341,19 @@ internal class Program
     /// <param name="rm">The resource manager for retrieving localized strings.</param>
     private static void HandleUpdate(CultureInfo culture, ResourceManager rm)
     {
-        if (Variables.isUpToDate) { Console.Clear(); return; }
+        if (Variables.isUpToDate) 
+        {
+            Console.Clear();
+            UIDraw.TextColor = Variables.SecondaryColor; 
+            UIDraw.DrawBoxedMessage(rm.GetString("UpToDate",culture)); 
+            return; 
+        }
         Console.Clear();
         Console.Title = rm.GetString("UpdaterTitle", culture);
         UIDraw.TextColor = Variables.MenuColor;
         UIDraw.DrawCenteredLine(rm.GetString("UpdateDLStarted", culture));
         Thread.Sleep(Constants.UpdateDownloadMessageDelayMs);
-#pragma warning disable CS4014 // Call is not awaited, as it's a fire-and-forget update process.
+#pragma warning disable CS4014 // Call is not awaited
         AutoUpdater.PerformUpdate();
 #pragma warning restore CS4014
         Console.ReadLine();
