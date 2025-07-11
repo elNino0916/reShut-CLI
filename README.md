@@ -14,5 +14,5 @@ New Features in v2.0.0
 * Updating without Reset
 * New Theme
 * .NET 9
-* ...
+* Dynamic Default Theme
 -----
