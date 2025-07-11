@@ -20,7 +20,7 @@ namespace reShutCLI
         public static string version = "2.0.0.0";
 
         // Changes the registry version.
-        public static string registryVersion = "7";
+        public static string registryVersion = "9";
         public static string fullversion = $"v{version}";
 
         // DO NOT CHANGE

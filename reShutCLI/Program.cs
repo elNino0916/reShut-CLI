@@ -12,14 +12,15 @@ namespace reShutCLI;
 /// </summary>
 internal class Program
 {
-    
+
     /// <summary>
     /// The main entry point for the application.
     /// Initializes the application, displays the EULA if necessary, and enters the main program loop.
     /// </summary>
     /// <param name="args">Command-line arguments passed to the application.</param>
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
+        Console.Clear();
         InitializeApp(args);
 
         // Load languages for string resources
@@ -39,7 +40,7 @@ internal class Program
         }
         while (true)
         {
-            Console.Title = rm.GetString("ConsoleTitle", culture) + " " +Variables.fullversion;
+            Console.Title = rm.GetString("ConsoleTitle", culture) + " " + Variables.fullversion;
             // Prints ascii art
             PrintLogo();
 
@@ -58,9 +59,9 @@ internal class Program
     /// <param name="messageText">The text of the message to display.</param>
     private static void DisplayBorderedMessage(string messageText)
     {
-            UIDraw.DrawBoxedMessage(messageText);
+        UIDraw.DrawBoxedMessage(messageText);
     }
-    
+
     /// <summary>
     /// Displays a confirmation prompt if skipConfirmation is not enabled in the registry.
     /// The prompt is a bordered message asking for user confirmation.
@@ -89,13 +90,20 @@ internal class Program
         ResourceManager rm = new ResourceManager(Constants.ResourceAssemblyName, typeof(Program).Assembly);
         UIDraw.DrawLine(rm.GetString("LicenseText", culture)); // Get and print localized license text.
     }
-    
+
     /// <summary>
     /// Centers and displays the ASCII art logo, application version, and copyright information.
     /// This method is typically called when printing the main logo or header.
     /// </summary>
     public static void CenterText()
     {
+        if (Debugger())
+        {
+            UIDraw.TextColor = Variables.SecondaryColor;
+            if (Variables.DevelopmentBuild)UIDraw.DrawCenteredLine("Debugger attached!");
+            if (!Variables.DevelopmentBuild) UIDraw.DrawCenteredLine("A debugger has been attached to a non-dev build of reShutCLI.");
+        }
+        UIDraw.TextColor = Variables.LogoColor;
         // ASCII art logo definition.
         string[] lines =
         [
@@ -173,7 +181,7 @@ internal class Program
         var key = keyInfo.KeyChar.ToString();
         return key;
     }
-    
+
     /// <summary>
     /// Performs initial setup for the application.
     /// This includes setting console encoding, populating registry defaults,
@@ -206,7 +214,7 @@ internal class Program
         // Load user-selected theme.
         ThemeLoader.loadTheme();
     }
-    
+
     /// <summary>
     /// Prints the application logo (ASCII art and version info) and checks for updates if enabled.
     /// </summary>
@@ -241,7 +249,7 @@ internal class Program
             UIDraw.TextColor = ConsoleColor.Gray; // Reset color.
         }
     }
-    
+
     /// <summary>
     /// Processes the user's input key from the main menu and performs the corresponding action.
     /// </summary>
@@ -341,12 +349,12 @@ internal class Program
     /// <param name="rm">The resource manager for retrieving localized strings.</param>
     private static void HandleUpdate(CultureInfo culture, ResourceManager rm)
     {
-        if (Variables.isUpToDate) 
+        if (Variables.isUpToDate)
         {
             Console.Clear();
-            UIDraw.TextColor = Variables.SecondaryColor; 
-            UIDraw.DrawBoxedMessage(rm.GetString("UpToDate",culture)); 
-            return; 
+            UIDraw.TextColor = Variables.SecondaryColor;
+            UIDraw.DrawBoxedMessage(rm.GetString("UpToDate", culture));
+            return;
         }
         Console.Clear();
         Console.Title = rm.GetString("UpdaterTitle", culture);
@@ -372,5 +380,16 @@ internal class Program
         UIDraw.TextColor = Variables.SecondaryColor;
         DisplayBorderedMessage(invalidText);
         UIDraw.TextColor = ConsoleColor.White;
+    }
+    public static bool Debugger()
+    {
+        if (System.Diagnostics.Debugger.IsAttached)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

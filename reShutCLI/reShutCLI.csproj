@@ -10,6 +10,10 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>reShutCLI.Program</StartupObject>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile>bin\x64\Release\net9.0-windows\elnino0916.pfx</AssemblyOriginatorKeyFile>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Title>$(AssemblyName)</Title>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" />

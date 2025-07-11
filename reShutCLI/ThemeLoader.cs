@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Threading;
 
 namespace reShutCLI
 {
@@ -53,12 +54,15 @@ namespace reShutCLI
                     Variables.LogoColor = ConvertToConsoleColor(theme.LogoColor);
                     Variables.SecondaryColor = ConvertToConsoleColor(theme.SecondaryColor);
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Thread.Sleep(1000);
+                Console.Clear();
                     UIDraw.DrawBoxedMessage("Theme data has been downloaded!");
             }
             catch (Exception)
             {
                 setDefaultThemeFB();
                 Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Clear();
                 UIDraw.DrawBoxedMessage("Using fallback theme!");
             }
         }

@@ -227,12 +227,6 @@ namespace reShutCLI
                             UIDraw.DrawCenteredLine("│ 1) English (US) [100%]           │");
                             UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
                             UIDraw.DrawCenteredLine("│ 2) German (Deutsch) [100%]       │");
-                            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
-                            UIDraw.DrawCenteredLine("│ 3) French (Français) [40%]       │");
-                            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
-                            UIDraw.DrawCenteredLine("│ 4) Spanish (Español) [40%]       │");
-                            UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
-                            UIDraw.DrawCenteredLine("│ 5) Portuguese (Português) [40%]  │");
                             UIDraw.DrawCenteredLine("╰──────────────────────────────────╯");
                             var keyInfoL = Console.ReadKey();
                             var key = keyInfoL.KeyChar.ToString();
@@ -246,17 +240,11 @@ namespace reShutCLI
                                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "de-DE");
                                     break;
 
-                                case "3":
-                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "fr-FR");
-                                    break;
-
-                                case "4":
-                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "es-ES");
-                                    break;
-
-                                case "5":
-                                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "pt-PT");
-                                    break;
+                                /*
+                            case "3":
+                                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "fr-FR"); // French for example
+                                break;
+                                */
                                 default:
                                     break;
                             }

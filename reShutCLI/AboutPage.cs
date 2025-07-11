@@ -23,9 +23,10 @@ namespace reShutCLI
 
             UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
             UIDraw.DrawCenteredLine("│ " + header.PadRight(borderLength - 2) + " │");
-            UIDraw.DrawCenteredLine("│ " + "Copyright © 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("│ " + registryVersion.PadRight(borderLength - 2) + " │");
+            UIDraw.DrawCenteredLine("│ " + "Copyright © 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
+            UIDraw.DrawCenteredLine("│ " + "https://elNino0916.de".PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("╰" + new string('─', borderLength) + "╯");
             UIDraw.DrawBoxedMessage(rm.GetString("PressAnyKeyToGoBack", culture));
             

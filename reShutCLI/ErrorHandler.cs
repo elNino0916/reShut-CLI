@@ -73,7 +73,7 @@ namespace reShutCLI
                 UIDraw.DrawCenteredLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
                 UIDraw.DrawCenteredLine(bottomBorder);
                 Console.ReadKey();
-                Settings.Show();
+                Program.Main([]);
             }
         }
     }

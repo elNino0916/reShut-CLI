@@ -61,6 +61,12 @@ namespace reShutCLI
                 // Delete no longer required keys.
                 RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup"); // Removed in 2.0.0.0
                 RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds"); // Removed in 1.0.4.0
+                          
+                string language = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language"); // Removed in a 2.0 pre-release
+                if (language == "fr-FR" || language == "pt-PT" || language == "es-ES")
+                {
+                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "en-US");
+                }
 
                 // Check and add new registry entries
                 // AddOrUpdateRegistryEntry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "NewSetting1", "STRING", "DefaultValue1");
