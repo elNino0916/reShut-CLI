@@ -162,7 +162,27 @@ namespace reShutCLI
                             string scheduleType = recur == "d" ? "DAILY" : "WEEKLY";
                             string taskName = $"reShutCLI_{Guid.NewGuid()}";
                             string st = targetTime.ToString("HH:mm");
-                            Process.Start("schtasks", $"/Create /TN {taskName} /TR \"shutdown /{character} /f\" /SC {scheduleType} /ST {st}");
+                            var psi = new ProcessStartInfo
+                            {
+                                FileName = "schtasks",
+                                Arguments = $"/Create /TN {taskName} /TR \"shutdown /{character} /f\" /SC {scheduleType} /ST {st}",
+                                RedirectStandardOutput = true,
+                                RedirectStandardError = true,
+                                UseShellExecute = false,
+                                CreateNoWindow = true
+                            };
+                            using (var process = Process.Start(psi))
+                            {
+                                process.WaitForExit();
+                                if (process.ExitCode != 0)
+                                {
+                                    string errorOutput = process.StandardError.ReadToEnd();
+                                    UIDraw.TextColor = ConsoleColor.Red;
+                                    UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture) + (string.IsNullOrWhiteSpace(errorOutput) ? "" : $"\n{errorOutput}"));
+                                    UIDraw.TextColor = ConsoleColor.White;
+                                    return false;
+                                }
+                            }
                         }
                         else
                         {
