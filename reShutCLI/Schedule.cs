@@ -105,7 +105,7 @@ namespace reShutCLI
             while (true)
             {
                 Console.Clear();
-                int seconds = (int)(targetTime - DateTime.Now).TotalSeconds;
+                int seconds = Math.Max(0, (int)(targetTime - DateTime.Now).TotalSeconds);
                 int minutes = (int)Math.Ceiling((targetTime - DateTime.Now).TotalMinutes);
                 int hours = minutes / 60;
 
