@@ -3,11 +3,13 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Runtime.Versioning;
 
 namespace reShutCLI
 {
     internal class ErrorHandler
     {
+        [SupportedOSPlatform("windows")]
         public static void SetConsoleSize(int width, int height)
         {
             if (Console.LargestWindowWidth >= width && Console.LargestWindowHeight >= height)

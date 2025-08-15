@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using System.Runtime.Versioning;
 /// <summary>
 /// Provides methods to perform system-level operations such as rebooting, shutting down, or logging off the current
 /// user.
@@ -11,6 +12,7 @@ using System.Security.Principal;
 /// cref="Reboot"/> and <see cref="Shutdown"/> methods require administrative privileges  and attempt to enable the
 /// necessary shutdown privilege before executing the operation. The <see cref="Logoff"/> method does not require
 /// administrative privileges.</remarks>
+[SupportedOSPlatform("windows")]
 internal class Handler
 {
     [DllImport("user32.dll", SetLastError = true)]

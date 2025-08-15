@@ -5,6 +5,7 @@ using System.Runtime.Versioning;
 
 namespace reShutCLI
 {
+    [SupportedOSPlatform("windows")]
     internal class CmdLine
     {
 
