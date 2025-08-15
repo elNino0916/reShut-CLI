@@ -51,7 +51,10 @@ namespace reShutCLI
                     UIDraw.TextColor = ConsoleColor.Gray;
                 }
 
-                Environment.Exit(1);
+                if (result)
+                    Environment.Exit(0);
+                else
+                    Environment.Exit(1);
             }
 
             foreach (var key in parsed.Keys)
