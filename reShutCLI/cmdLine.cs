@@ -34,7 +34,15 @@ namespace reShutCLI
             }
 
             if (parsed.TryGetValue("remote", out string host))
+            if (parsed.TryGetValue("remote", out string? host))
             {
+                if (host is null)
+                {
+                    UIDraw.TextColor = Variables.SecondaryColor;
+                    UIDraw.DrawLine("Remote host specified but no host value provided.");
+                    UIDraw.TextColor = ConsoleColor.Gray;
+                    Environment.Exit(1);
+                }
                 parsed.TryGetValue("user", out string? user);
                 parsed.TryGetValue("pass", out string? pass);
                 bool reboot = parsed.ContainsKey("r") || parsed.ContainsKey("reboot");
