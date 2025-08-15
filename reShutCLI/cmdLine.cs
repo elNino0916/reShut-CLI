@@ -35,6 +35,7 @@ namespace reShutCLI
 
             if (parsed.TryGetValue("remote", out string host))
             if (parsed.TryGetValue("remote", out string? host))
+            if (parsed.TryGetValue("remote", out string? host))
             {
                 if (host is null)
                 {
