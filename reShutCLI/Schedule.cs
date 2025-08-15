@@ -170,7 +170,20 @@ namespace reShutCLI
                                 RedirectStandardError = true,
                                 UseShellExecute = false,
                                 CreateNoWindow = true
+                                RedirectStandardOutput = true,
+                                RedirectStandardError = true,
+                                UseShellExecute = false,
+                                CreateNoWindow = true
                             };
+                            psi.ArgumentList.Add("/Create");
+                            psi.ArgumentList.Add("/TN");
+                            psi.ArgumentList.Add(taskName);
+                            psi.ArgumentList.Add("/TR");
+                            psi.ArgumentList.Add($"shutdown /{character} /f");
+                            psi.ArgumentList.Add("/SC");
+                            psi.ArgumentList.Add(scheduleType);
+                            psi.ArgumentList.Add("/ST");
+                            psi.ArgumentList.Add(st);
                             using (var process = Process.Start(psi))
                             {
                                 process.WaitForExit();
