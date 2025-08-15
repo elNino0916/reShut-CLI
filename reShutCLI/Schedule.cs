@@ -160,7 +160,7 @@ namespace reShutCLI
                         if (recur == "d" || recur == "w")
                         {
                             string scheduleType = recur == "d" ? "DAILY" : "WEEKLY";
-                            string taskName = $"reShutCLI_{Guid.NewGuid()}";
+                            string taskName = $"reShutCLI_{Guid.NewGuid().ToString("N")}";
                             string st = targetTime.ToString("HH:mm");
                             var psi = new ProcessStartInfo
                             {
