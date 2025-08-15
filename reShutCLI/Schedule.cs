@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace reShutCLI
@@ -63,8 +64,8 @@ namespace reShutCLI
                 }
             }
 
-            int input;
-            while (true) // Time input
+            DateTime targetTime;
+            while (true)
             {
                 Console.Clear();
                 UIDraw.TextColor = Variables.MenuColor;
@@ -74,23 +75,38 @@ namespace reShutCLI
                     : Time.GetTime(false);
 
                 UIDraw.DrawBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), timeDisplay));
-                UIDraw.DrawBoxedMessage(rm.GetString("Schedule_PromptWhen", culture));
-                UIDraw.DrawBoxedMessage(rm.GetString("Schedule_EnterSeconds", culture));
+                UIDraw.DrawBoxedMessage("Enter time (minutes, 'in 2 hours', or 'yyyy-MM-dd HH:mm')");
                 UIDraw.TextColor = ConsoleColor.White;
                 UIDraw.Draw(rm.GetString("Schedule_InputPrompt", culture) + " ");
 
                 string inputStr = Console.ReadLine();
-                if (int.TryParse(inputStr, out input)) break;
+                if (int.TryParse(inputStr, out int minutes))
+                {
+                    targetTime = DateTime.Now.AddMinutes(minutes);
+                    break;
+                }
+
+                var match = Regex.Match(inputStr, @"in\s+(\d+)\s*(hour|hours|minute|minutes)", RegexOptions.IgnoreCase);
+                if (match.Success)
+                {
+                    int val = int.Parse(match.Groups[1].Value);
+                    string unit = match.Groups[2].Value.ToLower();
+                    targetTime = unit.StartsWith("hour") ? DateTime.Now.AddHours(val) : DateTime.Now.AddMinutes(val);
+                    break;
+                }
+
+                if (DateTime.TryParse(inputStr, out targetTime))
+                    break;
 
                 UIDraw.TextColor = ConsoleColor.Red;
-                UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorNumberInput", culture));
+                UIDraw.DrawBoxedMessage("Could not parse time input.");
             }
 
-            while (true) // Confirmation
+            while (true)
             {
                 Console.Clear();
-                int seconds = input * 60;
-                int minutes = input;
+                int seconds = (int)(targetTime - DateTime.Now).TotalSeconds;
+                int minutes = (int)Math.Ceiling((targetTime - DateTime.Now).TotalMinutes);
                 int hours = minutes / 60;
 
                 UIDraw.TextColor = Variables.MenuColor;
@@ -99,7 +115,7 @@ namespace reShutCLI
                     ? rm.GetString("Shutdown", culture)
                     : rm.GetString("Reboot", culture);
 
-                string header = string.Format(rm.GetString("Schedule_ConfirmActionSeconds", culture), translatedType, input);
+                string header = string.Format(rm.GetString("Schedule_ConfirmActionSeconds", culture), translatedType, minutes);
                 string info = string.Format(rm.GetString("Schedule_TimeBreakdown", culture), hours);
                 string option1 = $"1) {string.Format(rm.GetString("Schedule_ConfirmYes", culture), translatedType)}";
                 string option2 = $"2) {rm.GetString("Schedule_ConfirmNoReenter", culture)}";
@@ -129,14 +145,29 @@ namespace reShutCLI
                 }
                 else if (confirmKey == "2")
                 {
-                    return Plan(); // Start over cleanly
+                    return Plan();
                 }
                 else if (confirmKey == "1")
                 {
                     try
                     {
                         string character = type.Equals(rm.GetString("Shutdown", culture).ToLower(), StringComparison.OrdinalIgnoreCase) ? "s" : "r";
-                        Process.Start("cmd.exe", $"/c shutdown /{character} /f /t {seconds}");
+                        UIDraw.TextColor = Variables.MenuColor;
+                        UIDraw.DrawBoxedMessage("Recurring schedule? (d)aily, (w)eekly, (n)one");
+                        UIDraw.TextColor = ConsoleColor.White;
+                        var recur = Console.ReadKey().KeyChar.ToString().ToLower();
+                        Console.Clear();
+                        if (recur == "d" || recur == "w")
+                        {
+                            string scheduleType = recur == "d" ? "DAILY" : "WEEKLY";
+                            string taskName = $"reShutCLI_{Guid.NewGuid()}";
+                            string st = targetTime.ToString("HH:mm");
+                            Process.Start("schtasks", $"/Create /TN {taskName} /TR \"shutdown /{character} /f\" /SC {scheduleType} /ST {st}");
+                        }
+                        else
+                        {
+                            Process.Start("cmd.exe", $"/c shutdown /{character} /f /t {seconds}");
+                        }
                         UIDraw.TextColor = ConsoleColor.Green;
                         UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ActionScheduled", culture));
                         UIDraw.TextColor = ConsoleColor.White;
