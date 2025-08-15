@@ -5,6 +5,7 @@ using System.Runtime.Versioning;
 namespace reShutCLI
 {
     // Updated for 2.0.0.0
+    [SupportedOSPlatform("windows")]
     class RegistryWorker
     {
 

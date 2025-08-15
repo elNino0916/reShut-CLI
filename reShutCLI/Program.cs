@@ -4,12 +4,14 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading;
+using System.Runtime.Versioning;
 namespace reShutCLI;
 
 /// <summary>
 /// Main class for the reShut CLI application.
 /// Handles application initialization, main loop, UI rendering, and input processing.
 /// </summary>
+[SupportedOSPlatform("windows")]
 internal class Program
 {
 
