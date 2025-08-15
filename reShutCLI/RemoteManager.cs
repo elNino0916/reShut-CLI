@@ -25,7 +25,7 @@ internal static class RemoteManager
             using ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
             foreach (ManagementObject os in searcher.Get())
             {
-                os.InvokeMethod("Win32Shutdown", new object[] { reboot ? 6 : 5, 0 });
+                os.InvokeMethod("Win32Shutdown", new object[] { reboot ? ForcedRebootFlag : ForcedShutdownFlag, 0 });
             }
 
             UIDraw.TextColor = ConsoleColor.Green;
