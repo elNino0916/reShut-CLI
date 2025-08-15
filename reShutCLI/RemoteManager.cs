@@ -7,7 +7,7 @@ namespace reShutCLI;
 [SupportedOSPlatform("windows")]
 internal static class RemoteManager
 {
-    public static void Trigger(string host, string? username, string? password, bool reboot)
+    public static bool Trigger(string host, string? username, string? password, bool reboot)
     {
         try
         {
