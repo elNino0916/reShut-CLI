@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\reshutcli.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\reshutcli.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\themeloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\themeloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\aboutpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\aboutpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\reginit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,40 +34,67 @@
       "DocumentGroups": [
         {
           "DockedHeight": 327,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ThemeLoader.cs",
+              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\ThemeLoader.cs",
+              "RelativeDocumentMoniker": "reShutCLI\\ThemeLoader.cs",
+              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\ThemeLoader.cs",
+              "RelativeToolTip": "reShutCLI\\ThemeLoader.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAQwDkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T11:36:35.263Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "reShutCLI",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
-              "RelativeDocumentMoniker": "reShutCLI\\reShutCLI.csproj",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
-              "RelativeToolTip": "reShutCLI\\reShutCLI.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-07-11T11:58:14.058Z",
+              "DocumentIndex": 2,
+              "Title": "Setup.cs",
+              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\Setup.cs",
+              "RelativeDocumentMoniker": "reShutCLI\\Setup.cs",
+              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\Setup.cs",
+              "RelativeToolTip": "reShutCLI\\Setup.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAAALcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T11:34:09.043Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "AboutPage.cs",
+              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\AboutPage.cs",
+              "RelativeDocumentMoniker": "reShutCLI\\AboutPage.cs",
+              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\AboutPage.cs",
+              "RelativeToolTip": "reShutCLI\\AboutPage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T11:32:45.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "variables.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\variables.cs",
               "RelativeDocumentMoniker": "reShutCLI\\variables.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\variables.cs",
               "RelativeToolTip": "reShutCLI\\variables.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-11T11:50:57.716Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "RegInit.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\RegInit.cs",
               "RelativeDocumentMoniker": "reShutCLI\\RegInit.cs",
@@ -67,18 +102,17 @@
               "RelativeToolTip": "reShutCLI\\RegInit.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAswEMAAACKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-11T11:47:36.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-11T11:47:36.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\Program.cs",
               "RelativeDocumentMoniker": "reShutCLI\\Program.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reshut-cli\\reShutCLI\\Program.cs",
               "RelativeToolTip": "reShutCLI\\Program.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAQwGcAAACDAAAAAAAAAA==",
+              "ViewState": "AgIAALcAAAAAAAAAAAAuwNgAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-24T19:31:21.364Z",
               "EditorCaption": ""

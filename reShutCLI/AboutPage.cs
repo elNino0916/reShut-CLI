@@ -15,17 +15,17 @@ namespace reShutCLI
             var prereleasetag = Variables.prerelease ? rm.GetString("PreRelease", culture) : "";
             var header = "reShut CLI " + prereleasetag + Variables.version;
             var releaseStatus = $"{rm.GetString("PreRelease", culture)}: {(Variables.prerelease ? rm.GetString("Yes", culture) : rm.GetString("No", culture))}";
-            var registryVersion = $"{rm.GetString("RegistryVersion", culture)}: {Variables.registryVersion}";
+            var registryVersion = $"{rm.GetString("RegistryVersion", culture)}: v{Variables.registryVersion}";
 
             Console.Clear();
             var maxLength = Math.Max(header.Length, Math.Max(releaseStatus.Length, registryVersion.Length));
             var borderLength = maxLength + 4;
-
+            
             UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
             UIDraw.DrawCenteredLine("│ " + header.PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("│ " + registryVersion.PadRight(borderLength - 2) + " │");
-            UIDraw.DrawCenteredLine("│ " + "Copyright © 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
+            UIDraw.DrawCenteredLine("│ " + "© 2023-2025 elNino0916".PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("│ " + "https://elNino0916.de".PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("╰" + new string('─', borderLength) + "╯");
             UIDraw.DrawBoxedMessage(rm.GetString("PressAnyKeyToGoBack", culture));

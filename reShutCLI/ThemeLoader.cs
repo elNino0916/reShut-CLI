@@ -54,9 +54,8 @@ namespace reShutCLI
                     Variables.LogoColor = ConvertToConsoleColor(theme.LogoColor);
                     Variables.SecondaryColor = ConvertToConsoleColor(theme.SecondaryColor);
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Thread.Sleep(1000);
+                Thread.Sleep(250);
                 Console.Clear();
-                    UIDraw.DrawBoxedMessage("Theme data has been downloaded!");
             }
             catch (Exception)
             {

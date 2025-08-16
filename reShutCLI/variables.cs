@@ -10,17 +10,17 @@ namespace reShutCLI
     {
 
         // Set true if this is a pre-release
-        public static bool prerelease = true;
+        public static bool prerelease = false;
         public static bool DevelopmentBuild = false;
 
         // Language
         public static string lang = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config","Language");
 
         // The version
-        public static string version = "2.0.0.0";
+        public static string version = "2.0.0";
 
         // Changes the registry version.
-        public static string registryVersion = "9";
+        public static string registryVersion = "10";
         public static string fullversion = $"v{version}";
 
         // DO NOT CHANGE
