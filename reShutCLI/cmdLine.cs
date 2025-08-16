@@ -33,8 +33,6 @@ namespace reShutCLI
                 }
             }
 
-            if (parsed.TryGetValue("remote", out string host))
-            if (parsed.TryGetValue("remote", out string? host))
             if (parsed.TryGetValue("remote", out string? host))
             {
                 if (host is null)
@@ -48,16 +46,18 @@ namespace reShutCLI
                 parsed.TryGetValue("pass", out string? pass);
                 bool reboot = parsed.ContainsKey("r") || parsed.ContainsKey("reboot");
                 bool shutdown = parsed.ContainsKey("s") || parsed.ContainsKey("shutdown") || parsed.ContainsKey("poweroff");
+                bool result;
 
                 if (reboot)
-                    RemoteManager.Trigger(host, user, pass, true);
+                    result = RemoteManager.Trigger(host, user, pass, true);
                 else if (shutdown)
-                    RemoteManager.Trigger(host, user, pass, false);
+                    result = RemoteManager.Trigger(host, user, pass, false);
                 else
                 {
                     UIDraw.TextColor = Variables.SecondaryColor;
                     UIDraw.DrawLine("Remote host specified but no action (-r/-s) provided.");
                     UIDraw.TextColor = ConsoleColor.Gray;
+                    result = false;
                 }
 
                 if (result)
