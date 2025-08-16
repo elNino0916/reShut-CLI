@@ -162,28 +162,23 @@ namespace reShutCLI
                             string scheduleType = recur == "d" ? "DAILY" : "WEEKLY";
                             string taskName = $"reShutCLI_{Guid.NewGuid().ToString("N")}";
                             string st = targetTime.ToString("HH:mm");
-                            var psi = new ProcessStartInfo
-                            {
-                                FileName = "schtasks",
-                                Arguments = $"/Create /TN {taskName} /TR \"shutdown /{character} /f\" /SC {scheduleType} /ST {st}",
-                                RedirectStandardOutput = true,
-                                RedirectStandardError = true,
-                                UseShellExecute = false,
-                                CreateNoWindow = true
-                                RedirectStandardOutput = true,
-                                RedirectStandardError = true,
-                                UseShellExecute = false,
-                                CreateNoWindow = true
-                            };
-                            psi.ArgumentList.Add("/Create");
-                            psi.ArgumentList.Add("/TN");
-                            psi.ArgumentList.Add(taskName);
-                            psi.ArgumentList.Add("/TR");
-                            psi.ArgumentList.Add($"shutdown /{character} /f");
-                            psi.ArgumentList.Add("/SC");
-                            psi.ArgumentList.Add(scheduleType);
-                            psi.ArgumentList.Add("/ST");
-                            psi.ArgumentList.Add(st);
+                              var psi = new ProcessStartInfo
+                              {
+                                  FileName = "schtasks",
+                                  RedirectStandardOutput = true,
+                                  RedirectStandardError = true,
+                                  UseShellExecute = false,
+                                  CreateNoWindow = true
+                              };
+                              psi.ArgumentList.Add("/Create");
+                              psi.ArgumentList.Add("/TN");
+                              psi.ArgumentList.Add(taskName);
+                              psi.ArgumentList.Add("/TR");
+                                psi.ArgumentList.Add($"shutdown /{character} /f");
+                              psi.ArgumentList.Add("/SC");
+                              psi.ArgumentList.Add(scheduleType);
+                              psi.ArgumentList.Add("/ST");
+                              psi.ArgumentList.Add(st);
                             using (var process = Process.Start(psi))
                             {
                                 process.WaitForExit();
