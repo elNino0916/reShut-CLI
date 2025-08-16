@@ -2,9 +2,10 @@
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
-using System.Runtime.Versioning;
 namespace reShutCLI;
 
 /// <summary>
@@ -196,8 +197,18 @@ internal class Program
         // Set console output to UTF8 to support various characters.
         Console.OutputEncoding = Encoding.UTF8;
 
-        // Initialize or update registry entries, false means not forced.
-        RegInit.Populate(false);
+        const int STD_OUTPUT_HANDLE = -11;
+        const int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004;
+
+        [DllImport("kernel32.dll")] static extern IntPtr GetStdHandle(int nStdHandle);
+        [DllImport("kernel32.dll")] static extern bool GetConsoleMode(IntPtr hConsoleHandle, out int mode);
+        [DllImport("kernel32.dll")] static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
+        var h = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (GetConsoleMode(h, out var mode))
+            SetConsoleMode(h, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+
+    // Initialize or update registry entries, false means not forced.
+    RegInit.Populate(false);
 
         // Perform first startup routines (e.g., EULA display).
         Setup.FirstStartup();

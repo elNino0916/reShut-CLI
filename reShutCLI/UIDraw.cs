@@ -69,5 +69,12 @@ namespace reShutCLI
 
             UIDraw.DrawLine(new string(' ', padding) + message);
         }
+        public static void DrawCentered(string message)
+        {
+            var consoleWidth = Console.WindowWidth;
+            var padding = (consoleWidth - message.Length) / 2;
+
+            UIDraw.Draw(new string(' ', padding) + message);
+        }
     }
 }

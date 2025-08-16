@@ -43,25 +43,42 @@ namespace reShutCLI
             {
                 Console.Title = "reShutCLI - Loading Theme...";
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                UIDraw.DrawBoxedMessage("Trying to fetch theme data from the API...");
+                using var cts = new CancellationTokenSource();
+
+                // Start spinner in background
+                var spinnerTask = Task.Run(async () =>
+                {
+                    char[] frames = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' };
+                    int i = 0;
+                    while (!cts.Token.IsCancellationRequested)
+                    {
+                        UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching theme...");
+                        await Task.Delay(100, cts.Token).ContinueWith(_ => { });
+                    }
+                }, cts.Token);
+
+                // Perform API call
                 var fetchTask = client.GetStringAsync("http://api.elnino0916.de/api/v1/reshutcli/theme/default");
 
-                    // API call finished within 2 seconds
-                    var response = await fetchTask; // get result
-                    var theme = JsonSerializer.Deserialize<ApiTheme>(response);
+                await Task.WhenAll(fetchTask, Task.Delay(1000));
 
-                    Variables.MenuColor = ConvertToConsoleColor(theme.MenuColor);
-                    Variables.LogoColor = ConvertToConsoleColor(theme.LogoColor);
-                    Variables.SecondaryColor = ConvertToConsoleColor(theme.SecondaryColor);
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Thread.Sleep(250);
+                var response = await fetchTask;
+                var theme = JsonSerializer.Deserialize<ApiTheme>(response);
+
+                Variables.MenuColor = ConvertToConsoleColor(theme.MenuColor);
+                Variables.LogoColor = ConvertToConsoleColor(theme.LogoColor);
+                Variables.SecondaryColor = ConvertToConsoleColor(theme.SecondaryColor);
+
+                // Stop spinner
+                cts.Cancel();
+                await spinnerTask;
                 Console.Clear();
             }
             catch (Exception)
             {
+                Console.Clear();
                 setDefaultThemeFB();
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.Clear();
                 UIDraw.DrawBoxedMessage("Using fallback theme!");
             }
         }

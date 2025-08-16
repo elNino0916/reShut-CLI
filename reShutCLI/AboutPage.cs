@@ -20,7 +20,19 @@ namespace reShutCLI
             Console.Clear();
             var maxLength = Math.Max(header.Length, Math.Max(releaseStatus.Length, registryVersion.Length));
             var borderLength = maxLength + 4;
-            
+            UIDraw.TextColor = ConsoleColor.DarkYellow;
+
+            Console.Write("\u001b[38;2;255;154;2m");
+            UIDraw.DrawCenteredLine("╔═══════════╗");
+            UIDraw.DrawCenteredLine("║ ╭───────╮ ║");
+            UIDraw.DrawCenteredLine("║ │ > _   │ ║");
+            UIDraw.DrawCenteredLine("║ │       │ ║");
+            UIDraw.DrawCenteredLine("║ ╰───────╯ ║");
+            UIDraw.DrawCenteredLine("╚═══════════╝");
+            UIDraw.DrawCenteredLine("reShut CLI v2");
+            Console.Write("\u001b[0m");
+            UIDraw.TextColor = Variables.MenuColor;
+            UIDraw.DrawCenteredLine("");
             UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
             UIDraw.DrawCenteredLine("│ " + header.PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
