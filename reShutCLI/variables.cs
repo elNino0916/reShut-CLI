@@ -23,7 +23,7 @@ namespace reShutCLI
         public static string registryVersion = "10";
         public static string fullversion = $"v{version}";
 
-        // DO NOT CHANGE
+        // DO NOT CHANGE, NEEDS TO BE SET TO TRUE BY DEFAULT
         public static bool isUpToDate = true;
 
         // Will be changed by ThemeLoader, change default colors in ThemeLoader.cs
