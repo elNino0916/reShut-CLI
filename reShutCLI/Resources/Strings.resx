@@ -142,7 +142,7 @@
     <value>Quit</value>
   </data>
   <data name="PressAnyKeyToGoBack" xml:space="preserve">
-    <value>Press any key to go back.</value>
+    <value>↵ Press any key to go back.</value>
   </data>
   <data name="UpdateDLStarted" xml:space="preserve">
     <value>Download started, Installer will open in a few seconds...</value>
@@ -322,10 +322,10 @@
     <value>reShut CLI needs to restart.</value>
   </data>
   <data name="ErrorHandler_PressKeyRestart" xml:space="preserve">
-    <value>Press any key to restart reShut CLI.</value>
+    <value>↵ Press any key to restart reShut CLI.</value>
   </data>
   <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
-    <value>Press any key to return to Settings.</value>
+    <value>↵ Press any key to return to Settings.</value>
   </data>
   <data name="ErrorHandler_BeingImproved" xml:space="preserve">
     <value>This interface is currently being improved. Please report any bugs on GitHub.</value>

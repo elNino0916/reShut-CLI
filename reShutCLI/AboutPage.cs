@@ -33,6 +33,7 @@ namespace reShutCLI
             Console.Write("\u001b[0m");
             UIDraw.TextColor = Variables.MenuColor;
             UIDraw.DrawCenteredLine("");
+            UIDraw.DrawCenteredLine("");
             UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
             UIDraw.DrawCenteredLine("│ " + header.PadRight(borderLength - 2) + " │");
             UIDraw.DrawCenteredLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");

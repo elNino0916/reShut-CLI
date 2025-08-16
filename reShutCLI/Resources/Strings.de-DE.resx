@@ -142,7 +142,7 @@
     <value>Beenden</value>
   </data>
   <data name="PressAnyKeyToGoBack" xml:space="preserve">
-    <value>Drücke eine beliebige Taste um zurückzukehren.</value>
+    <value>↵ Drücke eine beliebige Taste um zurückzukehren.</value>
   </data>
   <data name="UpdateDLStarted" xml:space="preserve">
     <value>Herunterladen gestartet, Setup wird bald starten...</value>
@@ -322,10 +322,10 @@
     <value>reShut CLI muss neu gestartet werden.</value>
   </data>
   <data name="ErrorHandler_PressKeyRestart" xml:space="preserve">
-    <value>Drücken Sie eine beliebige Taste um reShut CLI neuzustarten.</value>
+    <value>↵ Drücken Sie eine beliebige Taste um reShut CLI neuzustarten.</value>
   </data>
   <data name="ErrorHandler_PressKeyBack" xml:space="preserve">
-    <value>Drücken Sie eine beliebige Taste um zu den Einstellungen zurückzugehen.</value>
+    <value>↵ Drücken Sie eine beliebige Taste um zu den Einstellungen zurückzugehen.</value>
   </data>
   <data name="ErrorHandler_BeingImproved" xml:space="preserve">
     <value>Diese Oberfläche wird derzeit verbessert. Bitte melden Sie alle Fehler auf GitHub.</value>

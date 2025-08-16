@@ -151,7 +151,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Press any key to return to Settings. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die ↵ Press any key to return to Settings. ähnelt.
         /// </summary>
         internal static string ErrorHandler_PressKeyBack {
             get {
@@ -160,7 +160,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Press any key to restart reShut CLI. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die ↵ Press any key to restart reShut CLI. ähnelt.
         /// </summary>
         internal static string ErrorHandler_PressKeyRestart {
             get {
@@ -277,7 +277,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Press any key to go back. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die ↵ Press any key to go back. ähnelt.
         /// </summary>
         internal static string PressAnyKeyToGoBack {
             get {
