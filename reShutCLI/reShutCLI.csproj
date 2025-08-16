@@ -15,7 +15,11 @@
     <AssemblyOriginatorKeyFile>bin\x64\Release\net9.0-windows\elnino0916.pfx</AssemblyOriginatorKeyFile>
     <ImplicitUsings>disable</ImplicitUsings>
     <Title>$(AssemblyName)</Title>
+    <ApplicationIcon>reShut-CLI-centered-transparent.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="reShut-CLI-centered-transparent.ico" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="System.Management" />
