@@ -17,7 +17,7 @@ namespace reShutCLI
         public static string lang = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config","Language");
 
         // The version
-        public static string version = "2.0.0";
+        public static string version = "2.0.2";
 
         // Changes the registry version.
         public static string registryVersion = "10";
