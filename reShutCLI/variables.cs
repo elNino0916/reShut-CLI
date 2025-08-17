@@ -11,16 +11,16 @@ namespace reShutCLI
 
         // Set true if this is a pre-release
         public static bool prerelease = false;
-        public static bool DevelopmentBuild = false;
-
+        public static bool DevelopmentBuild; // Deprecated
         // Language
         public static string lang = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config","Language");
 
-        // The version
-        public static string version = "2.0.4";
+        // The version & api string
+        public static string version = "2.0.5";
+        public static string apiString = "http://api.elnino0916.de/api/v3/reshutcli/theme/default";
 
         // Changes the registry version.
-        public static string registryVersion = "10";
+        public static string registryVersion = "11";
         public static string fullversion = $"v{version}";
 
         // DO NOT CHANGE, NEEDS TO BE SET TO TRUE BY DEFAULT
@@ -30,7 +30,8 @@ namespace reShutCLI
         public static CliColor LogoColor { get; set; } = ConsoleColor.Gray;
         public static CliColor MenuColor { get; set; } = ConsoleColor.DarkGray;
         public static CliColor SecondaryColor { get; set; } = ConsoleColor.Red;
-
+        public static CliColor BackgroundColor { get; set; } = ConsoleColor.Red;
+        public static string UpdatedDefaultThemeName { get; set; } = "";
 
         // The motd
 

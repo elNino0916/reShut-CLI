@@ -143,6 +143,10 @@ namespace reShutCLI
                 UIDraw.DrawCenteredLine("│ Select a theme to personalize your experience. │");
                 UIDraw.DrawCenteredLine("╰────────────────────────────────────────────────╯");
                 UIDraw.DrawCenteredLine("");
+                UIDraw.TextColor = Variables.SecondaryColor;
+                UIDraw.DrawBoxedMessage("Current default theme name: " + Variables.UpdatedDefaultThemeName);
+                UIDraw.TextColor = Variables.MenuColor;
+                UIDraw.DrawCenteredLine("");
                 UIDraw.DrawCenteredLine("╭───────────────────────────────╮");
                 UIDraw.DrawCenteredLine("│ 1) Default (Network required) │");
                 UIDraw.DrawCenteredLine("├───────────────────────────────┤");

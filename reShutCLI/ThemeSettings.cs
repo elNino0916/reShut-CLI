@@ -15,6 +15,9 @@ namespace reShutCLI
             ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             UIDraw.DrawBoxedMessage(rm.GetString("SelectTheme", culture));
             UIDraw.DrawCenteredLine("");
+            UIDraw.TextColor = Variables.SecondaryColor;
+            UIDraw.DrawBoxedMessage("Current default theme name: " + Variables.UpdatedDefaultThemeName);
+            UIDraw.TextColor = Variables.MenuColor;
             UIDraw.DrawCenteredLine("╭──────────────────────────╮");
             UIDraw.DrawCenteredLine("│ 1) Default               │");
             UIDraw.DrawCenteredLine("├──────────────────────────┤");

@@ -226,6 +226,11 @@ internal class Program
 
         // Load user-selected theme.
         ThemeLoader.loadTheme();
+        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "DefaultThemeRecentName") == "")
+        { // If the registry is empty, write new default theme name.
+            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "DefaultThemeRecentName", "STRING", Variables.UpdatedDefaultThemeName);
+        }
+
     }
 
     /// <summary>
@@ -233,6 +238,12 @@ internal class Program
     /// </summary>
     private static void PrintLogo()
     {
+        if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "DefaultThemeRecentName") != Variables.UpdatedDefaultThemeName) 
+        {
+            UIDraw.TextColor = Variables.SecondaryColor;
+            UIDraw.DrawCenteredLine("New default theme installed: " + Variables.UpdatedDefaultThemeName);
+            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "DefaultThemeRecentName", "STRING", Variables.UpdatedDefaultThemeName);
+        }
         UIDraw.TextColor = Variables.LogoColor; // Set color for the logo.
         CenterText(); // Display the centered ASCII art, version, and copyright.
 

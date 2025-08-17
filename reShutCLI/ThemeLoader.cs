@@ -52,13 +52,13 @@ namespace reShutCLI
                     int i = 0;
                     while (!cts.Token.IsCancellationRequested)
                     {
-                        UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching V2 theme from API...");
+                        UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching theme...");
                         await Task.Delay(100, cts.Token).ContinueWith(_ => { });
                     }
                 }, cts.Token);
 
                 // Perform API call
-                var fetchTask = client.GetStringAsync("http://api.elnino0916.de/api/v2/reshutcli/theme/default");
+                var fetchTask = client.GetStringAsync(Variables.apiString);
 
                 await Task.WhenAll(fetchTask, Task.Delay(1000));
 
@@ -68,6 +68,8 @@ namespace reShutCLI
                 Variables.MenuColor = theme.MenuColor;
                 Variables.LogoColor = theme.LogoColor;
                 Variables.SecondaryColor = theme.SecondaryColor;
+                Variables.BackgroundColor = theme.SecondaryColor;
+                Variables.UpdatedDefaultThemeName = theme.ThemeName;
 
                 // Stop spinner
                 cts.Cancel();
@@ -128,6 +130,7 @@ namespace reShutCLI
             public string MenuColor { get; set; }
             public string LogoColor { get; set; }
             public string SecondaryColor { get; set; }
+            public string ThemeName { get; set; }
         }
     }
 }
