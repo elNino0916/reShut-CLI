@@ -19,10 +19,7 @@ namespace reShutCLI
                 using var client = new HttpClient();
                 client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
 
-                var response = await LoadingSpinner.RunAsync(
-                    () => client.GetAsync(RepositoryUrl),
-                    "Checking for updates...",
-                    2000);
+                var response = await client.GetAsync(RepositoryUrl);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -36,10 +33,7 @@ namespace reShutCLI
                     {
                         var asset = release.assets[0]; // Assuming the first asset is the installer
                         var downloadUrl = asset.browser_download_url;
-                        var installerPath = await LoadingSpinner.RunAsync(
-                            () => DownloadInstaller(downloadUrl),
-                            "Downloading update...",
-                            2000);
+                        var installerPath = await DownloadInstaller(downloadUrl);
 
                         if (!string.IsNullOrEmpty(installerPath))
                         {
