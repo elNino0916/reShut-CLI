@@ -205,7 +205,7 @@
     <value>Pre-Release </value>
   </data>
   <data name="CopyrightText" xml:space="preserve">
-    <value>Copyright © 2023-2025 elNino0916</value>
+    <value>Copyright © 2023-2025 elNino0916 and contributors.</value>
   </data>
   <data name="UpdateCheckFailed" xml:space="preserve">
     <value>Failed to check for updates. Check your network connection and try again.</value>

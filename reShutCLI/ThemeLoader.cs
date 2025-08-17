@@ -52,22 +52,22 @@ namespace reShutCLI
                     int i = 0;
                     while (!cts.Token.IsCancellationRequested)
                     {
-                        UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching theme...");
+                        UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching V2 theme from API...");
                         await Task.Delay(100, cts.Token).ContinueWith(_ => { });
                     }
                 }, cts.Token);
 
                 // Perform API call
-                var fetchTask = client.GetStringAsync("http://api.elnino0916.de/api/v1/reshutcli/theme/default");
+                var fetchTask = client.GetStringAsync("http://api.elnino0916.de/api/v2/reshutcli/theme/default");
 
                 await Task.WhenAll(fetchTask, Task.Delay(1000));
 
                 var response = await fetchTask;
                 var theme = JsonSerializer.Deserialize<ApiTheme>(response);
 
-                Variables.MenuColor = ConvertToConsoleColor(theme.MenuColor);
-                Variables.LogoColor = ConvertToConsoleColor(theme.LogoColor);
-                Variables.SecondaryColor = ConvertToConsoleColor(theme.SecondaryColor);
+                Variables.MenuColor = theme.MenuColor;
+                Variables.LogoColor = theme.LogoColor;
+                Variables.SecondaryColor = theme.SecondaryColor;
 
                 // Stop spinner
                 cts.Cancel();
@@ -121,28 +121,6 @@ namespace reShutCLI
             Variables.MenuColor = ConsoleColor.DarkCyan;
             Variables.LogoColor = ConsoleColor.Cyan;
             Variables.SecondaryColor = ConsoleColor.DarkGray;
-        }
-
-        private static ConsoleColor ConvertToConsoleColor(string color)
-        {
-            return color?.ToLower() switch
-            {
-                "black" => ConsoleColor.Black,
-                "darkred" => ConsoleColor.DarkRed,
-                "red" => ConsoleColor.Red,
-                "darkgreen" => ConsoleColor.DarkGreen,
-                "green" => ConsoleColor.Green,
-                "darkblue" => ConsoleColor.DarkBlue,
-                "blue" => ConsoleColor.Blue,
-                "cyan" => ConsoleColor.Cyan,
-                "darkcyan" => ConsoleColor.DarkCyan,
-                "yellow" => ConsoleColor.Yellow,
-                "magenta" => ConsoleColor.Magenta,
-                "white" => ConsoleColor.White,
-                "gray" => ConsoleColor.Gray,
-                "darkgray" => ConsoleColor.DarkGray,
-                _ => ConsoleColor.White
-            };
         }
 
         private class ApiTheme

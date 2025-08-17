@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\aboutpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\resources\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\resources\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\uidraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\uidraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,12 +23,12 @@
       "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\themeloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\reginit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\reginit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\uidraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\uidraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\resources\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\resources\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+      "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\reginit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|solutionrelative:reshutcli\\reginit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7AB6BB7-24F9-4E00-AA41-D30BC66CE2C9}|reShutCLI\\reShutCLI.csproj|c:\\users\\ninob\\source\\repos\\reshut-cli\\reshutcli\\reshutcli.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "UIDraw.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\UIDraw.cs",
               "RelativeDocumentMoniker": "reShutCLI\\UIDraw.cs",
@@ -66,8 +66,7 @@
               "RelativeToolTip": "reShutCLI\\UIDraw.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBYAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T16:28:33.073Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T16:28:33.073Z"
             },
             {
               "$type": "Document",
@@ -85,16 +84,16 @@
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "reShutCLI",
-              "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\reShutCLI.csproj",
+              "DocumentMoniker": "C:\\Users\\ninob\\Source\\Repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
               "RelativeDocumentMoniker": "reShutCLI\\reShutCLI.csproj",
-              "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\reShutCLI.csproj",
+              "ToolTip": "C:\\Users\\ninob\\Source\\Repos\\reshut-cli\\reShutCLI\\reShutCLI.csproj",
               "RelativeToolTip": "reShutCLI\\reShutCLI.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-08-16T12:27:56.825Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Strings.resx",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\Resources\\Strings.resx",
               "RelativeDocumentMoniker": "reShutCLI\\Resources\\Strings.resx",
@@ -112,7 +111,7 @@
               "RelativeDocumentMoniker": "reShutCLI\\ThemeLoader.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\ThemeLoader.cs",
               "RelativeToolTip": "reShutCLI\\ThemeLoader.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAADwvz0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-16T11:36:35.263Z",
               "EditorCaption": ""
@@ -137,7 +136,7 @@
               "RelativeDocumentMoniker": "reShutCLI\\AboutPage.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\AboutPage.cs",
               "RelativeToolTip": "reShutCLI\\AboutPage.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAACEAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-16T11:32:45.418Z",
               "EditorCaption": ""
@@ -150,14 +149,14 @@
               "RelativeDocumentMoniker": "reShutCLI\\variables.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\variables.cs",
               "RelativeToolTip": "reShutCLI\\variables.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-11T11:50:57.716Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "RegInit.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\RegInit.cs",
               "RelativeDocumentMoniker": "reShutCLI\\RegInit.cs",
@@ -165,18 +164,17 @@
               "RelativeToolTip": "reShutCLI\\RegInit.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAswEMAAACKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-11T11:47:36.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-11T11:47:36.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\Program.cs",
               "RelativeDocumentMoniker": "reShutCLI\\Program.cs",
               "ToolTip": "C:\\Users\\ninob\\source\\repos\\reShut-CLI\\reShutCLI\\Program.cs",
               "RelativeToolTip": "reShutCLI\\Program.cs",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAmwNAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALkAAAAAAAAAAAAmwPcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-24T19:31:21.364Z",
               "EditorCaption": ""

@@ -13,24 +13,24 @@ namespace reShutCLI
         {
             DrawBoxedMessages(new List<string> { message });
         }
-        private static ConsoleColor _textColor;
-        public static ConsoleColor TextColor
+        private static CliColor _textColor;
+        public static CliColor TextColor
         {
             get => _textColor;
             set
             {
                 _textColor = value;
-                Console.ForegroundColor = value;
+                _textColor.ApplyForeground();
             }
         }
-        private static ConsoleColor _backgroundColor;
-        public static ConsoleColor BackgroundColor
+        private static CliColor _backgroundColor;
+        public static CliColor BackgroundColor
         {
             get => _backgroundColor;
             set
             {
                 _backgroundColor = value;
-                Console.BackgroundColor = value;
+                _backgroundColor.ApplyBackground();
             }
         }
         public static void DrawLine(string Text)
