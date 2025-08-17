@@ -106,7 +106,7 @@ namespace reShutCLI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Copyright © 2023-2025 elNino0916 ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copyright © 2023-2025 elNino0916 and contributors. ähnelt.
         /// </summary>
         internal static string CopyrightText {
             get {

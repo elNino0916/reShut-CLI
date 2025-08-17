@@ -205,7 +205,7 @@
     <value>Vorabversion </value>
   </data>
   <data name="CopyrightText" xml:space="preserve">
-    <value>Copyright © 2023-2025 elNino0916</value>
+    <value>Copyright © 2023-2025 elNino0916 and contributors.</value>
   </data>
   <data name="UpdateCheckFailed" xml:space="preserve">
     <value>Konnte nicht nach Updates suchen. Prüfe die Internetverbindung und versuche es erneut.</value>
