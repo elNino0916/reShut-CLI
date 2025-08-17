@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/reshutcli.png
+/reShut-CLI-WizardImageFile.bmp
+/reShut-CLI-preview-white-bg.bmp
