@@ -62,6 +62,8 @@ namespace reShutCLI
         private static (int r, int g, int b) ParseHex(string hex)
         {
             hex = hex.TrimStart('#');
+            if (hex.Length != 6)
+                throw new ArgumentException("Hex color string must be exactly 6 characters long after removing '#'.", nameof(hex));
             int r = int.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
             int g = int.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
             int b = int.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
