@@ -65,9 +65,9 @@ namespace reShutCLI
                 var response = await fetchTask;
                 var theme = JsonSerializer.Deserialize<ApiTheme>(response);
 
-                Variables.MenuColor = ConvertToConsoleColor(theme.MenuColor);
-                Variables.LogoColor = ConvertToConsoleColor(theme.LogoColor);
-                Variables.SecondaryColor = ConvertToConsoleColor(theme.SecondaryColor);
+                Variables.MenuColor = theme.MenuColor;
+                Variables.LogoColor = theme.LogoColor;
+                Variables.SecondaryColor = theme.SecondaryColor;
 
                 // Stop spinner
                 cts.Cancel();
@@ -121,28 +121,6 @@ namespace reShutCLI
             Variables.MenuColor = ConsoleColor.DarkCyan;
             Variables.LogoColor = ConsoleColor.Cyan;
             Variables.SecondaryColor = ConsoleColor.DarkGray;
-        }
-
-        private static ConsoleColor ConvertToConsoleColor(string color)
-        {
-            return color?.ToLower() switch
-            {
-                "black" => ConsoleColor.Black,
-                "darkred" => ConsoleColor.DarkRed,
-                "red" => ConsoleColor.Red,
-                "darkgreen" => ConsoleColor.DarkGreen,
-                "green" => ConsoleColor.Green,
-                "darkblue" => ConsoleColor.DarkBlue,
-                "blue" => ConsoleColor.Blue,
-                "cyan" => ConsoleColor.Cyan,
-                "darkcyan" => ConsoleColor.DarkCyan,
-                "yellow" => ConsoleColor.Yellow,
-                "magenta" => ConsoleColor.Magenta,
-                "white" => ConsoleColor.White,
-                "gray" => ConsoleColor.Gray,
-                "darkgray" => ConsoleColor.DarkGray,
-                _ => ConsoleColor.White
-            };
         }
 
         private class ApiTheme
