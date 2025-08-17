@@ -6,7 +6,8 @@
 > So, if you encounter any issues, disable your antivirus temporarily while installing reShutCLI. You can enable it again afterwards.
 
 
-<img width="966" height="110" alt="image" src="https://github.com/user-attachments/assets/50ad8948-8efe-4535-90f8-1a0ab4fc9273" />
+<img width="1102" height="140" alt="image" src="https://github.com/user-attachments/assets/46180d26-19d4-43b1-a3f5-fa6eea5eeecf" />
+
 
 ## reShut CLI is an easy-to-use tool that aims to streamline and improve the management of system reboots and shutdowns on your Windows computer.
 
