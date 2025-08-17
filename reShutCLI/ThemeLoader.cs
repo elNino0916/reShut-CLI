@@ -42,37 +42,15 @@ namespace reShutCLI
             try
             {
                 Console.Title = "reShutCLI - Loading Theme...";
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                using var cts = new CancellationTokenSource();
 
-                // Start spinner in background
-                var spinnerTask = Task.Run(async () =>
-                {
-                    char[] frames = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' };
-                    int i = 0;
-                    while (!cts.Token.IsCancellationRequested)
-                    {
-                        UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching V2 theme from API...");
-                        await Task.Delay(100, cts.Token).ContinueWith(_ => { });
-                    }
-                }, cts.Token);
+                var response = await LoadingSpinner.RunAsync(
+                    () => client.GetStringAsync("http://api.elnino0916.de/api/v2/reshutcli/theme/default"),
+                    "Fetching V2 theme from API...");
 
-                // Perform API call
-                var fetchTask = client.GetStringAsync("http://api.elnino0916.de/api/v2/reshutcli/theme/default");
-
-                await Task.WhenAll(fetchTask, Task.Delay(1000));
-
-                var response = await fetchTask;
                 var theme = JsonSerializer.Deserialize<ApiTheme>(response);
-
                 Variables.MenuColor = theme.MenuColor;
                 Variables.LogoColor = theme.LogoColor;
                 Variables.SecondaryColor = theme.SecondaryColor;
-
-                // Stop spinner
-                cts.Cancel();
-                await spinnerTask;
-                Console.Clear();
             }
             catch (Exception)
             {

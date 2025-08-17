@@ -36,7 +36,9 @@ namespace reShutCLI
             using var client = new HttpClient();
             client.DefaultRequestHeaders.UserAgent.ParseAdd("reShutCLI_UpdateSearch");
 
-            var response = await client.GetAsync(repositoryUrl);
+            var response = await LoadingSpinner.RunAsync(
+                () => client.GetAsync(repositoryUrl),
+                "Checking for updates...");
 
             if (response.IsSuccessStatusCode)
             {
