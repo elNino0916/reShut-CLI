@@ -1,7 +1,7 @@
 > [!CAUTION]
 > **MAINTENANCE TODAY**
 > 
-> Due to ISP maintenance, the theme API will be unavailable from approx. 8:00 PM - 8:00 AM CEST today. This will only affect the default theme. Updates will still work.
+> Due to ISP maintenance, the theme API will be unavailable from approx. 11:00 PM - 8:00 AM CEST today. This will only affect the default theme. Updates will still work.
 > 
 > Sorry for the inconvenience.
 
