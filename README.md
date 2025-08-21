@@ -1,10 +1,3 @@
-> [!CAUTION]
-> **MAINTENANCE TODAY**
-> 
-> Due to ISP maintenance, the theme API will be unavailable from approx. 11:00 PM - 8:00 AM CEST today. This will only affect the default theme. Updates will still work.
-> 
-> Sorry for the inconvenience.
-
 
 <img width="1102" height="140" alt="image" src="https://github.com/user-attachments/assets/46180d26-19d4-43b1-a3f5-fa6eea5eeecf" />
 
