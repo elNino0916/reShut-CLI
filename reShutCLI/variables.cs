@@ -18,7 +18,7 @@ namespace reShutCLI
         public static string lang = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config","Language");
 
         // The version & api string
-        public static string version = "2.0.5";
+        public static string version = "2.0.6";
         public static string apiString = "http://api.elnino0916.de/api/v3/reshutcli/theme/default";
 
         // Changes the registry version.
