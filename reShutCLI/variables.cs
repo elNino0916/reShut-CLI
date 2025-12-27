@@ -3,6 +3,8 @@ using System.Globalization;
 using System.Management;
 using System.Resources;
 using System.Runtime.Versioning;
+using reShutCLI.Helpers;
+using reShutCLI.Services;
 
 namespace reShutCLI
 {

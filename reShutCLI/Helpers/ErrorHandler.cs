@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Runtime.Versioning;
 
-namespace reShutCLI
+namespace reShutCLI.Helpers
 {
     internal class ErrorHandler
     {
@@ -44,9 +44,9 @@ namespace reShutCLI
             int boxWidth = lines.Max(line => line.Length) + 2; // Adding padding
 
             // Create the top, middle, and bottom borders of the box
-            string topBorder = "╭" + new string('─', boxWidth) + "╮";
-            string middleBorder = "├" + new string('─', boxWidth) + "┤";
-            string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
+            string topBorder = "\u256D" + new string('\u2500', boxWidth) + "\u256E";
+            string middleBorder = "\u251C" + new string('\u2500', boxWidth) + "\u2524";
+            string bottomBorder = "\u2570" + new string('\u2500', boxWidth) + "\u256F";
 
             // Print the error box
             Console.Clear();
@@ -55,16 +55,16 @@ namespace reShutCLI
             UIDraw.DrawLine(" ");
             UIDraw.TextColor = Variables.SecondaryColor;
             UIDraw.DrawCenteredLine(topBorder);
-            UIDraw.DrawCenteredLine("│ " + lines[0].PadRight(boxWidth - 2) + " │");
+            UIDraw.DrawCenteredLine("\u2502 " + lines[0].PadRight(boxWidth - 2) + " \u2502");
             UIDraw.DrawCenteredLine(middleBorder);
             UIDraw.TextColor = Variables.SecondaryColor;
-            UIDraw.DrawCenteredLine("│ " + lines[1].PadRight(boxWidth - 2) + " │");
+            UIDraw.DrawCenteredLine("\u2502 " + lines[1].PadRight(boxWidth - 2) + " \u2502");
             UIDraw.DrawCenteredLine(middleBorder);
-            UIDraw.DrawCenteredLine("│ " + lines[2].PadRight(boxWidth - 2) + " │");
+            UIDraw.DrawCenteredLine("\u2502 " + lines[2].PadRight(boxWidth - 2) + " \u2502");
             if (needsRestart)
             {
                 UIDraw.TextColor = Variables.SecondaryColor;
-                UIDraw.DrawCenteredLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
+                UIDraw.DrawCenteredLine("\u2502 " + lines[3].PadRight(boxWidth - 2) + " \u2502");
                 UIDraw.DrawCenteredLine(bottomBorder);
                 Console.ReadKey();
                 AutoRestart.Init();
@@ -72,7 +72,7 @@ namespace reShutCLI
             else
             {
                 UIDraw.TextColor = Variables.SecondaryColor;
-                UIDraw.DrawCenteredLine("│ " + lines[3].PadRight(boxWidth - 2) + " │");
+                UIDraw.DrawCenteredLine("\u2502 " + lines[3].PadRight(boxWidth - 2) + " \u2502");
                 UIDraw.DrawCenteredLine(bottomBorder);
                 Console.ReadKey();
                 Program.Main(Array.Empty<string>());

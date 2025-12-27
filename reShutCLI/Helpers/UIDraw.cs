@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
 /// A fancy class that simplifies drawing messages and just a fancy wrapper around Console methods xD
 /// </summary>
-namespace reShutCLI
+namespace reShutCLI.Helpers
 {
     internal class UIDraw
     {
@@ -49,14 +49,14 @@ namespace reShutCLI
             int maxContentWidth = lines.Max(line => line.Length);
             int totalWidth = maxContentWidth + 4;
 
-            string topBorder = "╭" + new string('─', totalWidth - 2) + "╮";
-            string bottomBorder = "╰" + new string('─', totalWidth - 2) + "╯";
+            string topBorder = "\u256D" + new string('\u2500', totalWidth - 2) + "\u256E";
+            string bottomBorder = "\u2570" + new string('\u2500', totalWidth - 2) + "\u256F";
 
             DrawCenteredLine(topBorder);
 
             foreach (string line in lines)
             {
-                string paddedLine = $"│ {line.PadRight(maxContentWidth)} │";
+                string paddedLine = $"\u2502 {line.PadRight(maxContentWidth)} \u2502";
                 DrawCenteredLine(paddedLine);
             }
 

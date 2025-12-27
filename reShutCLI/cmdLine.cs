@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Versioning;
+using reShutCLI.Helpers;
+using reShutCLI.Services;
 
 namespace reShutCLI
 {

@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Versioning;
 using System.Threading;
+using reShutCLI.Helpers;
 
-namespace reShutCLI
+namespace reShutCLI.Services
 {
     internal class ConfigManager
     {
@@ -18,11 +19,11 @@ namespace reShutCLI
             UIDraw.TextColor = Variables.SecondaryColor;
             UIDraw.DrawBoxedMessage(rm.GetString("ResetWarning", culture));
             UIDraw.DrawCenteredLine("");
-            UIDraw.DrawCenteredLine("╭──────────────────╮");
-            UIDraw.DrawCenteredLine("│ 1) Reset         │");
-            UIDraw.DrawCenteredLine("├──────────────────┤");
-            UIDraw.DrawCenteredLine("│ 2) Cancel        │");
-            UIDraw.DrawCenteredLine("╰──────────────────╯");
+            UIDraw.DrawCenteredLine("\u256D\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E");
+            UIDraw.DrawCenteredLine("\u2502 1) Reset         \u2502");
+            UIDraw.DrawCenteredLine("\u251C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524");
+            UIDraw.DrawCenteredLine("\u2502 2) Cancel        \u2502");
+            UIDraw.DrawCenteredLine("\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256F");
             UIDraw.TextColor = Variables.MenuColor;
 
             var setInfo = Console.ReadKey();

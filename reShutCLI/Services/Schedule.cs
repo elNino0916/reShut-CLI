@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
+using reShutCLI.Helpers;
 
-namespace reShutCLI
+namespace reShutCLI.Services
 {
     internal class Schedule
     {
@@ -20,15 +21,15 @@ namespace reShutCLI
             {
                 Console.Clear();
                 UIDraw.TextColor = Variables.MenuColor;
-                UIDraw.DrawCenteredLine("╭──────────────────────────────────╮");
-                UIDraw.DrawCenteredLine(string.Format("│ {0,-32} │", rm.GetString("Schedule_PromptAction", culture)));
-                UIDraw.DrawCenteredLine(string.Format("│ {0,-32} │", rm.GetString("Schedule_SelectOption", culture)));
-                UIDraw.DrawCenteredLine(string.Format("│ 1) {0,-29} │", rm.GetString("Schedule_ShutdownOption", culture)));
-                UIDraw.DrawCenteredLine(string.Format("│ 2) {0,-29} │", rm.GetString("Schedule_RebootOption", culture)));
-                UIDraw.DrawCenteredLine("├──────────────────────────────────┤");
-                UIDraw.DrawCenteredLine(string.Format("│ 0) {0,-29} │", rm.GetString("Schedule_Cancel", culture)));
-                UIDraw.DrawCenteredLine(string.Format("│ 9) {0,-29} │", rm.GetString("Back", culture)));
-                UIDraw.DrawCenteredLine("╰──────────────────────────────────╯");
+                UIDraw.DrawCenteredLine("\u256D\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E");
+                UIDraw.DrawCenteredLine(string.Format("\u2502 {0,-32} \u2502", rm.GetString("Schedule_PromptAction", culture)));
+                UIDraw.DrawCenteredLine(string.Format("\u2502 {0,-32} \u2502", rm.GetString("Schedule_SelectOption", culture)));
+                UIDraw.DrawCenteredLine(string.Format("\u2502 1) {0,-29} \u2502", rm.GetString("Schedule_ShutdownOption", culture)));
+                UIDraw.DrawCenteredLine(string.Format("\u2502 2) {0,-29} \u2502", rm.GetString("Schedule_RebootOption", culture)));
+                UIDraw.DrawCenteredLine("\u251C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524");
+                UIDraw.DrawCenteredLine(string.Format("\u2502 0) {0,-29} \u2502", rm.GetString("Schedule_Cancel", culture)));
+                UIDraw.DrawCenteredLine(string.Format("\u2502 9) {0,-29} \u2502", rm.GetString("Back", culture)));
+                UIDraw.DrawCenteredLine("\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256F");
 
                 var key = Console.ReadKey().KeyChar.ToString();
 
@@ -124,14 +125,14 @@ namespace reShutCLI
                 int maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
                 int borderLength = maxLength + 4;
 
-                UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
-                UIDraw.DrawCenteredLine("│ " + header.PadRight(maxLength) + "   │");
-                UIDraw.DrawCenteredLine("│ " + info.PadRight(maxLength) + "   │");
-                UIDraw.DrawCenteredLine("├" + new string('─', borderLength) + "┤");
-                UIDraw.DrawCenteredLine("│ " + option1.PadRight(maxLength) + "   │");
-                UIDraw.DrawCenteredLine("│ " + option2.PadRight(maxLength) + "   │");
-                UIDraw.DrawCenteredLine("│ " + option0.PadRight(maxLength) + "   │");
-                UIDraw.DrawCenteredLine("╰" + new string('─', borderLength) + "╯");
+                UIDraw.DrawCenteredLine("\u256D" + new string('\u2500', borderLength) + "\u256E");
+                UIDraw.DrawCenteredLine("\u2502 " + header.PadRight(maxLength) + "   \u2502");
+                UIDraw.DrawCenteredLine("\u2502 " + info.PadRight(maxLength) + "   \u2502");
+                UIDraw.DrawCenteredLine("\u251C" + new string('\u2500', borderLength) + "\u2524");
+                UIDraw.DrawCenteredLine("\u2502 " + option1.PadRight(maxLength) + "   \u2502");
+                UIDraw.DrawCenteredLine("\u2502 " + option2.PadRight(maxLength) + "   \u2502");
+                UIDraw.DrawCenteredLine("\u2502 " + option0.PadRight(maxLength) + "   \u2502");
+                UIDraw.DrawCenteredLine("\u2570" + new string('\u2500', borderLength) + "\u256F");
 
                 UIDraw.TextColor = ConsoleColor.White;
                 UIDraw.Draw(rm.GetString("Schedule_InputPrompt", culture) + " ");
@@ -162,23 +163,23 @@ namespace reShutCLI
                             string scheduleType = recur == "d" ? "DAILY" : "WEEKLY";
                             string taskName = $"reShutCLI_{Guid.NewGuid().ToString("N")}";
                             string st = targetTime.ToString("HH:mm");
-                              var psi = new ProcessStartInfo
-                              {
-                                  FileName = "schtasks",
-                                  RedirectStandardOutput = true,
-                                  RedirectStandardError = true,
-                                  UseShellExecute = false,
-                                  CreateNoWindow = true
-                              };
-                              psi.ArgumentList.Add("/Create");
-                              psi.ArgumentList.Add("/TN");
-                              psi.ArgumentList.Add(taskName);
-                              psi.ArgumentList.Add("/TR");
-                                psi.ArgumentList.Add($"shutdown /{character} /f");
-                              psi.ArgumentList.Add("/SC");
-                              psi.ArgumentList.Add(scheduleType);
-                              psi.ArgumentList.Add("/ST");
-                              psi.ArgumentList.Add(st);
+                            var psi = new ProcessStartInfo
+                            {
+                                FileName = "schtasks",
+                                RedirectStandardOutput = true,
+                                RedirectStandardError = true,
+                                UseShellExecute = false,
+                                CreateNoWindow = true
+                            };
+                            psi.ArgumentList.Add("/Create");
+                            psi.ArgumentList.Add("/TN");
+                            psi.ArgumentList.Add(taskName);
+                            psi.ArgumentList.Add("/TR");
+                            psi.ArgumentList.Add($"shutdown /{character} /f");
+                            psi.ArgumentList.Add("/SC");
+                            psi.ArgumentList.Add(scheduleType);
+                            psi.ArgumentList.Add("/ST");
+                            psi.ArgumentList.Add(st);
                             using (var process = Process.Start(psi))
                             {
                                 process.WaitForExit();

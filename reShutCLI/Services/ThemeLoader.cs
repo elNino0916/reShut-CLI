@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Threading;
+using reShutCLI.Helpers;
 
-namespace reShutCLI
+namespace reShutCLI.Services
 {
     internal class ThemeLoader
     {
@@ -48,7 +49,7 @@ namespace reShutCLI
                 // Start spinner in background
                 var spinnerTask = Task.Run(async () =>
                 {
-                    char[] frames = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' };
+                    char[] frames = { '\u280B', '\u2819', '\u2839', '\u2838', '\u283C', '\u2834', '\u2826', '\u2827', '\u2807', '\u280F' };
                     int i = 0;
                     while (!cts.Token.IsCancellationRequested)
                     {

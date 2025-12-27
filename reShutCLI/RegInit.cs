@@ -4,6 +4,8 @@ using System.Resources;
 using System.Runtime.Versioning;
 using System.Text.RegularExpressions;
 using System.Threading;
+using reShutCLI.Helpers;
+using reShutCLI.Services;
 
 namespace reShutCLI
 {

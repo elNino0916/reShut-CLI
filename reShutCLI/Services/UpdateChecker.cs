@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Net.Http;
 using System.Resources;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using reShutCLI.Helpers;
 
-namespace reShutCLI
+namespace reShutCLI.Services
 {
     internal class UpdateChecker
     {

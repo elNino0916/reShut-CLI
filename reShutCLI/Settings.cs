@@ -3,6 +3,8 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text.RegularExpressions;
+using reShutCLI.Helpers;
+using reShutCLI.Services;
 
 namespace reShutCLI
 {
@@ -52,10 +54,10 @@ namespace reShutCLI
             UIDraw.DrawCenteredLine(topBorder);
             UIDraw.DrawCenteredLine(titleLine);
             UIDraw.DrawCenteredLine(separator);
-            UIDraw.DrawCenteredLine("│" + ("1) " + menuItems[0]).PadRight(dynamicInnerWidth) + "│");
-            UIDraw.DrawCenteredLine("│" + ("2) " + menuItems[1]).PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│ " + ("1) " + menuItems[0]).PadRight(dynamicInnerWidth - 1) + "│");
+            UIDraw.DrawCenteredLine("│ " + ("2) " + menuItems[1]).PadRight(dynamicInnerWidth - 1) + "│");
             UIDraw.DrawCenteredLine(separator);
-            UIDraw.DrawCenteredLine("│" + ("9) " + menuItems[2]).PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│ " + ("9) " + menuItems[2]).PadRight(dynamicInnerWidth - 1) + "│");
             UIDraw.DrawCenteredLine(bottomBorder);
 
             var keyInfo = Console.ReadKey();
@@ -125,14 +127,14 @@ namespace reShutCLI
 
             // Items
             string item1Text = "1) " + menuItems[0];
-            UIDraw.DrawCenteredLine("│" + item1Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│ " + item1Text.PadRight(dynamicInnerWidth - 1) + "│");
             string item2Text = "2) " + menuItems[1];
-            UIDraw.DrawCenteredLine("│" + item2Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│ " + item2Text.PadRight(dynamicInnerWidth - 1) + "│");
             string item3Text = "3) " + menuItems[2]; // About
-            UIDraw.DrawCenteredLine("│" + item3Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│ " + item3Text.PadRight(dynamicInnerWidth - 1) + "│");
             UIDraw.DrawCenteredLine(separator);
             string item9Text = "9) " + menuItems[3]; // Back
-            UIDraw.DrawCenteredLine("│" + item9Text.PadRight(dynamicInnerWidth) + "│");
+            UIDraw.DrawCenteredLine("│ " + item9Text.PadRight(dynamicInnerWidth - 1) + "│");
             UIDraw.DrawCenteredLine(bottomBorder);
             UIDraw.TextColor = ConsoleColor.White;
             // Key detect
@@ -174,12 +176,12 @@ namespace reShutCLI
                     UIDraw.DrawCenteredLine(gen_titleLine);
                     UIDraw.DrawCenteredLine(gen_separator);
 
-                    UIDraw.DrawCenteredLine("│" + ("1) " + menuItemsGen[0]).PadRight(gen_dynamicInnerWidth) + "│");
-                    UIDraw.DrawCenteredLine("│" + ("2) " + menuItemsGen[1]).PadRight(gen_dynamicInnerWidth) + "│");
-                    UIDraw.DrawCenteredLine("│" + ("3) " + menuItemsGen[2]).PadRight(gen_dynamicInnerWidth) + "│");
-                    UIDraw.DrawCenteredLine("│" + ("4) " + menuItemsGen[3]).PadRight(gen_dynamicInnerWidth) + "│"); // Language
+                    UIDraw.DrawCenteredLine("│ " + ("1) " + menuItemsGen[0]).PadRight(gen_dynamicInnerWidth - 1) + "│");
+                    UIDraw.DrawCenteredLine("│ " + ("2) " + menuItemsGen[1]).PadRight(gen_dynamicInnerWidth - 1) + "│");
+                    UIDraw.DrawCenteredLine("│ " + ("3) " + menuItemsGen[2]).PadRight(gen_dynamicInnerWidth - 1) + "│");
+                    UIDraw.DrawCenteredLine("│ " + ("4) " + menuItemsGen[3]).PadRight(gen_dynamicInnerWidth - 1) + "│"); // Language
                     UIDraw.DrawCenteredLine(gen_separator);
-                    UIDraw.DrawCenteredLine("│" + ("9) " + menuItemsGen[4]).PadRight(gen_dynamicInnerWidth) + "│"); // Back
+                    UIDraw.DrawCenteredLine("│ " + ("9) " + menuItemsGen[4]).PadRight(gen_dynamicInnerWidth - 1) + "│"); // Back
 
                     UIDraw.DrawCenteredLine(gen_bottomBorder);
 
@@ -323,9 +325,9 @@ namespace reShutCLI
                     UIDraw.DrawCenteredLine(msg_topBorder);
                     UIDraw.DrawCenteredLine(msg_titleLine);
                     UIDraw.DrawCenteredLine(msg_separator);
-                    UIDraw.DrawCenteredLine("│" + ("1) " + menuItemsMsg[0]).PadRight(msg_dynamicInnerWidth) + "│");
+                    UIDraw.DrawCenteredLine("│ " + ("1) " + menuItemsMsg[0]).PadRight(msg_dynamicInnerWidth - 1) + "│");
                     UIDraw.DrawCenteredLine(msg_separator);
-                    UIDraw.DrawCenteredLine("│" + ("9) " + menuItemsMsg[1]).PadRight(msg_dynamicInnerWidth) + "│");
+                    UIDraw.DrawCenteredLine("│ " + ("9) " + menuItemsMsg[1]).PadRight(msg_dynamicInnerWidth - 1) + "│");
                     UIDraw.DrawCenteredLine(msg_bottomBorder);
 
                     /*

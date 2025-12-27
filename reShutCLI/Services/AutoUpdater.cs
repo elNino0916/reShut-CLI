@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using reShutCLI.Helpers;
 
-namespace reShutCLI
+namespace reShutCLI.Services
 {
     internal class AutoUpdater
     {

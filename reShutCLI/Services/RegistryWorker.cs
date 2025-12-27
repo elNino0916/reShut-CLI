@@ -1,8 +1,8 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Runtime.Versioning;
 
-namespace reShutCLI
+namespace reShutCLI.Services
 {
     // Updated for 2.0.0.0
     [SupportedOSPlatform("windows")]

@@ -1,14 +1,15 @@
 using System;
 using System.Management;
 using System.Runtime.Versioning;
+using reShutCLI.Helpers;
 
-namespace reShutCLI;
-
-[SupportedOSPlatform("windows")]
-internal static class RemoteManager
+namespace reShutCLI.Services
 {
-    public static bool Trigger(string host, string? username, string? password, bool reboot)
+    [SupportedOSPlatform("windows")]
+    internal static class RemoteManager
     {
+        public static bool Trigger(string host, string? username, string? password, bool reboot)
+        {
             try
             {
                 ConnectionOptions options = new ConnectionOptions();
@@ -42,5 +43,6 @@ internal static class RemoteManager
             {
                 UIDraw.TextColor = ConsoleColor.White;
             }
+        }
     }
 }

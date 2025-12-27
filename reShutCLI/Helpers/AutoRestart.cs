@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-namespace reShutCLI
+namespace reShutCLI.Helpers
 {
     internal class AutoRestart
     {

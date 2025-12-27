@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace reShutCLI
+namespace reShutCLI.Helpers
 {
     internal struct CliColor
     {

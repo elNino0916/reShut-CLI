@@ -6,6 +6,9 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
+using reShutCLI.Helpers;
+using reShutCLI.Services;
+
 namespace reShutCLI;
 
 /// <summary>
