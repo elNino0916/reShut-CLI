@@ -23,7 +23,7 @@ namespace reShutCLI
             // Display status messages using UIDraw.DrawBoxedMessage
             UIDraw.DrawBoxedMessage(updateSearchValue == "1" ? rm.GetString("UpdateSettings_UpdateSearchEnabled", culture) : rm.GetString("UpdateSettings_UpdateSearchDisabled", culture));
             UIDraw.DrawLine(""); // Add a blank line for spacing
-            UIDraw.DrawBoxedMessage(autoUpdateValue == "yes" ? rm.GetString("UpdateSettings_AutoUpdateEnabled", culture) : rm.GetString("UpdateSettings_AutoUpdateDisabled", culture));
+            UIDraw.DrawBoxedMessage(autoUpdateValue == "1" ? rm.GetString("UpdateSettings_AutoUpdateEnabled", culture) : rm.GetString("UpdateSettings_AutoUpdateDisabled", culture));
             UIDraw.DrawLine(""); // Add a blank line for spacing
 
             // Display current settings using dynamic box drawing similar to other menus
@@ -72,7 +72,7 @@ namespace reShutCLI
 
                 case "2":
                     // Toggle Auto Update on Startup (Note: Original code had "Toggle Update Search" comment here, corrected)
-                    string newAutoUpdateValue = (autoUpdateValue == "yes") ? "no" : "yes";
+                    string newAutoUpdateValue = (autoUpdateValue == "1") ? "0" : "1";
                     RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart", "STRING", newAutoUpdateValue);
                     goto UpdateSettingsInit;
 

@@ -19,7 +19,7 @@ namespace reShutCLI
             var header = "reShut CLI " + prereleasetag + Variables.version;
             var releaseStatus = $"{rm.GetString("PreRelease", culture)}: {(Variables.prerelease ? rm.GetString("Yes", culture) : rm.GetString("No", culture))}";
             var registryVersion = $"{rm.GetString("RegistryVersion", culture)}: v{Variables.registryVersion}";
-            var copyrightLine = "© 2023-2025 elNino0916 and contributors.";
+            var copyrightLine = "© 2023-2026 elNino0916 and contributors.";
             var githubLine = "https://github.com/elNino0916/reShut-CLI";
 
             // longest line bestimmen

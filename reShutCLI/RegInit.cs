@@ -1,11 +1,12 @@
-﻿using System;
+﻿using reShutCLI.Helpers;
+using reShutCLI.Services;
+using System;
 using System.Globalization;
+using System.IO;
 using System.Resources;
 using System.Runtime.Versioning;
 using System.Text.RegularExpressions;
 using System.Threading;
-using reShutCLI.Helpers;
-using reShutCLI.Services;
 
 namespace reShutCLI
 {
@@ -72,6 +73,17 @@ namespace reShutCLI
 
                 // Check and add new registry entries
                 // AddOrUpdateRegistryEntry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "NewSetting1", "STRING", "DefaultValue1");
+                string path = @"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config";
+                var autoUpdate = RegistryWorker.ReadFromRegistry(path, "AutoUpdateOnStart");
+
+                if (string.Equals(autoUpdate, "yes", StringComparison.OrdinalIgnoreCase))
+                    AddOrUpdateRegistryEntry(path, "AutoUpdateOnStart", "STRING", "1");
+                else if (string.Equals(autoUpdate, "no", StringComparison.OrdinalIgnoreCase))
+                    AddOrUpdateRegistryEntry(path, "AutoUpdateOnStart", "STRING", "0");
+
+                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp", "STRING", Variables.registryVersion);
+                RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp");
+
 
                 // Update the registry version
                 RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion", "STRING", Variables.registryVersion);
@@ -82,9 +94,11 @@ namespace reShutCLI
         {
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "1");
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "FirstStartupTime", "STRING", DateTime.Now.ToString("HH:mm:ss (dd.MM.yyyy)"));
-
+            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp", "STRING", Variables.registryVersion);
+            RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp");
             // Settings
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch", "STRING", "1");
+            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart", "STRING", "0");
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "0");
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
             RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "default");

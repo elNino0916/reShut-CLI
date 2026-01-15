@@ -22,7 +22,7 @@ namespace reShutCLI
         public static string apiString = "http://api.elnino0916.de/api/v3/reshutcli/theme/default";
 
         // Changes the registry version.
-        public static string registryVersion = "11";
+        public static string registryVersion = "12";
         public static string fullversion = $"v{version}";
 
         // DO NOT CHANGE, NEEDS TO BE SET TO TRUE BY DEFAULT
