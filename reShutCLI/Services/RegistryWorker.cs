@@ -1,194 +1,95 @@
 using Microsoft.Win32;
-using System;
-using System.Runtime.Versioning;
 
-namespace reShutCLI.Services
+namespace reShutCLI.Services;
+
+/// <summary>
+/// Thin wrapper around the Windows registry used for all persisted settings.
+/// All operations swallow errors by design: settings fall back to defaults.
+/// </summary>
+internal static class RegistryWorker
 {
-    // Updated for 2.0.0.0
-    [SupportedOSPlatform("windows")]
-    class RegistryWorker
+    private static (RegistryKey BaseKey, string SubKey) Resolve(string registryPath)
     {
-
-        public static void WriteToRegistry(string registryPath, string keyName, string type, string content)
+        var pathParts = registryPath.Split('\\', 2);
+        RegistryKey baseKey = pathParts[0] switch
         {
-            try
+            "HKEY_CLASSES_ROOT" => Registry.ClassesRoot,
+            "HKEY_CURRENT_USER" => Registry.CurrentUser,
+            "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
+            "HKEY_USERS" => Registry.Users,
+            "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
+            _ => throw new ArgumentException("Invalid base registry key.", nameof(registryPath)),
+        };
+        return (baseKey, pathParts[1]);
+    }
+
+    public static void WriteToRegistry(string registryPath, string keyName, string type, string content)
+    {
+        try
+        {
+            var (baseKey, subKey) = Resolve(registryPath);
+            using var key = baseKey.OpenSubKey(subKey, writable: true) ?? baseKey.CreateSubKey(subKey);
+
+            switch (type.ToUpperInvariant())
             {
-                // Determine the registry base key and subkey
-                string[] pathParts = registryPath.Split('\\', 2);
-                string baseKey = pathParts[0];
-                string subKey = pathParts[1];
-
-                // Get the appropriate base key
-                RegistryKey registryKey = baseKey switch
-                {
-                    "HKEY_CLASSES_ROOT" => Registry.ClassesRoot,
-                    "HKEY_CURRENT_USER" => Registry.CurrentUser,
-                    "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
-                    "HKEY_USERS" => Registry.Users,
-                    "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
-                    _ => throw new ArgumentException("Invalid base registry key."),
-                };
-
-                // Open the subkey for writing
-                using RegistryKey key = registryKey.OpenSubKey(subKey, writable: true) ?? registryKey.CreateSubKey(subKey);
-
-                if (key == null)
-                {
-                    return;
-                }
-
-                // Determine the value type and write to the registry
-                switch (type.ToUpper())
-                {
-                    case "STRING":
-                        key.SetValue(keyName, content, RegistryValueKind.String);
-                        break;
-                    case "DWORD":
-                        if (int.TryParse(content, out int intValue))
-                        {
-                            key.SetValue(keyName, intValue, RegistryValueKind.DWord);
-                        }
-                        break;
-                    case "QWORD":
-                        if (long.TryParse(content, out long longValue))
-                        {
-                            key.SetValue(keyName, longValue, RegistryValueKind.QWord);
-                        }
-                        break;
-                    case "BINARY":
-                        try
-                        {
-                            byte[] binaryData = Convert.FromBase64String(content);
-                            key.SetValue(keyName, binaryData, RegistryValueKind.Binary);
-                        }
-                        catch (FormatException)
-                        {
-                        }
-                        break;
-                    case "MULTI_STRING":
-                        string[] multiStringData = content.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                        key.SetValue(keyName, multiStringData, RegistryValueKind.MultiString);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch
-            {
+                case "STRING":
+                    key.SetValue(keyName, content, RegistryValueKind.String);
+                    break;
+                case "DWORD":
+                    if (int.TryParse(content, out var intValue))
+                        key.SetValue(keyName, intValue, RegistryValueKind.DWord);
+                    break;
+                case "QWORD":
+                    if (long.TryParse(content, out var longValue))
+                        key.SetValue(keyName, longValue, RegistryValueKind.QWord);
+                    break;
+                case "BINARY":
+                    try
+                    {
+                        key.SetValue(keyName, Convert.FromBase64String(content), RegistryValueKind.Binary);
+                    }
+                    catch (FormatException)
+                    {
+                    }
+                    break;
+                case "MULTI_STRING":
+                    var multiStringData = content.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                    key.SetValue(keyName, multiStringData, RegistryValueKind.MultiString);
+                    break;
             }
         }
-
-
-        public static string ReadFromRegistry(string registryPath, string keyName)
+        catch
         {
-            try
-            {
-                // Determine the registry base key and subkey
-                string[] pathParts = registryPath.Split('\\', 2);
-                string baseKey = pathParts[0];
-                string subKey = pathParts[1];
-
-                // Get the appropriate base key
-                RegistryKey registryKey = baseKey switch
-                {
-                    "HKEY_CLASSES_ROOT" => Registry.ClassesRoot,
-                    "HKEY_CURRENT_USER" => Registry.CurrentUser,
-                    "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
-                    "HKEY_USERS" => Registry.Users,
-                    "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
-                    _ => throw new ArgumentException("Invalid base registry key."),
-                };
-
-                // Open the subkey for reading
-                using RegistryKey key = registryKey.OpenSubKey(subKey, writable: false);
-
-                if (key == null)
-                {
-                    return null;
-                }
-
-                // Read the value from the registry
-                object value = key.GetValue(keyName);
-
-                if (value == null)
-                {
-                    return null;
-                }
-
-                return value.ToString();
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-
-        public static void DeleteFromRegistry(string registryPath, string keyName)
-        {
-            try
-            {
-                // Determine the registry base key and subkey
-                string[] pathParts = registryPath.Split('\\', 2);
-                string baseKey = pathParts[0];
-                string subKey = pathParts[1];
-
-                // Get the appropriate base key
-                RegistryKey registryKey = baseKey switch
-                {
-                    "HKEY_CLASSES_ROOT" => Registry.ClassesRoot,
-                    "HKEY_CURRENT_USER" => Registry.CurrentUser,
-                    "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
-                    "HKEY_USERS" => Registry.Users,
-                    "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
-                    _ => throw new ArgumentException("Invalid base registry key."),
-                };
-
-                // Open the subkey for writing
-                using RegistryKey key = registryKey.OpenSubKey(subKey, writable: true);
-
-                if (key != null)
-                {
-                    key.DeleteValue(keyName, throwOnMissingValue: false);
-                }
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-
-        public static bool Exists(string registryPath, string keyName)
-        {
-            try
-            {
-                // Determine the registry base key and subkey
-                string[] pathParts = registryPath.Split('\\', 2);
-                string baseKey = pathParts[0];
-                string subKey = pathParts[1];
-
-                // Get the appropriate base key
-                RegistryKey registryKey = baseKey switch
-                {
-                    "HKEY_CLASSES_ROOT" => Registry.ClassesRoot,
-                    "HKEY_CURRENT_USER" => Registry.CurrentUser,
-                    "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
-                    "HKEY_USERS" => Registry.Users,
-                    "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
-                    _ => throw new ArgumentException("Invalid base registry key."),
-                };
-
-                // Open the subkey for reading
-                using RegistryKey key = registryKey.OpenSubKey(subKey, writable: false);
-
-                // Check if the key or value exists
-                return key?.GetValue(keyName) != null;
-            }
-            catch
-            {
-                return false;
-            }
         }
     }
+
+    public static string? ReadFromRegistry(string registryPath, string keyName)
+    {
+        try
+        {
+            var (baseKey, subKey) = Resolve(registryPath);
+            using var key = baseKey.OpenSubKey(subKey, writable: false);
+            return key?.GetValue(keyName)?.ToString();
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public static void DeleteFromRegistry(string registryPath, string keyName)
+    {
+        try
+        {
+            var (baseKey, subKey) = Resolve(registryPath);
+            using var key = baseKey.OpenSubKey(subKey, writable: true);
+            key?.DeleteValue(keyName, throwOnMissingValue: false);
+        }
+        catch
+        {
+        }
+    }
+
+    public static bool Exists(string registryPath, string keyName) =>
+        ReadFromRegistry(registryPath, keyName) is not null;
 }

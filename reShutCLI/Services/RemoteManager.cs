@@ -1,48 +1,46 @@
-using System;
 using System.Management;
-using System.Runtime.Versioning;
 using reShutCLI.Helpers;
 
-namespace reShutCLI.Services
+namespace reShutCLI.Services;
+
+/// <summary>Triggers shutdown or reboot on a remote host via WMI.</summary>
+internal static class RemoteManager
 {
-    [SupportedOSPlatform("windows")]
-    internal static class RemoteManager
+    public static bool Trigger(string host, string? username, string? password, bool reboot)
     {
-        public static bool Trigger(string host, string? username, string? password, bool reboot)
+        try
         {
-            try
+            var options = new ConnectionOptions();
+            if (!string.IsNullOrWhiteSpace(username))
             {
-                ConnectionOptions options = new ConnectionOptions();
-                if (!string.IsNullOrWhiteSpace(username))
-                {
-                    options.Username = username;
-                    options.Password = password ?? string.Empty;
-                }
-
-                ManagementScope scope = new ManagementScope($"\\\\{host}\\root\\cimv2", options);
-                scope.Connect();
-
-                ObjectQuery query = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
-                using ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
-                foreach (ManagementObject os in searcher.Get())
-                {
-                    os.InvokeMethod("Win32Shutdown", new object[] { reboot ? 6 : 5, 0 });
-                }
-
-                UIDraw.TextColor = ConsoleColor.Green;
-                UIDraw.DrawLine($"Remote {(reboot ? "reboot" : "shutdown")} triggered on {host}.");
-                return true;
+                options.Username = username;
+                options.Password = password ?? string.Empty;
             }
-            catch (Exception ex)
+
+            var scope = new ManagementScope($@"\\{host}\root\cimv2", options);
+            scope.Connect();
+
+            var query = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
+            using var searcher = new ManagementObjectSearcher(scope, query);
+            foreach (var os in searcher.Get().Cast<ManagementObject>())
             {
-                UIDraw.TextColor = ConsoleColor.Red;
-                UIDraw.DrawLine($"Remote operation failed: {ex.Message}");
-                return false;
+                // 5 = forced shutdown, 6 = forced reboot
+                os.InvokeMethod("Win32Shutdown", [reboot ? 6 : 5, 0]);
             }
-            finally
-            {
-                UIDraw.TextColor = ConsoleColor.White;
-            }
+
+            UIDraw.TextColor = ConsoleColor.Green;
+            UIDraw.DrawLine($"Remote {(reboot ? "reboot" : "shutdown")} triggered on {host}.");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            UIDraw.TextColor = ConsoleColor.Red;
+            UIDraw.DrawLine($"Remote operation failed: {ex.Message}");
+            return false;
+        }
+        finally
+        {
+            UIDraw.TextColor = ConsoleColor.White;
         }
     }
 }

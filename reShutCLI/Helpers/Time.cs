@@ -1,12 +1,7 @@
-using System;
+namespace reShutCLI.Helpers;
 
-namespace reShutCLI.Helpers
+internal static class Time
 {
-    internal class Time
-    {
-        public static string GetTime(bool use24HoursFormat)
-        {
-            return DateTime.Now.ToString(!use24HoursFormat ? "hh:mm:ss tt" : "HH:mm:ss");
-        }
-    }
+    public static string GetTime(bool use24HoursFormat) =>
+        DateTime.Now.ToString(use24HoursFormat ? "HH:mm:ss" : "hh:mm:ss tt");
 }

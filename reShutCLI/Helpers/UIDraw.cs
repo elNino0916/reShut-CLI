@@ -1,80 +1,96 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+namespace reShutCLI.Helpers;
 
 /// <summary>
-/// A fancy class that simplifies drawing messages and just a fancy wrapper around Console methods xD
+/// Console drawing helpers: colored output, centered lines and rounded boxes/menus.
 /// </summary>
-namespace reShutCLI.Helpers
+internal static class UIDraw
 {
-    internal class UIDraw
+    private static CliColor _textColor;
+    public static CliColor TextColor
     {
-        public static void DrawBoxedMessage(string message)
+        get => _textColor;
+        set
         {
-            DrawBoxedMessages(new List<string> { message });
+            _textColor = value;
+            _textColor.ApplyForeground();
         }
-        private static CliColor _textColor;
-        public static CliColor TextColor
+    }
+
+    private static CliColor _backgroundColor;
+    public static CliColor BackgroundColor
+    {
+        get => _backgroundColor;
+        set
         {
-            get => _textColor;
-            set
+            _backgroundColor = value;
+            _backgroundColor.ApplyBackground();
+        }
+    }
+
+    public static void DrawLine(string text) => Console.WriteLine(text);
+
+    public static void Draw(string text) => Console.Write(text);
+
+    public static void DrawCenteredLine(string message) => DrawLine(Center(message));
+
+    public static void DrawCentered(string message) => Draw(Center(message));
+
+    private static string Center(string message)
+    {
+        var padding = (Console.WindowWidth - message.Length) / 2;
+        return new string(' ', Math.Max(0, padding)) + message;
+    }
+
+    public static void DrawBoxedMessage(string message) => DrawBoxedMessages([message]);
+
+    public static void DrawBoxedMessages(IEnumerable<string> messages)
+    {
+        var lines = messages.ToList();
+        if (lines.Count == 0) return;
+
+        var maxContentWidth = lines.Max(line => line.Length);
+
+        DrawCenteredLine("╭" + new string('─', maxContentWidth + 2) + "╮");
+        foreach (var line in lines)
+        {
+            DrawCenteredLine($"│ {line.PadRight(maxContentWidth)} │");
+        }
+        DrawCenteredLine("╰" + new string('─', maxContentWidth + 2) + "╯");
+    }
+
+    /// <summary>
+    /// Draws a menu box with an optional centered title and one or more groups of
+    /// items. Groups are separated by a horizontal divider.
+    /// </summary>
+    public static void DrawMenu(string? title, params IReadOnlyList<string>[] groups)
+    {
+        var allItems = groups.SelectMany(g => g).ToList();
+        if (allItems.Count == 0) return;
+
+        var innerWidth = Math.Max(title?.Length ?? 0, allItems.Max(item => item.Length)) + 2;
+        if (innerWidth % 2 != 0) innerWidth++;
+
+        var separator = "├" + new string('─', innerWidth) + "┤";
+
+        DrawCenteredLine("╭" + new string('─', innerWidth) + "╮");
+
+        if (title is not null)
+        {
+            var paddingLeft = (innerWidth - title.Length) / 2;
+            DrawCenteredLine("│" + new string(' ', paddingLeft) + title +
+                             new string(' ', innerWidth - title.Length - paddingLeft) + "│");
+            DrawCenteredLine(separator);
+        }
+
+        for (var i = 0; i < groups.Length; i++)
+        {
+            if (i > 0) DrawCenteredLine(separator);
+            foreach (var item in groups[i])
             {
-                _textColor = value;
-                _textColor.ApplyForeground();
+                DrawCenteredLine("│ " + item.PadRight(innerWidth - 1) + "│");
             }
         }
-        private static CliColor _backgroundColor;
-        public static CliColor BackgroundColor
-        {
-            get => _backgroundColor;
-            set
-            {
-                _backgroundColor = value;
-                _backgroundColor.ApplyBackground();
-            }
-        }
-        public static void DrawLine(string Text)
-        {
-            Console.WriteLine(Text);
-        }
-        public static void Draw(string Text)
-        {
-            Console.Write(Text);
-        }
-        public static void DrawBoxedMessages(IEnumerable<string> messages)
-        {
-            var lines = messages.ToList();
-            if (!lines.Any()) return;
 
-            int maxContentWidth = lines.Max(line => line.Length);
-            int totalWidth = maxContentWidth + 4;
-
-            string topBorder = "\u256D" + new string('\u2500', totalWidth - 2) + "\u256E";
-            string bottomBorder = "\u2570" + new string('\u2500', totalWidth - 2) + "\u256F";
-
-            DrawCenteredLine(topBorder);
-
-            foreach (string line in lines)
-            {
-                string paddedLine = $"\u2502 {line.PadRight(maxContentWidth)} \u2502";
-                DrawCenteredLine(paddedLine);
-            }
-
-            DrawCenteredLine(bottomBorder);
-        }
-        public static void DrawCenteredLine(string message)
-        {
-            var consoleWidth = Console.WindowWidth;
-            var padding = (consoleWidth - message.Length) / 2;
-
-            UIDraw.DrawLine(new string(' ', padding) + message);
-        }
-        public static void DrawCentered(string message)
-        {
-            var consoleWidth = Console.WindowWidth;
-            var padding = (consoleWidth - message.Length) / 2;
-
-            UIDraw.Draw(new string(' ', padding) + message);
-        }
+        DrawCenteredLine("╰" + new string('─', innerWidth) + "╯");
     }
 }

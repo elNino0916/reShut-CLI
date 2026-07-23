@@ -1,66 +1,43 @@
-﻿using System;
-using System.Globalization;
-using System.Resources;
-using System.Threading;
 using reShutCLI.Helpers;
 using reShutCLI.Services;
 
-namespace reShutCLI
+namespace reShutCLI;
+
+internal static class ThemeSettings
 {
-    internal class ThemeSettings
+    private static readonly (ConsoleKey Digit, ConsoleKey NumPad, string Theme)[] ThemeKeys =
+    [
+        (ConsoleKey.D1, ConsoleKey.NumPad1, "default"),
+        (ConsoleKey.D2, ConsoleKey.NumPad2, "red"),
+        (ConsoleKey.D3, ConsoleKey.NumPad3, "blue"),
+        (ConsoleKey.D4, ConsoleKey.NumPad4, "green"),
+        (ConsoleKey.D5, ConsoleKey.NumPad5, "nord"),
+    ];
+
+    public static void OpenSettings()
     {
-        public static void OpenSettings()
+        while (true)
         {
-        step6:
             Console.Clear();
-            CultureInfo culture = new CultureInfo(Variables.lang);
-            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-            UIDraw.DrawBoxedMessage(rm.GetString("SelectTheme", culture));
+            UIDraw.DrawBoxedMessage(Localization.Get("SelectTheme"));
             UIDraw.DrawCenteredLine("");
             UIDraw.TextColor = Variables.SecondaryColor;
             UIDraw.DrawBoxedMessage("Current default theme name: " + Variables.UpdatedDefaultThemeName);
             UIDraw.TextColor = Variables.MenuColor;
-            UIDraw.DrawCenteredLine("╭──────────────────────────╮");
-            UIDraw.DrawCenteredLine("│ 1) Default               │");
-            UIDraw.DrawCenteredLine("├──────────────────────────┤");
-            UIDraw.DrawCenteredLine("│ 2) Red                   │");
-            UIDraw.DrawCenteredLine("│ 3) Blue                  │");
-            UIDraw.DrawCenteredLine("│ 4) Green                 │");
-            UIDraw.DrawCenteredLine("│ 5) Nord                  │");
-            UIDraw.DrawCenteredLine("├──────────────────────────┤");
-            UIDraw.DrawCenteredLine("│ 9) Back                  │");
-            UIDraw.DrawCenteredLine("╰──────────────────────────╯");
-            UIDraw.DrawCenteredLine(""); // Added for spacing before input
-            ConsoleKeyInfo keyInfo4 = Console.ReadKey();
-            if (keyInfo4.Key == ConsoleKey.D1 || keyInfo4.Key == ConsoleKey.NumPad1)
-            {
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "default");
-            }
-            else if (keyInfo4.Key == ConsoleKey.D2 || keyInfo4.Key == ConsoleKey.NumPad2)
-            {
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "red");
-            }
-            else if (keyInfo4.Key == ConsoleKey.D3 || keyInfo4.Key == ConsoleKey.NumPad3)
-            {
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "blue");
-            }
-            else if (keyInfo4.Key == ConsoleKey.D4 || keyInfo4.Key == ConsoleKey.NumPad4)
-            {
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "green");
-            }
-            else if (keyInfo4.Key == ConsoleKey.D5 || keyInfo4.Key == ConsoleKey.NumPad5)
-            {
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "nord");
-            }
-            else if (keyInfo4.Key == ConsoleKey.D9 || keyInfo4.Key == ConsoleKey.NumPad9)
-            {
-                return;
-            }
-            else
-            {
-                goto step6;
-            }
-            ThemeLoader.loadTheme();
+            UIDraw.DrawMenu(null,
+                ["1) Default"],
+                ["2) Red", "3) Blue", "4) Green", "5) Nord"],
+                ["9) Back"]);
+            UIDraw.DrawCenteredLine("");
+
+            var keyInfo = Console.ReadKey();
+            if (keyInfo.Key is ConsoleKey.D9 or ConsoleKey.NumPad9) return;
+
+            var selection = ThemeKeys.FirstOrDefault(t => keyInfo.Key == t.Digit || keyInfo.Key == t.NumPad);
+            if (selection.Theme is null) continue;
+
+            RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueSelectedTheme, Constants.RegistryValueTypeString, selection.Theme);
+            ThemeLoader.LoadTheme();
             Console.Clear();
             AutoRestart.Init();
             return;

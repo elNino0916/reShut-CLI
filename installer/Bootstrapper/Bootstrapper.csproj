@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!--
+      Targets .NET Framework 4.8 deliberately: it ships with every Windows 10/11
+      machine, so the bootstrapper itself needs nothing pre-installed. It is the
+      one thing responsible for getting the .NET 10 runtime onto the machine for
+      the actual application.
+    -->
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>reShutCLI.Bootstrapper</RootNamespace>
+    <AssemblyName>reShutCLI-Setup</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\..\reShutCLI\reShut-CLI-centered-transparent.ico</ApplicationIcon>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>2.2.1</Version>
+    <AssemblyVersion>2.2.1.0</AssemblyVersion>
+    <FileVersion>2.2.1.0</FileVersion>
+    <Product>reShut CLI Setup</Product>
+    <Company>elNino0916</Company>
+    <Copyright>© 2023-2026 elNino0916 and contributors.</Copyright>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <NoWarn>$(NoWarn);CS8618;CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <!-- Required for the `dynamic` late-bound COM calls into the Task Scheduler. -->
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="..\..\reShutCLI\reShut-CLI-centered-transparent.ico" Link="Assets\app.ico" />
+    <!--
+      The repository's own LICENSE, embedded rather than copied into a string
+      constant, so the page can never show terms that differ from the shipped file.
+    -->
+    <Resource Include="..\..\LICENSE" Link="Assets\LICENSE.txt" />
+  </ItemGroup>
+
+  <!--
+    The published application payload (build-installer.ps1 produces this zip
+    from `dotnet publish`) is embedded so the installer is a single portable
+    exe. PayloadZipPath is passed by the build script; local `dotnet build`
+    without it still compiles fine, it just installs nothing at runtime.
+  -->
+  <ItemGroup Condition="'$(PayloadZipPath)' != '' AND Exists('$(PayloadZipPath)')">
+    <EmbeddedResource Include="$(PayloadZipPath)" LogicalName="payload.zip" />
+  </ItemGroup>
+</Project>

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Runtime.Versioning;
-using System.Threading;
 using reShutCLI.Helpers;
 using reShutCLI.Services;
 
-namespace reShutCLI
-{
-    internal class ShowEULA
-    {
+namespace reShutCLI;
 
-        public static bool Start()
+internal static class ShowEULA
+{
+    public static bool Start()
+    {
+        while (true)
         {
-        Retry:
-            bool EULAAccepted = false;
             UIDraw.TextColor = ConsoleColor.Gray;
             UIDraw.DrawLine("\nEnd User License Agreement (EULA)");
             UIDraw.DrawLine("=================================");
@@ -35,33 +31,23 @@ namespace reShutCLI
             UIDraw.DrawLine("   By accepting this agreement, you agree to the terms and conditions stated above.");
             UIDraw.TextColor = ConsoleColor.Red;
             UIDraw.DrawBoxedMessage("Press (1) to accept these terms or (2) to decline.");
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
-            if (keyInfo.Key == ConsoleKey.D1 || keyInfo.Key == ConsoleKey.NumPad1)
-            {
-                EULAAccepted = true;
-            }
-            else if (keyInfo.Key == ConsoleKey.D2 || keyInfo.Key == ConsoleKey.NumPad2)
-            {
-                EULAAccepted = false;
-            }
-            else
-            {
-                goto Retry;
-            }
-            if (EULAAccepted)
+
+            var keyInfo = Console.ReadKey();
+            if (keyInfo.Key is ConsoleKey.D1 or ConsoleKey.NumPad1)
             {
                 Console.Clear();
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "1");
+                RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueEulaAccepted, Constants.RegistryValueTypeString, "1");
                 return true;
             }
-            else
+
+            if (keyInfo.Key is ConsoleKey.D2 or ConsoleKey.NumPad2)
             {
                 UIDraw.TextColor = ConsoleColor.Red;
                 Console.Clear();
                 UIDraw.DrawBoxedMessage("Sorry, you cannot use reShut CLI without accepting the EULA");
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "0");
+                RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueEulaAccepted, Constants.RegistryValueTypeString, "0");
                 Thread.Sleep(2000);
-                Environment.Exit(0);
+                Environment.Exit(Constants.ExitCodeSuccess);
                 return false;
             }
         }

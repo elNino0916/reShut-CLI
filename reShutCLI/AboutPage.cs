@@ -1,59 +1,36 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Resources;
 using reShutCLI.Helpers;
-using reShutCLI.Services;
 
-namespace reShutCLI
+namespace reShutCLI;
+
+internal static class AboutPage
 {
-    internal class AboutPage
+    public static void Show()
     {
-        public static void Show()
-        {
-            CultureInfo culture = new CultureInfo(Variables.lang);
-            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-            UIDraw.TextColor = Variables.MenuColor;
+        var prereleaseTag = Variables.IsPreRelease ? Localization.Get("PreRelease") : "";
+        var header = "reShut CLI " + prereleaseTag + Variables.Version;
+        var releaseStatus = $"{Localization.Get("PreRelease")}: {Localization.Get(Variables.IsPreRelease ? "Yes" : "No")}";
+        var registryVersion = $"{Localization.Get("RegistryVersion")}: v{Variables.RegistryVersion}";
+        var copyrightLine = "© 2023-2026 elNino0916 and contributors.";
+        var githubLine = "https://github.com/elNino0916/reShut-CLI";
 
-            var prereleasetag = Variables.prerelease ? rm.GetString("PreRelease", culture) : "";
-            var header = "reShut CLI " + prereleasetag + Variables.version;
-            var releaseStatus = $"{rm.GetString("PreRelease", culture)}: {(Variables.prerelease ? rm.GetString("Yes", culture) : rm.GetString("No", culture))}";
-            var registryVersion = $"{rm.GetString("RegistryVersion", culture)}: v{Variables.registryVersion}";
-            var copyrightLine = "© 2023-2026 elNino0916 and contributors.";
-            var githubLine = "https://github.com/elNino0916/reShut-CLI";
+        Console.Clear();
 
-            // longest line bestimmen
-            var maxLength = new[] { header.Length, releaseStatus.Length, registryVersion.Length, copyrightLine.Length, githubLine.Length }.Max();
-            var borderLength = maxLength + 4;
+        UIDraw.TextColor = new CliColor("#FF9A02");
+        UIDraw.DrawCenteredLine("╔═══════════╗");
+        UIDraw.DrawCenteredLine("║ ╭───────╮ ║");
+        UIDraw.DrawCenteredLine("║ │ > _   │ ║");
+        UIDraw.DrawCenteredLine("║ │       │ ║");
+        UIDraw.DrawCenteredLine("║ ╰───────╯ ║");
+        UIDraw.DrawCenteredLine("╚═══════════╝");
+        UIDraw.DrawCenteredLine("reShut CLI v2");
 
-            Console.Clear();
-            UIDraw.TextColor = ConsoleColor.DarkYellow;
+        UIDraw.TextColor = Variables.MenuColor;
+        UIDraw.DrawCenteredLine("");
+        UIDraw.DrawCenteredLine("");
+        UIDraw.DrawBoxedMessages([header, releaseStatus, registryVersion, copyrightLine, githubLine]);
 
-            Console.Write("\u001b[38;2;255;154;2m");
-            UIDraw.DrawCenteredLine("╔═══════════╗");
-            UIDraw.DrawCenteredLine("║ ╭───────╮ ║");
-            UIDraw.DrawCenteredLine("║ │ > _   │ ║");
-            UIDraw.DrawCenteredLine("║ │       │ ║");
-            UIDraw.DrawCenteredLine("║ ╰───────╯ ║");
-            UIDraw.DrawCenteredLine("╚═══════════╝");
-            UIDraw.DrawCenteredLine("reShut CLI v2");
-            Console.Write("\u001b[0m");
-
-            UIDraw.TextColor = Variables.MenuColor;
-            UIDraw.DrawCenteredLine("");
-            UIDraw.DrawCenteredLine("");
-            UIDraw.DrawCenteredLine("╭" + new string('─', borderLength) + "╮");
-            UIDraw.DrawCenteredLine("│ " + header.PadRight(borderLength - 2) + " │");
-            UIDraw.DrawCenteredLine("│ " + releaseStatus.PadRight(borderLength - 2) + " │");
-            UIDraw.DrawCenteredLine("│ " + registryVersion.PadRight(borderLength - 2) + " │");
-            UIDraw.DrawCenteredLine("│ " + copyrightLine.PadRight(borderLength - 2) + " │");
-            UIDraw.DrawCenteredLine("│ " + githubLine.PadRight(borderLength - 2) + " │");
-            UIDraw.DrawCenteredLine("╰" + new string('─', borderLength) + "╯");
-
-            UIDraw.DrawBoxedMessage(rm.GetString("PressAnyKeyToGoBack", culture));
-            Console.ReadKey();
-            Console.Clear();
-            return;
-        }
+        UIDraw.DrawBoxedMessage(Localization.Get("PressAnyKeyToGoBack"));
+        Console.ReadKey(intercept: true);
+        Console.Clear();
     }
 }

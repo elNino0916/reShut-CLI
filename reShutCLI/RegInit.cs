@@ -1,120 +1,84 @@
-﻿using reShutCLI.Helpers;
+using reShutCLI.Helpers;
 using reShutCLI.Services;
-using System;
-using System.Globalization;
-using System.IO;
-using System.Resources;
-using System.Runtime.Versioning;
-using System.Text.RegularExpressions;
-using System.Threading;
 
-namespace reShutCLI
+namespace reShutCLI;
+
+/// <summary>
+/// Creates the registry layout on first start and migrates it between versions.
+/// </summary>
+internal static class RegInit
 {
-    internal class RegInit
+    public static void Populate(bool skipCreation)
     {
-        public static void Populate(bool skipCreation)
+        if (!skipCreation
+            && RegistryWorker.ReadFromRegistry(Constants.RegistryPathBase, Constants.RegistryValueRegistryPopulated) != "1")
         {
-
-            if (!skipCreation)
-            {
-                if (RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated") != "1")
-                {
-                    InitializeRegistry();
-                    return;
-                }
-            }
-            string currentRegistryVersion = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion");
-
-            // Check if the registry version has changed
-            if (currentRegistryVersion != Variables.registryVersion)
-            {
-                CultureInfo culture = new CultureInfo(Variables.lang);
-                ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
-                // Get the translated string
-                string invalidText = rm.GetString("RegUpdate", culture);
-
-                // Calculate the maximum length (either the message or the box)
-                int boxWidth = Math.Max(invalidText.Length + 2, 44); // Ensure minimum width of 44
-                string topBorder = "╭" + new string('─', boxWidth) + "╮";
-                string bottomBorder = "╰" + new string('─', boxWidth) + "╯";
-
-                // Center the message within the box
-                int paddingLeft = (boxWidth - invalidText.Length) / 2;
-                string paddedMessage = "│" + new string(' ', paddingLeft) + invalidText + new string(' ', boxWidth - invalidText.Length - paddingLeft) + "│";
-
-                // Center the entire box within the console window
-                int windowWidth = Console.WindowWidth;
-
-                // Print the confirmation message centered on the console
-                UIDraw.TextColor = Variables.MenuColor;
-                UIDraw.DrawCenteredLine(topBorder);
-                UIDraw.DrawCenteredLine(paddedMessage);
-                UIDraw.DrawCenteredLine(bottomBorder);
-                Thread.Sleep(4000);
-                Console.Clear();
-
-                // Reset the registry if the app is downgraded
-                if (string.Compare(currentRegistryVersion, Variables.registryVersion) > 0)
-                {
-                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
-                    InitializeRegistry();
-                    return;
-                }
-
-                // Delete no longer required keys.
-                RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableFastStartup"); // Removed in 2.0.0.0
-                RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableSounds"); // Removed in 1.0.4.0
-                          
-                string language = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language"); // Removed in a 2.0 pre-release
-                if (language == "fr-FR" || language == "pt-PT" || language == "es-ES")
-                {
-                    RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "en-US");
-                }
-
-                // Check and add new registry entries
-                // AddOrUpdateRegistryEntry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "NewSetting1", "STRING", "DefaultValue1");
-                string path = @"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config";
-                var autoUpdate = RegistryWorker.ReadFromRegistry(path, "AutoUpdateOnStart");
-
-                if (string.Equals(autoUpdate, "yes", StringComparison.OrdinalIgnoreCase))
-                    AddOrUpdateRegistryEntry(path, "AutoUpdateOnStart", "STRING", "1");
-                else if (string.Equals(autoUpdate, "no", StringComparison.OrdinalIgnoreCase))
-                    AddOrUpdateRegistryEntry(path, "AutoUpdateOnStart", "STRING", "0");
-
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp", "STRING", Variables.registryVersion);
-                RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp");
-
-
-                // Update the registry version
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion", "STRING", Variables.registryVersion);
-            }
+            InitializeRegistry();
+            return;
         }
 
-        private static void InitializeRegistry()
+        var currentRegistryVersion = RegistryWorker.ReadFromRegistry(Constants.RegistryPathBase, Constants.RegistryValueRegistryVersion);
+        if (currentRegistryVersion == Variables.RegistryVersion) return;
+
+        UIDraw.TextColor = Variables.MenuColor;
+        UIDraw.DrawBoxedMessage(Localization.Get("RegUpdate"));
+        Thread.Sleep(4000);
+        Console.Clear();
+
+        // Reset the registry if the app is downgraded
+        if (string.CompareOrdinal(currentRegistryVersion, Variables.RegistryVersion) > 0)
         {
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "1");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "FirstStartupTime", "STRING", DateTime.Now.ToString("HH:mm:ss (dd.MM.yyyy)"));
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp", "STRING", Variables.registryVersion);
-            RegistryWorker.DeleteFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\Policies\reShutCLI", "Temp");
-            // Settings
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EnableUpdateSearch", "STRING", "1");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "AutoUpdateOnStart", "STRING", "0");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "EULAAccepted", "STRING", "0");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme", "STRING", "default");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SkipConfirmation", "STRING", "0");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "Language", "STRING", "en-US");
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryVersion", "STRING", Variables.registryVersion);
-            RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "reShutVersion", "STRING", Variables.version);
+            RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueRegistryPopulated, Constants.RegistryValueTypeString, "0");
+            InitializeRegistry();
+            return;
         }
 
-        private static void AddOrUpdateRegistryEntry(string key, string valueName, string valueType, string defaultValue)
+        // Delete no longer required keys.
+        RegistryWorker.DeleteFromRegistry(Constants.RegistryPathConfig, "EnableFastStartup"); // Removed in 2.0.0.0
+        RegistryWorker.DeleteFromRegistry(Constants.RegistryPathConfig, "EnableSounds"); // Removed in 1.0.4.0
+
+        // Unsupported languages were removed in a 2.0 pre-release.
+        var language = RegistryWorker.ReadFromRegistry(Constants.RegistryPathConfig, Constants.RegistryValueLanguage);
+        if (language is "fr-FR" or "pt-PT" or "es-ES")
         {
-            if (RegistryWorker.ReadFromRegistry(key, valueName) == null)
-            {
-                RegistryWorker.WriteToRegistry(key, valueName, valueType, defaultValue);
-            }
+            RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueLanguage, Constants.RegistryValueTypeString, Constants.LanguageEnglish);
         }
+
+        // Migrate legacy yes/no AutoUpdateOnStart values to 1/0.
+        var autoUpdate = RegistryWorker.ReadFromRegistry(Constants.RegistryPathConfig, Constants.RegistryValueAutoUpdateOnStart);
+        if (string.Equals(autoUpdate, "yes", StringComparison.OrdinalIgnoreCase))
+            RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueAutoUpdateOnStart, Constants.RegistryValueTypeString, Constants.EnabledValue);
+        else if (string.Equals(autoUpdate, "no", StringComparison.OrdinalIgnoreCase))
+            RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueAutoUpdateOnStart, Constants.RegistryValueTypeString, Constants.DisabledValue);
+
+        EnsurePoliciesKey();
+
+        // Update the registry version
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueRegistryVersion, Constants.RegistryValueTypeString, Variables.RegistryVersion);
     }
 
+    private static void InitializeRegistry()
+    {
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueRegistryPopulated, Constants.RegistryValueTypeString, "1");
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueFirstStartupTime, Constants.RegistryValueTypeString, DateTime.Now.ToString("HH:mm:ss (dd.MM.yyyy)"));
+        EnsurePoliciesKey();
+
+        // Settings
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueEnableUpdateSearch, Constants.RegistryValueTypeString, Constants.EnabledValue);
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueAutoUpdateOnStart, Constants.RegistryValueTypeString, Constants.DisabledValue);
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueEulaAccepted, Constants.RegistryValueTypeString, Constants.DisabledValue);
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueSetupComplete, Constants.RegistryValueTypeString, Constants.DisabledValue);
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueSelectedTheme, Constants.RegistryValueTypeString, "default");
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueSkipConfirmation, Constants.RegistryValueTypeString, Constants.DisabledValue);
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueLanguage, Constants.RegistryValueTypeString, Constants.LanguageEnglish);
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueRegistryVersion, Constants.RegistryValueTypeString, Variables.RegistryVersion);
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueReShutVersion, Constants.RegistryValueTypeString, Variables.Version);
+    }
+
+    /// <summary>Creates the (currently empty) policies key reserved for future use.</summary>
+    private static void EnsurePoliciesKey()
+    {
+        RegistryWorker.WriteToRegistry(Constants.RegistryPathPolicies, "Temp", Constants.RegistryValueTypeString, Variables.RegistryVersion);
+        RegistryWorker.DeleteFromRegistry(Constants.RegistryPathPolicies, "Temp");
+    }
 }

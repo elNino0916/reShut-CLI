@@ -1,23 +1,21 @@
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Threading;
 
-namespace reShutCLI.Helpers
+namespace reShutCLI.Helpers;
+
+internal static class AutoRestart
 {
-    internal class AutoRestart
+    /// <summary>Starts a fresh instance of the application and exits the current one.</summary>
+    public static void Init()
     {
-        public static void Init()
+        var exePath = Environment.ProcessPath
+                      ?? Path.Combine(AppContext.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
+
+        Process.Start(new ProcessStartInfo
         {
-            string exePath = Path.Combine(AppContext.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = exePath,
-                UseShellExecute = false,
-            };
-            Process.Start(startInfo);
-            Thread.Sleep(1000);
-            Environment.Exit(0);
-        }
+            FileName = exePath,
+            UseShellExecute = false,
+        });
+        Thread.Sleep(1000);
+        Environment.Exit(Constants.ExitCodeSuccess);
     }
 }

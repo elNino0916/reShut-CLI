@@ -1,222 +1,215 @@
-using System;
 using System.Diagnostics;
-using System.Globalization;
-using System.Resources;
 using System.Text.RegularExpressions;
-using System.Threading;
 using reShutCLI.Helpers;
 
-namespace reShutCLI.Services
+namespace reShutCLI.Services;
+
+internal static partial class Schedule
 {
-    internal class Schedule
+    [GeneratedRegex(@"in\s+(\d+)\s*(hour|hours|minute|minutes)", RegexOptions.IgnoreCase)]
+    private static partial Regex RelativeTimeRegex();
+
+    public static bool Plan()
     {
-        public static bool Plan()
+        while (true)
         {
-            CultureInfo culture = new CultureInfo(Variables.lang);
-            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
+            var action = PromptAction();
+            if (action is null) return false;
 
-            string type = "";
+            var targetTime = PromptTargetTime();
 
-            while (true) // Action selection
+            switch (ConfirmAndExecute(action.Value, targetTime))
             {
-                Console.Clear();
-                UIDraw.TextColor = Variables.MenuColor;
-                UIDraw.DrawCenteredLine("\u256D\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E");
-                UIDraw.DrawCenteredLine(string.Format("\u2502 {0,-32} \u2502", rm.GetString("Schedule_PromptAction", culture)));
-                UIDraw.DrawCenteredLine(string.Format("\u2502 {0,-32} \u2502", rm.GetString("Schedule_SelectOption", culture)));
-                UIDraw.DrawCenteredLine(string.Format("\u2502 1) {0,-29} \u2502", rm.GetString("Schedule_ShutdownOption", culture)));
-                UIDraw.DrawCenteredLine(string.Format("\u2502 2) {0,-29} \u2502", rm.GetString("Schedule_RebootOption", culture)));
-                UIDraw.DrawCenteredLine("\u251C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524");
-                UIDraw.DrawCenteredLine(string.Format("\u2502 0) {0,-29} \u2502", rm.GetString("Schedule_Cancel", culture)));
-                UIDraw.DrawCenteredLine(string.Format("\u2502 9) {0,-29} \u2502", rm.GetString("Back", culture)));
-                UIDraw.DrawCenteredLine("\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256F");
+                case ConfirmResult.Done:
+                    return true;
+                case ConfirmResult.Cancelled:
+                    return false;
+                case ConfirmResult.Reenter:
+                    continue;
+            }
+        }
+    }
 
-                var key = Console.ReadKey().KeyChar.ToString();
+    private enum ConfirmResult
+    {
+        Done,
+        Cancelled,
+        Reenter,
+    }
 
-                if (key == "0")
-                {
-                    Process.Start(@"cmd.exe", "/c shutdown -a");
+    private enum PowerAction
+    {
+        Shutdown,
+        Reboot,
+    }
+
+    /// <summary>Returns the selected action, or null when the user cancels/goes back.</summary>
+    private static PowerAction? PromptAction()
+    {
+        while (true)
+        {
+            Console.Clear();
+            UIDraw.TextColor = Variables.MenuColor;
+            UIDraw.DrawMenu(null,
+                [
+                    Localization.Get("Schedule_PromptAction"),
+                    Localization.Get("Schedule_SelectOption"),
+                    "1) " + Localization.Get("Schedule_ShutdownOption"),
+                    "2) " + Localization.Get("Schedule_RebootOption"),
+                ],
+                [
+                    "0) " + Localization.Get("Schedule_Cancel"),
+                    "9) " + Localization.Get("Back"),
+                ]);
+
+            switch (Console.ReadKey().KeyChar)
+            {
+                case '0':
+                    // Abort a pending scheduled shutdown.
+                    PowerManager.AbortPendingShutdown();
                     Console.Clear();
                     UIDraw.TextColor = ConsoleColor.Green;
-                    UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ActionCancelled", culture));
+                    UIDraw.DrawBoxedMessage(Localization.Get("Schedule_ActionCancelled"));
                     Thread.Sleep(500);
-                    return false;
-                }
-                else if (key == "1")
-                {
-                    type = rm.GetString("Shutdown", culture).ToLower();
-                    break;
-                }
-                else if (key == "2")
-                {
-                    type = rm.GetString("Reboot", culture).ToLower();
-                    break;
-                }
-                else if (key == "9")
-                {
+                    return null;
+                case '1':
+                    return PowerAction.Shutdown;
+                case '2':
+                    return PowerAction.Reboot;
+                case '9':
                     Console.Clear();
-                    return false;
-                }
-                else
-                {
+                    return null;
+                default:
                     UIDraw.TextColor = ConsoleColor.Red;
-                    UIDraw.DrawBoxedMessage(rm.GetString("ErrorOccurred", culture));
+                    UIDraw.DrawBoxedMessage(Localization.Get("ErrorOccurred"));
                     UIDraw.TextColor = ConsoleColor.White;
-                }
+                    break;
+            }
+        }
+    }
+
+    private static DateTime PromptTargetTime()
+    {
+        while (true)
+        {
+            Console.Clear();
+            UIDraw.TextColor = Variables.MenuColor;
+
+            var use24HoursFormat = DateTime.Now.ToString("tt").Length == 0;
+            UIDraw.DrawBoxedMessage($" {Localization.Get("Schedule_CurrentTime")} {Time.GetTime(use24HoursFormat)} ");
+            UIDraw.DrawBoxedMessage("Enter time (minutes, 'in 2 hours', or 'yyyy-MM-dd HH:mm')");
+            UIDraw.TextColor = ConsoleColor.White;
+            UIDraw.Draw(Localization.Get("Schedule_InputPrompt") + " ");
+
+            var inputStr = Console.ReadLine() ?? "";
+
+            if (int.TryParse(inputStr, out var minutes))
+                return DateTime.Now.AddMinutes(minutes);
+
+            var match = RelativeTimeRegex().Match(inputStr);
+            if (match.Success)
+            {
+                var val = int.Parse(match.Groups[1].Value);
+                return match.Groups[2].Value.StartsWith("hour", StringComparison.OrdinalIgnoreCase)
+                    ? DateTime.Now.AddHours(val)
+                    : DateTime.Now.AddMinutes(val);
             }
 
-            DateTime targetTime;
-            while (true)
+            if (DateTime.TryParse(inputStr, out var targetTime))
+                return targetTime;
+
+            UIDraw.TextColor = ConsoleColor.Red;
+            UIDraw.DrawBoxedMessage("Could not parse time input.");
+        }
+    }
+
+    private static ConfirmResult ConfirmAndExecute(PowerAction action, DateTime targetTime)
+    {
+        while (true)
+        {
+            Console.Clear();
+            var seconds = Math.Max(0, (int)(targetTime - DateTime.Now).TotalSeconds);
+            var minutes = (int)Math.Ceiling((targetTime - DateTime.Now).TotalMinutes);
+            var hours = minutes / 60;
+
+            UIDraw.TextColor = Variables.MenuColor;
+
+            var translatedType = Localization.Get(action == PowerAction.Shutdown ? "Shutdown" : "Reboot");
+
+            UIDraw.DrawMenu(null,
+                [
+                    Localization.Get("Schedule_ConfirmActionSeconds", translatedType, minutes),
+                    Localization.Get("Schedule_TimeBreakdown", hours),
+                ],
+                [
+                    "1) " + Localization.Get("Schedule_ConfirmYes", translatedType),
+                    "2) " + Localization.Get("Schedule_ConfirmNoReenter"),
+                    "0) " + Localization.Get("BackToMainMenu"),
+                ]);
+
+            UIDraw.TextColor = ConsoleColor.White;
+            UIDraw.Draw(Localization.Get("Schedule_InputPrompt") + " ");
+
+            var confirmKey = Console.ReadKey().KeyChar;
+            Console.Clear();
+
+            switch (confirmKey)
             {
-                Console.Clear();
-                UIDraw.TextColor = Variables.MenuColor;
-
-                string timeDisplay = DateTime.Now.ToString("tt") == ""
-                    ? Time.GetTime(true)
-                    : Time.GetTime(false);
-
-                UIDraw.DrawBoxedMessage(string.Format(" {0} {1} ", rm.GetString("Schedule_CurrentTime", culture), timeDisplay));
-                UIDraw.DrawBoxedMessage("Enter time (minutes, 'in 2 hours', or 'yyyy-MM-dd HH:mm')");
-                UIDraw.TextColor = ConsoleColor.White;
-                UIDraw.Draw(rm.GetString("Schedule_InputPrompt", culture) + " ");
-
-                string inputStr = Console.ReadLine();
-                if (int.TryParse(inputStr, out int minutes))
-                {
-                    targetTime = DateTime.Now.AddMinutes(minutes);
-                    break;
-                }
-
-                var match = Regex.Match(inputStr, @"in\s+(\d+)\s*(hour|hours|minute|minutes)", RegexOptions.IgnoreCase);
-                if (match.Success)
-                {
-                    int val = int.Parse(match.Groups[1].Value);
-                    string unit = match.Groups[2].Value.ToLower();
-                    targetTime = unit.StartsWith("hour") ? DateTime.Now.AddHours(val) : DateTime.Now.AddMinutes(val);
-                    break;
-                }
-
-                if (DateTime.TryParse(inputStr, out targetTime))
-                    break;
-
-                UIDraw.TextColor = ConsoleColor.Red;
-                UIDraw.DrawBoxedMessage("Could not parse time input.");
-            }
-
-            while (true)
-            {
-                Console.Clear();
-                int seconds = Math.Max(0, (int)(targetTime - DateTime.Now).TotalSeconds);
-                int minutes = (int)Math.Ceiling((targetTime - DateTime.Now).TotalMinutes);
-                int hours = minutes / 60;
-
-                UIDraw.TextColor = Variables.MenuColor;
-
-                string translatedType = type.Equals(rm.GetString("Shutdown", culture).ToLower(), StringComparison.OrdinalIgnoreCase)
-                    ? rm.GetString("Shutdown", culture)
-                    : rm.GetString("Reboot", culture);
-
-                string header = string.Format(rm.GetString("Schedule_ConfirmActionSeconds", culture), translatedType, minutes);
-                string info = string.Format(rm.GetString("Schedule_TimeBreakdown", culture), hours);
-                string option1 = $"1) {string.Format(rm.GetString("Schedule_ConfirmYes", culture), translatedType)}";
-                string option2 = $"2) {rm.GetString("Schedule_ConfirmNoReenter", culture)}";
-                string option0 = $"0) {rm.GetString("BackToMainMenu", culture)}";
-
-                int maxLength = Math.Max(header.Length, Math.Max(option1.Length, Math.Max(option2.Length, option0.Length)));
-                int borderLength = maxLength + 4;
-
-                UIDraw.DrawCenteredLine("\u256D" + new string('\u2500', borderLength) + "\u256E");
-                UIDraw.DrawCenteredLine("\u2502 " + header.PadRight(maxLength) + "   \u2502");
-                UIDraw.DrawCenteredLine("\u2502 " + info.PadRight(maxLength) + "   \u2502");
-                UIDraw.DrawCenteredLine("\u251C" + new string('\u2500', borderLength) + "\u2524");
-                UIDraw.DrawCenteredLine("\u2502 " + option1.PadRight(maxLength) + "   \u2502");
-                UIDraw.DrawCenteredLine("\u2502 " + option2.PadRight(maxLength) + "   \u2502");
-                UIDraw.DrawCenteredLine("\u2502 " + option0.PadRight(maxLength) + "   \u2502");
-                UIDraw.DrawCenteredLine("\u2570" + new string('\u2500', borderLength) + "\u256F");
-
-                UIDraw.TextColor = ConsoleColor.White;
-                UIDraw.Draw(rm.GetString("Schedule_InputPrompt", culture) + " ");
-
-                string confirmKey = Console.ReadKey().KeyChar.ToString();
-                Console.Clear();
-
-                if (confirmKey == "0")
-                {
-                    return false;
-                }
-                else if (confirmKey == "2")
-                {
-                    return Plan();
-                }
-                else if (confirmKey == "1")
-                {
-                    try
-                    {
-                        string character = type.Equals(rm.GetString("Shutdown", culture).ToLower(), StringComparison.OrdinalIgnoreCase) ? "s" : "r";
-                        UIDraw.TextColor = Variables.MenuColor;
-                        UIDraw.DrawBoxedMessage("Recurring schedule? (d)aily, (w)eekly, (n)one");
-                        UIDraw.TextColor = ConsoleColor.White;
-                        var recur = Console.ReadKey().KeyChar.ToString().ToLower();
-                        Console.Clear();
-                        if (recur == "d" || recur == "w")
-                        {
-                            string scheduleType = recur == "d" ? "DAILY" : "WEEKLY";
-                            string taskName = $"reShutCLI_{Guid.NewGuid().ToString("N")}";
-                            string st = targetTime.ToString("HH:mm");
-                            var psi = new ProcessStartInfo
-                            {
-                                FileName = "schtasks",
-                                RedirectStandardOutput = true,
-                                RedirectStandardError = true,
-                                UseShellExecute = false,
-                                CreateNoWindow = true
-                            };
-                            psi.ArgumentList.Add("/Create");
-                            psi.ArgumentList.Add("/TN");
-                            psi.ArgumentList.Add(taskName);
-                            psi.ArgumentList.Add("/TR");
-                            psi.ArgumentList.Add($"shutdown /{character} /f");
-                            psi.ArgumentList.Add("/SC");
-                            psi.ArgumentList.Add(scheduleType);
-                            psi.ArgumentList.Add("/ST");
-                            psi.ArgumentList.Add(st);
-                            using (var process = Process.Start(psi))
-                            {
-                                process.WaitForExit();
-                                if (process.ExitCode != 0)
-                                {
-                                    string errorOutput = process.StandardError.ReadToEnd();
-                                    UIDraw.TextColor = ConsoleColor.Red;
-                                    UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture) + (string.IsNullOrWhiteSpace(errorOutput) ? "" : $"\n{errorOutput}"));
-                                    UIDraw.TextColor = ConsoleColor.White;
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Process.Start("cmd.exe", $"/c shutdown /{character} /f /t {seconds}");
-                        }
-                        UIDraw.TextColor = ConsoleColor.Green;
-                        UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ActionScheduled", culture));
-                        UIDraw.TextColor = ConsoleColor.White;
-                        return true;
-                    }
-                    catch
-                    {
-                        UIDraw.TextColor = ConsoleColor.Red;
-                        UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
-                        UIDraw.TextColor = ConsoleColor.White;
-                        return false;
-                    }
-                }
-                else
-                {
+                case '0':
+                    return ConfirmResult.Cancelled;
+                case '2':
+                    return ConfirmResult.Reenter;
+                case '1':
+                    return ExecuteSchedule(action, targetTime, seconds) ? ConfirmResult.Done : ConfirmResult.Cancelled;
+                default:
                     UIDraw.TextColor = ConsoleColor.Red;
-                    UIDraw.DrawBoxedMessage(rm.GetString("Schedule_ErrorOccurred", culture));
+                    UIDraw.DrawBoxedMessage(Localization.Get("Schedule_ErrorOccurred"));
                     UIDraw.TextColor = ConsoleColor.White;
-                }
+                    break;
             }
+        }
+    }
+
+    private static bool ExecuteSchedule(PowerAction action, DateTime targetTime, int seconds)
+    {
+        try
+        {
+            UIDraw.TextColor = Variables.MenuColor;
+            UIDraw.DrawBoxedMessage("Recurring schedule? (d)aily, (w)eekly, (n)one");
+            UIDraw.TextColor = ConsoleColor.White;
+            var recur = char.ToLowerInvariant(Console.ReadKey().KeyChar);
+            Console.Clear();
+
+            if (recur is 'd' or 'w')
+            {
+                TaskSchedulerService.Register(
+                    recur == 'd' ? TaskSchedulerService.Recurrence.Daily : TaskSchedulerService.Recurrence.Weekly,
+                    targetTime,
+                    action == PowerAction.Shutdown ? "/s" : "/r",
+                    $"reShut CLI scheduled {(action == PowerAction.Shutdown ? "shutdown" : "reboot")}");
+            }
+            else
+            {
+                // A one-off delay is just a shutdown with a grace period - the same thing
+                // "shutdown /t" asks the system for, without spawning anything.
+                var delay = (uint)Math.Max(0, seconds);
+                if (action == PowerAction.Shutdown) PowerManager.Shutdown(delay);
+                else PowerManager.Reboot(delay);
+            }
+
+            UIDraw.TextColor = ConsoleColor.Green;
+            UIDraw.DrawBoxedMessage(Localization.Get("Schedule_ActionScheduled"));
+            UIDraw.TextColor = ConsoleColor.White;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            // The Task Scheduler reports failures as COM HRESULTs, which are worth
+            // surfacing - the previous catch discarded them entirely.
+            UIDraw.TextColor = ConsoleColor.Red;
+            UIDraw.DrawBoxedMessage($"{Localization.Get("Schedule_ErrorOccurred")}\n{ex.Message}");
+            UIDraw.TextColor = ConsoleColor.White;
+            return false;
         }
     }
 }

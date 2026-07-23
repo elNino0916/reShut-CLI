@@ -1,137 +1,92 @@
-using System;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Threading;
 using reShutCLI.Helpers;
 
-namespace reShutCLI.Services
+namespace reShutCLI.Services;
+
+internal static class ThemeLoader
 {
-    internal class ThemeLoader
+    public static void LoadTheme()
     {
-        private static readonly HttpClient client = new HttpClient();
+        var selectedTheme = RegistryWorker.ReadFromRegistry(Constants.RegistryPathConfig, Constants.RegistryValueSelectedTheme);
 
-        public static void loadTheme()
+        switch (selectedTheme)
         {
-            var selectedTheme = RegistryWorker.ReadFromRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SelectedTheme");
-
-            switch (selectedTheme)
-            {
-                case "default":
-                    setThemeFromApiAsync().Wait();
-                    break;
-                case "red":
-                    setRedTheme();
-                    break;
-                case "blue":
-                    setBlueTheme();
-                    break;
-                case "green":
-                    setGreenTheme();
-                    break;
-                case "nord":
-                    setNordTheme();
-                    break;
-                default:
-                    setDefaultThemeFB();
-                    break;
-            }
+            case "default":
+                SetDefaultTheme();
+                break;
+            case "red":
+                SetTheme(menu: ConsoleColor.Red, logo: ConsoleColor.DarkRed, secondary: ConsoleColor.Magenta);
+                break;
+            case "blue":
+                SetTheme(menu: ConsoleColor.Blue, logo: ConsoleColor.DarkBlue, secondary: ConsoleColor.DarkGreen);
+                break;
+            case "green":
+                SetTheme(menu: ConsoleColor.Green, logo: ConsoleColor.DarkGreen, secondary: ConsoleColor.Blue);
+                break;
+            case "nord":
+                SetTheme(menu: ConsoleColor.DarkCyan, logo: ConsoleColor.Cyan, secondary: ConsoleColor.DarkGray);
+                break;
+            default:
+                SetFallbackTheme();
+                break;
         }
+    }
 
-        private static async Task setThemeFromApiAsync()
+    /// <summary>Loads the dynamic default theme from the theme API.</summary>
+    public static void SetDefaultTheme() => SetThemeFromApiAsync().GetAwaiter().GetResult();
+
+    public static void SetFallbackTheme() =>
+        SetTheme(menu: ConsoleColor.White, logo: ConsoleColor.Gray, secondary: ConsoleColor.Red);
+
+    private static void SetTheme(CliColor menu, CliColor logo, CliColor secondary)
+    {
+        Variables.MenuColor = menu;
+        Variables.LogoColor = logo;
+        Variables.SecondaryColor = secondary;
+    }
+
+    private static async Task SetThemeFromApiAsync()
+    {
+        try
         {
-            try
-            {
-                Console.Title = "reShutCLI - Loading Theme...";
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                using var cts = new CancellationTokenSource();
+            Console.Title = "reShutCLI - Loading Theme...";
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            using var cts = new CancellationTokenSource();
 
-                // Start spinner in background
-                var spinnerTask = Task.Run(async () =>
+            // Spinner while the theme is fetched.
+            var spinnerTask = Task.Run(async () =>
+            {
+                char[] frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+                var i = 0;
+                while (!cts.Token.IsCancellationRequested)
                 {
-                    char[] frames = { '\u280B', '\u2819', '\u2839', '\u2838', '\u283C', '\u2834', '\u2826', '\u2827', '\u2807', '\u280F' };
-                    int i = 0;
-                    while (!cts.Token.IsCancellationRequested)
-                    {
-                        UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching theme...");
-                        await Task.Delay(100, cts.Token).ContinueWith(_ => { });
-                    }
-                }, cts.Token);
+                    UIDraw.DrawCentered($"\r{frames[i++ % frames.Length]} Fetching theme...");
+                    await Task.Delay(100, cts.Token).ContinueWith(_ => { });
+                }
+            }, cts.Token);
 
-                // Perform API call
-                var fetchTask = client.GetStringAsync(Variables.apiString);
+            var fetchTask = Http.Client.GetStringAsync(Variables.ApiUrl);
+            await Task.WhenAll(fetchTask, Task.Delay(1000));
 
-                await Task.WhenAll(fetchTask, Task.Delay(1000));
+            var theme = JsonSerializer.Deserialize(await fetchTask, ApiJsonContext.Default.ApiTheme)
+                        ?? throw new InvalidOperationException("Theme API returned no data.");
 
-                var response = await fetchTask;
-                var theme = JsonSerializer.Deserialize<ApiTheme>(response);
+            Variables.MenuColor = new CliColor(theme.MenuColor);
+            Variables.LogoColor = new CliColor(theme.LogoColor);
+            Variables.SecondaryColor = new CliColor(theme.SecondaryColor);
+            Variables.BackgroundColor = new CliColor(theme.SecondaryColor);
+            Variables.UpdatedDefaultThemeName = theme.ThemeName ?? "";
 
-                Variables.MenuColor = theme.MenuColor;
-                Variables.LogoColor = theme.LogoColor;
-                Variables.SecondaryColor = theme.SecondaryColor;
-                Variables.BackgroundColor = theme.SecondaryColor;
-                Variables.UpdatedDefaultThemeName = theme.ThemeName;
-
-                // Stop spinner
-                cts.Cancel();
-                await spinnerTask;
-                Console.Clear();
-            }
-            catch (Exception)
-            {
-                Console.Clear();
-                setDefaultThemeFB();
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                UIDraw.DrawBoxedMessage("Using fallback theme!");
-            }
+            await cts.CancelAsync();
+            await spinnerTask;
+            Console.Clear();
         }
-
-        public static void setDefaultTheme()
+        catch (Exception)
         {
-            setThemeFromApiAsync().Wait();
-        }
-
-        public static void setDefaultThemeFB()
-        {
-            Variables.MenuColor = ConsoleColor.White;
-            Variables.LogoColor = ConsoleColor.Gray;
-            Variables.SecondaryColor = ConsoleColor.Red;
-        }
-
-        public static void setRedTheme()
-        {
-            Variables.MenuColor = ConsoleColor.Red;
-            Variables.LogoColor = ConsoleColor.DarkRed;
-            Variables.SecondaryColor = ConsoleColor.Magenta;
-        }
-
-        public static void setBlueTheme()
-        {
-            Variables.MenuColor = ConsoleColor.Blue;
-            Variables.LogoColor = ConsoleColor.DarkBlue;
-            Variables.SecondaryColor = ConsoleColor.DarkGreen;
-        }
-
-        public static void setGreenTheme()
-        {
-            Variables.MenuColor = ConsoleColor.Green;
-            Variables.LogoColor = ConsoleColor.DarkGreen;
-            Variables.SecondaryColor = ConsoleColor.Blue;
-        }
-
-        public static void setNordTheme()
-        {
-            Variables.MenuColor = ConsoleColor.DarkCyan;
-            Variables.LogoColor = ConsoleColor.Cyan;
-            Variables.SecondaryColor = ConsoleColor.DarkGray;
-        }
-
-        private class ApiTheme
-        {
-            public string MenuColor { get; set; }
-            public string LogoColor { get; set; }
-            public string SecondaryColor { get; set; }
-            public string ThemeName { get; set; }
+            Console.Clear();
+            SetFallbackTheme();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            UIDraw.DrawBoxedMessage("Using fallback theme!");
         }
     }
 }

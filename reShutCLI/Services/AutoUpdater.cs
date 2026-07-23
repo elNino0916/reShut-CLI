@@ -1,122 +1,107 @@
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using reShutCLI.Helpers;
 
-namespace reShutCLI.Services
+namespace reShutCLI.Services;
+
+internal static class AutoUpdater
 {
-    internal class AutoUpdater
+    public static async Task PerformUpdate()
     {
-        private const string RepositoryUrl = "https://api.github.com/repos/elnino0916/reshut-cli/releases/latest";
-        private const string UserAgent = "reShutCLI_AutoUpdater";
-
-        public static async Task PerformUpdate()
+        try
         {
-            try
+            using var response = await Http.Client.GetAsync(Constants.GitHubLatestReleaseApiUrl);
+
+            if (!response.IsSuccessStatusCode)
             {
-                using var client = new HttpClient();
-                client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
-
-                var response = await client.GetAsync(RepositoryUrl);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var release = JsonSerializer.Deserialize<UpdateChecker.GitHubRelease>(json);
-
-                    var latestVersion = release.tag_name;
-                    var currentVersion = Variables.version;
-
-                    if (UpdateChecker.IsNewerVersionAvailable(currentVersion, latestVersion))
-                    {
-                        var asset = release.assets[0]; // Assuming the first asset is the installer
-                        var downloadUrl = asset.browser_download_url;
-                        var installerPath = await DownloadInstaller(downloadUrl);
-
-                        if (!string.IsNullOrEmpty(installerPath))
-                        {
-                            StartInstaller(installerPath);
-                        }
-                        else
-                        {
-                            UIDraw.TextColor = ConsoleColor.Red;
-                            ErrorHandler.ShowError("Failed to download the installer.", true);
-                            UIDraw.TextColor = ConsoleColor.Gray;
-                        }
-                    }
-                    else
-                    {
-                        UIDraw.TextColor = Variables.MenuColor;
-                        ErrorHandler.ShowError("Tried to update to the same version currently installed.", true);
-                        UIDraw.TextColor = ConsoleColor.Gray;
-                    }
-                }
-                else
-                {
-                    UIDraw.TextColor = ConsoleColor.Red;
-                    ErrorHandler.ShowError($"Failed to check for updates: {response.StatusCode}", true);
-                    UIDraw.TextColor = ConsoleColor.Gray;
-                }
+                ShowUpdateError($"Failed to check for updates: {response.StatusCode}");
+                return;
             }
-            catch (Exception ex)
+
+            var json = await response.Content.ReadAsStringAsync();
+            var release = JsonSerializer.Deserialize(json, ApiJsonContext.Default.GitHubRelease);
+
+            if (release is null || !UpdateChecker.IsNewerVersionAvailable(Variables.Version, release.TagName))
             {
-                UIDraw.TextColor = ConsoleColor.Red;
-                ErrorHandler.ShowError($"Failed to update: {ex.Message}", true);
-                UIDraw.TextColor = ConsoleColor.Gray;
+                UIDraw.TextColor = Variables.MenuColor;
+                ErrorHandler.ShowError("Tried to update to the same version currently installed.", true);
+                return;
+            }
+
+            // Prefer an installer executable; fall back to the first asset.
+            var asset = release.Assets.FirstOrDefault(a =>
+                            a.Name?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
+                        ?? release.Assets.FirstOrDefault();
+
+            if (asset?.BrowserDownloadUrl is not { } downloadUrl)
+            {
+                ShowUpdateError("The latest release has no downloadable installer.");
+                return;
+            }
+
+            var installerPath = await DownloadInstaller(downloadUrl);
+            if (!string.IsNullOrEmpty(installerPath))
+            {
+                StartInstaller(installerPath);
+            }
+            else
+            {
+                ShowUpdateError("Failed to download the installer.");
             }
         }
-
-        private static async Task<string> DownloadInstaller(string downloadUrl)
+        catch (Exception ex)
         {
-            try
-            {
-                var fileName = Path.GetFileName(new Uri(downloadUrl).LocalPath);
-                var filePath = Path.Combine(Path.GetTempPath(), fileName);
-
-                using var client = new HttpClient();
-                var response = await client.GetAsync(downloadUrl);
-
-                response.EnsureSuccessStatusCode();
-
-                using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
-                await response.Content.CopyToAsync(fileStream);
-
-                return filePath;
-            }
-            catch (Exception ex)
-            {
-                UIDraw.TextColor = ConsoleColor.Red;
-                ErrorHandler.ShowError($"Failed to download the installer: {ex.Message}", true);
-                UIDraw.TextColor = ConsoleColor.Gray;
-                return string.Empty;
-            }
+            ShowUpdateError($"Failed to update: {ex.Message}");
         }
+    }
 
-        private static void StartInstaller(string installerPath)
+    private static async Task<string> DownloadInstaller(string downloadUrl)
+    {
+        try
         {
-            try
-            {
-                var startInfo = new ProcessStartInfo
-                {
-                    FileName = installerPath,
-                    Arguments = "/SILENT /CLOSEAPPLICATIONS /NOCANCEL /NORESTART",
-                    UseShellExecute = true,
-                };
+            var fileName = Path.GetFileName(new Uri(downloadUrl).LocalPath);
+            var filePath = Path.Combine(Path.GetTempPath(), fileName);
 
-                Process.Start(startInfo);
+            using var response = await Http.Client.GetAsync(downloadUrl);
+            response.EnsureSuccessStatusCode();
 
-                // Exit the current application
-                Environment.Exit(0);
-            }
-            catch (Exception ex)
-            {
-                UIDraw.TextColor = ConsoleColor.Red;
-                ErrorHandler.ShowError($"Failed to start the installer: {ex.Message}", true);
-                UIDraw.TextColor = ConsoleColor.Gray;
-            }
+            await using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
+            await response.Content.CopyToAsync(fileStream);
+
+            return filePath;
         }
+        catch (Exception ex)
+        {
+            ShowUpdateError($"Failed to download the installer: {ex.Message}");
+            return string.Empty;
+        }
+    }
+
+    private static void StartInstaller(string installerPath)
+    {
+        try
+        {
+            // /S is the NSIS silent flag (installers >= 2.1). Older Inno Setup
+            // installers ignore it and show their UI, which is acceptable.
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = installerPath,
+                Arguments = "/S",
+                UseShellExecute = true,
+            });
+
+            Environment.Exit(Constants.ExitCodeSuccess);
+        }
+        catch (Exception ex)
+        {
+            ShowUpdateError($"Failed to start the installer: {ex.Message}");
+        }
+    }
+
+    private static void ShowUpdateError(string message)
+    {
+        UIDraw.TextColor = ConsoleColor.Red;
+        ErrorHandler.ShowError(message, true);
+        UIDraw.TextColor = ConsoleColor.Gray;
     }
 }

@@ -1,51 +1,36 @@
-using System;
-using System.Globalization;
-using System.Resources;
-using System.Runtime.Versioning;
-using System.Threading;
 using reShutCLI.Helpers;
 
-namespace reShutCLI.Services
-{
-    internal class ConfigManager
-    {
+namespace reShutCLI.Services;
 
-        public static void Reset()
+internal static class ConfigManager
+{
+    public static void Reset()
+    {
+        while (true)
         {
-        ResetMenu:
             Console.Clear();
-            CultureInfo culture = new CultureInfo(Variables.lang);
-            ResourceManager rm = new ResourceManager("reShutCLI.Resources.Strings", typeof(Program).Assembly);
             UIDraw.TextColor = Variables.SecondaryColor;
-            UIDraw.DrawBoxedMessage(rm.GetString("ResetWarning", culture));
+            UIDraw.DrawBoxedMessage(Localization.Get("ResetWarning"));
             UIDraw.DrawCenteredLine("");
-            UIDraw.DrawCenteredLine("\u256D\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E");
-            UIDraw.DrawCenteredLine("\u2502 1) Reset         \u2502");
-            UIDraw.DrawCenteredLine("\u251C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524");
-            UIDraw.DrawCenteredLine("\u2502 2) Cancel        \u2502");
-            UIDraw.DrawCenteredLine("\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256F");
+            UIDraw.DrawMenu(null, ["1) Reset"], ["2) Cancel"]);
             UIDraw.TextColor = Variables.MenuColor;
 
-            var setInfo = Console.ReadKey();
-            var confirmation = setInfo.KeyChar.ToString();
+            var confirmation = Console.ReadKey().KeyChar;
             UIDraw.TextColor = Variables.SecondaryColor;
 
-            if (confirmation == "1")
+            switch (confirmation)
             {
-                Console.Clear();
-                UIDraw.DrawBoxedMessage(rm.GetString("ResetProg", culture));
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI", "RegistryPopulated", "STRING", "0");
-                RegistryWorker.WriteToRegistry(@"HKEY_CURRENT_USER\Software\elNino0916\reShutCLI\config", "SetupComplete", "STRING", "0");
-                Thread.Sleep(500);
-                AutoRestart.Init();
-                Console.Clear();
-                return;
+                case '1':
+                    Console.Clear();
+                    UIDraw.DrawBoxedMessage(Localization.Get("ResetProg"));
+                    RegistryWorker.WriteToRegistry(Constants.RegistryPathBase, Constants.RegistryValueRegistryPopulated, Constants.RegistryValueTypeString, "0");
+                    RegistryWorker.WriteToRegistry(Constants.RegistryPathConfig, Constants.RegistryValueSetupComplete, Constants.RegistryValueTypeString, "0");
+                    Thread.Sleep(500);
+                    AutoRestart.Init();
+                    return;
+                case '2':
+                    return;
             }
-            if (confirmation == "2")
-            {
-                return;
-            }
-            goto ResetMenu;
         }
     }
 }

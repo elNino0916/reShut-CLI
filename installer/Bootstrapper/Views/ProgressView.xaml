@@ -1,0 +1,75 @@
+<UserControl x:Class="reShutCLI.Bootstrapper.Views.ProgressView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:reShutCLI.Bootstrapper.Theme">
+    <Grid Background="{StaticResource AppBackgroundBrush}">
+        <Ellipse Style="{StaticResource PageGlow}" Margin="0,110,0,0" />
+
+        <StackPanel VerticalAlignment="Center" Margin="56,0">
+            <!--
+                Two rings pulse outward from the icon on a staggered loop. Unlike the progress
+                bar, this keeps moving even while a slow step (the runtime download) reports no
+                percentage change, so the installer never looks hung.
+            -->
+            <Grid Height="58" HorizontalAlignment="Center" theme:Reveal.Delay="0">
+                <Ellipse x:Name="Ping1" Width="58" Height="58" Stroke="{StaticResource AccentBrush}" StrokeThickness="1.5"
+                         Opacity="0" RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+                <Ellipse x:Name="Ping2" Width="58" Height="58" Stroke="{StaticResource AccentBrush}" StrokeThickness="1.5"
+                         Opacity="0" RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Border Style="{StaticResource IconTile}">
+                    <Image Source="{x:Static theme:AppIcon.Large}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality" />
+                </Border>
+            </Grid>
+
+            <TextBlock x:Name="TitleText" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,0"
+                       theme:Reveal.Delay="0.07" />
+
+            <ProgressBar x:Name="Bar" Margin="0,28,0,0" Minimum="0" Maximum="100" Value="0"
+                         theme:Reveal.Delay="0.14" />
+
+            <Grid Margin="0,10,0,0" theme:Reveal.Delay="0.18">
+                <TextBlock x:Name="StatusText" Foreground="{StaticResource MutedBrush}" FontSize="12" />
+                <TextBlock x:Name="PercentText" Foreground="{StaticResource FaintBrush}" FontSize="12" HorizontalAlignment="Right" Text="0%" />
+            </Grid>
+        </StackPanel>
+
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <!--
+                    The two rings are separate storyboards rather than one with an offset child:
+                    a single storyboard's repeat period would stretch to cover the delayed ring,
+                    which turns an even 1.2s pulse into a limping 1.2s/2.4s alternation.
+                -->
+                <BeginStoryboard>
+                    <Storyboard RepeatBehavior="Forever">
+                        <DoubleAnimation Storyboard.TargetName="Ping1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         From="1" To="2.1" Duration="0:0:2.4" />
+                        <DoubleAnimation Storyboard.TargetName="Ping1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         From="1" To="2.1" Duration="0:0:2.4" />
+                        <DoubleAnimation Storyboard.TargetName="Ping1" Storyboard.TargetProperty="Opacity"
+                                         From="0.5" To="0" Duration="0:0:2.4" />
+                    </Storyboard>
+                </BeginStoryboard>
+                <BeginStoryboard>
+                    <Storyboard RepeatBehavior="Forever" BeginTime="0:0:1.2">
+                        <DoubleAnimation Storyboard.TargetName="Ping2" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         From="1" To="2.1" Duration="0:0:2.4" />
+                        <DoubleAnimation Storyboard.TargetName="Ping2" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         From="1" To="2.1" Duration="0:0:2.4" />
+                        <DoubleAnimation Storyboard.TargetName="Ping2" Storyboard.TargetProperty="Opacity"
+                                         From="0.5" To="0" Duration="0:0:2.4" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+    </Grid>
+</UserControl>
